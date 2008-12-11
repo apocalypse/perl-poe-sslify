@@ -1,0 +1,82 @@
+Revision history for Perl extension POE::Component::SSLify.
+
+* 0.14
+
+	removed Test::* modules from dependency list, thanks BINGOS - RT #36725
+
+	dos2unix fixes - thanks RT #36704
+
+	added Build.PL
+
+* 0.13
+
+	POD typo errors in SSLify_ContextCreate - thanks ASCENT!
+
+* 0.12
+
+	Kwalitee-related fixes
+
+* 0.11
+
+	allowed setting of client-side context ( $ctx ) object - thanks RT #34442
+
+	squashed typo in pod - thanks ASCENT!
+
+	changed version check code to regexp for compatibility with SSLeay v1.33_01 - thanks Mark!
+
+	added SSLify_ContextCreate helper function
+
+	backported Net::SSLeay's removal of %Filenum_Objects hash
+
+* 0.10
+
+	More tweaks of POD - finally close RT #31238
+	Added SSL version support - thanks RT #31492
+	Added SSL CTX option support as a side effect
+	Added client.pl example with ReadLine support
+
+* 0.09
+
+	Minor tweak of POD to enable better distro building - thanks RT #31238
+
+* 0.08
+
+	Added support for BINMODE - thanks RT #27117
+
+* 0.07
+
+	Fixed undefined $info - thanks RT #22372
+
+* 0.06
+
+	Kwalitee-related fixes
+
+* 0.05
+
+	Finally use a Changes file - thanks RT #18981
+	Documentation tweaks
+	Upgraded Net::SSLeay requirement to 1.30 to help Win32 problems
+
+* 0.04
+
+	Added new functions to extract data from the SSL socket -> GetCipher and GetSocket
+	In the case somebody knows Net::SSLeay more than me, added GetCTX to return the server-side CTX object
+	Removed the dependency on Net::SSLeay::Handle
+
+* 0.03
+
+	First stab at the server-side code, help me test it out!
+	Refactored SSLify() into client/server side, so update your program accordingly!
+
+* 0.02
+
+	Made sure the IO::Handle way was used only on MSWin32
+
+	* SSLify::ServerHandle
+	Removed _CIPHER and moved it to the main SSLify.pm code
+	Oops, forgot to override _get_self and _get_ssl
+	Fixed a nasty leak issue
+
+* 0.01
+
+	Initial release
