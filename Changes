@@ -1,5 +1,9 @@
 Revision history for Perl extension POE::Component::SSLify.
 
+* 0.15
+
+	Added "examples/serverclient.pl" to track down same-process sslification problems, thanks LotR!
+
 * 0.14
 
 	removed Test::* modules from dependency list, thanks BINGOS - RT #36725

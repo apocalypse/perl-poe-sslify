@@ -34,11 +34,14 @@ POE::Session->create(
 			# ARG0 = Socket, ARG1 = Remote Address, ARG2 = Remote Port
 			my $socket = $_[ ARG0 ];
 
+			# testing stuff
+			warn "got connection from: " . inet_ntoa( ( unpack_sockaddr_in( getpeername( $socket ) ) )[1] ) . " - commencing Server_SSLify()";
+
 			# SSLify it!
 			$socket = Server_SSLify( $socket );
 
 			# testing stuff
-			warn "got connection from: " . inet_ntoa( ( unpack_sockaddr_in( getpeername( SSLify_GetSocket( $socket ) ) ) )[1] ) . " cipher type: " . SSLify_GetCipher( $socket );
+			warn "SSLified: " . inet_ntoa( ( unpack_sockaddr_in( getpeername( SSLify_GetSocket( $socket ) ) ) )[1] ) . " cipher type: " . SSLify_GetCipher( $socket );
 
 			# Hand it off to ReadWrite
 			my $wheel = POE::Wheel::ReadWrite->new(
@@ -46,31 +49,26 @@ POE::Session->create(
 				'Driver'	=>	POE::Driver::SysRW->new(),
 				'Filter'	=>	POE::Filter::Line->new(),
 				'InputEvent'	=>	'Got_Input',
-				'FlushedEvent'	=>	'Got_Flush',
 				'ErrorEvent'	=>	'Got_Error',
 			);
 
 			# Store it...
 			$_[HEAP]->{'WHEELS'}->{ $wheel->ID } = $wheel;
-			return 1;
+			return;
 		},
 		'ListenerError'	=>	sub {
 			# ARG0 = operation, ARG1 = error number, ARG2 = error string, ARG3 = wheel ID
 			my ( $operation, $errnum, $errstr, $wheel_id ) = @_[ ARG0 .. ARG3 ];
 			warn "SocketFactory Wheel $wheel_id generated $operation error $errnum: $errstr\n";
 
-			return 1;
+			return;
 		},
 		'Got_Input'	=>	sub {
 			# ARG0: The Line, ARG1: Wheel ID
 
 			# Send back to the client the line!
 			$_[HEAP]->{'WHEELS'}->{ $_[ARG1] }->put( $_[ARG0] );
-			return 1;
-		},
-		'Got_Flush'	=>	sub {
-			# We don't care about this event
-			return 1;
+			return;
 		},
 		'Got_Error'	=>	sub {
 			# ARG0 = operation, ARG1 = error number, ARG2 = error string, ARG3 = wheel ID
@@ -79,7 +77,7 @@ POE::Session->create(
 
 			# Done with a wheel
 			delete $_[HEAP]->{'WHEELS'}->{ $_[ARG0] };
-			return 1;
+			return;
 		},
 	},
 );
@@ -98,7 +96,7 @@ POE::Session->create(
 
 			# Connect to the server!
 			$_[KERNEL]->yield( 'do_connect' );
-			return 1;
+			return;
 		},
 		'do_connect'		=>	sub {
 			# Create the socketfactory wheel to listen for requests
@@ -109,7 +107,7 @@ POE::Session->create(
 				'SuccessEvent'	=>	'Got_Connection',
 				'FailureEvent'	=>	'ConnectError',
 			);
-			return 1;
+			return;
 		},
 		'Got_ReadLine'		=>	sub {
 			if ( defined $_[ARG0] ) {
@@ -121,13 +119,18 @@ POE::Session->create(
 					die 'stopped';
 				}
 			}
+			return;
 		},
 		'Got_Connection'	=>	sub {
 			# ARG0 = Socket, ARG1 = Remote Address, ARG2 = Remote Port
 			my $socket = $_[ ARG0 ];
 
+			warn "Connected to server, commencing Client_SSLify()";
+
 			# SSLify it!
 			$socket = Client_SSLify( $socket );
+
+			warn "SSLified the connection to the server";
 
 			# Hand it off to ReadWrite
 			my $wheel = POE::Wheel::ReadWrite->new(
@@ -143,7 +146,7 @@ POE::Session->create(
 			$_[HEAP]->{'RL'}->put( 'Connected to SSL server' );
 			$_[HEAP]->{'RL'}->get( 'Input: ' );
 
-			return 1;
+			return;
 		},
 		'ConnectError'	=>	sub {
 			# ARG0 = operation, ARG1 = error number, ARG2 = error string, ARG3 = wheel ID
@@ -152,7 +155,7 @@ POE::Session->create(
 			delete $_[HEAP]->{'SOCKETFACTORY'};
 			$_[HEAP]->{'RL'}->put( 'Unable to connect to SSL server...' );
 			$_[KERNEL]->delay_set( 'do_connect', 5 );
-			return 1;
+			return;
 		},
 		'Got_Input'	=>	sub {
 			# ARG0: The Line, ARG1: Wheel ID
@@ -160,7 +163,7 @@ POE::Session->create(
 			# Send back to the client the line!
 			$_[HEAP]->{'RL'}->put( 'Got Reply: ' . $_[ARG0] );
 			$_[HEAP]->{'RL'}->get( 'Input: ' );
-			return 1;
+			return;
 		},
 		'Got_Error'	=>	sub {
 			# ARG0 = operation, ARG1 = error number, ARG2 = error string, ARG3 = wheel ID
@@ -169,7 +172,7 @@ POE::Session->create(
 			delete $_[HEAP]->{'WHEEL'};
 			$_[HEAP]->{'RL'}->put( 'Disconnected from SSL server...' );
 			$_[KERNEL]->delay_set( 'do_connect', 5 );
-			return 1;
+			return;
 		},
 	},
 );

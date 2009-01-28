@@ -4,7 +4,7 @@ use strict; use warnings;
 
 # Initialize our version $LastChangedRevision: 53 $
 use vars qw( $VERSION );
-$VERSION = '0.14';
+$VERSION = '0.15';
 
 # We need Net::SSLeay or all's a failure!
 BEGIN {

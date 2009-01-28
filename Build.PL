@@ -1,4 +1,6 @@
+# Build.PL
 use Module::Build;
+
 my $build = Module::Build->new(
 	# look up Module::Build::API for the info!
 	'dynamic_config'	=> 0,
@@ -20,11 +22,7 @@ my $build = Module::Build->new(
 		'Net::SSLeay'	=>	'1.30',
 
 		# Test stuff
-		'Test::More'	=> 0,
-	},
-
-	'recommends'		=> {
-		# boo!
+		'Test::More'			=> '0.86',	# require latest for note() support in t/a_is_prereq_outdated.t
 	},
 
 	# FIXME wishlist...
@@ -45,6 +43,7 @@ my $build = Module::Build->new(
 #		'Test::Prereq'		=> 0,
 #		'Test::Strict'		=> 0,
 #		'Test::UseAllModules'	=> 0,
+#		'Test::YAML::Meta'	=> 0,
 #	},
 );
 

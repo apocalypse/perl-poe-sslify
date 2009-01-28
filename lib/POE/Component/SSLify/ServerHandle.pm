@@ -4,7 +4,7 @@ use strict; use warnings;
 
 # Initialize our version
 use vars qw( $VERSION );
-$VERSION = (qw$LastChangedRevision: 53 $)[1];
+$VERSION = '55';
 
 # Import the SSL death routines
 use Net::SSLeay qw( die_now die_if_ssl_error );
