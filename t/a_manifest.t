@@ -11,7 +11,7 @@ if ( not $ENV{TEST_AUTHOR} ) {
 		plan skip_all => 'Test::CheckManifest required for validating the MANIFEST';
 	} else {
 		ok_manifest( {
-			'filter'	=>	[ qr/\.svn/, qr/\.tar\.gz$/ ],
+			'filter'	=>	[ qr/\.svn/, qr/\.git/, qr/\.tar\.gz$/ ],
 		} );
 	}
 }

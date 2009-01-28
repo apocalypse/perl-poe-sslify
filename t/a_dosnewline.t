@@ -15,11 +15,11 @@ if ( not $ENV{TEST_AUTHOR} ) {
 		# generate the file list
 		my $rule = File::Find::Rule->new;
 		$rule->grep( qr/\r\n/ );
-		my @files = $rule->in( qw( lib t examples ) );
+		my @files = $rule->in( qw( lib t ) );
 
 		# FIXME read in MANIFEST.SKIP and use it!
-		# for now, we skip SVN stuff
-		@files = grep { $_ !~ /\/\.svn\// } @files;
+		# for now, we skip SVN + git stuff
+		@files = grep { $_ !~ /(?:\/\.svn\/|\/\.git\/)/ } @files;
 
 		# do we have any?
 		if ( scalar @files ) {

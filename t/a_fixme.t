@@ -8,11 +8,11 @@ if ( not $ENV{TEST_AUTHOR} ) {
 } else {
 	eval "use Test::Fixme";
 	if ( $@ ) {
-		plan skip_all => 'Test::Fixme required for checking for presence of to-do stuff!';
+		plan skip_all => 'Test::Fixme required for checking for presence of FIXMEs';
 	} else {
 		run_tests(
-			'where'		=> [ 'lib', 't' ],
-			'match'		=> 'FIX' . 'ME',	# weird work-around suggested in POD so we don't catch ourself!
+			'where'		=> 'lib',
+			'match'		=> qr/FIXME|TODO/,
 		);
 	}
 }
