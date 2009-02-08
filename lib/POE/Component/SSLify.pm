@@ -2,7 +2,7 @@
 package POE::Component::SSLify;
 use strict; use warnings;
 
-# Initialize our version $LastChangedRevision: 53 $
+# Initialize our version
 use vars qw( $VERSION );
 $VERSION = '0.15';
 
@@ -29,6 +29,9 @@ BEGIN {
 		Net::SSLeay::load_error_strings();
 		Net::SSLeay::SSLeay_add_ssl_algorithms();
 		Net::SSLeay::randomize();
+
+		# set nonblocking mode?
+		if ( ! defined &NONBLOCKING ) { *NONBLOCKING = sub () { 0 } }
 	}
 }
 
@@ -51,6 +54,9 @@ my $ctx = undef;
 # Helper sub to set blocking on a handle
 sub Set_Blocking {
 	my $socket = shift;
+
+	# skip this? ( experimental )
+	return $socket if NONBLOCKING();
 
 	# Net::SSLeay needs blocking for setup.
 	#
@@ -116,6 +122,7 @@ sub Client_SSLify {
 sub Server_SSLify {
 	# Get the socket!
 	my $socket = shift;
+	my $custom_ctx = shift;
 
 	# Validation...
 	if ( ! defined $socket ) {
@@ -123,8 +130,8 @@ sub Server_SSLify {
 	}
 
 	# If we don't have a ctx ready, we can't do anything...
-	if ( ! defined $ctx ) {
-		die 'Please do SSLify_Options() first';
+	if ( ! defined $ctx and ! defined $custom_ctx ) {
+		die 'Please do SSLify_Options() first ( or pass in a $ctx object )';
 	}
 
 	# Set blocking on
@@ -132,7 +139,7 @@ sub Server_SSLify {
 
 	# Now, we create the new socket and bind it to our subclass of Net::SSLeay::Handle
 	my $newsock = gensym();
-	tie( *$newsock, 'POE::Component::SSLify::ServerHandle', $socket, $ctx ) or die "Unable to tie to our subclass: $!";
+	tie( *$newsock, 'POE::Component::SSLify::ServerHandle', $socket, ( $custom_ctx || $ctx ) ) or die "Unable to tie to our subclass: $!";
 
 	# All done!
 	return $newsock;
@@ -152,7 +159,6 @@ sub SSLify_Options {
 	# sanity
 	if ( ! defined $key or ! defined $cert ) {
 		die 'no key/cert specified';
-		return;
 	}
 
 	# Set the default
@@ -186,7 +192,6 @@ sub createSSLcontext {
 			$context = Net::SSLeay::CTX_new();
 		} else {
 			die "unknown SSL version: $version";
-			return;
 		}
 	} else {
 		$context = Net::SSLeay::CTX_new();
@@ -345,6 +350,20 @@ that you check for errors and not use SSL, like so:
 	Some users have reported success, others failure when they tried to utilize SSLify in both roles. This
 	would require more investigation, so please tread carefully if you need to use it!
 
+=head2 Blocking mode
+
+	Normally, Net::SSLeay requires the socket to be in blocking mode for the initial handshake to work. However,
+	various users ( especially ASCENT, thanks! ) have reported success in setting nonblocking mode for clients.
+
+	In order to enable nonblocking mode, you need to set the subroutine "NONBLOCKING" to a true value in this
+	package.
+
+		sub POE::Component::SSLify::NONBLOCKING { 1 }
+		use POE::Component::SSLify;
+
+	This is a global, and an EXPERIMENTAL feature! Please, pretty please report back to me your experience with
+	this. Hopefully someday SSLify will be fully nonblocking, thanks to your help!
+
 =head1 FUNCTIONS
 
 =head2 Client_SSLify
@@ -384,6 +403,16 @@ that you check for errors and not use SSL, like so:
 		$socket = Server_SSLify( $socket );
 
 	NOTE: SSLify_Options must be set first!
+
+	Furthermore, you can pass in your own $ctx object if you desire. This allows you to set custom parameters
+	per-connection, for example.
+		my $socket = shift;	# get the socket from somewhere
+		my $ctx = Net::SSLeay::CTX_new();
+		# set various options on $ctx as desired
+		$socket = Server_SSLify( $socket, $ctx );
+
+	NOTE: You can use SSLify_GetCTX to modify the global, and avoid doing this on every connection if the
+	options are the same...
 
 =head2 SSLify_Options
 
@@ -447,9 +476,39 @@ that you check for errors and not use SSL, like so:
 
 	Stuffs all of the above functions in @EXPORT_OK so you have to request them directly
 
-=head1 BUGS
+head1 SUPPORT
 
-On Win32 platforms SSL support is pretty shaky, please help me out with detailed error descriptions if it happens to you!
+You can find documentation for this module with the perldoc command.
+
+    perldoc POE::Component::SSLify
+
+=head2 Websites
+
+=over 4
+
+=item * AnnoCPAN: Annotated CPAN documentation
+
+L<http://annocpan.org/dist/POE-Component-SSLify>
+
+=item * CPAN Ratings
+
+L<http://cpanratings.perl.org/d/POE-Component-SSLify>
+
+=item * RT: CPAN's request tracker
+
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=POE-Component-SSLify>
+
+=item * Search CPAN
+
+L<http://search.cpan.org/dist/POE-Component-SSLify>
+
+=back
+
+=head2 Bugs
+
+Please report any bugs or feature requests to C<bug-poe-component-sslify at rt.cpan.org>, or through
+the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=POE-Component-SSLify>.  I will be
+notified, and then you'll automatically be notified of progress on your bug as I make changes.
 
 =head1 SEE ALSO
 
@@ -474,7 +533,7 @@ Apocalypse E<lt>apocal@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2008 by Apocalypse/Rocco Caputo
+Copyright 2009 by Apocalypse/Rocco Caputo
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

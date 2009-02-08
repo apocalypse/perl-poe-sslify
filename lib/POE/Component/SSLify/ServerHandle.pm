@@ -4,7 +4,7 @@ use strict; use warnings;
 
 # Initialize our version
 use vars qw( $VERSION );
-$VERSION = '55';
+$VERSION = '0.15';
 
 # Import the SSL death routines
 use Net::SSLeay qw( die_now die_if_ssl_error );
@@ -105,6 +105,8 @@ sub BINMODE {
 	} else {
 		binmode $self->{'socket'};
 	}
+
+	return;
 }
 
 # Closes the socket
@@ -133,6 +135,8 @@ sub DESTROY {
 		# Guess not...
 		$self->CLOSE();
 	}
+
+	return;
 }
 
 sub FILENO {
@@ -194,7 +198,7 @@ Apocalypse E<lt>apocal@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2008 by Apocalypse/Rocco Caputo
+Copyright 2009 by Apocalypse/Rocco Caputo
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
