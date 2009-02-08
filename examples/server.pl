@@ -1,6 +1,9 @@
 #!/usr/bin/perl
 use strict; use warnings;
 
+# to use experimental nonblocking, uncomment this line
+#sub POE::Component::SSLify::NONBLOCKING { 1 }
+
 use POE;
 use Socket qw( inet_ntoa unpack_sockaddr_in );
 use POE::Component::SSLify qw( Server_SSLify SSLify_Options SSLify_GetCipher SSLify_GetSocket );

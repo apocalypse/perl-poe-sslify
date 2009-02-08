@@ -1,6 +1,9 @@
 #!/usr/bin/perl
 use strict; use warnings;
 
+# to use experimental nonblocking, uncomment this line
+#sub POE::Component::SSLify::NONBLOCKING { 1 }
+
 use POE;
 use POE::Component::SSLify qw( Client_SSLify );
 use POE::Wheel::ReadWrite;

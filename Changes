@@ -3,8 +3,12 @@ Revision history for Perl extension POE::Component::SSLify.
 * 0.15
 
 	Added "examples/serverclient.pl" to track down same-process sslification problems, thanks LotR!
+
 	Applied patch from BinGOs to support passing custom $ctx for Server_SSLify, thanks! RT#43018
-	Switched over to Test::Apocalypse for easy AUTHOR tests
+
+	Switched over to Test::Apocalypse for easy author tests
+
+	Added experimental NONBLOCKING code, thanks ASCENT for the motivation!
 
 * 0.14
 
