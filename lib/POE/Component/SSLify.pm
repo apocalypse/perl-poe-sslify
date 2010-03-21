@@ -275,7 +275,6 @@ POE::Component::SSLify - Makes using SSL in the world of POE easy!
 
 	# --------------------------------------------------------------------------- #
 
-
 	# SERVER-side usage
 
 	# !!! Make sure you have a public key + certificate generated via Net::SSLeay's makecert.pl
@@ -345,11 +344,6 @@ that you check for errors and not use SSL, like so:
 			# Unable to SSLify the socket...
 		}
 	}
-
-=head2 Mixing Server/Client in the same program
-
-	Some users have reported success, others failure when they tried to utilize SSLify in both roles. This
-	would require more investigation, so please tread carefully if you need to use it!
 
 =head1 FUNCTIONS
 
