@@ -1,5 +1,10 @@
 Revision history for Perl extension POE::Component::SSLify.
 
+* 0.17
+
+	Fixed the t/simple.t test to PASS on FreeBSD because Net::SSLeay::renegotiate was buggy on it, thanks CPANTesters!
+	Added note about OpenSSL functions in the POD.
+
 * 0.16
 
 	Updated the nonblocking code to be production-ready, thanks ASCENT!

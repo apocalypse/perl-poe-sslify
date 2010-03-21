@@ -3,7 +3,7 @@ use strict; use warnings;
 
 # Initialize our version
 use vars qw( $VERSION );
-$VERSION = '0.16';
+$VERSION = '0.17';
 
 # We need Net::SSLeay or all's a failure!
 BEGIN {
@@ -15,6 +15,7 @@ BEGIN {
 		die $@;
 	} else {
 		# Check to make sure the versions are what we want
+		# TODO what if Net::SSLeay is upgraded to 1.4? :(
 		if ( ! (	defined $Net::SSLeay::VERSION and
 				$Net::SSLeay::VERSION =~ /^1\.3/ ) ) {
 			warn 'Please upgrade Net::SSLeay to v1.30+ installed: v' . $Net::SSLeay::VERSION;
@@ -344,6 +345,17 @@ that you check for errors and not use SSL, like so:
 			# Unable to SSLify the socket...
 		}
 	}
+
+=head2 OpenSSL functions
+
+Theoretically you can do anything that Net::SSLeay exports from the OpenSSL libs on the socket. However, I have not tested every
+possible function against SSLify, so use them carefully! If you have success, please report back to me so I can update this doc!
+
+=head3 Net::SSLeay::renegotiate
+
+This function has been tested ( it's in t/simple.t ) but it doesn't work on FreeBSD! I tracked it down to this security advisory:
+L<http://security.freebsd.org/advisories/FreeBSD-SA-09:15.ssl.asc> which explains it in detail. The test will skip this function
+if it detects that you're on a FreeBSD system. However, if you have the updated OpenSSL library that fixes this you can use it.
 
 =head1 FUNCTIONS
 
