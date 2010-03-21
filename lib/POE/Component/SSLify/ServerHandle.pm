@@ -1,10 +1,9 @@
-# $Id: ServerHandle.pm 53 2008-07-28 03:03:04Z larwan $
 package POE::Component::SSLify::ServerHandle;
 use strict; use warnings;
 
 # Initialize our version
 use vars qw( $VERSION );
-$VERSION = '0.15';
+$VERSION = '0.16';
 
 # Import the SSL death routines
 use Net::SSLeay qw( die_now die_if_ssl_error );
@@ -19,6 +18,10 @@ sub TIEHANDLE {
 
 	Net::SSLeay::set_fd( $ssl, $fileno );
 
+	# Socket is in non-blocking mode, so accept() will return immediately.
+	# die_if_ssl_error won't die on non-blocking errors. We don't need to call accept()
+	# again, because OpenSSL I/O functions (read, write, ...) can handle that entirely
+	# by self (it's needed to accept() once to determine connection type).
 	my $err = Net::SSLeay::accept( $ssl ) and die_if_ssl_error( 'ssl accept' );
 
 	my $self = bless {
@@ -85,7 +88,8 @@ sub WRITE {
 	my $wrote_len = Net::SSLeay::write( $self->{'ssl'}, substr( $buf, $offset, $len ) );
 
 	# Did we get an error or number of bytes written?
-	# Net::SSLeay::write() returns the number of bytes written, or -1 on error.
+	# Net::SSLeay::write() returns the number of bytes written, or 0 on unsuccessful
+	# operation (probably connection closed), or -1 on error.
 	if ( $wrote_len < 0 ) {
 		# The normal syswrite() POE uses expects 0 here.
 		return 0;
@@ -186,19 +190,9 @@ L<POE::Component::SSLify>
 
 Apocalypse E<lt>apocal@cpan.orgE<gt>
 
-=head1 PROPS
-
-	Original code is entirely Rocco Caputo ( Creator of POE ) -> I simply
-	packaged up the code into something everyone could use...
-
-	From the PoCo::Client::HTTP code for blocking sockets =]
-	# TODO - This code should probably become a POE::Kernel method,
-    	# seeing as it's rather baroque and potentially useful in a number
-    	# of places.
-
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2009 by Apocalypse/Rocco Caputo
+Copyright 2010 by Apocalypse
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

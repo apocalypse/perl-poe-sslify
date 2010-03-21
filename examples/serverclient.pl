@@ -1,9 +1,6 @@
 #!/usr/bin/perl
 use strict; use warnings;
 
-# to use experimental nonblocking, uncomment this line
-#sub POE::Component::SSLify::NONBLOCKING { 1 }
-
 use POE;
 use Socket qw( inet_ntoa unpack_sockaddr_in );
 use POE::Component::SSLify qw( Client_SSLify Server_SSLify SSLify_Options SSLify_GetCipher SSLify_GetSocket );
@@ -17,15 +14,18 @@ use POE::Wheel::ReadLine;
 POE::Session->create(
 	'inline_states'	=>	{
 		'_start'	=>	sub {
-			# Okay, set the SSL options
-			SSLify_Options( 'server.key', 'server.crt' );
+			# Okay, set the SSL certificate info
+			eval {
+				SSLify_Options( 'mylib/example.key', 'mylib/example.crt' );
+			};
+			SSLify_Options( '../mylib/example.key', '../mylib/example.crt' ) if ( $@ );
 
 			# Set the alias
 			$_[KERNEL]->alias_set( 'server' );
 
 			# Create the socketfactory wheel to listen for requests
 			$_[HEAP]->{'SOCKETFACTORY'} = POE::Wheel::SocketFactory->new(
-				'BindPort'	=>	5432,
+				'BindPort'	=>	9898,
 				'BindAddress'	=>	'localhost',
 				'Reuse'		=>	'yes',
 				'SuccessEvent'	=>	'Got_Connection',
@@ -104,7 +104,7 @@ POE::Session->create(
 		'do_connect'		=>	sub {
 			# Create the socketfactory wheel to listen for requests
 			$_[HEAP]->{'SOCKETFACTORY'} = POE::Wheel::SocketFactory->new(
-				'RemotePort'	=>	5432,
+				'RemotePort'	=>	9898,
 				'RemoteAddress'	=>	'localhost',
 				'Reuse'		=>	'yes',
 				'SuccessEvent'	=>	'Got_Connection',

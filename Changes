@@ -1,5 +1,14 @@
 Revision history for Perl extension POE::Component::SSLify.
 
+* 0.16
+
+	Updated the nonblocking code to be production-ready, thanks ASCENT!
+	Removed the NONBLOCKING() sub, this module is now always nonblocking.
+	Added more tests, thanks ASCENT!
+	Added "mylib/example.crt" and "mylib/example.key" for testing, thanks ASCENT!
+	Misc kwalitee and POD fixes.
+	Bumped Net::SSLeay prereq to 1.36 so we have the latest SSL stuff to ensure sanity :)
+
 * 0.15
 
 	Added "examples/serverclient.pl" to track down same-process sslification problems, thanks LotR!

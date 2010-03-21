@@ -1,10 +1,10 @@
 Build.PL
-Changes
-Makefile.PL
 MANIFEST
 MANIFEST.SKIP
-META.yml
 README
+Makefile.PL
+META.yml
+Changes
 LICENSE
 
 lib/POE/Component/SSLify.pm
@@ -15,5 +15,9 @@ examples/client.pl
 examples/server.pl
 examples/serverclient.pl
 
+mylib/example.crt
+mylib/example.key
+
 t/1_load.t
 t/apocalypse.t
+t/simple.t

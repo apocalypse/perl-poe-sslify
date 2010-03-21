@@ -1,9 +1,6 @@
 #!/usr/bin/perl
 use strict; use warnings;
 
-# to use experimental nonblocking, uncomment this line
-#sub POE::Component::SSLify::NONBLOCKING { 1 }
-
 use POE;
 use POE::Component::SSLify qw( Client_SSLify );
 use POE::Wheel::ReadWrite;
@@ -30,7 +27,7 @@ POE::Session->create(
 		'do_connect'		=>	sub {
 			# Create the socketfactory wheel to listen for requests
 			$_[HEAP]->{'SOCKETFACTORY'} = POE::Wheel::SocketFactory->new(
-				'RemotePort'	=>	5432,
+				'RemotePort'	=>	9898,
 				'RemoteAddress'	=>	'localhost',
 				'Reuse'		=>	'yes',
 				'SuccessEvent'	=>	'Got_Connection',

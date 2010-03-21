@@ -1,10 +1,9 @@
-# $Id: ClientHandle.pm 53 2008-07-28 03:03:04Z larwan $
 package POE::Component::SSLify::ClientHandle;
 use strict; use warnings;
 
 # Initialize our version
 use vars qw( $VERSION );
-$VERSION = '0.15';
+$VERSION = '0.16';
 
 # Import the SSL death routines
 use Net::SSLeay qw( die_now die_if_ssl_error );
@@ -29,6 +28,10 @@ sub TIEHANDLE {
 
 	Net::SSLeay::set_fd( $ssl, $fileno );   # Must use fileno
 
+	# Socket is in non-blocking mode, so connect() will return immediately.
+	# die_if_ssl_error won't die on non-blocking errors. We don't need to call connect()
+	# again, because OpenSSL I/O functions (read, write, ...) can handle that entirely
+	# by self (it's needed to connect() once to determine connection type).
 	my $resp = Net::SSLeay::connect( $ssl ) or die_if_ssl_error( 'ssl connect' );
 
 	my $self = bless {
@@ -71,7 +74,7 @@ Apocalypse E<lt>apocal@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2009 by Apocalypse
+Copyright 2010 by Apocalypse
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
