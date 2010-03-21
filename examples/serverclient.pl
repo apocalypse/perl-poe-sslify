@@ -38,13 +38,13 @@ POE::Session->create(
 			my $socket = $_[ ARG0 ];
 
 			# testing stuff
-			warn "got connection from: " . inet_ntoa( ( unpack_sockaddr_in( getpeername( $socket ) ) )[1] ) . " - commencing Server_SSLify()";
+			warn "got connection from: " . inet_ntoa( ( unpack_sockaddr_in( getpeername( $socket ) ) )[1] ) . " - commencing Server_SSLify()\n";
 
 			# SSLify it!
 			$socket = Server_SSLify( $socket );
 
 			# testing stuff
-			warn "SSLified: " . inet_ntoa( ( unpack_sockaddr_in( getpeername( SSLify_GetSocket( $socket ) ) ) )[1] ) . " cipher type: " . SSLify_GetCipher( $socket );
+			warn "SSLified: " . inet_ntoa( ( unpack_sockaddr_in( getpeername( SSLify_GetSocket( $socket ) ) ) )[1] ) . " cipher type: (" . SSLify_GetCipher( $socket ) . ")\n";
 
 			# Hand it off to ReadWrite
 			my $wheel = POE::Wheel::ReadWrite->new(
@@ -68,6 +68,10 @@ POE::Session->create(
 		},
 		'Got_Input'	=>	sub {
 			# ARG0: The Line, ARG1: Wheel ID
+
+			# testing stuff
+			my $socket = $_[HEAP]->{'WHEELS'}->{ $_[ARG1] }->get_output_handle();
+			warn "got input from: " . inet_ntoa( ( unpack_sockaddr_in( getpeername( SSLify_GetSocket( $socket ) ) ) )[1] ) . " cipher type: (" . SSLify_GetCipher( $socket ) . ") input: '$_[ARG0]'\n";
 
 			# Send back to the client the line!
 			$_[HEAP]->{'WHEELS'}->{ $_[ARG1] }->put( $_[ARG0] );
@@ -128,12 +132,12 @@ POE::Session->create(
 			# ARG0 = Socket, ARG1 = Remote Address, ARG2 = Remote Port
 			my $socket = $_[ ARG0 ];
 
-			warn "Connected to server, commencing Client_SSLify()";
+			warn "Connected to server, commencing Client_SSLify()\n";
 
 			# SSLify it!
 			$socket = Client_SSLify( $socket );
 
-			warn "SSLified the connection to the server";
+			warn "SSLified the connection to the server\n";
 
 			# Hand it off to ReadWrite
 			my $wheel = POE::Wheel::ReadWrite->new(

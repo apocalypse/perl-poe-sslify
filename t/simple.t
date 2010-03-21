@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+# Thanks to ASCENT for this test!
+
 use strict;
 use warnings;
 use Test::More tests => 22;

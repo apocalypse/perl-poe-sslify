@@ -19,7 +19,7 @@ sub TIEHANDLE {
 
 	# create a context, if necessary
 	if ( ! defined $ctx ) {
-		$ctx = POE::Component::SSLify::createSSLcontext( undef, undef, $version, $options );
+		$ctx = POE::Component::SSLify::_createSSLcontext( undef, undef, $version, $options );
 	}
 
 	my $ssl = Net::SSLeay::new( $ctx ) or die_now( "Failed to create SSL $!" );

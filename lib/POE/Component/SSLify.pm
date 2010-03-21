@@ -433,6 +433,21 @@ that you check for errors and not use SSL, like so:
 	Example:
 		print "SSL Cipher is: " . SSLify_GetCipher( $sslified_sock ) . "\n";
 
+	NOTE: Doing this immediately after Client_SSLify or Server_SSLify will result in "(NONE)" because the SSL handshake
+	is not done yet. The socket is nonblocking, so you will have to wait a little bit for it to get ready.
+		apoc@blackhole:~/mygit/perl-poe-sslify/examples$ perl serverclient.pl
+		got connection from: 127.0.0.1 - commencing Server_SSLify()
+		SSLified: 127.0.0.1 cipher type: ((NONE))
+		Connected to server, commencing Client_SSLify()
+		SSLified the connection to the server
+		Connected to SSL server
+		Input: hola
+		got input from: 127.0.0.1 cipher type: (AES256-SHA) input: 'hola'
+		Got Reply: hola
+		Input: ^C
+		stopped at serverclient.pl line 126.
+
+
 =head2 SSLify_GetSocket
 
 	Returns the actual socket used by the SSLified socket, useful for stuff like getpeername()/getsockname()

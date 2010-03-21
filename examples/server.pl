@@ -39,7 +39,7 @@ POE::Session->create(
 			$socket = Server_SSLify( $socket );
 
 			# testing stuff
-			warn "got connection from: " . inet_ntoa( ( unpack_sockaddr_in( getpeername( SSLify_GetSocket( $socket ) ) ) )[1] ) . " cipher type: " . SSLify_GetCipher( $socket );
+			warn "got connection from: " . inet_ntoa( ( unpack_sockaddr_in( getpeername( SSLify_GetSocket( $socket ) ) ) )[1] ) . " cipher type: " . SSLify_GetCipher( $socket ) . "\n";
 
 			# Hand it off to ReadWrite
 			my $wheel = POE::Wheel::ReadWrite->new(
@@ -64,6 +64,10 @@ POE::Session->create(
 		},
 		'Got_Input'	=>	sub {
 			# ARG0: The Line, ARG1: Wheel ID
+
+			# testing stuff
+			my $socket = $_[HEAP]->{'WHEELS'}->{ $_[ARG1] }->get_output_handle();
+			warn "got input from: " . inet_ntoa( ( unpack_sockaddr_in( getpeername( SSLify_GetSocket( $socket ) ) ) )[1] ) . " cipher type: (" . SSLify_GetCipher( $socket ) . ") input: '$_[ARG0]'\n";
 
 			# Send back to the client the line!
 			$_[HEAP]->{'WHEELS'}->{ $_[ARG1] }->put( $_[ARG0] );
