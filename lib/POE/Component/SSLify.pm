@@ -447,7 +447,6 @@ that you check for errors and not use SSL, like so:
 		Input: ^C
 		stopped at serverclient.pl line 126.
 
-
 =head2 SSLify_GetSocket
 
 	Returns the actual socket used by the SSLified socket, useful for stuff like getpeername()/getsockname()
