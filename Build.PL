@@ -9,6 +9,7 @@ my $build = Module::Build->new(
 	'license'		=> 'perl',
 
 	'dist_abstract'		=> 'SSL in the world of POE made easy',
+	'dist_author'		=> 'Apocalypse <APOCAL@cpan.org>',
 
 	'create_packlist'	=> 1,
 	'create_makefile_pl'	=> 'traditional',
@@ -18,11 +19,11 @@ my $build = Module::Build->new(
 
 	'test_files'		=> 't/*.t',
 
-	'add_to_cleanup'	=> [ 'META.yml', 'Makefile.PL', 'README', 'Manifest', 'LICENSE' ],	# automatically generated
+	'add_to_cleanup'	=> [ 'META.yml', 'Makefile.PL', 'README', 'Makefile', 'LICENSE' ],	# automatically generated
 
 	'requires'		=> {
 		# Networking
-		'Net::SSLeay'	=>	'1.36',
+		'Net::SSLeay'	=> '1.36',
 
 		# minimum perl version
 		'perl'		=> '5.006',
