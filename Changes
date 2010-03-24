@@ -1,5 +1,10 @@
 Revision history for Perl extension POE::Component::SSLify.
 
+* 0.18
+
+	Bumped POE dep to at least 1.267 for t/simple.t - thanks CPANTesters!
+	Minor typo fixes in POD/Build.PL
+
 * 0.17
 
 	Fixed the t/simple.t test to PASS on FreeBSD because Net::SSLeay::renegotiate was buggy on it, thanks CPANTesters!

@@ -31,7 +31,7 @@ my $build = Module::Build->new(
 
 	'build_requires'	=> {
 		# For the t/simple.t test
-		'POE'				=> 0,
+		'POE'				=> '1.267',
 		'POE::Component::Client::TCP'	=> 0,
 		'POE::Component::Server::TCP'	=> 0,
 	},

@@ -3,7 +3,7 @@ use strict; use warnings;
 
 # Initialize our version
 use vars qw( $VERSION );
-$VERSION = '0.17';
+$VERSION = '0.18';
 
 # We need Net::SSLeay or all's a failure!
 BEGIN {
@@ -26,6 +26,7 @@ BEGIN {
 		require POE::Component::SSLify::ClientHandle;
 
 		# Initialize Net::SSLeay
+		# Taken from http://search.cpan.org/~flora/Net-SSLeay-1.36/lib/Net/SSLeay.pm#Low_level_API
 		Net::SSLeay::load_error_strings();
 		Net::SSLeay::SSLeay_add_ssl_algorithms();
 		Net::SSLeay::randomize();
