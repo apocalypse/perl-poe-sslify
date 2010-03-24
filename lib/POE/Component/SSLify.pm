@@ -242,7 +242,7 @@ sub SSLify_GetSocket {
 1;
 __END__
 
-=for stopwords AnnoCPAN CPAN CPANTS Kwalitee RT SSL com diff github
+=for stopwords AnnoCPAN CPAN CPANTS Kwalitee RT SSL com diff github FreeBSD OpenSSL
 
 =head1 NAME
 
@@ -557,7 +557,7 @@ Apocalypse E<lt>apocal@cpan.orgE<gt>
 	of maintaining it :)
 
 	From the PoCo::Client::HTTP code =]
-	# TODO - This code should probably become a POE::Kernel method,
+	# This code should probably become a POE::Kernel method,
     	# seeing as it's rather baroque and potentially useful in a number
     	# of places.
 
@@ -566,7 +566,7 @@ module would still be stuck in the stone age :)
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2010 by Apocalypse/Rocco Caputo/ascent
+Copyright 2010 by Apocalypse/Rocco Caputo/Dariusz Jackowski
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
