@@ -3,7 +3,7 @@ use strict; use warnings;
 
 # Initialize our version
 use vars qw( $VERSION );
-$VERSION = '0.18';
+$VERSION = '0.19';
 
 # We need Net::SSLeay or all's a failure!
 BEGIN {
@@ -58,6 +58,20 @@ sub _NonBlocking {
 	# Perl 5.005_03 doesn't like blocking(), so we only use it in
 	# 5.8.0 and beyond.
 	if ( $] >= 5.008 and $^O eq 'MSWin32' ) {
+		# TODO investigate this?
+#		<kmx> kthakore: Apocalypse: FYI - as regards no-blocking socket dark magic commited to FB while ago - IO::Socket 1.24 (=May/2009) and later supports on Win32 simply $socket->blocking(0);
+#		<Apocalypse> kmx: Ah didn't know that - maybe I can use that :)
+#		<kmx> Apocalypse: I uderstand that used workaround is from pre IO::Socket 1.24 times
+#		<Apocalypse> Ah, my code already did that eh
+#		<Apocalypse> if ( $] >= 5.008 and $^O eq 'MSWin32' ) {
+#		<Apocalypse> But maybe 5.008 check isn't enough?
+#		<kmx> Apocalypse: You'd better check version of IO - see changelog http://cpansearch.perl.org/src/GBARR/IO-1.25/ChangeLog
+#		<Apocalypse> Hmm yeah
+#		<Apocalypse>   * Make non-blocking mode work on Windows in IO::Socket::INET
+#		<kmx> Apocalypse: exactly
+#		<Apocalypse> Thanks for the tip! I'll go and add a TODO to the sslify code to investigate that :)
+
+
 		# From IO::Handle POD
 		# If an error occurs blocking will return undef and $! will be set.
 		if ( ! $socket->blocking( 0 ) ) {

@@ -2,13 +2,11 @@
 use strict; use warnings;
 
 use Test::More;
-eval "use Test::Apocalypse";
+eval "use Test::Apocalypse 0.10";
 if ( $@ ) {
 	plan skip_all => 'Test::Apocalypse required for validating the distribution';
 } else {
 	# lousy hack for kwalitee
 	require Test::NoWarnings; require Test::Pod; require Test::Pod::Coverage;
-	is_apocalypse_here( {
-		deny => qr/^(?:(?:OutdatedPrereq|Dependencie)s|ModuleUsed|Strict|Fixme|Pod_Spelling)$/,
-	} );
+	is_apocalypse_here();
 }

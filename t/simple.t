@@ -83,6 +83,21 @@ POE::Component::Server::TCP->new
 			$heap->{client}->put("pong2");
 		}
 	},
+	ClientError	=> sub
+	{
+		# Thanks to H. Merijn Brand for spotting this FAIL in 5.12.0!
+		# The default PoCo::Server::TCP handler will throw a warning, which causes Test::NoWarnings to FAIL :(
+		my ($syscall, $errno, $error) = @_[ ARG0..ARG2 ];
+
+		# TODO are there other "errors" that is harmless?
+		$error = "Normal disconnection" unless $error;
+		my $msg = "Got SERVER $syscall error $errno: $error";
+		unless ( $syscall eq 'read' and $errno == 0 ) {
+			fail( $msg );
+		} else {
+			diag( $msg );
+		}
+	},
 );
 
 POE::Component::Client::TCP->new
@@ -146,6 +161,21 @@ POE::Component::Client::TCP->new
 		{
 			ok(1, "CLIENT: recv: $line");
 			$kernel->yield('shutdown');
+		}
+	},
+	ServerError	=> sub
+	{
+		# Thanks to H. Merijn Brand for spotting this FAIL in 5.12.0!
+		# The default PoCo::Client::TCP handler will throw a warning, which causes Test::NoWarnings to FAIL :(
+		my ($syscall, $errno, $error) = @_[ ARG0..ARG2 ];
+
+		# TODO are there other "errors" that is harmless?
+		$error = "Normal disconnection" unless $error;
+		my $msg = "Got CLIENT $syscall error $errno: $error";
+		unless ( $syscall eq 'read' and $errno == 0 ) {
+			fail( $msg );
+		} else {
+			diag( $msg );
 		}
 	},
 );
