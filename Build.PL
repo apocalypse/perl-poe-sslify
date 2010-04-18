@@ -19,8 +19,6 @@ my $build = Module::Build->new(
 
 	'test_files'		=> 't/*.t',
 
-	'add_to_cleanup'	=> [ 'META.yml', 'Makefile.PL', 'README', 'Makefile', 'LICENSE' ],	# automatically generated
-
 	'requires'		=> {
 		# Networking
 		'Net::SSLeay'	=> '1.36',

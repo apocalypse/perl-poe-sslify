@@ -19,5 +19,6 @@ mylib/example.crt
 mylib/example.key
 
 t/1_load.t
+t/2_simple.t
+t/3_renegotiate.t
 t/apocalypse.t
-t/simple.t

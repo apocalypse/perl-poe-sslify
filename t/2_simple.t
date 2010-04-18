@@ -6,7 +6,7 @@ use strict; use warnings;
 
 my $numtests;
 BEGIN {
-	$numtests = 22;
+	$numtests = 16;
 
 	eval "use Test::NoWarnings";
 	if ( ! $@ ) {
@@ -77,11 +77,6 @@ POE::Component::Server::TCP->new
 			ok(1, "SERVER: recv: $request");
 			$heap->{client}->put("pong");
 		}
-		elsif ($request eq 'ping2')
-		{
-			ok(1, "SERVER: recv: $request");
-			$heap->{client}->put("pong2");
-		}
 	},
 	ClientError	=> sub
 	{
@@ -95,7 +90,7 @@ POE::Component::Server::TCP->new
 		unless ( $syscall eq 'read' and $errno == 0 ) {
 			fail( $msg );
 		} else {
-			diag( $msg );
+			diag( $msg ) if $ENV{TEST_VERBOSE};
 		}
 	},
 );
@@ -135,31 +130,6 @@ POE::Component::Client::TCP->new
 		if ($line eq 'pong')
 		{
 			ok(1, "CLIENT: recv: $line");
-
-			# Skip 2 Net::SSLeay::renegotiate() tests on FreeBSD because of
-			# http://security.freebsd.org/advisories/FreeBSD-SA-09:15.ssl.asc
-			TODO: {
-				local $TODO = "Net::SSLeay::renegotiate() does not work on all platforms";
-
-				## Force SSL renegotiation
-				my $ssl = tied(*{$heap->{server}->get_output_handle})->{ssl};
-				my $reneg_num = Net::SSLeay::num_renegotiations($ssl);
-
-				ok(1 == Net::SSLeay::renegotiate($ssl), 'CLIENT: SSL renegotiation');
-				my $handshake = Net::SSLeay::do_handshake($ssl);
-				my $err = Net::SSLeay::get_error($ssl, $handshake);
-
-				## 1 == Successful handshake, ERROR_WANT_(READ|WRITE) == non-blocking.
-				ok($handshake == 1 || $err == ERROR_WANT_READ || $err == ERROR_WANT_WRITE, 'CLIENT: SSL handshake');
-				ok($reneg_num < Net::SSLeay::num_renegotiations($ssl), 'CLIENT: Increased number of negotiations');
-			}
-
-			$heap->{server}->put('ping2');
-		}
-
-		elsif ($line eq 'pong2')
-		{
-			ok(1, "CLIENT: recv: $line");
 			$kernel->yield('shutdown');
 		}
 	},
@@ -175,10 +145,13 @@ POE::Component::Client::TCP->new
 		unless ( $syscall eq 'read' and $errno == 0 ) {
 			fail( $msg );
 		} else {
-			diag( $msg );
+			diag( $msg ) if $ENV{TEST_VERBOSE};
 		}
 	},
 );
 
 $poe_kernel->run();
+
+pass( 'shut down sanely' );
+
 exit 0;

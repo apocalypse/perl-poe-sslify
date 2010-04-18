@@ -3,24 +3,22 @@ use strict; use warnings;
 
 # Initialize our version
 use vars qw( $VERSION );
-$VERSION = '0.19';
+$VERSION = '0.20';
 
 # We need Net::SSLeay or all's a failure!
 BEGIN {
-	eval { require Net::SSLeay };
+	eval {
+		require Net::SSLeay;
+
+		# We need >= 1.36 because it contains a lot of important fixes
+		Net::SSLeay->import( 1.36 );
+	};
 
 	# Check for errors...
 	if ( $@ ) {
 		# Oh boy!
 		die $@;
 	} else {
-		# Check to make sure the versions are what we want
-		# TODO what if Net::SSLeay is upgraded to 1.4? :(
-		if ( ! (	defined $Net::SSLeay::VERSION and
-				$Net::SSLeay::VERSION =~ /^1\.3/ ) ) {
-			warn 'Please upgrade Net::SSLeay to v1.30+ installed: v' . $Net::SSLeay::VERSION;
-		}
-
 		# Finally, load our subclass :)
 		# ClientHandle isa ServerHandle so it will get loaded automatically
 		require POE::Component::SSLify::ClientHandle;
@@ -368,9 +366,9 @@ possible function against SSLify, so use them carefully! If you have success, pl
 
 =head3 Net::SSLeay::renegotiate
 
-This function has been tested ( it's in t/simple.t ) but it doesn't work on FreeBSD! I tracked it down to this security advisory:
+This function has been tested ( it's in t/3_renegotiate.t ) but it doesn't work on FreeBSD! I tracked it down to this security advisory:
 L<http://security.freebsd.org/advisories/FreeBSD-SA-09:15.ssl.asc> which explains it in detail. The test will skip this function
-if it detects that you're on a FreeBSD system. However, if you have the updated OpenSSL library that fixes this you can use it.
+if it detects that you're on a broken system. However, if you have the updated OpenSSL library that fixes this you can use it.
 
 =head1 FUNCTIONS
 
@@ -502,7 +500,7 @@ if it detects that you're on a FreeBSD system. However, if you have the updated 
 
 You can find documentation for this module with the perldoc command.
 
-    perldoc POE::Component::SSLify
+	perldoc POE::Component::SSLify
 
 =head2 Websites
 
