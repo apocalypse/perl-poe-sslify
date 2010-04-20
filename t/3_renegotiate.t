@@ -27,7 +27,7 @@ use POE::Component::Client::TCP;
 use POE::Component::Server::TCP;
 use POE::Component::SSLify qw/Client_SSLify Server_SSLify SSLify_Options SSLify_GetCipher SSLify_ContextCreate/;
 use Net::SSLeay qw/ERROR_WANT_READ ERROR_WANT_WRITE/;
-use POSIX qw/F_GETFL F_SETFL O_NONBLOCK EAGAIN EWOULDBLOCK/;
+use POSIX qw/F_GETFL O_NONBLOCK/;
 
 # TODO rewrite this to use Test::POE::Server::TCP and stuff :)
 
@@ -65,8 +65,14 @@ POE::Component::Server::TCP->new
 		ok(!$@, "SERVER: Server_SSLify $@");
 		ok(1, 'SERVER: SSLify_GetCipher: '. SSLify_GetCipher($socket));
 
-		my $flags = fcntl($_[ARG0], F_GETFL, 0);
-		ok($flags & O_NONBLOCK, 'SERVER: SSLified socket is non-blocking?');
+		# MSWin32 doesn't have F_GETFL and friends
+		if ( $^O eq 'MSWin32' ) {
+			# We pray that IO::Handle is sane...
+			ok( ! $_[ARG0]->blocking, 'SERVER: SSLified socket is non-blocking?');
+		} else {
+			my $flags = fcntl($_[ARG0], F_GETFL, 0);
+			ok($flags & O_NONBLOCK, 'SERVER: SSLified socket is non-blocking?');
+		}
 
 		return ($socket);
 	},
@@ -126,8 +132,14 @@ POE::Component::Client::TCP->new
 		ok(!$@, "CLIENT: Client_SSLify $@");
 		ok(1, 'CLIENT: SSLify_GetCipher: '. SSLify_GetCipher($socket));
 
-		my $flags = fcntl($_[ARG0], F_GETFL, 0);
-		ok($flags & O_NONBLOCK, 'CLIENT: SSLified socket is non-blocking?');
+		# MSWin32 doesn't have F_GETFL and friends
+		if ( $^O eq 'MSWin32' ) {
+			# We pray that IO::Handle is sane...
+			ok( ! $_[ARG0]->blocking, 'CLIENT: SSLified socket is non-blocking?');
+		} else {
+			my $flags = fcntl($_[ARG0], F_GETFL, 0);
+			ok($flags & O_NONBLOCK, 'CLIENT: SSLified socket is non-blocking?');
+		}
 
 		return ($socket);
 	},
