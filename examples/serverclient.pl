@@ -1,5 +1,4 @@
 #!/usr/bin/perl
-use strict; use warnings;
 
 use POE;
 use Socket qw( inet_ntoa unpack_sockaddr_in );

@@ -1,9 +1,6 @@
 package POE::Component::SSLify::ClientHandle;
-use strict; use warnings;
 
-# Initialize our version
-use vars qw( $VERSION );
-$VERSION = '0.20';
+# ABSTRACT: Client-side handle for SSLify
 
 # Import the SSL death routines
 use Net::SSLeay qw( die_now die_if_ssl_error );
@@ -45,38 +42,15 @@ sub TIEHANDLE {
 	return $self;
 }
 
-# End of module
 1;
 
-__END__
-
-=head1 NAME
-
-POE::Component::SSLify::ClientHandle - client object for POE::Component::SSLify
-
-=head1 ABSTRACT
-
-	See POE::Component::SSLify::ServerHandle
+=pod
 
 =head1 DESCRIPTION
 
 	This is a subclass of ServerHandle to accomodate clients setting custom context objects.
 
 =head1 SEE ALSO
-
-L<POE::Component::SSLify>
-
-L<POE::Component::SSLify::ServerHandle>
-
-=head1 AUTHOR
-
-Apocalypse E<lt>apocal@cpan.orgE<gt>
-
-=head1 COPYRIGHT AND LICENSE
-
-Copyright 2010 by Apocalypse
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+POE::Component::SSLify::ServerHandle
 
 =cut

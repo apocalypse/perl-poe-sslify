@@ -18,11 +18,10 @@ BEGIN {
 
 use Test::More tests => $numtests;
 
-use POE;
+use POE 1.267;
 use POE::Component::Client::TCP;
 use POE::Component::Server::TCP;
-use POE::Component::SSLify qw/Client_SSLify Server_SSLify SSLify_Options SSLify_GetCipher SSLify_ContextCreate/;
-use POSIX qw/F_GETFL O_NONBLOCK/;
+use POE::Component::SSLify qw/Client_SSLify Server_SSLify SSLify_Options SSLify_GetCipher SSLify_ContextCreate SSLify_GetSocket/;
 
 # TODO rewrite this to use Test::POE::Server::TCP and stuff :)
 
@@ -58,29 +57,25 @@ POE::Component::Server::TCP->new
 		ok(!$@, "SERVER: Server_SSLify $@");
 		ok(1, 'SERVER: SSLify_GetCipher: '. SSLify_GetCipher($socket));
 
-		# MSWin32 doesn't have F_GETFL and friends
-		if ( $^O eq 'MSWin32' ) {
-			# We pray that IO::Handle is sane...
-			ok( ! $_[ARG0]->blocking, 'SERVER: SSLified socket is non-blocking?');
-		} else {
-			my $flags = fcntl($_[ARG0], F_GETFL, 0);
-			ok($flags & O_NONBLOCK, 'SERVER: SSLified socket is non-blocking?');
-		}
+		# We pray that IO::Handle is sane...
+		ok( SSLify_GetSocket( $socket )->blocking == 0, 'SERVER: SSLified socket is non-blocking?');
 
 		return ($socket);
 	},
 	ClientInput		=> sub
 	{
-		my ($kernel, $heap, $request) = @_[KERNEL, HEAP, ARG0];
+		my ($kernel, $heap, $line) = @_[KERNEL, HEAP, ARG0];
 
-		## At this point, connection MUST be encrypted.
-		my $cipher = SSLify_GetCipher($heap->{client}->get_output_handle);
-		ok($cipher ne '(NONE)', "SERVER: SSLify_GetCipher: $cipher");
+		if ( $line eq 'ping' ) {
+			ok(1, "SERVER: recv: $line");
 
-		if ($request eq 'ping')
-		{
-			ok(1, "SERVER: recv: $request");
+			## At this point, connection MUST be encrypted.
+			my $cipher = SSLify_GetCipher($heap->{client}->get_output_handle);
+			ok($cipher ne '(NONE)', "SERVER: SSLify_GetCipher: $cipher");
+
 			$heap->{client}->put("pong");
+		} else {
+			die "Unknown line from CLIENT: $line";
 		}
 	},
 	ClientError	=> sub
@@ -119,14 +114,8 @@ POE::Component::Client::TCP->new
 		ok(!$@, "CLIENT: Client_SSLify $@");
 		ok(1, 'CLIENT: SSLify_GetCipher: '. SSLify_GetCipher($socket));
 
-		# MSWin32 doesn't have F_GETFL and friends
-		if ( $^O eq 'MSWin32' ) {
-			# We pray that IO::Handle is sane...
-			ok( ! $_[ARG0]->blocking, 'CLIENT: SSLified socket is non-blocking?');
-		} else {
-			my $flags = fcntl($_[ARG0], F_GETFL, 0);
-			ok($flags & O_NONBLOCK, 'CLIENT: SSLified socket is non-blocking?');
-		}
+		# We pray that IO::Handle is sane...
+		ok( SSLify_GetSocket( $socket )->blocking == 0, 'CLIENT: SSLified socket is non-blocking?');
 
 		return ($socket);
 	},
@@ -134,14 +123,16 @@ POE::Component::Client::TCP->new
 	{
 		my ($kernel, $heap, $line) = @_[KERNEL, HEAP, ARG0];
 
-		## At this point, connection MUST be encrypted.
-		my $cipher = SSLify_GetCipher($heap->{server}->get_output_handle);
-		ok($cipher ne '(NONE)', "CLIENT: SSLify_GetCipher: $cipher");
-
-		if ($line eq 'pong')
-		{
+		if ($line eq 'pong') {
 			ok(1, "CLIENT: recv: $line");
+
+			## At this point, connection MUST be encrypted.
+			my $cipher = SSLify_GetCipher($heap->{server}->get_output_handle);
+			ok($cipher ne '(NONE)', "CLIENT: SSLify_GetCipher: $cipher");
+
 			$kernel->yield('shutdown');
+		} else {
+			die "Unknown line from SERVER: $line";
 		}
 	},
 	ServerError	=> sub
