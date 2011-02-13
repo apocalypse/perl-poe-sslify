@@ -4,10 +4,8 @@ package POE::Component::SSLify;
 
 # We need Net::SSLeay or all's a failure!
 BEGIN {
-	eval {
-		# We need >= 1.36 because it contains a lot of important fixes
-		use Net::SSLeay 1.36 qw( die_now die_if_ssl_error );
-	};
+	# We need >= 1.36 because it contains a lot of important fixes
+	eval "use Net::SSLeay 1.36 qw( die_now die_if_ssl_error )";
 
 	# Check for errors...
 	if ( $@ ) {
