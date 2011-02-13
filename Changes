@@ -2,6 +2,11 @@ Revision history for Perl extension POE::Component::SSLify.
 
 {{$NEXT}}
 
+1.001
+	Released: 2011-02-13 18:11:07 UTC
+
+	Fixed the Net::SSLeay import code, thanks CPANTesters!
+
 1.000
 	Released: 2011-02-13 00:06:14 UTC
 
