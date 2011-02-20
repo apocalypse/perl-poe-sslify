@@ -2,6 +2,11 @@ Revision history for Perl extension POE::Component::SSLify.
 
 {{$NEXT}}
 
+1.002
+	Released: 2011-02-20 04:23:48 UTC
+
+	Add SSLify_GetSSL to get the Net::SSLeay object, thanks mordy@irc!
+
 1.001
 	Released: 2011-02-13 18:11:07 UTC
 
