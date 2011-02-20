@@ -20,6 +20,9 @@ BEGIN {
 		# Taken from http://search.cpan.org/~flora/Net-SSLeay-1.36/lib/Net/SSLeay.pm#Low_level_API
 		Net::SSLeay::load_error_strings();
 		Net::SSLeay::SSLeay_add_ssl_algorithms();
+		# TODO do we need this?
+		#Net::SSLeay::ENGINE_load_builtin_engines();  # If you want built-in engines
+	        #Net::SSLeay::ENGINE_register_all_complete(); # If you want built-in engines
 		Net::SSLeay::randomize();
 	}
 }
@@ -28,7 +31,7 @@ BEGIN {
 require Exporter;
 use vars qw( @ISA @EXPORT_OK );
 @ISA = qw( Exporter );
-@EXPORT_OK = qw( Client_SSLify Server_SSLify SSLify_Options SSLify_GetCTX SSLify_GetCipher SSLify_GetSocket SSLify_ContextCreate );
+@EXPORT_OK = qw( Client_SSLify Server_SSLify SSLify_Options SSLify_GetCTX SSLify_GetCipher SSLify_GetSocket SSLify_GetSSL SSLify_ContextCreate );
 
 # Bring in some socket-related stuff
 use Symbol qw( gensym );
@@ -40,7 +43,37 @@ use IO::Handle 1.28;
 # The server-side CTX stuff
 my $ctx = undef;
 
-# Okay, the main routine here!
+=func Client_SSLify
+
+	Accepts a socket, returns a brand new socket SSLified. Optionally accepts SSL
+	context data.
+		my $socket = shift;						# get the socket from somewhere
+		$socket = Client_SSLify( $socket );				# the default
+		$socket = Client_SSLify( $socket, $version, $options );		# sets more options for the context
+		$socket = Client_SSLify( $socket, undef, undef, $ctx );		# pass in a custom context
+
+	If $ctx is defined, SSLify will ignore other args. If $ctx isn't defined, SSLify
+	will create it from the $version + $options parameters.
+
+	Known versions:
+		* sslv2
+		* sslv3
+		* tlsv1
+		* default
+
+	By default we use the version: default
+
+	By default we don't set any options
+
+	NOTE: The way to have a client socket with proper certificates set up is:
+		my $socket = shift;	# get the socket from somewhere
+		my $ctx = SSLify_ContextCreate( 'server.key', 'server.crt' );
+		$socket = Client_SSLify( $socket, undef, undef, $ctx );
+
+	BEWARE: If you passed in a CTX, SSLify will do Net::SSLeay::CTX_free( $ctx ) when the
+	socket is destroyed. This means you cannot reuse contexts!
+=cut
+
 sub Client_SSLify {
 	# Get the socket + version + options + ctx
 	my( $socket, $version, $options, $ctx ) = @_;
@@ -64,7 +97,25 @@ sub Client_SSLify {
 	return $newsock;
 }
 
-# Okay, the main routine here!
+=func Server_SSLify
+
+	Accepts a socket, returns a brand new socket SSLified
+		my $socket = shift;	# get the socket from somewhere
+		$socket = Server_SSLify( $socket );
+
+	NOTE: SSLify_Options must be set first!
+
+	Furthermore, you can pass in your own $ctx object if you desire. This allows you to set custom parameters
+	per-connection, for example.
+		my $socket = shift;	# get the socket from somewhere
+		my $ctx = SSLify_ContextCreate();
+		# set various options on $ctx as desired
+		$socket = Server_SSLify( $socket, $ctx );
+
+	NOTE: You can use SSLify_GetCTX to modify the global, and avoid doing this on every connection if the
+	options are the same...
+=cut
+
 sub Server_SSLify {
 	# Get the socket!
 	my $socket = shift;
@@ -94,12 +145,52 @@ sub Server_SSLify {
 	return $newsock;
 }
 
+=func SSLify_ContextCreate
+
+	Accepts some options, and returns a brand-new Net::SSLeay context object ( $ctx )
+		my $ctx = SSLify_ContextCreate( $key, $cert, $version, $options );
+
+	You can then call various Net::SSLeay methods on the context
+		my $mode = Net::SSLeay::CTX_get_mode( $ctx );
+
+	By default we don't use the SSL key + certificate files
+
+	By default we use the version: default
+
+		Known versions:
+		* sslv2
+		* sslv3
+		* tlsv1
+		* default
+
+	By default we don't set any options
+=cut
+
 sub SSLify_ContextCreate {
 	# Get the key + cert + version + options
 	my( $key, $cert, $version, $options ) = @_;
 
 	return _createSSLcontext( $key, $cert, $version, $options );
 }
+
+=func SSLify_Options
+
+	Call this function to initialize the global server-side CTX. Accepts the location of the
+	SSL key + certificate files, which is required.
+
+	Optionally accepts the SSL version + CTX options
+		SSLify_Options( $key, $cert, $version, $options );
+
+	By default we use the version: default
+
+		Known versions:
+		* sslv2
+		* sslv3
+		* tlsv1
+		* default
+
+	By default we use the options: &Net::SSLeay::OP_ALL
+=cut
 
 sub SSLify_Options {
 	# Get the key + cert + version + options
@@ -172,7 +263,15 @@ sub _createSSLcontext {
 	return $context;
 }
 
-# Returns the server-side CTX in case somebody wants to play with it
+=func SSLify_GetCTX
+
+	Returns the actual Net::SSLeay context object in case you wanted to play with it :)
+
+	If passed in a socket, it will return that socket's $ctx instead of the global.
+		my $ctx = SSLify_GetCTX();			# get the one set via SSLify_Options
+		my $ctx = SSLify_GetCTX( $sslified_sock );	# get the one in the object
+=cut
+
 sub SSLify_GetCTX {
 	my $sock = shift;
 	if ( ! defined $sock ) {
@@ -182,16 +281,57 @@ sub SSLify_GetCTX {
 	}
 }
 
-# Gives you the cipher type of a SSLified socket
+=func SSLify_GetCipher
+
+	Returns the cipher used by the SSLified socket
+
+	Example:
+		print "SSL Cipher is: " . SSLify_GetCipher( $sslified_sock ) . "\n";
+
+	NOTE: Doing this immediately after Client_SSLify or Server_SSLify will result in "(NONE)" because the SSL handshake
+	is not done yet. The socket is nonblocking, so you will have to wait a little bit for it to get ready.
+		apoc@blackhole:~/mygit/perl-poe-sslify/examples$ perl serverclient.pl
+		got connection from: 127.0.0.1 - commencing Server_SSLify()
+		SSLified: 127.0.0.1 cipher type: ((NONE))
+		Connected to server, commencing Client_SSLify()
+		SSLified the connection to the server
+		Connected to SSL server
+		Input: hola
+		got input from: 127.0.0.1 cipher type: (AES256-SHA) input: 'hola'
+		Got Reply: hola
+		Input: ^C
+		stopped at serverclient.pl line 126.
+=cut
+
 sub SSLify_GetCipher {
 	my $sock = shift;
 	return Net::SSLeay::get_cipher( tied( *$sock )->{'ssl'} );
 }
 
-# Gives you the "Real" Socket to play with
+=func SSLify_GetSocket
+
+	Returns the actual socket used by the SSLified socket, useful for stuff like getpeername()/getsockname()
+
+	Example:
+		print "Remote IP is: " . inet_ntoa( ( unpack_sockaddr_in( getpeername( SSLify_GetSocket( $sslified_sock ) ) ) )[1] ) . "\n";
+=cut
+
 sub SSLify_GetSocket {
 	my $sock = shift;
 	return tied( *$sock )->{'socket'};
+}
+
+=func SSLify_GetSSL
+
+	Returns the actual Net::SSLeay object so you can call methods on it
+
+	Example:
+		print Net::SSLeay::dump_peer_certificate( SSLify_GetSSL( $sslified_sock ) );
+=cut
+
+sub SSLify_GetSSL {
+	my $sock = shift;
+	return tied( *$sock )->{'ssl'};
 }
 
 1;
@@ -205,11 +345,11 @@ sub SSLify_GetSocket {
 	# Import the module
 	use POE::Component::SSLify qw( Client_SSLify );
 
-	# Create a normal SocketFactory wheel or something
+	# Create a normal SocketFactory wheel and connect to a SSL-enabled server
 	my $factory = POE::Wheel::SocketFactory->new;
 
 	# Time passes, SocketFactory gives you a socket when it connects in SuccessEvent
-	# Converts the socket into a SSL socket POE can communicate with
+	# Convert the socket into a SSL socket POE can communicate with
 	my $socket = shift;
 	eval { $socket = Client_SSLify( $socket ) };
 	if ( $@ ) {
@@ -221,9 +361,6 @@ sub SSLify_GetSocket {
 		Handle	=>	$socket,
 		# other options as usual
 	);
-
-	# Use it as you wish...
-	# End of example
 
 	# --------------------------------------------------------------------------- #
 
@@ -241,11 +378,11 @@ sub SSLify_GetSocket {
 		# Unable to load key or certificate file...
 	}
 
-	# Create a normal SocketFactory wheel or something
+	# Create a normal SocketFactory wheel to listen for connections
 	my $factory = POE::Wheel::SocketFactory->new;
 
 	# Time passes, SocketFactory gives you a socket when it gets a connection in SuccessEvent
-	# Converts the socket into a SSL socket POE can communicate with
+	# Convert the socket into a SSL socket POE can communicate with
 	my $socket = shift;
 	eval { $socket = Server_SSLify( $socket ) };
 	if ( $@ ) {
@@ -257,9 +394,6 @@ sub SSLify_GetSocket {
 		Handle	=>	$socket,
 		# other options as usual
 	);
-
-	# Use it as you wish...
-	# End of example
 
 =head1 DESCRIPTION
 
@@ -296,7 +430,7 @@ that you check for errors and not use SSL, like so:
 =head2 OpenSSL functions
 
 Theoretically you can do anything that Net::SSLeay exports from the OpenSSL libs on the socket. However, I have not tested every
-possible function against SSLify, so use them carefully! If you have success, please report back to me so I can update this doc!
+possible function against SSLify, so use them carefully!
 
 =head3 Net::SSLeay::renegotiate
 
@@ -308,128 +442,6 @@ if it detects that you're on a broken system. However, if you have the updated O
 
 You can have a normal plaintext socket, and convert it to SSL anytime. Just keep in mind that the client and the server must agree to sslify
 at the same time, or they will be waiting on each other forever! See C<t/3_insitu.t> for an example of how this works.
-
-=head1 FUNCTIONS
-
-=head2 Client_SSLify
-
-	Accepts a socket, returns a brand new socket SSLified. Optionally accepts SSL
-	context data.
-		my $socket = shift;						# get the socket from somewhere
-		$socket = Client_SSLify( $socket );				# the default
-		$socket = Client_SSLify( $socket, $version, $options );		# sets more options for the context
-		$socket = Client_SSLify( $socket, undef, undef, $ctx );		# pass in a custom context
-
-	If $ctx is defined, SSLify will ignore other args. If $ctx isn't defined, SSLify
-	will create it from the $version + $options parameters.
-
-	Known versions:
-		* sslv2
-		* sslv3
-		* tlsv1
-		* default
-
-	By default we use the version: default
-
-	By default we don't set any options
-
-	NOTE: The way to have a client socket with proper certificates set up is:
-		my $socket = shift;	# get the socket from somewhere
-		my $ctx = SSLify_ContextCreate( 'server.key', 'server.crt' );
-		$socket = Client_SSLify( $socket, undef, undef, $ctx );
-
-	BEWARE: If you passed in a CTX, SSLify will do Net::SSLeay::CTX_free( $ctx ) when the
-	socket is destroyed. This means you cannot reuse contexts!
-
-=head2 Server_SSLify
-
-	Accepts a socket, returns a brand new socket SSLified
-		my $socket = shift;	# get the socket from somewhere
-		$socket = Server_SSLify( $socket );
-
-	NOTE: SSLify_Options must be set first!
-
-	Furthermore, you can pass in your own $ctx object if you desire. This allows you to set custom parameters
-	per-connection, for example.
-		my $socket = shift;	# get the socket from somewhere
-		my $ctx = Net::SSLeay::CTX_new();
-		# set various options on $ctx as desired
-		$socket = Server_SSLify( $socket, $ctx );
-
-	NOTE: You can use SSLify_GetCTX to modify the global, and avoid doing this on every connection if the
-	options are the same...
-
-=head2 SSLify_Options
-
-	Accepts the location of the SSL key + certificate files and does it's job
-
-	Optionally accepts the SSL version + CTX options
-		SSLify_Options( $key, $cert, $version, $options );
-
-	Known versions:
-		* sslv2
-		* sslv3
-		* tlsv1
-		* default
-
-	By default we use the version: default
-
-	By default we use the options: &Net::SSLeay::OP_ALL
-
-=head2 SSLify_GetCTX
-
-	Returns the server-side CTX in case you wanted to play around with it :)
-
-	If passed in a socket, it will return that socket's $ctx instead of the global.
-		my $ctx = SSLify_GetCTX();			# get the one set via SSLify_Options
-		my $ctx = SSLify_GetCTX( $sslified_sock );	# get the one in the object
-
-=head2 SSLify_GetCipher
-
-	Returns the cipher used by the SSLified socket
-
-	Example:
-		print "SSL Cipher is: " . SSLify_GetCipher( $sslified_sock ) . "\n";
-
-	NOTE: Doing this immediately after Client_SSLify or Server_SSLify will result in "(NONE)" because the SSL handshake
-	is not done yet. The socket is nonblocking, so you will have to wait a little bit for it to get ready.
-		apoc@blackhole:~/mygit/perl-poe-sslify/examples$ perl serverclient.pl
-		got connection from: 127.0.0.1 - commencing Server_SSLify()
-		SSLified: 127.0.0.1 cipher type: ((NONE))
-		Connected to server, commencing Client_SSLify()
-		SSLified the connection to the server
-		Connected to SSL server
-		Input: hola
-		got input from: 127.0.0.1 cipher type: (AES256-SHA) input: 'hola'
-		Got Reply: hola
-		Input: ^C
-		stopped at serverclient.pl line 126.
-
-=head2 SSLify_GetSocket
-
-	Returns the actual socket used by the SSLified socket, useful for stuff like getpeername()/getsockname()
-
-	Example:
-		print "Remote IP is: " . inet_ntoa( ( unpack_sockaddr_in( getpeername( SSLify_GetSocket( $sslified_sock ) ) ) )[1] ) . "\n";
-
-=head2 SSLify_ContextCreate
-
-	Accepts some options, and returns a brand-new SSL context object ( $ctx )
-		my $ctx = SSLify_ContextCreate();
-		my $ctx = SSLify_ContextCreate( $key, $cert );
-		my $ctx = SSLify_ContextCreate( $key, $cert, $version, $options );
-
-	Known versions:
-		* sslv2
-		* sslv3
-		* tlsv1
-		* default
-
-	By default we use the version: default
-
-	By default we don't set any options
-
-	By default we don't use the SSL key + certificate files
 
 =head1 EXPORT
 

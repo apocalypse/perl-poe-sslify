@@ -21,7 +21,7 @@ use Test::More tests => $numtests;
 use POE 1.267;
 use POE::Component::Client::TCP;
 use POE::Component::Server::TCP;
-use POE::Component::SSLify qw/Client_SSLify Server_SSLify SSLify_Options SSLify_GetCipher SSLify_ContextCreate SSLify_GetSocket/;
+use POE::Component::SSLify qw/Client_SSLify Server_SSLify SSLify_Options SSLify_GetCipher SSLify_ContextCreate SSLify_GetSocket SSLify_GetSSL/;
 
 # TODO rewrite this to use Test::POE::Server::TCP and stuff :)
 
@@ -129,6 +129,7 @@ POE::Component::Client::TCP->new
 			## At this point, connection MUST be encrypted.
 			my $cipher = SSLify_GetCipher($heap->{server}->get_output_handle);
 			ok($cipher ne '(NONE)', "CLIENT: SSLify_GetCipher: $cipher");
+			diag( Net::SSLeay::dump_peer_certificate( SSLify_GetSSL( $heap->{server}->get_output_handle ) ) ) if $ENV{TEST_VERBOSE};
 
 			$kernel->yield('shutdown');
 		} else {
