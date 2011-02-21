@@ -3,7 +3,7 @@ package POE::Component::SSLify::ClientHandle;
 # ABSTRACT: Client-side handle for SSLify
 
 # Import the SSL death routines
-use Net::SSLeay qw( die_now die_if_ssl_error );
+use Net::SSLeay 1.36 qw( die_now die_if_ssl_error );
 
 # We inherit from ServerHandle
 use vars qw( @ISA );
