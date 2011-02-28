@@ -458,6 +458,11 @@ if it detects that you're on a broken system. However, if you have the updated O
 You can have a normal plaintext socket, and convert it to SSL anytime. Just keep in mind that the client and the server must agree to sslify
 at the same time, or they will be waiting on each other forever! See C<t/3_insitu.t> for an example of how this works.
 
+=head2 MSWin32 is not supported
+
+This module doesn't work on MSWin32 platforms at all ( XP, Vista, 7, etc ) because of some weird underlying fd issues. Since I'm not a windows
+developer, I'm unable to fix this. However, it seems like Cygwin on MSWin32 works just fine! Please help me fix this if you can, thanks!
+
 =head1 EXPORT
 
 	Stuffs all of the above functions in @EXPORT_OK so you have to request them directly

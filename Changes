@@ -2,10 +2,13 @@ Revision history for Perl extension POE::Component::SSLify.
 
 {{$NEXT}}
 
+	Add $IGNORE_SSL_ERRORS to ignore certain SSL errors, thanks MNUNBERG - RT#66130
+	Remove prereq on vars.pm as it's obsolete
+
 1.002
 	Released: 2011-02-20 04:23:48 UTC
 
-	Add SSLify_GetSSL to get the Net::SSLeay object, thanks mordy@irc!
+	Add SSLify_GetSSL to get the Net::SSLeay object, thanks MNUNBERG!
 
 1.001
 	Released: 2011-02-13 18:11:07 UTC
@@ -16,7 +19,7 @@ Revision history for Perl extension POE::Component::SSLify.
 	Released: 2011-02-13 00:06:14 UTC
 
 	Converted to Dist::Zilla for the release process!
-	Add a test for in-situ sslification, thanks mordy@irc!
+	Add a test for in-situ sslification, thanks MNUNBERG!
 	Add prereq for IO::Handle 1.28 to get sane $socket->blocking( 0 ) behavior on MSWin32
 	Remove crufty old code for nonblocking and use $socket->blocking() instead
 
