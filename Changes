@@ -2,6 +2,9 @@ Revision history for Perl extension POE::Component::SSLify.
 
 {{$NEXT}}
 
+1.003
+	Released: 2011-02-28 15:52:24 UTC
+
 	Add $IGNORE_SSL_ERRORS to ignore certain SSL errors, thanks MNUNBERG - RT#66130
 	Remove prereq on vars.pm as it's obsolete
 
