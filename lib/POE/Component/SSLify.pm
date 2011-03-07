@@ -258,7 +258,7 @@ sub _createSSLcontext {
 
 	# Set the cert file
 	if ( defined $cert ) {
-		Net::SSLeay::CTX_use_certificate_file( $context, $cert, &Net::SSLeay::FILETYPE_PEM );
+		Net::SSLeay::CTX_use_certificate_chain_file( $context, $cert );
 		die_if_ssl_error( 'certificate' ) if ! $IGNORE_SSL_ERRORS;
 	}
 
