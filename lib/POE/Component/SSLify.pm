@@ -47,42 +47,62 @@ our $IGNORE_SSL_ERRORS = 0;
 
 =func Client_SSLify
 
-	Accepts a socket, returns a brand new socket SSLified. Optionally accepts SSL
-	context data.
-		my $socket = shift;						# get the socket from somewhere
-		$socket = Client_SSLify( $socket );				# the default
-		$socket = Client_SSLify( $socket, $version, $options );		# sets more options for the context
-		$socket = Client_SSLify( $socket, undef, undef, $ctx );		# pass in a custom context
+Accepts a socket, returns a brand new socket SSLified. Optionally accepts SSL
+context data. Also accepts a subref to call when connection/negotiation is done.
 
-	If $ctx is defined, SSLify will ignore other args. If $ctx isn't defined, SSLify
-	will create it from the $version + $options parameters.
+	my $socket = shift;						# get the socket from somewhere
+	$socket = Client_SSLify( $socket );				# the default
+	$socket = Client_SSLify( $socket, $version, $options );		# sets more options for the context
+	$socket = Client_SSLify( $socket, undef, undef, $ctx );		# pass in a custom context
+	$socket = Client_SSLify( $socket, sub { print "CONNECTED" } );	# call your connection function
 
-	Known versions:
-		* sslv2
-		* sslv3
-		* tlsv1
-		* default
+If $ctx is defined, SSLify will ignore other args. If $ctx isn't defined, SSLify
+will create it from the $version + $options parameters.
 
-	By default we use the version: default
+Known versions:
+	* sslv2
+	* sslv3
+	* tlsv1
+	* default
 
-	By default we don't set any options
+By default we use the version: default
 
-	NOTE: The way to have a client socket with proper certificates set up is:
-		my $socket = shift;	# get the socket from somewhere
-		my $ctx = SSLify_ContextCreate( 'server.key', 'server.crt' );
-		$socket = Client_SSLify( $socket, undef, undef, $ctx );
+By default we don't set any options
 
-	BEWARE: If you passed in a CTX, SSLify will do Net::SSLeay::CTX_free( $ctx ) when the
-	socket is destroyed. This means you cannot reuse contexts!
+NOTE: The way to have a client socket with proper certificates set up is:
+
+	my $socket = shift;	# get the socket from somewhere
+	my $ctx = SSLify_ContextCreate( 'server.key', 'server.crt' );
+	$socket = Client_SSLify( $socket, undef, undef, $ctx );
+
+BEWARE: If you passed in a CTX, SSLify will do Net::SSLeay::CTX_free( $ctx ) when the
+socket is destroyed. This means you cannot reuse contexts!
+
+NOTE: You can pass the subref anywhere in the arguments, we'll figure it out for you! If you want to call a POE event, please look
+into the postback/callback stuff in POE::Session. The subref will get the socket as the sole argument.
+
+	$socket = Client_SSLify( $socket, $session->callback( 'got_connect' => @args ) );
 =cut
 
 sub Client_SSLify {
 	# Get the socket + version + options + ctx
-	my( $socket, $version, $options, $ctx ) = @_;
+	my( $socket, $version, $options, $ctx, $connref ) = @_;
 
 	# Validation...
 	if ( ! defined $socket ) {
 		die "Did not get a defined socket";
+	}
+
+	# Mangle the connref stuff
+	if ( defined $version and ref $version and ref( $version ) eq 'CODE' ) {
+		$connref = $version;
+		$version = $options = $ctx = undef;
+	} elsif ( defined $options and ref $options and ref( $options ) eq 'CODE' ) {
+		$connref = $options;
+		$options = $ctx = undef;
+	} elsif ( defined $ctx and ref $ctx and ref( $ctx ) eq 'CODE' ) {
+		$connref = $ctx;
+		$ctx = undef;
 	}
 
 	# From IO::Handle POD
@@ -93,7 +113,7 @@ sub Client_SSLify {
 
 	# Now, we create the new socket and bind it to our subclass of Net::SSLeay::Handle
 	my $newsock = gensym();
-	tie( *$newsock, 'POE::Component::SSLify::ClientHandle', $socket, $version, $options, $ctx ) or die "Unable to tie to our subclass: $!";
+	tie( *$newsock, 'POE::Component::SSLify::ClientHandle', $socket, $version, $options, $ctx, $connref ) or die "Unable to tie to our subclass: $!";
 
 	# All done!
 	return $newsock;
@@ -101,27 +121,36 @@ sub Client_SSLify {
 
 =func Server_SSLify
 
-	Accepts a socket, returns a brand new socket SSLified
-		my $socket = shift;	# get the socket from somewhere
-		$socket = Server_SSLify( $socket );
+Accepts a socket, returns a brand new socket SSLified. Also accepts a custom context. Also accepts a subref
+to call when connection/negotiation is done.
 
-	NOTE: SSLify_Options must be set first!
+	my $socket = shift;	# get the socket from somewhere
+	$socket = Server_SSLify( $socket );
+	$socket = Server_SSLify( $socket, $ctx );			# use your custom context
+	$socket = Server_SSLify( $socket, sub { print "CONNECTED" } );	# call your connection function
 
-	Furthermore, you can pass in your own $ctx object if you desire. This allows you to set custom parameters
-	per-connection, for example.
-		my $socket = shift;	# get the socket from somewhere
-		my $ctx = SSLify_ContextCreate();
-		# set various options on $ctx as desired
-		$socket = Server_SSLify( $socket, $ctx );
+NOTE: SSLify_Options must be set first!
 
-	NOTE: You can use SSLify_GetCTX to modify the global, and avoid doing this on every connection if the
-	options are the same...
+Furthermore, you can pass in your own $ctx object if you desire. This allows you to set custom parameters
+per-connection, for example.
+
+	my $socket = shift;	# get the socket from somewhere
+	my $ctx = SSLify_ContextCreate();
+	# set various options on $ctx as desired
+	$socket = Server_SSLify( $socket, $ctx );
+
+NOTE: You can use SSLify_GetCTX to modify the global, and avoid doing this on every connection if the
+options are the same...
+
+NOTE: You can pass the subref anywhere in the arguments, we'll figure it out for you! If you want to call a POE event, please look
+into the postback/callback stuff in POE::Session. The subref will get the socket as the sole argument.
+
+	$socket = Server_SSLify( $socket, $session->callback( 'got_connect' => @args ) );
 =cut
 
 sub Server_SSLify {
 	# Get the socket!
-	my $socket = shift;
-	my $custom_ctx = shift;
+	my( $socket, $custom_ctx, $connref ) = @_;
 
 	# Validation...
 	if ( ! defined $socket ) {
@@ -133,6 +162,12 @@ sub Server_SSLify {
 		die 'Please do SSLify_Options() first ( or pass in a $ctx object )';
 	}
 
+	# mangle custom_ctx depending on connref
+	if ( ref $custom_ctx and ref( $custom_ctx ) eq 'CODE' ) {
+		$connref = $custom_ctx;
+		$custom_ctx = $ctx;
+	}
+
 	# From IO::Handle POD
 	# If an error occurs blocking will return undef and $! will be set.
 	if ( ! defined $socket->blocking( 0 ) ) {
@@ -141,7 +176,7 @@ sub Server_SSLify {
 
 	# Now, we create the new socket and bind it to our subclass of Net::SSLeay::Handle
 	my $newsock = gensym();
-	tie( *$newsock, 'POE::Component::SSLify::ServerHandle', $socket, ( $custom_ctx || $ctx ) ) or die "Unable to tie to our subclass: $!";
+	tie( *$newsock, 'POE::Component::SSLify::ServerHandle', $socket, $custom_ctx, $connref ) or die "Unable to tie to our subclass: $!";
 
 	# All done!
 	return $newsock;

@@ -11,7 +11,7 @@ our @ISA = qw( POE::Component::SSLify::ServerHandle );
 
 # Override TIEHANDLE because we create a CTX
 sub TIEHANDLE {
-	my ( $class, $socket, $version, $options, $ctx ) = @_;
+	my ( $class, $socket, $version, $options, $ctx, $connref ) = @_;
 
 	# create a context, if necessary
 	if ( ! defined $ctx ) {
@@ -29,7 +29,7 @@ sub TIEHANDLE {
 	# again, because OpenSSL I/O functions (read, write, ...) can handle that entirely
 	# by self (it's needed to connect() once to determine connection type).
 	my $res = Net::SSLeay::connect( $ssl ) or die_if_ssl_error( 'ssl connect' );
-warn "Net::SSLeay::connect(TIEHANDLE) -> $res";
+#warn "Net::SSLeay::connect(TIEHANDLE) -> $res";
 	my $self = bless {
 		'ssl'		=> $ssl,
 		'ctx'		=> $ctx,
@@ -37,6 +37,7 @@ warn "Net::SSLeay::connect(TIEHANDLE) -> $res";
 		'fileno'	=> $fileno,
 		'client'	=> 1,
 		'status'	=> $res,
+		'on_connect'	=> $connref,
 	}, $class;
 
 	return $self;

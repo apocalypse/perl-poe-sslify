@@ -7,7 +7,7 @@ use Net::SSLeay 1.36 qw( die_now die_if_ssl_error );
 
 # Ties the socket
 sub TIEHANDLE {
-	my ( $class, $socket, $ctx ) = @_;
+	my ( $class, $socket, $ctx, $connref ) = @_;
 
 	my $ssl = Net::SSLeay::new( $ctx ) or die_now( "Failed to create SSL $!" );
 
@@ -20,13 +20,14 @@ sub TIEHANDLE {
 	# again, because OpenSSL I/O functions (read, write, ...) can handle that entirely
 	# by self (it's needed to accept() once to determine connection type).
 	my $res = Net::SSLeay::accept( $ssl ) and die_if_ssl_error( 'ssl accept' );
-warn "Net::SSLeay::accept(TIEHANDLE) -> $res";
+#warn "Net::SSLeay::accept(TIEHANDLE) -> $res";
 	my $self = bless {
 		'ssl'		=> $ssl,
 		'ctx'		=> $ctx,
 		'socket'	=> $socket,
 		'fileno'	=> $fileno,
 		'status'	=> $res,
+		'on_connect'	=> $connref,
 	}, $class;
 
 	return $self;
@@ -43,10 +44,10 @@ sub _check_status {
 		my $res;
 		if ( exists $self->{'client'} ) {
 			$res = Net::SSLeay::connect( $self->{'ssl'} );
-			warn "Net::SSLeay::connect($method) -> $res";
+#			warn "Net::SSLeay::connect($method) -> $res";
 		} else {
 			$res = Net::SSLeay::accept( $self->{'ssl'} );
-			warn "Net::SSLeay::accept($method) -> $res";
+#			warn "Net::SSLeay::accept($method) -> $res";
 		}
 
 		if ( $res == 0 ) {
@@ -54,8 +55,8 @@ sub _check_status {
 		} elsif ( $res == 1 ) {
 			$self->{'status'} = 1;
 
-			# TODO call the hook function for successful connect
-			warn "CALLING HOOK FUNCTION for " . ( exists $self->{'client'} ? 'CLIENT' : 'SERVER' );
+			# call the hook function for successful connect
+			$self->{'on_connect'}->( $self ) if defined $self->{'on_connect'};
 		}
 	}
 }
