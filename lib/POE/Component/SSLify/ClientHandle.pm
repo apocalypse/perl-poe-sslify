@@ -29,7 +29,7 @@ sub TIEHANDLE {
 	# again, because OpenSSL I/O functions (read, write, ...) can handle that entirely
 	# by self (it's needed to connect() once to determine connection type).
 	my $res = Net::SSLeay::connect( $ssl ) or die_if_ssl_error( 'ssl connect' );
-#warn "Net::SSLeay::connect(TIEHANDLE) -> $res";
+
 	my $self = bless {
 		'ssl'		=> $ssl,
 		'ctx'		=> $ctx,

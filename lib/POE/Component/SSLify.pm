@@ -30,7 +30,10 @@ BEGIN {
 # Do the exporting magic...
 require Exporter;
 our @ISA = qw( Exporter );
-our @EXPORT_OK = qw( Client_SSLify Server_SSLify SSLify_Options SSLify_GetCTX SSLify_GetCipher SSLify_GetSocket SSLify_GetSSL SSLify_ContextCreate );
+our @EXPORT_OK = qw(
+	Client_SSLify Server_SSLify
+	SSLify_Options SSLify_GetCTX SSLify_GetCipher SSLify_GetSocket SSLify_GetSSL SSLify_ContextCreate SSLify_GetStatus
+);
 
 # Bring in some socket-related stuff
 use Symbol qw( gensym );
@@ -38,6 +41,10 @@ use Symbol qw( gensym );
 # we need IO 1.24 for it's win32 fixes but it includes IO::Handle 1.27_02 which is dev...
 # unfortunately we have to jump to IO 1.25 which includes IO::Handle 1.28... argh!
 use IO::Handle 1.28;
+
+# Use Scalar::Util's weaken() for the connref stuff
+use Scalar::Util qw( weaken );
+use Task::Weaken 1.03; # to make sure it actually works!
 
 # The server-side CTX stuff
 my $ctx = undef;
@@ -54,7 +61,7 @@ context data. Also accepts a subref to call when connection/negotiation is done.
 	$socket = Client_SSLify( $socket );				# the default
 	$socket = Client_SSLify( $socket, $version, $options );		# sets more options for the context
 	$socket = Client_SSLify( $socket, undef, undef, $ctx );		# pass in a custom context
-	$socket = Client_SSLify( $socket, sub { print "CONNECTED" } );	# call your connection function
+	$socket = Client_SSLify( $socket, sub { warn "CONNECTED" } );	# call your connection function
 
 If $ctx is defined, SSLify will ignore other args. If $ctx isn't defined, SSLify
 will create it from the $version + $options parameters.
@@ -115,6 +122,12 @@ sub Client_SSLify {
 	my $newsock = gensym();
 	tie( *$newsock, 'POE::Component::SSLify::ClientHandle', $socket, $version, $options, $ctx, $connref ) or die "Unable to tie to our subclass: $!";
 
+	# argh, store the newsock in the tied class to use for connref
+	if ( defined $connref ) {
+		tied( *$newsock )->{'orig_socket'} = $newsock;
+		weaken( tied( *$newsock )->{'orig_socket'} );
+	}
+
 	# All done!
 	return $newsock;
 }
@@ -125,9 +138,9 @@ Accepts a socket, returns a brand new socket SSLified. Also accepts a custom con
 to call when connection/negotiation is done.
 
 	my $socket = shift;	# get the socket from somewhere
-	$socket = Server_SSLify( $socket );
+	$socket = Server_SSLify( $socket );				# the default
 	$socket = Server_SSLify( $socket, $ctx );			# use your custom context
-	$socket = Server_SSLify( $socket, sub { print "CONNECTED" } );	# call your connection function
+	$socket = Server_SSLify( $socket, sub { warn "CONNECTED" } );	# call your connection function
 
 NOTE: SSLify_Options must be set first!
 
@@ -177,6 +190,12 @@ sub Server_SSLify {
 	# Now, we create the new socket and bind it to our subclass of Net::SSLeay::Handle
 	my $newsock = gensym();
 	tie( *$newsock, 'POE::Component::SSLify::ServerHandle', $socket, ( $custom_ctx || $ctx ), $connref ) or die "Unable to tie to our subclass: $!";
+
+	# argh, store the newsock in the tied class to use for connref
+	if ( defined $connref ) {
+		tied( *$newsock )->{'orig_socket'} = $newsock;
+		weaken( tied( *$newsock )->{'orig_socket'} );
+	}
 
 	# All done!
 	return $newsock;
@@ -370,6 +389,20 @@ sub SSLify_GetSocket {
 sub SSLify_GetSSL {
 	my $sock = shift;
 	return tied( *$sock )->{'ssl'};
+}
+
+=func SSLify_GetStatus
+
+	Returns the status of the SSL negotiation/handshake/connection.
+
+		-1 == still in negotiation stage
+		 0 == internal SSL error, connection will be dead
+		 1 == negotiation successful
+=cut
+
+sub SSLify_GetStatus {
+	my $sock = shift;
+	return tied( *$sock )->{'status'};
 }
 
 1;

@@ -6,6 +6,10 @@ Revision history for Perl extension POE::Component::SSLify.
 		OpenSSL docs suggest it - http://www.openssl.org/docs/ssl/SSL_CTX_use_certificate.html#NOTES
 		PLEASE yell at me if you need the old functionality - the docs suggest this is the "better" way to do it...
 
+	Add the ability to pass a subref to call on connection/negotiation success, thanks Zephaniah E. Loss-Cutler-Hull <warp-spam_perl@aehallh.com>
+		NOTE: This will not work if you do a renegotiation or any other zany SSL stuff!
+	Add the SSLify_GetStatus function to get the status of the connection
+
 1.003
 	Released: 2011-02-28 15:52:24 UTC
 

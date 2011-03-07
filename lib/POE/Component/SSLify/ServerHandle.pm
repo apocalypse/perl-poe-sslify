@@ -20,7 +20,7 @@ sub TIEHANDLE {
 	# again, because OpenSSL I/O functions (read, write, ...) can handle that entirely
 	# by self (it's needed to accept() once to determine connection type).
 	my $res = Net::SSLeay::accept( $ssl ) and die_if_ssl_error( 'ssl accept' );
-#warn "Net::SSLeay::accept(TIEHANDLE) -> $res";
+
 	my $self = bless {
 		'ssl'		=> $ssl,
 		'ctx'		=> $ctx,
@@ -35,29 +35,20 @@ sub TIEHANDLE {
 
 sub _check_status {
 	my $self = shift;
-	my $method = shift;
 
 	# Okay, is negotiation done?
 	# http://www.openssl.org/docs/ssl/SSL_connect.html#RETURN_VALUES
-	if ( $self->{'status'} == -1 ) {
-		# client or server?
-		my $res;
-		if ( exists $self->{'client'} ) {
-			$res = Net::SSLeay::connect( $self->{'ssl'} );
-#			warn "Net::SSLeay::connect($method) -> $res";
-		} else {
-			$res = Net::SSLeay::accept( $self->{'ssl'} );
-#			warn "Net::SSLeay::accept($method) -> $res";
-		}
+	if ( exists $self->{'client'} ) {
+		$self->{'status'} = Net::SSLeay::connect( $self->{'ssl'} );
+	} else {
+		$self->{'status'} = Net::SSLeay::accept( $self->{'ssl'} );
+	}
 
-		if ( $res == 0 ) {
-			# TODO error?
-		} elsif ( $res == 1 ) {
-			$self->{'status'} = 1;
-
-			# call the hook function for successful connect
-			$self->{'on_connect'}->( $self ) if defined $self->{'on_connect'};
-		}
+	if ( $self->{'status'} == 0 ) {
+		# TODO error?
+	} elsif ( $self->{'status'} == 1 ) {
+		# call the hook function for successful connect
+		$self->{'on_connect'}->( $self->{'orig_socket'} ) if defined $self->{'on_connect'};
 	}
 }
 
@@ -70,7 +61,7 @@ sub READ {
 	my( $buf, $len, $offset ) = \( @_ );
 
 	# Check connection status
-	$self->_check_status( 'READ' );
+	$self->_check_status if $self->{'status'} == -1;
 
 	# If we have no offset, replace the buffer with some input
 	if ( ! defined $$offset ) {
@@ -110,7 +101,7 @@ sub WRITE {
 	my( $self, $buf, $len, $offset ) = @_;
 
 	# Check connection status
-	$self->_check_status( 'WRITE' );
+	$self->_check_status if $self->{'status'} == -1;
 
 	# If we have nothing to offset, then start from the beginning
 	if ( ! defined $offset ) {
