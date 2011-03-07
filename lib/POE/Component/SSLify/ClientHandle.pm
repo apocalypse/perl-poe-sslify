@@ -28,14 +28,15 @@ sub TIEHANDLE {
 	# die_if_ssl_error won't die on non-blocking errors. We don't need to call connect()
 	# again, because OpenSSL I/O functions (read, write, ...) can handle that entirely
 	# by self (it's needed to connect() once to determine connection type).
-	my $resp = Net::SSLeay::connect( $ssl ) or die_if_ssl_error( 'ssl connect' );
-
+	my $res = Net::SSLeay::connect( $ssl ) or die_if_ssl_error( 'ssl connect' );
+warn "Net::SSLeay::connect(TIEHANDLE) -> $res";
 	my $self = bless {
 		'ssl'		=> $ssl,
 		'ctx'		=> $ctx,
 		'socket'	=> $socket,
 		'fileno'	=> $fileno,
 		'client'	=> 1,
+		'status'	=> $res,
 	}, $class;
 
 	return $self;
