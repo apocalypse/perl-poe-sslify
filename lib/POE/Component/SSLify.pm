@@ -163,9 +163,9 @@ sub Server_SSLify {
 	}
 
 	# mangle custom_ctx depending on connref
-	if ( ref $custom_ctx and ref( $custom_ctx ) eq 'CODE' ) {
+	if ( defined $custom_ctx and ref $custom_ctx and ref( $custom_ctx ) eq 'CODE' ) {
 		$connref = $custom_ctx;
-		$custom_ctx = $ctx;
+		$custom_ctx = undef;
 	}
 
 	# From IO::Handle POD
@@ -176,7 +176,7 @@ sub Server_SSLify {
 
 	# Now, we create the new socket and bind it to our subclass of Net::SSLeay::Handle
 	my $newsock = gensym();
-	tie( *$newsock, 'POE::Component::SSLify::ServerHandle', $socket, $custom_ctx, $connref ) or die "Unable to tie to our subclass: $!";
+	tie( *$newsock, 'POE::Component::SSLify::ServerHandle', $socket, ( $custom_ctx || $ctx ), $connref ) or die "Unable to tie to our subclass: $!";
 
 	# All done!
 	return $newsock;
