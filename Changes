@@ -9,6 +9,8 @@ Revision history for Perl extension POE::Component::SSLify.
 	Add the ability to pass a subref to call on connection/negotiation success, thanks Zephaniah E. Loss-Cutler-Hull <warp-spam_perl@aehallh.com>
 		NOTE: This will not work if you do renegotiation or any other zany SSL stuff!
 	Add the SSLify_GetStatus function to get the status of the connection
+	After staring at the Net::SSLeay/OpenSSL docs for a while I realized we were missing support for sslv23 version, added!
+	After some investigation, we now load all default ENGINEs for OpenSSL on startup, as it might provide a performance boost
 
 1.003
 	Released: 2011-02-28 15:52:24 UTC

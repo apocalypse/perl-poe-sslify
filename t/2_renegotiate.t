@@ -1,12 +1,10 @@
 #!/usr/bin/perl
+use strict; use warnings;
 
 # Thanks to ASCENT for this test!
-
-# This test adds renegotiation to the connection
+# This test adds renegotiation to the connection from client-side
 # Since this is not supported on all platforms, it's marked TODO and adds custom logic
 # to make sure it doesn't FAIL if it's not supported.
-
-use strict; use warnings;
 
 my $numtests;
 BEGIN {
@@ -24,7 +22,7 @@ use Test::More tests => $numtests;
 use POE 1.267;
 use POE::Component::Client::TCP;
 use POE::Component::Server::TCP;
-use POE::Component::SSLify qw/Client_SSLify Server_SSLify SSLify_Options SSLify_GetCipher SSLify_ContextCreate SSLify_GetSocket/;
+use POE::Component::SSLify qw/Client_SSLify Server_SSLify SSLify_Options SSLify_GetCipher SSLify_ContextCreate SSLify_GetSocket SSLify_GetSSL/;
 use Net::SSLeay qw/ERROR_WANT_READ ERROR_WANT_WRITE/;
 
 # TODO rewrite this to use Test::POE::Server::TCP and stuff :)
@@ -147,7 +145,7 @@ POE::Component::Client::TCP->new
 				local $TODO = "Net::SSLeay::renegotiate() does not work on all platforms";
 
 				## Force SSL renegotiation
-				my $ssl = tied(*{$heap->{server}->get_output_handle})->{ssl};
+				my $ssl = SSLify_GetSSL( $heap->{server}->get_output_handle );
 				my $reneg_num = Net::SSLeay::num_renegotiations($ssl);
 
 				ok(1 == Net::SSLeay::renegotiate($ssl), 'CLIENT: SSL renegotiation');

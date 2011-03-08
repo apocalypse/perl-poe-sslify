@@ -1,8 +1,8 @@
 #!/usr/bin/perl
+use strict; use warnings;
 
 # Thanks to ASCENT for this test!
-
-use strict; use warnings;
+# This tests the basic functionality of sslify on client/server side
 
 my $numtests;
 BEGIN {

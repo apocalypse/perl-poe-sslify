@@ -1,8 +1,7 @@
 #!/usr/bin/perl
-
-# Thanks to ASCENT for this test!
-
 use strict; use warnings;
+
+# this tests the connection fail hook on the client-side
 
 my $numtests;
 BEGIN {
@@ -89,11 +88,12 @@ POE::Component::Client::TCP->new
 
 			pass( "CLIENT: Got connect hook" );
 			is( $status, 'ERR', "CLIENT: Status received from callback is ERR - $errval" );
+			is( SSLify_GetStatus( $socket ), 0, "CLIENT: SSLify_GetStatus is error" );
 
 			$poe_kernel->post( 'myclient' => 'shutdown' );
 		}) };
 		ok(!$@, "CLIENT: Client_SSLify $@");
-		ok( SSLify_GetStatus($socket) == -1, "CLIENT: SSLify_GetStatus is pending" );
+		is( SSLify_GetStatus( $socket ), -1, "CLIENT: SSLify_GetStatus is pending" );
 
 		return ($socket);
 	},
