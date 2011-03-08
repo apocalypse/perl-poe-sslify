@@ -6,7 +6,7 @@ use strict; use warnings;
 
 my $numtests;
 BEGIN {
-	$numtests = 16;
+	$numtests = 8;
 
 	eval "use Test::NoWarnings";
 	if ( ! $@ ) {
@@ -20,7 +20,7 @@ use Test::More tests => $numtests;
 use POE 1.267;
 use POE::Component::Client::TCP;
 use POE::Component::Server::TCP;
-use POE::Component::SSLify qw/Client_SSLify Server_SSLify SSLify_Options SSLify_GetCipher SSLify_ContextCreate SSLify_GetSocket SSLify_GetSSL/;
+use POE::Component::SSLify qw/Client_SSLify SSLify_GetSocket SSLify_GetStatus/;
 
 # TODO rewrite this to use Test::POE::Server::TCP and stuff :)
 
@@ -44,38 +44,14 @@ POE::Component::Server::TCP->new
 	ClientDisconnected	=> sub
 	{
 		ok(1, 'SERVER: client disconnected');
-		$_[KERNEL]->post(myserver => 'shutdown');
-	},
-	ClientPreConnect	=> sub
-	{
-		eval { SSLify_Options('mylib/example.key', 'mylib/example.crt', 'sslv3') };
-		eval { SSLify_Options('../mylib/example.key', '../mylib/example.crt', 'sslv3') } if ($@);
-		ok(!$@, "SERVER: SSLify_Options $@");
-
-		my $socket = eval { Server_SSLify($_[ARG0]) };
-		ok(!$@, "SERVER: Server_SSLify $@");
-		ok(1, 'SERVER: SSLify_GetCipher: '. SSLify_GetCipher($socket));
-
-		# We pray that IO::Handle is sane...
-		ok( SSLify_GetSocket( $socket )->blocking == 0, 'SERVER: SSLified socket is non-blocking?');
-
-		return ($socket);
+		$_[KERNEL]->post( 'myserver' => 'shutdown');
 	},
 	ClientInput		=> sub
 	{
 		my ($kernel, $heap, $line) = @_[KERNEL, HEAP, ARG0];
 
-		if ( $line eq 'ping' ) {
-			ok(1, "SERVER: recv: $line");
-
-			## At this point, connection MUST be encrypted.
-			my $cipher = SSLify_GetCipher($heap->{client}->get_output_handle);
-			ok($cipher ne '(NONE)', "SERVER: SSLify_GetCipher: $cipher");
-
-			$heap->{client}->put("pong");
-		} else {
-			die "Unknown line from CLIENT: $line";
-		}
+		# purposefully send garbage so we screw up the ssl connect on the client-side
+		$heap->{client}->put( 'garbage in, garbage out' );
 	},
 	ClientError	=> sub
 	{
@@ -83,10 +59,13 @@ POE::Component::Server::TCP->new
 		# The default PoCo::Server::TCP handler will throw a warning, which causes Test::NoWarnings to FAIL :(
 		my ($syscall, $errno, $error) = @_[ ARG0..ARG2 ];
 
+		# Since this test purposefully sends garbage, we expect a connection reset by peer
+		# not ok 7 - Got SERVER read error 104: Connection reset by peer
+
 		# TODO are there other "errors" that is harmless?
 		$error = "Normal disconnection" unless $error;
 		my $msg = "Got SERVER $syscall error $errno: $error";
-		unless ( $syscall eq 'read' and $errno == 0 ) {
+		unless ( $syscall eq 'read' and $errno == 104 ) {
 			fail( $msg );
 		} else {
 			diag( $msg ) if $ENV{TEST_VERBOSE};
@@ -102,19 +81,19 @@ POE::Component::Client::TCP->new
 	Connected	=> sub
 	{
 		ok(1, 'CLIENT: connected');
-
-		$_[HEAP]->{server}->put("ping");
 	},
 	PreConnect	=> sub
 	{
-		my $ctx = eval { SSLify_ContextCreate(undef, undef, 'sslv3') };
-		ok(!$@, "CLIENT: SSLify_ContextCreate $@");
-		my $socket = eval { Client_SSLify($_[ARG0], undef, undef, $ctx) };
-		ok(!$@, "CLIENT: Client_SSLify $@");
-		ok(1, 'CLIENT: SSLify_GetCipher: '. SSLify_GetCipher($socket));
+		my $socket = eval { Client_SSLify($_[ARG0], sub {
+			my( $socket, $status, $errval ) = @_;
 
-		# We pray that IO::Handle is sane...
-		ok( SSLify_GetSocket( $socket )->blocking == 0, 'CLIENT: SSLified socket is non-blocking?');
+			pass( "CLIENT: Got connect hook" );
+			is( $status, 'ERR', "CLIENT: Status received from callback is ERR - $errval" );
+
+			$poe_kernel->post( 'myclient' => 'shutdown' );
+		}) };
+		ok(!$@, "CLIENT: Client_SSLify $@");
+		ok( SSLify_GetStatus($socket) == -1, "CLIENT: SSLify_GetStatus is pending" );
 
 		return ($socket);
 	},
@@ -122,18 +101,7 @@ POE::Component::Client::TCP->new
 	{
 		my ($kernel, $heap, $line) = @_[KERNEL, HEAP, ARG0];
 
-		if ($line eq 'pong') {
-			ok(1, "CLIENT: recv: $line");
-
-			## At this point, connection MUST be encrypted.
-			my $cipher = SSLify_GetCipher($heap->{server}->get_output_handle);
-			ok($cipher ne '(NONE)', "CLIENT: SSLify_GetCipher: $cipher");
-			diag( Net::SSLeay::dump_peer_certificate( SSLify_GetSSL( $heap->{server}->get_output_handle ) ) ) if $ENV{TEST_VERBOSE};
-
-			$kernel->yield('shutdown');
-		} else {
-			die "Unknown line from SERVER: $line";
-		}
+		die "Should have never got any input from the server!";
 	},
 	ServerError	=> sub
 	{

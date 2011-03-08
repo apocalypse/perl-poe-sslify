@@ -6,13 +6,12 @@ use strict; use warnings;
 
 my $numtests;
 BEGIN {
-	$numtests = 20;
+	$numtests = 17;
 
 	eval "use Test::NoWarnings";
 	if ( ! $@ ) {
 		# increment by one
 		$numtests++;
-
 	}
 }
 
@@ -21,7 +20,7 @@ use Test::More tests => $numtests;
 use POE 1.267;
 use POE::Component::Client::TCP;
 use POE::Component::Server::TCP;
-use POE::Component::SSLify qw/Client_SSLify Server_SSLify SSLify_Options SSLify_GetCipher SSLify_ContextCreate SSLify_GetSocket SSLify_GetStatus/;
+use POE::Component::SSLify qw/Client_SSLify Server_SSLify SSLify_Options SSLify_GetCipher SSLify_GetSocket SSLify_GetStatus/;
 
 # TODO rewrite this to use Test::POE::Server::TCP and stuff :)
 
@@ -49,13 +48,15 @@ POE::Component::Server::TCP->new
 	},
 	ClientPreConnect	=> sub
 	{
-		eval { SSLify_Options('mylib/example.key', 'mylib/example.crt', 'sslv3') };
-		eval { SSLify_Options('../mylib/example.key', '../mylib/example.crt', 'sslv3') } if ($@);
+		eval { SSLify_Options('mylib/example.key', 'mylib/example.crt') };
+		eval { SSLify_Options('../mylib/example.key', '../mylib/example.crt') } if ($@);
 		ok(!$@, "SERVER: SSLify_Options $@");
 
 		my $socket = eval { Server_SSLify( $_[ARG0], sub {
-			my $socket = shift;
-			pass( "Got connect hook for server" );
+			my( $socket, $status, $errval ) = @_;
+
+			pass( "SERVER: Got connect hook" );
+			is( $status, 'OK', "SERVER: Status received from callback is OK" );
 
 			## At this point, connection MUST be encrypted.
 			my $cipher = SSLify_GetCipher($socket);
@@ -63,11 +64,7 @@ POE::Component::Server::TCP->new
 			ok( SSLify_GetStatus($socket) == 1, "SERVER: SSLify_GetStatus is done" );
 		} ) };
 		ok(!$@, "SERVER: Server_SSLify $@");
-		ok(1, 'SERVER: SSLify_GetCipher: '. SSLify_GetCipher($socket));
 		ok( SSLify_GetStatus($socket) == -1, "SERVER: SSLify_GetStatus is pending" );
-
-		# We pray that IO::Handle is sane...
-		ok( SSLify_GetSocket( $socket )->blocking == 0, 'SERVER: SSLified socket is non-blocking?');
 
 		return ($socket);
 	},
@@ -105,12 +102,11 @@ POE::Component::Client::TCP->new
 	},
 	PreConnect	=> sub
 	{
-		my $ctx = eval { SSLify_ContextCreate(undef, undef, 'sslv3') };
-		ok(!$@, "CLIENT: SSLify_ContextCreate $@");
-		my $socket = eval { Client_SSLify($_[ARG0], undef, undef, $ctx, sub {
-			my $socket = shift;
+		my $socket = eval { Client_SSLify($_[ARG0], sub {
+			my( $socket, $status, $errval ) = @_;
 
-			pass( "Got connect hook for client" );
+			pass( "CLIENT: Got connect hook" );
+			is( $status, 'OK', "CLIENT: Status received from callback is OK" );
 
 			## At this point, connection MUST be encrypted.
 			my $cipher = SSLify_GetCipher($socket);
@@ -120,11 +116,7 @@ POE::Component::Client::TCP->new
 			$poe_kernel->post( 'myclient' => 'shutdown' );
 		}) };
 		ok(!$@, "CLIENT: Client_SSLify $@");
-		ok(1, 'CLIENT: SSLify_GetCipher: '. SSLify_GetCipher($socket));
 		ok( SSLify_GetStatus($socket) == -1, "CLIENT: SSLify_GetStatus is pending" );
-
-		# We pray that IO::Handle is sane...
-		ok( SSLify_GetSocket( $socket )->blocking == 0, 'CLIENT: SSLified socket is non-blocking?');
 
 		return ($socket);
 	},
@@ -132,7 +124,7 @@ POE::Component::Client::TCP->new
 	{
 		my ($kernel, $heap, $line) = @_[KERNEL, HEAP, ARG0];
 
-		$kernel->yield('shutdown');
+		die "Should have never got any input from the server!";
 	},
 	ServerError	=> sub
 	{

@@ -3,7 +3,7 @@ package POE::Component::SSLify::ServerHandle;
 # ABSTRACT: Server-side handle for SSLify
 
 # Import the SSL death routines
-use Net::SSLeay 1.36 qw( die_now die_if_ssl_error );
+use Net::SSLeay 1.36 qw( die_now die_if_ssl_error ERROR_WANT_READ ERROR_WANT_WRITE );
 
 # Ties the socket
 sub TIEHANDLE {
@@ -44,11 +44,22 @@ sub _check_status {
 		$self->{'status'} = Net::SSLeay::accept( $self->{'ssl'} );
 	}
 
-	if ( $self->{'status'} == 0 ) {
-		# TODO error?
+	# Only process the stuff if we actually have a callback!
+	return unless defined $self->{'on_connect'};
+
+	if ( $self->{'status'} <= 0 ) {
+		# http://www.openssl.org/docs/ssl/SSL_get_error.html
+		my $errval = Net::SSLeay::get_error( $self->{'ssl'}, $self->{'status'} );
+
+		# TODO should we skip ERROR_WANT_ACCEPT and ERROR_WANT_CONNECT ?
+		# also, ERROR_WANT_ACCEPT isn't exported by Net::SSLeay, huh?
+		if ( $errval != ERROR_WANT_READ and $errval != ERROR_WANT_WRITE ) {
+			# call the hook function for error connect
+			$self->{'on_connect'}->( $self->{'orig_socket'}, 'ERR', $errval );
+		}
 	} elsif ( $self->{'status'} == 1 ) {
 		# call the hook function for successful connect
-		$self->{'on_connect'}->( $self->{'orig_socket'} ) if defined $self->{'on_connect'};
+		$self->{'on_connect'}->( $self->{'orig_socket'}, 'OK' );
 	}
 }
 
@@ -61,7 +72,7 @@ sub READ {
 	my( $buf, $len, $offset ) = \( @_ );
 
 	# Check connection status
-	$self->_check_status if $self->{'status'} == -1;
+	$self->_check_status if $self->{'status'} <= 0;
 
 	# If we have no offset, replace the buffer with some input
 	if ( ! defined $$offset ) {
@@ -101,7 +112,7 @@ sub WRITE {
 	my( $self, $buf, $len, $offset ) = @_;
 
 	# Check connection status
-	$self->_check_status if $self->{'status'} == -1;
+	$self->_check_status if $self->{'status'} <= 0;
 
 	# If we have nothing to offset, then start from the beginning
 	if ( ! defined $offset ) {
