@@ -56,13 +56,13 @@ This function sslifies a client-side socket. You can pass several options to it:
 
 	my $socket = shift;
 	$socket = Client_SSLify( $socket, $version, $options, $ctx, $callback );
-		$socket is the non-ssl socket you got from somewhere ( probably POE::Wheel::SocketFactory )
-		$version is the SSL version you want to use, see SSLify_ContextCreate
-		$options is the SSL options you want to use, see SSLify_ContextCreate
-		$ctx is the custom SSL context you want to use, see SSLify_ContextCreate
+		$socket is the non-ssl socket you got from somewhere ( required )
+		$version is the SSL version you want to use
+		$options is the SSL options you want to use
+		$ctx is the custom SSL context you want to use
 		$callback is the callback hook on success/failure of sslification
 
-		# This is an example of the callback and you should pass it as Client_SSLify( ... \&callback );
+		# This is an example of the callback and you should pass it as Client_SSLify( $socket, ... , \&callback );
 		sub callback {
 			my( $socket, $status, $errval ) = @_;
 			# $socket is the original sslified socket in case you need to play with it
@@ -159,21 +159,21 @@ This function sslifies a server-side socket. You can pass several options to it:
 
 	my $socket = shift;
 	$socket = Server_SSLify( $socket, $ctx, $callback );
-		$socket is the non-ssl socket you got from somewhere ( probably SocketFactory )
-		$ctx is the custom SSL context you want to use, see SSLify_ContextCreate ( overrides the global set in SSLify_Options )
+		$socket is the non-ssl socket you got from somewhere ( required )
+		$ctx is the custom SSL context you want to use; overrides the global ctx set in SSLify_Options
 		$callback is the callback hook on success/failure of sslification
 
-Please look at L</Client_SSLify> for more details on the callback hook.
-
-SSLify_Options must be set first if you aren't passing a $ctx. If you want to set some options per-connection, do this:
+BEWARE: L</SSLify_Options> must be called first if you aren't passing a $ctx. If you want to set some options per-connection, do this:
 
 	my $socket = shift;	# get the socket from somewhere
 	my $ctx = SSLify_ContextCreate();
 	# set various options on $ctx as desired
 	$socket = Server_SSLify( $socket, $ctx );
 
-NOTE: You can use SSLify_GetCTX to modify the global, and avoid doing this on every connection if the
+NOTE: You can use L</SSLify_GetCTX> to modify the global, and avoid doing this on every connection if the
 options are the same...
+
+Please look at L</Client_SSLify> for more details on the callback hook.
 =cut
 
 sub Server_SSLify {
