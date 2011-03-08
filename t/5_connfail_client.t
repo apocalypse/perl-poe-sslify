@@ -86,9 +86,8 @@ POE::Component::Client::TCP->new
 		my $socket = eval { Client_SSLify($_[ARG0], sub {
 			my( $socket, $status, $errval ) = @_;
 
-			pass( "CLIENT: Got connect hook" );
+			pass( "CLIENT: Got callback hook" );
 			is( $status, 'ERR', "CLIENT: Status received from callback is ERR - $errval" );
-			is( SSLify_GetStatus( $socket ), 0, "CLIENT: SSLify_GetStatus is error" );
 
 			$poe_kernel->post( 'myclient' => 'shutdown' );
 		}) };

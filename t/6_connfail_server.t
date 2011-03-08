@@ -49,9 +49,8 @@ POE::Component::Server::TCP->new
 		my $socket = eval { Server_SSLify( $_[ARG0], sub {
 			my( $socket, $status, $errval ) = @_;
 
-			pass( "SERVER: Got connect hook" );
+			pass( "SERVER: Got callback hook" );
 			is( $status, 'ERR', "SERVER: Status received from callback is ERR - $errval" );
-			is( SSLify_GetStatus( $socket ), 0, "SERVER: SSLify_GetStatus is error" );
 
 			$poe_kernel->post( 'myserver' => 'shutdown');
 		} ) };
@@ -112,10 +111,13 @@ POE::Component::Client::TCP->new
 		# The default PoCo::Client::TCP handler will throw a warning, which causes Test::NoWarnings to FAIL :(
 		my ($syscall, $errno, $error) = @_[ ARG0..ARG2 ];
 
+		# Since this test purposefully sends garbage, we expect a connection reset by peer
+		# not ok 7 - Got SERVER read error 104: Connection reset by peer
+
 		# TODO are there other "errors" that is harmless?
 		$error = "Normal disconnection" unless $error;
 		my $msg = "Got CLIENT $syscall error $errno: $error";
-		unless ( $syscall eq 'read' and $errno == 0 ) {
+		unless ( $syscall eq 'read' and $errno == 104 ) {
 			fail( $msg );
 		} else {
 			diag( $msg ) if $ENV{TEST_VERBOSE};

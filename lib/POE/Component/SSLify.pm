@@ -83,7 +83,7 @@ NOTE: The way to have a client socket with proper certificates set up is:
 	$socket = Client_SSLify( $socket, undef, undef, $ctx );
 
 NOTE: You can pass the callback anywhere in the arguments, we'll figure it out for you! If you want to call a POE event, please look
-into the postback/callback stuff in POE::Session.
+into the postback/callback stuff in L<POE::Session>.
 
 	$socket = Client_SSLify( $socket, $session->callback( 'got_connect' => @args ) );
 
@@ -402,10 +402,11 @@ sub SSLify_GetSSL {
 
 =func SSLify_GetStatus
 
-Returns the status of the SSL negotiation/handshake/connection.
+Returns the status of the SSL negotiation/handshake/connection. See L<http://www.openssl.org/docs/ssl/SSL_connect.html#RETURN_VALUES>
+for more info.
 
 	my $status = SSLify_GetStatus( $socket );
-		-1 = still in negotiation stage
+		-1 = still in negotiation stage ( or error )
 		 0 = internal SSL error, connection will be dead
 		 1 = negotiation successful
 =cut

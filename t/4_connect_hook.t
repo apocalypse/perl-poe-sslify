@@ -54,7 +54,7 @@ POE::Component::Server::TCP->new
 		my $socket = eval { Server_SSLify( $_[ARG0], sub {
 			my( $socket, $status, $errval ) = @_;
 
-			pass( "SERVER: Got connect hook" );
+			pass( "SERVER: Got callback hook" );
 			is( $status, 'OK', "SERVER: Status received from callback is OK" );
 
 			## At this point, connection MUST be encrypted.
@@ -104,7 +104,7 @@ POE::Component::Client::TCP->new
 		my $socket = eval { Client_SSLify($_[ARG0], sub {
 			my( $socket, $status, $errval ) = @_;
 
-			pass( "CLIENT: Got connect hook" );
+			pass( "CLIENT: Got callback hook" );
 			is( $status, 'OK', "CLIENT: Status received from callback is OK" );
 
 			## At this point, connection MUST be encrypted.
