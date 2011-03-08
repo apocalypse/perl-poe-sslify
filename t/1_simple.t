@@ -99,6 +99,7 @@ POE::Component::Client::TCP->new
 	Alias		=> 'myclient',
 	RemoteAddress	=> '127.0.0.1',
 	RemotePort	=> $port,
+
 	Connected	=> sub
 	{
 		ok(1, 'CLIENT: connected');
