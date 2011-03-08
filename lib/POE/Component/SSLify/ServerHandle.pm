@@ -100,7 +100,7 @@ sub READ {
 	}
 
 	# Insert what we just read into the buffer
-	substr( $$buf, $$offset ) = $read;
+	substr( $$buf, $$offset, 1, $read );
 
 	# All done!
 	return length( $read );
@@ -153,7 +153,9 @@ sub CLOSE {
 	my $self = shift;
 	if ( defined $self->{'socket'} ) {
 		Net::SSLeay::free( $self->{'ssl'} );
-		close( $self->{'socket'} );
+
+		# TODO we ignore any close errors because there's no way to sanely propagate it up the stack...
+		close( $self->{'socket'} ); ## no critic ( InputOutput::RequireCheckedClose )
 		undef $self->{'socket'};
 
 		# do we need to do CTX_free?

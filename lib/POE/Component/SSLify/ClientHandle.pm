@@ -6,8 +6,7 @@ package POE::Component::SSLify::ClientHandle;
 use Net::SSLeay 1.36 qw( die_now die_if_ssl_error );
 
 # We inherit from ServerHandle
-require POE::Component::SSLify::ServerHandle;
-our @ISA = qw( POE::Component::SSLify::ServerHandle );
+use parent 'POE::Component::SSLify::ServerHandle';
 
 # Override TIEHANDLE because we create a CTX
 sub TIEHANDLE {

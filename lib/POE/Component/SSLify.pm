@@ -5,7 +5,7 @@ package POE::Component::SSLify;
 # We need Net::SSLeay or all's a failure!
 BEGIN {
 	# We need >= 1.36 because it contains a lot of important fixes
-	eval "use Net::SSLeay 1.36 qw( die_now die_if_ssl_error )";
+	eval "use Net::SSLeay 1.36 qw( die_now die_if_ssl_error FILETYPE_PEM )";
 
 	# Check for errors...
 	if ( $@ ) {
@@ -27,8 +27,7 @@ BEGIN {
 }
 
 # Do the exporting magic...
-require Exporter;
-our @ISA = qw( Exporter );
+use parent 'Exporter';
 our @EXPORT_OK = qw(
 	Client_SSLify Server_SSLify
 	SSLify_Options SSLify_GetCTX SSLify_GetCipher SSLify_GetSocket SSLify_GetSSL SSLify_ContextCreate SSLify_GetStatus
@@ -46,7 +45,7 @@ use Scalar::Util qw( weaken );
 use Task::Weaken 1.03; # to make sure it actually works!
 
 # The server-side CTX stuff
-my $ctx = undef;
+my $ctx;
 
 # global so users of this module can override it locally
 our $IGNORE_SSL_ERRORS = 0;
@@ -91,7 +90,7 @@ into the postback/callback stuff in L<POE::Session>.
 
 sub Client_SSLify {
 	# Get the socket + version + options + ctx + callback
-	my( $socket, $version, $options, $ctx, $callback ) = @_;
+	my( $socket, $version, $options, $custom_ctx, $callback ) = @_;
 
 	# Validation...
 	if ( ! defined $socket ) {
@@ -101,13 +100,13 @@ sub Client_SSLify {
 	# Mangle the callback stuff
 	if ( defined $version and ref $version and ref( $version ) eq 'CODE' ) {
 		$callback = $version;
-		$version = $options = $ctx = undef;
+		$version = $options = $custom_ctx = undef;
 	} elsif ( defined $options and ref $options and ref( $options ) eq 'CODE' ) {
 		$callback = $options;
-		$options = $ctx = undef;
-	} elsif ( defined $ctx and ref $ctx and ref( $ctx ) eq 'CODE' ) {
-		$callback = $ctx;
-		$ctx = undef;
+		$options = $custom_ctx = undef;
+	} elsif ( defined $custom_ctx and ref $custom_ctx and ref( $custom_ctx ) eq 'CODE' ) {
+		$callback = $custom_ctx;
+		$custom_ctx = undef;
 	}
 
 	# From IO::Handle POD
@@ -118,7 +117,7 @@ sub Client_SSLify {
 
 	# Now, we create the new socket and bind it to our subclass of Net::SSLeay::Handle
 	my $newsock = gensym();
-	tie( *$newsock, 'POE::Component::SSLify::ClientHandle', $socket, $version, $options, $ctx, $callback ) or die "Unable to tie to our subclass: $!";
+	tie( *$newsock, 'POE::Component::SSLify::ClientHandle', $socket, $version, $options, $custom_ctx, $callback ) or die "Unable to tie to our subclass: $!";
 
 	# argh, store the newsock in the tied class to use for callback
 	if ( defined $callback ) {
@@ -251,7 +250,7 @@ L</Server_SSLify> without passing a custom context to it.
 
 By default we use the version: default
 
-By default we use the options: &Net::SSLeay::OP_ALL
+By default we use the options: Net::SSLeay::OP_ALL
 
 Please look at L</SSLify_ContextCreate> for more info on the available versions/options.
 =cut
@@ -267,7 +266,7 @@ sub SSLify_Options {
 
 	# Set the default
 	if ( ! defined $options ) {
-		$options = &Net::SSLeay::OP_ALL;
+		$options = Net::SSLeay::OP_ALL();
 	}
 
 	# set the context, possibly overwriting the previous one
@@ -316,7 +315,7 @@ sub _createSSLcontext {
 	# do we need to set key/etc?
 	if ( defined $key ) {
 		# Following will ask password unless private key is not encrypted
-		Net::SSLeay::CTX_use_RSAPrivateKey_file( $context, $key, &Net::SSLeay::FILETYPE_PEM );
+		Net::SSLeay::CTX_use_RSAPrivateKey_file( $context, $key, FILETYPE_PEM );
 		die_if_ssl_error( 'private key' ) if ! $IGNORE_SSL_ERRORS;
 	}
 
