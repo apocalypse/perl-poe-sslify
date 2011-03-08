@@ -55,11 +55,11 @@ sub _check_status {
 		# also, ERROR_WANT_ACCEPT isn't exported by Net::SSLeay, huh?
 		if ( $errval != ERROR_WANT_READ and $errval != ERROR_WANT_WRITE ) {
 			# call the hook function for error connect
-			$self->{'on_connect'}->( $self->{'orig_socket'}, 'ERR', $errval );
+			$self->{'on_connect'}->( $self->{'orig_socket'}, 0, $errval );
 		}
 	} elsif ( $self->{'status'} == 1 ) {
 		# call the hook function for successful connect
-		$self->{'on_connect'}->( $self->{'orig_socket'}, 'OK' );
+		$self->{'on_connect'}->( $self->{'orig_socket'}, 1 );
 	}
 }
 

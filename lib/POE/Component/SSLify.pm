@@ -56,17 +56,21 @@ This function sslifies a client-side socket. You can pass several options to it:
 
 	my $socket = shift;
 	$socket = Client_SSLify( $socket, $version, $options, $ctx, $callback );
-		$socket is the non-ssl socket you got from somewhere ( probably SocketFactory )
+		$socket is the non-ssl socket you got from somewhere ( probably POE::Wheel::SocketFactory )
 		$version is the SSL version you want to use, see SSLify_ContextCreate
 		$options is the SSL options you want to use, see SSLify_ContextCreate
 		$ctx is the custom SSL context you want to use, see SSLify_ContextCreate
 		$callback is the callback hook on success/failure of sslification
 
+		# This is an example of the callback and you should pass it as Client_SSLify( ... \&callback );
 		sub callback {
 			my( $socket, $status, $errval ) = @_;
 			# $socket is the original sslified socket in case you need to play with it
-			# $status is either 'OK' or 'ERR'
-			# $errval will be defined if $status eq 'ERR' - it's the numeric SSL error code
+			# $status is either 1 or 0; with 1 signifying success and 0 failure
+			# $errval will be defined if $status == 0; it's the numeric SSL error code
+			# check http://www.openssl.org/docs/ssl/SSL_get_error.html for the possible error values ( and import them from Net::SSLeay! )
+
+			# The return value from the callback is discarded
 		}
 
 If $ctx is defined, SSLify will ignore $version and $options. Otherwise, it will be created from the $version and
@@ -84,8 +88,28 @@ NOTE: The way to have a client socket with proper certificates set up is:
 NOTE: You can pass the callback anywhere in the arguments, we'll figure it out for you! If you want to call a POE event, please look
 into the postback/callback stuff in L<POE::Session>.
 
-	$socket = Client_SSLify( $socket, $session->callback( 'got_connect' => @args ) );
+	# we got this from POE::Wheel::SocketFactory
+	sub event_SuccessEvent {
+		my $socket = $_[ARG0];
+		$socket = Client_SSLify( $socket, $_[SESSION]->callback( 'sslify_result' ) );
+		$_[HEAP]->{client} = POE::Wheel::ReadWrite->new(
+			Handle => $socket,
+			...
+		);
+		return;
+	}
 
+	# the callback event
+	sub event_sslify_result {
+		my ($creation_args, $called_args) = @_[ARG0, ARG1];
+		my( $socket, $status, $errval ) = @$called_args;
+
+		if ( $status ) {
+			print "Yay, SSLification worked!";
+		} else {
+			print "Aw, SSLification failed with error $errval";
+		}
+	}
 =cut
 
 sub Client_SSLify {
@@ -139,14 +163,9 @@ This function sslifies a server-side socket. You can pass several options to it:
 		$ctx is the custom SSL context you want to use, see SSLify_ContextCreate ( overrides the global set in SSLify_Options )
 		$callback is the callback hook on success/failure of sslification
 
-		sub callback {
-			my( $socket, $status, $errval ) = @_;
-			# $socket is the original sslified socket in case you need to play with it
-			# $status is either 'OK' or 'ERR'
-			# $errval will be defined if $status eq 'ERR' - it's the numeric SSL error code
-		}
+Please look at L</Client_SSLify> for more details on the callback hook.
 
-NOTE: SSLify_Options must be set first if you aren't passing a $ctx. If you want to set some options per-connection, do this:
+SSLify_Options must be set first if you aren't passing a $ctx. If you want to set some options per-connection, do this:
 
 	my $socket = shift;	# get the socket from somewhere
 	my $ctx = SSLify_ContextCreate();
@@ -155,11 +174,6 @@ NOTE: SSLify_Options must be set first if you aren't passing a $ctx. If you want
 
 NOTE: You can use SSLify_GetCTX to modify the global, and avoid doing this on every connection if the
 options are the same...
-
-NOTE: You can pass the callback anywhere in the arguments, we'll figure it out for you! If you want to call a POE event, please look
-into the postback/callback stuff in POE::Session.
-
-	$socket = Server_SSLify( $socket, $session->callback( 'got_connect' => @args ) );
 =cut
 
 sub Server_SSLify {

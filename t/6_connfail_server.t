@@ -54,7 +54,7 @@ POE::Component::Server::TCP->new
 			my( $socket, $status, $errval ) = @_;
 
 			pass( "SERVER: Got callback hook" );
-			is( $status, 'ERR', "SERVER: Status received from callback is ERR - $errval" );
+			is( $status, 0, "SERVER: Status received from callback is ERR - $errval" );
 
 			$poe_kernel->post( 'myserver' => 'shutdown');
 		} ) };
