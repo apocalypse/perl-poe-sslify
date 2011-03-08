@@ -521,6 +521,9 @@ This function has been tested ( it's in C<t/2_renegotiate.t> ) but it doesn't wo
 L<http://security.freebsd.org/advisories/FreeBSD-SA-09:15.ssl.asc> which explains it in detail. The test will skip this function
 if it detects that you're on a broken system. However, if you have the updated OpenSSL library that fixes this you can use it.
 
+NOTE: Calling this means the connection function you passed in L</Client_SSLify> or L</Server_SSLify> will not fire! If you need this
+please let me know and we can come up with a way to make it work.
+
 =head2 In-Situ sslification
 
 You can have a normal plaintext socket, and convert it to SSL anytime. Just keep in mind that the client and the server must agree to sslify
