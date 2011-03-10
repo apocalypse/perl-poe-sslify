@@ -2,6 +2,11 @@ Revision history for Perl extension POE::Component::SSLify.
 
 {{$NEXT}}
 
+1.005
+	Released: 2011-03-10 07:55:30 UTC
+
+	Fix the connfail tests due to an incorrect assumption regards socket close value, thanks CPANTesters!
+
 1.004
 	Released: 2011-03-08 23:39:03 UTC
 
