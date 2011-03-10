@@ -78,18 +78,8 @@ POE::Component::Server::TCP->new
 		# Thanks to H. Merijn Brand for spotting this FAIL in 5.12.0!
 		# The default PoCo::Server::TCP handler will throw a warning, which causes Test::NoWarnings to FAIL :(
 		my ($syscall, $errno, $error) = @_[ ARG0..ARG2 ];
-
-		# Since this test purposefully sends garbage, we expect a connection reset by peer
-		# not ok 7 - Got SERVER read error 104: Connection reset by peer
-
-		# TODO are there other "errors" that is harmless?
 		$error = "Normal disconnection" unless $error;
-		my $msg = "Got SERVER $syscall error $errno: $error";
-		unless ( $syscall eq 'read' and $errno == 104 ) {
-			fail( $msg );
-		} else {
-			diag( $msg ) if $ENV{TEST_VERBOSE};
-		}
+		diag( "Got SERVER $syscall error $errno: $error" ) if $ENV{TEST_VERBOSE};
 	},
 );
 
@@ -115,18 +105,8 @@ POE::Component::Client::TCP->new
 		# Thanks to H. Merijn Brand for spotting this FAIL in 5.12.0!
 		# The default PoCo::Client::TCP handler will throw a warning, which causes Test::NoWarnings to FAIL :(
 		my ($syscall, $errno, $error) = @_[ ARG0..ARG2 ];
-
-		# Since this test purposefully sends garbage, we expect a connection reset by peer
-		# not ok 7 - Got SERVER read error 104: Connection reset by peer
-
-		# TODO are there other "errors" that is harmless?
 		$error = "Normal disconnection" unless $error;
-		my $msg = "Got CLIENT $syscall error $errno: $error";
-		unless ( $syscall eq 'read' and $errno == 104 ) {
-			fail( $msg );
-		} else {
-			diag( $msg ) if $ENV{TEST_VERBOSE};
-		}
+		diag( "Got CLIENT $syscall error $errno: $error" ) if $ENV{TEST_VERBOSE};
 	},
 );
 
