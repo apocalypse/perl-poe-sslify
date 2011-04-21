@@ -28,10 +28,23 @@ sub TIEHANDLE {
 		'fileno'	=> $fileno,
 		'status'	=> $res,
 		'on_connect'	=> $connref,
+		'ssl_started'	=> 0,
 	}, $class;
 
 	return $self;
 }
+
+# TODO should we make a convenience function to convert retval to string equivalents for easier debugging?
+# From OpenSSL 1.0.0d
+#define SSL_ERROR_NONE			0
+#define SSL_ERROR_SSL			1
+#define SSL_ERROR_WANT_READ		2
+#define SSL_ERROR_WANT_WRITE		3
+#define SSL_ERROR_WANT_X509_LOOKUP	4
+#define SSL_ERROR_SYSCALL		5 /* look at error stack/return value/errno */
+#define SSL_ERROR_ZERO_RETURN		6
+#define SSL_ERROR_WANT_CONNECT		7
+#define SSL_ERROR_WANT_ACCEPT		8
 
 sub _check_status {
 	my $self = shift;
@@ -44,22 +57,36 @@ sub _check_status {
 		$self->{'status'} = Net::SSLeay::accept( $self->{'ssl'} );
 	}
 
-	# Only process the stuff if we actually have a callback!
-	return unless defined $self->{'on_connect'};
-
 	if ( $self->{'status'} <= 0 ) {
 		# http://www.openssl.org/docs/ssl/SSL_get_error.html
 		my $errval = Net::SSLeay::get_error( $self->{'ssl'}, $self->{'status'} );
 
+		# Handle the case of ERROR_WANT_READ and ERROR_WANT_WRITE
 		# TODO should we skip ERROR_WANT_ACCEPT and ERROR_WANT_CONNECT ?
 		# also, ERROR_WANT_ACCEPT isn't exported by Net::SSLeay, huh?
-		if ( $errval != ERROR_WANT_READ and $errval != ERROR_WANT_WRITE ) {
+		if ( $errval == ERROR_WANT_READ or $errval == ERROR_WANT_WRITE ) {
+			# continue reading/writing from the socket until we connect or not...
+			return 1;
+		} else {
 			# call the hook function for error connect
-			$self->{'on_connect'}->( $self->{'orig_socket'}, 0, $errval );
+			if ( defined $self->{'on_connect'} ) {
+				$self->{'on_connect'}->( $self->{'orig_socket'}, 0, $errval );
+			}
+
+			# don't try to read/write from the socket anymore!
+			return 0;
 		}
 	} elsif ( $self->{'status'} == 1 ) {
+		# SSL handshake is done!
+		$self->{'ssl_started'} = 1;
+
 		# call the hook function for successful connect
-		$self->{'on_connect'}->( $self->{'orig_socket'}, 1 );
+		if ( defined $self->{'on_connect'} ) {
+			$self->{'on_connect'}->( $self->{'orig_socket'}, 1 );
+		}
+
+		# we can now read/write from the socket!
+		return 1;
 	}
 }
 
@@ -71,8 +98,10 @@ sub READ {
 	# Get the pointers to buffer, length, and the offset
 	my( $buf, $len, $offset ) = \( @_ );
 
-	# Check connection status
-	$self->_check_status if $self->{'status'} <= 0;
+	# Check the status of the SSL handshake
+	if ( ! $self->{'ssl_started'} ) {
+		return if $self->_check_status == 0;
+	}
 
 	# If we have no offset, replace the buffer with some input
 	if ( ! defined $$offset ) {
@@ -80,6 +109,8 @@ sub READ {
 
 		# Are we done?
 		if ( defined $$buf ) {
+			# TODO do we need the same "flush is success" logic in WRITE?
+
 			return length( $$buf );
 		} else {
 			# Nah, clear the buffer too...
@@ -90,6 +121,8 @@ sub READ {
 
 	# Now, actually read the data
 	defined( my $read = Net::SSLeay::read( $self->{'ssl'}, $$len ) ) or return;
+
+	# TODO do we need the same "flush is success" logic in WRITE?
 
 	# Figure out the buffer and offset
 	my $buf_len = length( $$buf );
@@ -111,8 +144,11 @@ sub WRITE {
 	# Get ourself + buffer + length + offset to write
 	my( $self, $buf, $len, $offset ) = @_;
 
-	# Check connection status
-	$self->_check_status if $self->{'status'} <= 0;
+	# Check the status of the SSL handshake
+	if ( ! $self->{'ssl_started'} ) {
+		# The normal syswrite() POE uses expects 0 here.
+		return 0 if $self->_check_status == 0;
+	}
 
 	# If we have nothing to offset, then start from the beginning
 	if ( ! defined $offset ) {
@@ -129,6 +165,19 @@ sub WRITE {
 		# The normal syswrite() POE uses expects 0 here.
 		return 0;
 	} else {
+		# We flushed some data, which means we finished the handshake!
+		# This is IMPORTANT, as mire__@irc found out!
+		# Otherwise openssl will zonk out and give us SSL_ERROR_SSL and things randomly break :(
+		if ( ! $self->{'ssl_started'} ) {
+			$self->{'ssl_started'} = 1;
+			$self->{'status'} = 1;
+
+			# call the hook function for successful connect
+			if ( defined $self->{'on_connect'} ) {
+				$self->{'on_connect'}->( $self->{'orig_socket'}, 1 );
+			}
+		}
+
 		# All done!
 		return $wrote_len;
 	}
