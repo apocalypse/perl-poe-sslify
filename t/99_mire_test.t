@@ -1,5 +1,9 @@
 #!/usr/bin/perl
 
+# Test contributed by mire@irc which used this to hit the WRITE_WANTS_READ case
+# mire created package Ub because he couldn't reproduce it with poco-cl-http :(
+# tweaked slightly to turn it into a real testcase ( not done yet )
+
 BEGIN {
 #  sub POE::Kernel::ASSERT_DEFAULT () { 1 }
 #  sub POE::Kernel::TRACE_STATISTICS () { 0 } # makes POE hang, it's been removed in git but not in 1.299 heh
@@ -9,24 +13,30 @@ BEGIN {
 
 use strict;
 use warnings;
-use Data::Dumper;
-use Time::HiRes qw|time sleep|;
-use POE;
+use POE 1.310;
 
 use Test::More;
-plan skip_all => "AUTHOR TEST";
+BEGIN {
+	plan skip_all => "AUTHOR TEST";
+}
 
 our $DEBUG=0;
 
 package Ub;
 use strict;
 use warnings;
-use Data::Dumper;
-use HTTP::Parser;
-use HTTP::Response;
-use Time::HiRes qw|time sleep|;
-use POE qw(Component::Client::TCP Filter::Stream Filter::HTTPChunk);
+use POE qw( Component::Client::TCP Filter::Stream );
 use POE::Component::SSLify qw( Client_SSLify );
+
+# non-core deps
+BEGIN {
+	eval "use POE::Filter::HTTPChunk; use HTTP::Parser; use HTTP::Response;";
+	if ( $@ ) {
+		use Test::More;
+		plan skip_all => "Unable to load deps: $@";
+	}
+}
+
 sub new {
     my $this = shift;
     my %p = @_;
@@ -104,8 +114,7 @@ r => sub {
 
         # Disconnect if SSL failed.
         if ($@) {
-            print Dumper [$@]
-                if $main::DEBUG;
+            warn $@ if $main::DEBUG;
             return;
         }
         # Return the SSL-ified socket.
@@ -223,15 +232,15 @@ test => sub {
         $port = 443;
         $do_ssl = 1;
 
-        $cont = <<'EOE'
+        $cont = <<'EOF';
 GET /get.php HTTP/1.1
 Host: osadmin.com
 User-Agent: proba 123
 Connection: close
 
 
-EOE
-;
+EOF
+
     }
     $kernel->post('ub', 'r', 'test_res', \$cont, $host, $port, $do_ssl);
 
@@ -241,10 +250,10 @@ test_res => sub {
     $kernel->refcount_decrement($_[SESSION]->ID, 'test');
     my $cont = ${$dat->{'content'}};
     chomp $cont;
-    print Dumper $cont;
+    warn $cont;
 die "HIT BUG" if length $cont == 0;
-    $kernel->yield('test'); return;
-    print "test_res has " . Dumper $dat;
+    $kernel->yield('test');
+    return;
 },
 },)->ID;
 
