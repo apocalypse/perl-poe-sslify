@@ -5,20 +5,16 @@ use strict; use warnings;
 
 my $numtests;
 BEGIN {
-	$numtests = 8;
+	$numtests = 9;
 
-#	eval "use Test::NoWarnings";
-#	if ( ! $@ ) {
-#		# increment by one
-#		$numtests++;
-#	}
+	eval "use Test::NoWarnings";
+	if ( ! $@ ) {
+		# increment by one
+		$numtests++;
+	}
 }
 
-# For some reason I can't get this to replicate 5_connfail_client.t - wonder why?!#?
-# I tried to use POE::Filter::Stream to see if it made a difference, nope...
-#use Test::More tests => $numtests;
-use Test::More;
-plan skip_all => "This test hangs for some reason";
+use Test::More tests => $numtests;
 
 use POE 1.267;
 use POE::Component::Client::TCP;
@@ -92,6 +88,9 @@ POE::Component::Client::TCP->new
 	Connected	=> sub
 	{
 		ok(1, 'CLIENT: connected');
+
+		# purposefully send garbage so we screw up the ssl connect on the client-side
+		$_[HEAP]->{server}->put( 'garbage in, garbage out' );
 	},
 	ServerInput	=> sub
 	{

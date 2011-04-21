@@ -39,6 +39,9 @@ POE::Component::Server::TCP->new
 	ClientConnected		=> sub
 	{
 		ok(1, 'SERVER: accepted');
+
+		# purposefully send garbage so we screw up the ssl connect on the client-side
+		$_[HEAP]->{client}->put( 'garbage in, garbage out' );
 	},
 	ClientDisconnected	=> sub
 	{
