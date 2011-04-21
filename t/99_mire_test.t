@@ -13,7 +13,7 @@ BEGIN {
 
 use strict;
 use warnings;
-use POE 1.310;
+use POE;
 
 use Test::More;
 BEGIN {
