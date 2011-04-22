@@ -2,7 +2,7 @@ Revision history for Perl extension POE::Component::SSLify.
 
 {{$NEXT}}
 
-	Fix a heinous bug discovered by mire where openssl will randomly close a connection, thanks!
+	Fix a heinous bug where openssl will randomly+reliably close a connection ( thanks MIRE )
 	Tweak the hook tests so they test the case where no data is sent over the connection
 	Tweak the connfail tests so they work better
 

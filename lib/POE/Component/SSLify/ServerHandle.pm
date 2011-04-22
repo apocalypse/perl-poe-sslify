@@ -166,8 +166,9 @@ sub WRITE {
 		return 0;
 	} else {
 		# We flushed some data, which means we finished the handshake!
-		# This is IMPORTANT, as mire__@irc found out!
+		# This is IMPORTANT, as MIRE found out!
 		# Otherwise openssl will zonk out and give us SSL_ERROR_SSL and things randomly break :(
+		# this is because we tried to connect() or accept() and the handshake was done... or something like that hah
 		if ( ! $self->{'ssl_started'} ) {
 			$self->{'ssl_started'} = 1;
 			$self->{'status'} = 1;
