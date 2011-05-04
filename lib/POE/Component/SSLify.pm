@@ -86,6 +86,9 @@ use IO::Handle 1.28;
 use Scalar::Util qw( weaken );
 use Task::Weaken 1.03; # to make sure it actually works!
 
+# load POE ( just to fool dzil AutoPrereqs :)
+require POE;
+
 # The server-side CTX stuff
 my $ctx;
 
