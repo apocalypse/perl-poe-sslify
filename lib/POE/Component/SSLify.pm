@@ -2,6 +2,46 @@ package POE::Component::SSLify;
 
 # ABSTRACT: Makes using SSL in the world of POE easy!
 
+BEGIN {
+	# should fix netbsd smoke failures, thanks BinGOs!
+	# <BinGOs> Apocal: okay cores with a 0.9.7d I've built myself from source. Doesn't if I comment out engine lines.
+	# BinGOs did an awesome job building various versions of openssl to try and track down the problem, it seems like
+	# newer versions of openssl worked fine on netbsd, but I don't want to do crazy stuff like probing openssl versions
+	# as it's fragile - best to let the user figure it out :)
+	#
+	# see http://www.cpantesters.org/cpan/report/1a660280-6eb1-11e0-a462-e9956c33433b
+	# http://www.cpantesters.org/cpan/report/49a9f2aa-6df2-11e0-a462-e9956c33433b
+	# http://www.cpantesters.org/cpan/report/78d9a234-6df5-11e0-a462-e9956c33433b
+	# and many other reports :(
+	#
+	#(gdb) bt
+	##0  0xbd9d3e7e in engine_table_select () from /usr/lib/libcrypto.so.2
+	##1  0xbd9b3bed in ENGINE_get_default_RSA () from /usr/lib/libcrypto.so.2
+	##2  0xbd9b1f6d in RSA_new_method () from /usr/lib/libcrypto.so.2
+	##3  0xbd9b1cf6 in RSA_new () from /usr/lib/libcrypto.so.2
+	##4  0xbd9cf8a1 in RSAPrivateKey_asn1_meth () from /usr/lib/libcrypto.so.2
+	##5  0xbd9da64b in ASN1_item_ex_new () from /usr/lib/libcrypto.so.2
+	##6  0xbd9da567 in ASN1_item_ex_new () from /usr/lib/libcrypto.so.2
+	##7  0xbd9d88cc in ASN1_item_ex_d2i () from /usr/lib/libcrypto.so.2
+	##8  0xbd9d8437 in ASN1_item_d2i () from /usr/lib/libcrypto.so.2
+	##9  0xbd9cf8d5 in d2i_RSAPrivateKey () from /usr/lib/libcrypto.so.2
+	##10 0xbd9ad546 in d2i_PrivateKey () from /usr/lib/libcrypto.so.2
+	##11 0xbd995e63 in PEM_read_bio_PrivateKey () from /usr/lib/libcrypto.so.2
+	##12 0xbd980430 in PEM_read_bio_RSAPrivateKey () from /usr/lib/libcrypto.so.2
+	##13 0xbda2e9dc in SSL_CTX_use_RSAPrivateKey_file () from /usr/lib/libssl.so.3
+	##14 0xbda5aabe in XS_Net__SSLeay_CTX_use_RSAPrivateKey_file (cv=0x8682c80)
+	#    at SSLeay.c:1716
+	##15 0x08115401 in Perl_pp_entersub () at pp_hot.c:2885
+	##16 0x080e0ab7 in Perl_runops_debug () at dump.c:2049
+	##17 0x08078624 in S_run_body (oldscope=1) at perl.c:2308
+	##18 0x08077ef2 in perl_run (my_perl=0x823f030) at perl.c:2233
+	##19 0x0805e321 in main (argc=3, argv=0xbfbfe6a0, env=0xbfbfe6b0)
+	#    at perlmain.c:117
+	##20 0x0805e0c6 in ___start ()
+	#(gdb)
+	if ( ! defined &LOAD_SSL_ENGINES ) { *LOAD_SSL_ENGINES = sub () { 0 } }
+}
+
 # We need Net::SSLeay or all's a failure!
 BEGIN {
 	# We need >= 1.36 because it contains a lot of important fixes
@@ -20,8 +60,10 @@ BEGIN {
 		# Taken from http://search.cpan.org/~flora/Net-SSLeay-1.36/lib/Net/SSLeay.pm#Low_level_API
 		Net::SSLeay::load_error_strings();
 		Net::SSLeay::SSLeay_add_ssl_algorithms();
-		Net::SSLeay::ENGINE_load_builtin_engines();
-	        Net::SSLeay::ENGINE_register_all_complete();
+		if ( LOAD_SSL_ENGINES ) {
+			Net::SSLeay::ENGINE_load_builtin_engines();
+			Net::SSLeay::ENGINE_register_all_complete();
+		}
 		Net::SSLeay::randomize();
 	}
 }
@@ -561,6 +603,15 @@ As of now this is unsupported. If you need this feature please let us know and w
 
 This module doesn't work on MSWin32 platforms at all ( XP, Vista, 7, etc ) because of some weird underlying fd issues. Since I'm not a windows
 developer, I'm unable to fix this. However, it seems like Cygwin on MSWin32 works just fine! Please help me fix this if you can, thanks!
+
+=head2 SSL ENGINEs
+
+OpenSSL supports loading ENGINEs to accelerate the crypto algorithms. SSLify v1.004 automatically loaded the engines, but there was some
+problems on certain platforms that caused coredumps. A big shout-out to BinGOs and CPANTesters for catching this! It's now disabled in v1.007
+and you would need to explicitly enable it.
+
+	sub POE::Component::SSLify::LOAD_SSL_ENGINES () { 1 }
+	use POE::Component::SSLify qw( Client::SSLify );
 
 =head1 EXPORT
 

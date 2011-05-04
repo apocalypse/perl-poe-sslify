@@ -2,6 +2,9 @@ Revision history for Perl extension POE::Component::SSLify.
 
 {{$NEXT}}
 
+	Revert the ENGINE load logic added in 1.004 because it was causing coredumps on netbsd ( thanks BINGOS! )
+	Add the constant LOAD_SSL_ENGINES sub if you need to load the ssl engines
+
 1.006
 	Released: 2011-04-22 00:21:51 UTC
 
