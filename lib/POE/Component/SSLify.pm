@@ -583,8 +583,8 @@ possible function against SSLify, so use them carefully!
 
 =head3 Net::SSLeay::renegotiate
 
-This function has been tested ( it's in C<t/2_renegotiate.t> ) but it doesn't work on FreeBSD! I tracked it down to this security advisory:
-L<http://security.freebsd.org/advisories/FreeBSD-SA-09:15.ssl.asc> which explains it in detail. The test will skip this function
+This function has been tested ( it's in C<t/2_renegotiate_client.t> ) but it doesn't work on FreeBSD! I tracked it down to this security
+advisory: L<http://security.freebsd.org/advisories/FreeBSD-SA-09:15.ssl.asc> which explains it in detail. The test will skip this function
 if it detects that you're on a broken system. However, if you have the updated OpenSSL library that fixes this you can use it.
 
 NOTE: Calling this means the callback function you passed in L</Client_SSLify> or L</Server_SSLify> will not fire! If you need this
@@ -604,7 +604,7 @@ As of now this is unsupported. If you need this feature please let us know and w
 This module doesn't work on MSWin32 platforms at all ( XP, Vista, 7, etc ) because of some weird underlying fd issues. Since I'm not a windows
 developer, I'm unable to fix this. However, it seems like Cygwin on MSWin32 works just fine! Please help me fix this if you can, thanks!
 
-=head2 SSL ENGINEs
+=head2 LOAD_SSL_ENGINES
 
 OpenSSL supports loading ENGINEs to accelerate the crypto algorithms. SSLify v1.004 automatically loaded the engines, but there was some
 problems on certain platforms that caused coredumps. A big shout-out to BinGOs and CPANTesters for catching this! It's now disabled in v1.007
