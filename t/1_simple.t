@@ -4,18 +4,8 @@ use strict; use warnings;
 # Thanks to ASCENT for this test!
 # This tests the basic functionality of sslify on client/server side
 
-my $numtests;
-BEGIN {
-	$numtests = 16;
-
-	eval "use Test::NoWarnings";
-	if ( ! $@ ) {
-		# increment by one
-		$numtests++;
-	}
-}
-
-use Test::More tests => $numtests;
+use Test::FailWarnings;
+use Test::More 1.001002; # new enough for sanity in done_testing()
 
 use POE 1.267;
 use POE::Component::Client::TCP;
@@ -155,6 +145,4 @@ POE::Component::Client::TCP->new
 
 $poe_kernel->run();
 
-pass( 'shut down sanely' );
-
-exit 0;
+done_testing;

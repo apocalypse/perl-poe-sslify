@@ -6,25 +6,8 @@ use strict; use warnings;
 # Since this is not supported on all platforms, it's marked TODO and adds custom logic
 # to make sure it doesn't FAIL if it's not supported.
 
-# this version of the test doesn't work as reported in http://rt.cpan.org/Public/Bug/Display.html?id=66741
-# renamed it to this version for posterity and in case I need it for future analysis...
-
-#my $numtests;
-#BEGIN {
-#	$numtests = 23;
-#
-#	eval "use Test::NoWarnings";
-#	if ( ! $@ ) {
-#		# increment by one
-#		$numtests++;
-#	}
-#}
-
-#use Test::More tests => $numtests;
-use Test::More;
-BEGIN {
-	plan skip_all => "AUTHOR TEST";
-}
+use Test::FailWarnings;
+use Test::More 1.001002; # new enough for sanity in done_testing()
 
 use POE 1.267;
 use POE::Component::Client::TCP;
@@ -210,6 +193,4 @@ if ( ! $server_ping2 or ! $client_ping2 ) {
 	diag( "Please talk with the author to figure out if this issue can be worked around, thank you!" );
 }
 
-pass( 'shut down sanely' );
-
-exit 0;
+done_testing;

@@ -11,14 +11,15 @@ BEGIN {
 #  sub POE::Kernel::CATCH_EXCEPTIONS () { 0 } # make sure we die right away so it's easier to debug
 }
 
-use strict;
-use warnings;
-use POE;
-
 use Test::More;
 BEGIN {
 	plan skip_all => "AUTHOR TEST";
 }
+
+use strict;
+use warnings;
+use POE;
+use Test::FailWarnings;
 
 our $DEBUG=0;
 
@@ -258,4 +259,4 @@ die "HIT BUG" if length $cont == 0;
 },)->ID;
 
 POE::Kernel->run();
-exit;
+done_testing;

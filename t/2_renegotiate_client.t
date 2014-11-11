@@ -4,24 +4,8 @@ use strict; use warnings;
 # Thanks to ASCENT for this test!
 # This test adds renegotiation to the connection from client-side
 
-# In an older version of this test, there was ok() littered everywhere
-# but dngor replied in http://rt.cpan.org/Public/Bug/Display.html?id=66741
-# that it's not going to work... how do I predict which ok() will fail and "simulate" them?
-# the solution was to... only run a few tests and print the diag
-# because the rest of the tests just redo what we already have in 1_simple.t and stuff...
-
-my $numtests;
-BEGIN {
-	$numtests = 16;
-
-	eval "use Test::NoWarnings";
-	if ( ! $@ ) {
-		# increment by one
-		$numtests++;
-	}
-}
-
-use Test::More tests => $numtests;
+use Test::FailWarnings;
+use Test::More 1.001002; # new enough for sanity in done_testing()
 
 use POE 1.267;
 use POE::Component::Client::TCP;
@@ -174,6 +158,4 @@ if ( ! $server_ping2 or ! $client_ping2 ) {
 	diag( "Please talk with the author to figure out if this issue can be worked around, thank you!" );
 }
 
-pass( 'shut down sanely' );
-
-exit 0;
+done_testing;
