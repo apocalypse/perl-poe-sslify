@@ -2,8 +2,9 @@ Revision history for Perl extension POE::Component::SSLify.
 
 {{$NEXT}}
 	Updates to the auto-generated files
-	Tweaked the testsuite to use done_testing() for sanity
+	Tweaked the testsuite to use done_testing() for sanity, RT#66741 (thanks RCAPUTO!)
 	Use Test::FailWarnings in the testsuite in place of Test::NoWarnings (DAGOLDEN++)
+	Add t/simple_large.t to try and track down RT#58243 (thanks Johan!)
 
 1.008	2011-05-04 21:55:27 UTC
 
