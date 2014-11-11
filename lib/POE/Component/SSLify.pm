@@ -480,7 +480,14 @@ sub SSLify_GetStatus {
 
 =head1 SYNOPSIS
 
-	# CLIENT-side usage
+	# look at the DESCRIPTION for client and server example code
+
+=head1 DESCRIPTION
+
+This component is a method to simplify the SSLification of a socket before it is passed
+to a L<POE::Wheel::ReadWrite> wheel in your application.
+
+=head2 Client usage
 
 	# Import the module
 	use POE::Component::SSLify qw( Client_SSLify );
@@ -502,9 +509,7 @@ sub SSLify_GetStatus {
 		# other options as usual
 	);
 
-	# --------------------------------------------------------------------------- #
-
-	# SERVER-side usage
+=head2 Server usage
 
 	# !!! Make sure you have a public key + certificate
 	# excellent howto: http://www.akadia.com/services/ssh_test_certificate.html
@@ -534,10 +539,6 @@ sub SSLify_GetStatus {
 		Handle	=>	$socket,
 		# other options as usual
 	);
-
-=head1 DESCRIPTION
-
-This component represents the standard way to do SSL in POE.
 
 =head1 NOTES
 
