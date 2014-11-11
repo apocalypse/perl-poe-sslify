@@ -1,10 +1,17 @@
 #!/usr/bin/perl
 use strict; use warnings;
 
-# This is an extension of the simple.t test to test for large responses
+# This is an extension of the simple_large.t test for even LARGER message sizes!
+# and thus is marked as TODO and a watchdog timer is set in case we lock up - see RT#95071
 
 use Test::FailWarnings;
 use Test::More 1.001002; # new enough for sanity in done_testing()
+
+BEGIN {
+	plan skip_all => "AUTHOR TEST" unless $ENV{AUTHOR_TESTING};
+}
+
+local $TODO = "locks up SSLify";
 
 use POE 1.267;
 use POE::Component::Client::TCP;
@@ -15,8 +22,8 @@ use POE::Component::SSLify qw/Client_SSLify Server_SSLify SSLify_Options SSLify_
 
 my $port;
 
-# length $bigpacket = 2079998 ( just need to go over 42643B as reported in RT#58243 but... =)
-my $bigpacket = join( '-', ('a' .. 'z') x 10000, ('A' .. 'Z') x 10000 ) x 2;
+# TODO interestingly, x3 goes over some sort of buffer size and this explodes!
+my $bigpacket = join( '-', ('a' .. 'z') x 10000, ('A' .. 'Z') x 10000 ) x 3;
 
 POE::Component::Server::TCP->new
 (
@@ -86,6 +93,8 @@ POE::Component::Server::TCP->new
 	},
 );
 
+my $replies = 0;
+
 POE::Component::Client::TCP->new
 (
 	Alias		=> 'myclient',
@@ -122,7 +131,7 @@ POE::Component::Client::TCP->new
 			my $cipher = SSLify_GetCipher($heap->{server}->get_output_handle);
 			ok($cipher ne '(NONE)', "CLIENT: SSLify_GetCipher: $cipher");
 			diag( Net::SSLeay::dump_peer_certificate( SSLify_GetSSL( $heap->{server}->get_output_handle ) ) ) if $ENV{TEST_VERBOSE};
-
+			$replies++;
 			$kernel->yield('shutdown');
 		} else {
 			die "Unknown line from SERVER: $line";
@@ -142,6 +151,15 @@ POE::Component::Client::TCP->new
 		} else {
 			diag( $msg ) if $ENV{TEST_VERBOSE};
 		}
+	},
+);
+
+# the watchdog session
+POE::Session->create(
+	inline_states => {
+		_start => sub { $_[KERNEL]->delay( 'dog' => 300 ); $_[KERNEL]->yield( 'check' ); },
+		dog => sub { fail "WATCHDOG TRIGGERED"; done_testing; exit; },
+		check => sub { $_[KERNEL]->delay( 'check' => 1 ); $_[KERNEL]->alarm_remove_all if $replies == 1 },
 	},
 );
 

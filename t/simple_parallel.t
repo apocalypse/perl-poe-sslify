@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 use strict; use warnings;
 
-# This is an extension of the simple.t test to test for large responses
+# This is an extension of the simple.t to test requests in parallel
 
 use Test::FailWarnings;
 use Test::More 1.001002; # new enough for sanity in done_testing()
@@ -14,9 +14,7 @@ use POE::Component::SSLify qw/Client_SSLify Server_SSLify SSLify_Options SSLify_
 # TODO rewrite this to use Test::POE::Server::TCP and stuff :)
 
 my $port;
-
-# length $bigpacket = 2079998 ( just need to go over 42643B as reported in RT#58243 but... =)
-my $bigpacket = join( '-', ('a' .. 'z') x 10000, ('A' .. 'Z') x 10000 ) x 2;
+my $replies = 0;
 
 POE::Component::Server::TCP->new
 (
@@ -36,7 +34,7 @@ POE::Component::Server::TCP->new
 	ClientDisconnected	=> sub
 	{
 		ok(1, 'SERVER: client disconnected');
-		$_[KERNEL]->post(myserver => 'shutdown');
+		$_[KERNEL]->post(myserver => 'shutdown') if $replies == 10;
 	},
 	ClientPreConnect	=> sub
 	{
@@ -57,14 +55,14 @@ POE::Component::Server::TCP->new
 	{
 		my ($kernel, $heap, $line) = @_[KERNEL, HEAP, ARG0];
 
-		if ( $line eq $bigpacket ) {
-			ok(1, "SERVER: recv BIGPACKET");
+		if ( $line eq 'ping' ) {
+			ok(1, "SERVER: recv: $line");
 
 			## At this point, connection MUST be encrypted.
 			my $cipher = SSLify_GetCipher($heap->{client}->get_output_handle);
 			ok($cipher ne '(NONE)', "SERVER: SSLify_GetCipher: $cipher");
 
-			$heap->{client}->put($bigpacket);
+			$heap->{client}->put('pong');
 		} else {
 			die "Unknown line from CLIENT: $line";
 		}
@@ -96,7 +94,7 @@ POE::Component::Client::TCP->new
 	{
 		ok(1, 'CLIENT: connected');
 
-		$_[HEAP]->{server}->put($bigpacket);
+		$_[HEAP]->{server}->put('ping');
 	},
 	PreConnect	=> sub
 	{
@@ -115,14 +113,14 @@ POE::Component::Client::TCP->new
 	{
 		my ($kernel, $heap, $line) = @_[KERNEL, HEAP, ARG0];
 
-		if ($line eq $bigpacket) {
-			ok(1, "CLIENT: recv BIGPACKET");
+		if ($line eq 'pong') {
+			ok(1, "CLIENT: recv: $line");
 
 			## At this point, connection MUST be encrypted.
 			my $cipher = SSLify_GetCipher($heap->{server}->get_output_handle);
 			ok($cipher ne '(NONE)', "CLIENT: SSLify_GetCipher: $cipher");
 			diag( Net::SSLeay::dump_peer_certificate( SSLify_GetSSL( $heap->{server}->get_output_handle ) ) ) if $ENV{TEST_VERBOSE};
-
+			$replies++;
 			$kernel->yield('shutdown');
 		} else {
 			die "Unknown line from SERVER: $line";
@@ -143,8 +141,10 @@ POE::Component::Client::TCP->new
 			diag( $msg ) if $ENV{TEST_VERBOSE};
 		}
 	},
-);
+) for 1 .. 10;
 
 $poe_kernel->run();
+
+is( $replies, 10, "Make sure we got 10 replies back!" );
 
 done_testing;
