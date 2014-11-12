@@ -8,7 +8,10 @@ use Test::FailWarnings;
 use Test::More 1.001002; # new enough for sanity in done_testing()
 
 BEGIN {
-	plan skip_all => "AUTHOR TEST";
+	eval 'use IO::Prompt::Tiny qw/prompt/; my $ans = prompt("This is a long test, do you want to run it? (y/n)", ($ENV{"AUTOMATED_TESTING"} ? "y" : "n")); die "NO" if $ans ne "y";';
+	if ( $@ ) {
+		plan skip_all => "AUTHOR TEST: $@";
+	}
 }
 
 local $TODO = "locks up SSLify";
