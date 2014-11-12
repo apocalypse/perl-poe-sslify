@@ -633,8 +633,8 @@ Net::SSLeay
 
 	From the PoCo::Client::HTTP code =]
 	# This code should probably become a POE::Kernel method,
-    	# seeing as it's rather baroque and potentially useful in a number
-    	# of places.
+	# seeing as it's rather baroque and potentially useful in a number
+	# of places.
 
 ASCENT also helped a lot with the nonblocking mode, without his hard work this
 module would still be stuck in the stone age :)
