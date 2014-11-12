@@ -1,4 +1,4 @@
-Revision history for Perl extension POE::Component::SSLify.
+Revision history for {{$dist->name}}
 
 {{$NEXT}}
  add informational test that prints out ssleay version
