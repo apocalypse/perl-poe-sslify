@@ -8,7 +8,7 @@ use Test::FailWarnings;
 use Test::More 1.001002; # new enough for sanity in done_testing()
 
 BEGIN {
-	plan skip_all => "AUTHOR TEST" unless $ENV{AUTHOR_TESTING};
+	plan skip_all => "AUTHOR TEST";
 }
 
 local $TODO = "locks up SSLify";
