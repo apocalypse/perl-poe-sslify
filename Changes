@@ -2,6 +2,7 @@ Revision history for Perl extension POE::Component::SSLify.
 
 {{$NEXT}}
  add informational test that prints out ssleay version
+ clamp the writes to 16K internally to get around write errors reported by RT#95071 and RT#58243, thanks!
 
 1.009 2014-11-12T00:41:25Z UTC
  - Updates to the auto-generated files

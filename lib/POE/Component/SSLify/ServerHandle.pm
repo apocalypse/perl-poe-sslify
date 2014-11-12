@@ -155,6 +155,11 @@ sub WRITE {
 		$offset = 0;
 	}
 
+	# Thanks to RT#95071 and RT#58243 we need to clamp the length to the TLS 16K limit
+	if ( $len > 16384 ) {
+		$len = 16384;
+	}
+
 	# We count the number of characters written to the socket
 	my $wrote_len = Net::SSLeay::write( $self->{'ssl'}, substr( $buf, $offset, $len ) );
 
