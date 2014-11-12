@@ -1,8 +1,14 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
- add informational test that prints out ssleay version
- clamp the writes to 16K internally to get around write errors reported by RT#95071 and RT#58243, thanks!
+
+1.010 2014-11-12T06:13:41Z UTC
+ - add informational test that prints out ssleay version
+ - clamp the writes to 16K internally to get around write errors reported
+   by RT#95071 and RT#58243, thanks!
+
+ [STATISTICS]
+ - code churn: 7 files changed, 591 insertions(+), 5 deletions(-)
 
 1.009 2014-11-12T00:41:25Z UTC
  - Updates to the auto-generated files
