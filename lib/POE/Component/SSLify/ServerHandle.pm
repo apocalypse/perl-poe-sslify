@@ -156,6 +156,7 @@ sub WRITE {
 	}
 
 	# Thanks to RT#95071 and RT#58243 we need to clamp the length to the TLS 16K limit
+	# seems like the same thing happened to https://www.mail-archive.com/openssl-users@openssl.org/msg28151.html
 	if ( $len > 16384 ) {
 		$len = 16384;
 	}
