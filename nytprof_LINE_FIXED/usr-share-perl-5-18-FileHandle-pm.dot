@@ -1,0 +1,23 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_FileHandle {
+	label="FileHandle";
+	"FileHandle::BEGIN@4";
+	"FileHandle::BEGIN@3";
+	"FileHandle::BEGIN@46";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::unimport";
+	"strict::import";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::BEGIN@16.21";
+}
+"FileHandle::BEGIN@4" -> "strict::import";
+"FileHandle::BEGIN@46" -> "strict::unimport";
+"POE::Kernel::BEGIN@16.21" -> "FileHandle::BEGIN@46";
+"POE::Kernel::BEGIN@16.21" -> "FileHandle::BEGIN@3";
+"POE::Kernel::BEGIN@16.21" -> "FileHandle::BEGIN@4";
+}

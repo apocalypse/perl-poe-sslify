@@ -1,0 +1,60 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_warnings {
+	label="warnings";
+	"warnings::import";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_POE_Pipe_OneWay {
+	label="POE::Pipe::OneWay";
+	"POE::Pipe::OneWay::BEGIN@13";
+	"POE::Pipe::OneWay::BEGIN@6";
+	"POE::Pipe::OneWay::BEGIN@8";
+	"POE::Pipe::OneWay::BEGIN@10";
+	"POE::Pipe::OneWay::BEGIN@5";
+	"POE::Pipe::OneWay::new";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::_data_sig_pipe_build";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_base {
+	label="base";
+	"base::import";
+	"base::BEGIN@4";
+	"base::BEGIN@3";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_IO_Pipely {
+	label="IO::Pipely";
+	"IO::Pipely::pipely";
+}
+subgraph cluster_POE_Resource_Clock {
+	label="POE::Resource::Clock";
+	"POE::Resource::Clock::BEGIN@12";
+}
+"POE::Pipe::OneWay::BEGIN@8" -> "base::BEGIN@3";
+"POE::Pipe::OneWay::BEGIN@8" -> "base::import";
+"POE::Resource::Clock::BEGIN@12" -> "POE::Pipe::OneWay::BEGIN@5";
+"POE::Resource::Clock::BEGIN@12" -> "POE::Pipe::OneWay::BEGIN@6";
+"POE::Resource::Clock::BEGIN@12" -> "POE::Pipe::OneWay::BEGIN@13";
+"POE::Pipe::OneWay::new" -> "IO::Pipely::pipely";
+"POE::Kernel::_data_sig_pipe_build" -> "POE::Pipe::OneWay::new";
+"POE::Pipe::OneWay::BEGIN@8" -> "base::BEGIN@4";
+"POE::Pipe::OneWay::BEGIN@6" -> "strict::import";
+"POE::Resource::Clock::BEGIN@12" -> "POE::Pipe::OneWay::BEGIN@10";
+"POE::Pipe::OneWay::BEGIN@5" -> "warnings::import";
+"POE::Pipe::OneWay::BEGIN@10" -> "vars::import";
+"POE::Pipe::OneWay::BEGIN@13" -> "Exporter::import";
+"POE::Resource::Clock::BEGIN@12" -> "POE::Pipe::OneWay::BEGIN@8";
+}

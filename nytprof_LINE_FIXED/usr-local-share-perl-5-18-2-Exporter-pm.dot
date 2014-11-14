@@ -1,0 +1,292 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Queue_Array {
+	label="POE::Queue::Array";
+	"POE::Queue::Array::BEGIN@11";
+	"POE::Queue::Array::BEGIN@12";
+}
+subgraph cluster_Tie_Hash {
+	label="Tie::Hash";
+	"Tie::Hash::BEGIN@5";
+}
+subgraph cluster_POE_Component_Client_TCP {
+	label="POE::Component::Client::TCP";
+	"POE::Component::Client::TCP::BEGIN@9";
+	"POE::Component::Client::TCP::BEGIN@8";
+}
+subgraph cluster_POE_Wheel {
+	label="POE::Wheel";
+	"POE::Wheel::BEGIN@8";
+}
+subgraph cluster_Socket {
+	label="Socket";
+	"Socket::BEGIN@687";
+}
+subgraph cluster_IO_Socket_INET {
+	label="IO::Socket::INET";
+	"IO::Socket::INET::BEGIN@15";
+	"IO::Socket::INET::BEGIN@12";
+	"IO::Socket::INET::BEGIN@13";
+	"IO::Socket::INET::BEGIN@14";
+}
+subgraph cluster_IO_Pipely {
+	label="IO::Pipely";
+	"IO::Pipely::BEGIN@23";
+	"IO::Pipely::BEGIN@9";
+	"IO::Pipely::BEGIN@24";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::BEGIN@14.19";
+	"POE::Kernel::BEGIN@11";
+	"POE::Kernel::BEGIN@8";
+	"POE::Kernel::BEGIN@16.21";
+	"POE::Kernel::BEGIN@13";
+	"POE::Kernel::BEGIN@12";
+	"POE::Kernel::BEGIN@24";
+}
+subgraph cluster_POE_Component_SSLify_ClientHandle {
+	label="POE::Component::SSLify::ClientHandle";
+	"POE::Component::SSLify::ClientHandle::BEGIN@17";
+}
+subgraph cluster_IO_Handle {
+	label="IO::Handle";
+	"IO::Handle::BEGIN@7";
+	"IO::Handle::BEGIN@6";
+}
+subgraph cluster_IO_Seekable {
+	label="IO::Seekable";
+	"IO::Seekable::BEGIN@12";
+	"IO::Seekable::BEGIN@6";
+}
+subgraph cluster_Net_SSLeay {
+	label="Net::SSLeay";
+	"Net::SSLeay::BEGIN@20";
+	"Net::SSLeay::BEGIN@17";
+	"Net::SSLeay::BEGIN@19";
+}
+subgraph cluster_Test_FailWarnings {
+	label="Test::FailWarnings";
+	"Test::FailWarnings::BEGIN@10";
+	"Test::FailWarnings::BEGIN@12";
+}
+subgraph cluster_IO_File {
+	label="IO::File";
+	"IO::File::BEGIN@11";
+	"IO::File::BEGIN@9";
+	"IO::File::BEGIN@8";
+}
+subgraph cluster_IO_Socket_UNIX {
+	label="IO::Socket::UNIX";
+	"IO::Socket::UNIX::BEGIN@12";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::as_heavy";
+	"Exporter::import";
+	"Exporter::export";
+	"Exporter::export_to_level";
+	"Exporter::CORE:match";
+	"Exporter::CORE:subst";
+}
+subgraph cluster_POE_Driver_SysRW {
+	label="POE::Driver::SysRW";
+	"POE::Driver::SysRW::BEGIN@13";
+	"POE::Driver::SysRW::BEGIN@12";
+}
+subgraph cluster_POE_Filter {
+	label="POE::Filter";
+	"POE::Filter::BEGIN@8";
+}
+subgraph cluster_Sys_Hostname {
+	label="Sys::Hostname";
+	"Sys::Hostname::BEGIN@5";
+}
+subgraph cluster_POE_Component_Server_TCP {
+	label="POE::Component::Server::TCP";
+	"POE::Component::Server::TCP::BEGIN@9";
+	"POE::Component::Server::TCP::BEGIN@8";
+	"POE::Component::Server::TCP::BEGIN@12";
+	"POE::Component::Server::TCP::BEGIN@10";
+}
+subgraph cluster_POE_Component_SSLify {
+	label="POE::Component::SSLify";
+	"POE::Component::SSLify::BEGIN@95";
+	"POE::Component::SSLify::BEGIN@1";
+	"POE::Component::SSLify::BEGIN@91";
+	"POE::Component::SSLify::BEGIN@98";
+}
+subgraph cluster_POE_Component_SSLify_ServerHandle {
+	label="POE::Component::SSLify::ServerHandle";
+	"POE::Component::SSLify::ServerHandle::BEGIN@17";
+}
+subgraph cluster_IO_Socket {
+	label="IO::Socket";
+	"IO::Socket::BEGIN@13";
+	"IO::Socket::BEGIN@11";
+	"IO::Socket::BEGIN@16";
+	"IO::Socket::BEGIN@17";
+	"IO::Socket::BEGIN@12";
+	"IO::Socket::import";
+}
+subgraph cluster_POE_Session {
+	label="POE::Session";
+	"POE::Session::BEGIN@9";
+	"POE::Session::BEGIN@8";
+}
+subgraph cluster_Test_Builder_Module {
+	label="Test::Builder::Module";
+	"Test::Builder::Module::import";
+}
+subgraph cluster_IO {
+	label="IO";
+	"IO::BEGIN@6";
+}
+subgraph cluster_Exporter_Heavy {
+	label="Exporter::Heavy";
+	"Exporter::Heavy::BEGIN@202";
+	"Exporter::Heavy::heavy_export";
+	"Exporter::Heavy::heavy_export_to_level";
+	"Exporter::Heavy::BEGIN@4";
+	"Exporter::Heavy::BEGIN@3";
+}
+subgraph cluster_POE {
+	label="POE";
+	"POE::BEGIN@11";
+	"POE::BEGIN@6";
+}
+subgraph cluster_POE_Wheel_ReadWrite {
+	label="POE::Wheel::ReadWrite";
+	"POE::Wheel::ReadWrite::BEGIN@8";
+}
+subgraph cluster_POE_Wheel_SocketFactory {
+	label="POE::Wheel::SocketFactory";
+	"POE::Wheel::SocketFactory::BEGIN@53";
+	"POE::Wheel::SocketFactory::BEGIN@12";
+	"POE::Wheel::SocketFactory::BEGIN@9";
+	"POE::Wheel::SocketFactory::BEGIN@11";
+	"POE::Wheel::SocketFactory::BEGIN@17";
+	"POE::Wheel::SocketFactory::BEGIN@8";
+}
+subgraph cluster_main {
+	label="main";
+	"main::BEGIN@41";
+	"main::BEGIN@22";
+	"main::BEGIN@1.3";
+}
+subgraph cluster_SelectSaver {
+	label="SelectSaver";
+	"SelectSaver::BEGIN@7";
+	"SelectSaver::BEGIN@6";
+}
+subgraph cluster_POE_Filter_Line {
+	label="POE::Filter::Line";
+	"POE::Filter::Line::BEGIN@10";
+}
+subgraph cluster_POE_Pipe {
+	label="POE::Pipe";
+	"POE::Pipe::BEGIN@11";
+}
+subgraph cluster_POE_Pipe_OneWay {
+	label="POE::Pipe::OneWay";
+	"POE::Pipe::OneWay::BEGIN@13";
+}
+subgraph cluster_POSIX {
+	label="POSIX";
+	"POSIX::BEGIN@11";
+	"POSIX::import";
+}
+subgraph cluster_Cwd {
+	label="Cwd";
+	"Cwd::BEGIN@171";
+}
+"Exporter::export_to_level" -> "Exporter::as_heavy";
+"Exporter::export" -> "Exporter::as_heavy";
+"Exporter::import" -> "Exporter::CORE:match";
+"Exporter::as_heavy" -> "Exporter::Heavy::BEGIN@3";
+"POE::Driver::SysRW::BEGIN@12" -> "Exporter::import";
+"IO::Socket::BEGIN@13" -> "Exporter::import";
+"IO::Socket::UNIX::BEGIN@12" -> "Exporter::import";
+"POE::Component::Client::TCP::BEGIN@8" -> "Exporter::import";
+"IO::Socket::INET::BEGIN@12" -> "Exporter::import";
+"POE::Component::Server::TCP::BEGIN@9" -> "Exporter::import";
+"IO::Handle::BEGIN@7" -> "Exporter::import";
+"POE::Driver::SysRW::BEGIN@13" -> "Exporter::import";
+"POE::Queue::Array::BEGIN@11" -> "Exporter::import";
+"IO::Socket::INET::BEGIN@14" -> "Exporter::import";
+"POE::BEGIN@11" -> "Exporter::import";
+"Sys::Hostname::BEGIN@5" -> "Exporter::import";
+"POE::Kernel::BEGIN@8" -> "Exporter::import";
+"IO::Socket::INET::BEGIN@15" -> "Exporter::import";
+"POE::Wheel::SocketFactory::BEGIN@9" -> "Exporter::import";
+"POE::Wheel::SocketFactory::BEGIN@11" -> "Exporter::import";
+"Test::FailWarnings::BEGIN@10" -> "Exporter::import";
+"POE::Session::BEGIN@9" -> "Exporter::import";
+"Cwd::BEGIN@171" -> "Exporter::import";
+"Socket::BEGIN@687" -> "Exporter::import";
+"main::BEGIN@22" -> "Exporter::import";
+"IO::Socket::BEGIN@16" -> "Exporter::import";
+"POE::Kernel::BEGIN@14.19" -> "Exporter::import";
+"POE::Wheel::SocketFactory::BEGIN@8" -> "Exporter::import";
+"POE::Wheel::SocketFactory::BEGIN@17" -> "Exporter::import";
+"POE::Component::Server::TCP::BEGIN@8" -> "Exporter::import";
+"IO::Pipely::BEGIN@9" -> "Exporter::import";
+"Test::FailWarnings::BEGIN@12" -> "Exporter::import";
+"main::BEGIN@1.3" -> "Exporter::import";
+"POE::Filter::Line::BEGIN@10" -> "Exporter::import";
+"POE::Wheel::SocketFactory::BEGIN@53" -> "Exporter::import";
+"POE::Queue::Array::BEGIN@12" -> "Exporter::import";
+"POE::Kernel::BEGIN@16.21" -> "Exporter::import";
+"IO::File::BEGIN@11" -> "Exporter::import";
+"main::BEGIN@41" -> "Exporter::import";
+"POE::Kernel::BEGIN@24" -> "Exporter::import";
+"POSIX::BEGIN@11" -> "Exporter::import";
+"SelectSaver::BEGIN@7" -> "Exporter::import";
+"IO::Socket::BEGIN@17" -> "Exporter::import";
+"POSIX::import" -> "Exporter::import";
+"POE::Component::SSLify::BEGIN@98" -> "Exporter::import";
+"IO::File::BEGIN@9" -> "Exporter::import";
+"POE::Wheel::BEGIN@8" -> "Exporter::import";
+"Net::SSLeay::BEGIN@19" -> "Exporter::import";
+"POE::Component::Server::TCP::BEGIN@12" -> "Exporter::import";
+"POE::Component::SSLify::ClientHandle::BEGIN@17" -> "Exporter::import";
+"POE::Kernel::BEGIN@11" -> "Exporter::import";
+"POE::Session::BEGIN@8" -> "Exporter::import";
+"IO::File::BEGIN@8" -> "Exporter::import";
+"POE::Wheel::ReadWrite::BEGIN@8" -> "Exporter::import";
+"POE::Filter::BEGIN@8" -> "Exporter::import";
+"POE::Component::SSLify::BEGIN@95" -> "Exporter::import";
+"SelectSaver::BEGIN@6" -> "Exporter::import";
+"POE::Kernel::BEGIN@12" -> "Exporter::import";
+"IO::Pipely::BEGIN@23" -> "Exporter::import";
+"Net::SSLeay::BEGIN@17" -> "Exporter::import";
+"Tie::Hash::BEGIN@5" -> "Exporter::import";
+"POE::Component::Client::TCP::BEGIN@9" -> "Exporter::import";
+"IO::Socket::INET::BEGIN@13" -> "Exporter::import";
+"POE::Kernel::BEGIN@13" -> "Exporter::import";
+"POE::Pipe::BEGIN@11" -> "Exporter::import";
+"POE::Component::SSLify::ServerHandle::BEGIN@17" -> "Exporter::import";
+"IO::Seekable::BEGIN@6" -> "Exporter::import";
+"POE::Component::SSLify::BEGIN@91" -> "Exporter::import";
+"POE::Pipe::OneWay::BEGIN@13" -> "Exporter::import";
+"IO::Pipely::BEGIN@24" -> "Exporter::import";
+"IO::Socket::BEGIN@11" -> "Exporter::import";
+"IO::BEGIN@6" -> "Exporter::import";
+"POE::BEGIN@6" -> "Exporter::import";
+"IO::Handle::BEGIN@6" -> "Exporter::import";
+"POE::Wheel::SocketFactory::BEGIN@12" -> "Exporter::import";
+"IO::Socket::BEGIN@12" -> "Exporter::import";
+"POE::Component::Server::TCP::BEGIN@10" -> "Exporter::import";
+"IO::Seekable::BEGIN@12" -> "Exporter::import";
+"POE::Component::SSLify::BEGIN@1" -> "Exporter::import";
+"Net::SSLeay::BEGIN@20" -> "Exporter::import";
+"Exporter::as_heavy" -> "Exporter::Heavy::BEGIN@4";
+"Test::Builder::Module::import" -> "Exporter::export_to_level";
+"Exporter::Heavy::heavy_export_to_level" -> "Exporter::export";
+"IO::Socket::import" -> "Exporter::export";
+"Exporter::import" -> "Exporter::export";
+"Exporter::as_heavy" -> "Exporter::Heavy::BEGIN@202";
+"Exporter::as_heavy" -> "Exporter::CORE:subst";
+"Exporter::import" -> "Exporter::CORE:subst";
+"Exporter::import" -> "Exporter::Heavy::heavy_export";
+}

@@ -1,0 +1,113 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Loop_Select {
+	label="POE::Loop::Select";
+	"POE::Loop::Select::BEGIN@9";
+	"POE::Loop::Select::BEGIN@11";
+	"POE::Loop::Select::BEGIN@6";
+}
+subgraph cluster_POE_Loop_PerlSignals {
+	label="POE::Loop::PerlSignals";
+	"POE::Loop::PerlSignals::BEGIN@8";
+	"POE::Loop::PerlSignals::BEGIN@10";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_Time_HiRes {
+	label="Time::HiRes";
+	"Time::HiRes::time";
+}
+subgraph cluster_POE_Component_SSLify_ServerHandle {
+	label="POE::Component::SSLify::ServerHandle";
+	"POE::Component::SSLify::ServerHandle::FILENO";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::loop_pause_time_watcher";
+	"POE::Kernel::BEGIN@23";
+	"POE::Kernel::_data_ses_stop";
+	"POE::Kernel::loop_resume_filehandle";
+	"POE::Kernel::run";
+	"POE::Kernel::CORE:unpack";
+	"POE::Kernel::loop_finalize";
+	"POE::Kernel::loop_resume_time_watcher";
+	"POE::Kernel::loop_ignore_all_signals";
+	"POE::Kernel::loop_pause_filehandle";
+	"POE::Kernel::BEGIN@16";
+	"POE::Kernel::_data_handle_remove";
+	"POE::Kernel::loop_initialize";
+	"POE::Kernel::loop_watch_filehandle";
+	"POE::Kernel::_test_if_kernel_is_idle";
+	"POE::Kernel::BEGIN@24";
+	"POE::Kernel::_load_loop";
+	"POE::Kernel::_data_ev_enqueue";
+	"POE::Kernel::_data_handle_add";
+	"POE::Kernel::CORE:sselect";
+	"POE::Kernel::_data_ses_count";
+	"POE::Kernel::loop_do_timeslice";
+	"POE::Kernel::_data_sig_pipe_build";
+	"POE::Kernel::loop_run";
+	"POE::Kernel::_data_ev_dispatch_due";
+	"POE::Kernel::_data_handle_pause";
+	"POE::Kernel::_data_handle_enqueue_ready";
+	"POE::Kernel::_data_handle_resume";
+	"POE::Kernel::loop_halt";
+	"POE::Kernel::loop_reset_time_watcher";
+	"POE::Kernel::BEGIN@17";
+	"POE::Kernel::loop_ignore_filehandle";
+	"POE::Kernel::_initialize_kernel_session";
+	"POE::Kernel::_finalize_kernel";
+	"POE::Kernel::_data_sig_pipe_finalize";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+"POE::Kernel::loop_run" -> "POE::Kernel::_data_ses_count";
+"POE::Kernel::BEGIN@23" -> "strict::import";
+"POE::Loop::Select::BEGIN@6" -> "strict::import";
+"POE::Kernel::_data_ev_dispatch_due" -> "POE::Kernel::loop_pause_time_watcher";
+"POE::Kernel::loop_do_timeslice" -> "Time::HiRes::time";
+"POE::Kernel::loop_pause_time_watcher" -> "Time::HiRes::time";
+"POE::Kernel::loop_finalize" -> "POE::Kernel::loop_ignore_all_signals";
+"POE::Kernel::loop_run" -> "POE::Kernel::loop_do_timeslice";
+"POE::Kernel::loop_do_timeslice" -> "POE::Kernel::_test_if_kernel_is_idle";
+"POE::Kernel::loop_do_timeslice" -> "POE::Kernel::_data_handle_enqueue_ready";
+"POE::Kernel::_data_handle_resume" -> "POE::Kernel::loop_resume_filehandle";
+"POE::Kernel::_data_handle_add" -> "POE::Kernel::loop_resume_filehandle";
+"POE::Kernel::_load_loop" -> "POE::Loop::Select::BEGIN@11";
+"POE::Kernel::BEGIN@24" -> "Exporter::import";
+"POE::Loop::Select::BEGIN@11" -> "vars::import";
+"POE::Kernel::_load_loop" -> "POE::Kernel::BEGIN@23";
+"POE::Kernel::_data_handle_pause" -> "POE::Kernel::loop_pause_filehandle";
+"POE::Kernel::loop_do_timeslice" -> "POE::Kernel::CORE:sselect";
+"POE::Kernel::run" -> "POE::Kernel::loop_run";
+"POE::Kernel::_data_handle_add" -> "POE::Kernel::loop_watch_filehandle";
+"POE::Kernel::_data_sig_pipe_build" -> "POE::Kernel::loop_watch_filehandle";
+"POE::Kernel::_initialize_kernel_session" -> "POE::Kernel::loop_initialize";
+"POE::Kernel::_load_loop" -> "POE::Loop::Select::BEGIN@9";
+"POE::Kernel::_load_loop" -> "POE::Kernel::BEGIN@24";
+"POE::Kernel::_data_sig_pipe_finalize" -> "POE::Kernel::loop_ignore_filehandle";
+"POE::Kernel::_data_handle_remove" -> "POE::Kernel::loop_ignore_filehandle";
+"POE::Loop::Select::BEGIN@9" -> "POE::Loop::PerlSignals::BEGIN@8";
+"POE::Kernel::_data_ev_dispatch_due" -> "POE::Kernel::loop_reset_time_watcher";
+"POE::Loop::Select::BEGIN@9" -> "POE::Kernel::BEGIN@17";
+"POE::Kernel::_data_ses_stop" -> "POE::Kernel::loop_halt";
+"POE::Kernel::loop_finalize" -> "POE::Kernel::CORE:unpack";
+"POE::Kernel::_finalize_kernel" -> "POE::Kernel::loop_finalize";
+"POE::Kernel::loop_pause_filehandle" -> "POE::Component::SSLify::ServerHandle::FILENO";
+"POE::Kernel::loop_watch_filehandle" -> "POE::Component::SSLify::ServerHandle::FILENO";
+"POE::Kernel::loop_resume_filehandle" -> "POE::Component::SSLify::ServerHandle::FILENO";
+"POE::Kernel::loop_ignore_filehandle" -> "POE::Component::SSLify::ServerHandle::FILENO";
+"POE::Kernel::_data_ev_enqueue" -> "POE::Kernel::loop_resume_time_watcher";
+"POE::Kernel::loop_do_timeslice" -> "POE::Kernel::_data_ev_dispatch_due";
+"POE::Loop::Select::BEGIN@9" -> "POE::Loop::PerlSignals::BEGIN@10";
+"POE::Kernel::_load_loop" -> "POE::Loop::Select::BEGIN@6";
+"POE::Loop::Select::BEGIN@9" -> "POE::Kernel::BEGIN@16";
+}

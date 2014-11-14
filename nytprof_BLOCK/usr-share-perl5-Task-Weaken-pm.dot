@@ -1,0 +1,28 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_Task_Weaken {
+	label="Task::Weaken";
+	"Task::Weaken::BEGIN@6";
+	"Task::Weaken::BEGIN@3";
+	"Task::Weaken::BEGIN@4";
+	"Task::Weaken::BEGIN@7";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_POE_Component_SSLify {
+	label="POE::Component::SSLify";
+	"POE::Component::SSLify::BEGIN@99";
+}
+"POE::Component::SSLify::BEGIN@99" -> "Task::Weaken::BEGIN@3";
+"POE::Component::SSLify::BEGIN@99" -> "Task::Weaken::BEGIN@6";
+"Task::Weaken::BEGIN@4" -> "strict::import";
+"POE::Component::SSLify::BEGIN@99" -> "Task::Weaken::BEGIN@4";
+"POE::Component::SSLify::BEGIN@99" -> "Task::Weaken::BEGIN@7";
+"Task::Weaken::BEGIN@6" -> "vars::import";
+}

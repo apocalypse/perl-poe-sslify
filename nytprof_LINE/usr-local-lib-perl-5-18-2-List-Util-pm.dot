@@ -1,0 +1,21 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Component_SSLify {
+	label="POE::Component::SSLify";
+	"POE::Component::SSLify::BEGIN@98";
+}
+subgraph cluster_List_Util {
+	label="List::Util";
+	"List::Util::BEGIN@9";
+	"List::Util::BEGIN@30";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::unimport";
+	"strict::import";
+}
+"List::Util::BEGIN@30" -> "strict::unimport";
+"POE::Component::SSLify::BEGIN@98" -> "List::Util::BEGIN@9";
+"List::Util::BEGIN@9" -> "strict::import";
+"POE::Component::SSLify::BEGIN@98" -> "List::Util::BEGIN@30";
+}

@@ -1,0 +1,118 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Resource_Clock {
+	label="POE::Resource::Clock";
+	"POE::Resource::Clock::CORE:pack";
+	"POE::Resource::Clock::BEGIN@5";
+	"POE::Resource::Clock::_do_X";
+	"POE::Resource::Clock::BEGIN@12";
+	"POE::Resource::Clock::BEGIN@8";
+	"POE::Resource::Clock::BEGIN@11";
+	"POE::Resource::Clock::BEGIN@13";
+	"POE::Resource::Clock::BEGIN@10";
+	"POE::Resource::Clock::BEGIN@220";
+}
+subgraph cluster_Time_HiRes {
+	label="Time::HiRes";
+	"Time::HiRes::BEGIN@3";
+	"Time::HiRes::BEGIN@43";
+	"Time::HiRes::BEGIN@4";
+}
+subgraph cluster_Tie_Hash {
+	label="Tie::Hash";
+	"Tie::Hash::BEGIN@5";
+	"Tie::Hash::BEGIN@6";
+}
+subgraph cluster_File_Spec_Unix {
+	label="File::Spec::Unix";
+	"File::Spec::Unix::catfile";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_Config {
+	label="Config";
+	"Config::FETCH";
+	"Config::import";
+}
+subgraph cluster_XSLoader {
+	label="XSLoader";
+	"XSLoader::load";
+}
+subgraph cluster_UNIVERSAL {
+	label="UNIVERSAL";
+	"UNIVERSAL::can";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_Tie_StdHash {
+	label="Tie::StdHash";
+	"Tie::StdHash::TIEHASH";
+}
+subgraph cluster_DynaLoader {
+	label="DynaLoader";
+	"DynaLoader::BEGIN@21";
+	"DynaLoader::bootstrap";
+	"DynaLoader::CORE:regcomp";
+	"DynaLoader::BEGIN@17";
+}
+subgraph cluster_POSIX {
+	label="POSIX";
+	"POSIX::BEGIN@11";
+	"POSIX::BEGIN@3";
+	"POSIX::BEGIN@204";
+	"POSIX::BEGIN@2";
+	"POSIX::import";
+}
+subgraph cluster_POE_Pipe_OneWay {
+	label="POE::Pipe::OneWay";
+	"POE::Pipe::OneWay::BEGIN@8";
+	"POE::Pipe::OneWay::BEGIN@6";
+	"POE::Pipe::OneWay::BEGIN@10";
+	"POE::Pipe::OneWay::BEGIN@5";
+	"POE::Pipe::OneWay::BEGIN@13";
+}
+subgraph cluster_POE {
+	label="POE";
+	"POE::BEGIN@11";
+}
+"POE::Resource::Clock::BEGIN@11" -> "POSIX::BEGIN@2";
+"POE::Resource::Clock::BEGIN@11" -> "Tie::StdHash::TIEHASH";
+"POE::BEGIN@11" -> "POE::Resource::Clock::BEGIN@12";
+"POE::BEGIN@11" -> "POE::Resource::Clock::BEGIN@220";
+"POE::Resource::Clock::BEGIN@10" -> "Config::import";
+"POE::Resource::Clock::BEGIN@11" -> "POSIX::import";
+"POE::BEGIN@11" -> "POE::Resource::Clock::BEGIN@5";
+"POE::Resource::Clock::BEGIN@11" -> "POSIX::BEGIN@3";
+"POE::Resource::Clock::BEGIN@12" -> "POE::Pipe::OneWay::BEGIN@5";
+"POE::BEGIN@11" -> "POE::Resource::Clock::BEGIN@8";
+"POE::Resource::Clock::BEGIN@220" -> "Config::FETCH";
+"POE::Resource::Clock::BEGIN@220" -> "Time::HiRes::BEGIN@4";
+"POE::Resource::Clock::BEGIN@8" -> "strict::import";
+"POE::Resource::Clock::BEGIN@12" -> "POE::Pipe::OneWay::BEGIN@13";
+"POE::Resource::Clock::BEGIN@12" -> "POE::Pipe::OneWay::BEGIN@8";
+"POE::Resource::Clock::BEGIN@220" -> "DynaLoader::BEGIN@17";
+"POE::Resource::Clock::BEGIN@5" -> "vars::import";
+"POE::Resource::Clock::BEGIN@220" -> "Time::HiRes::BEGIN@43";
+"POE::Resource::Clock::BEGIN@12" -> "POE::Pipe::OneWay::BEGIN@10";
+"POE::Resource::Clock::BEGIN@220" -> "DynaLoader::CORE:regcomp";
+"POE::Resource::Clock::BEGIN@11" -> "Tie::Hash::BEGIN@6";
+"POE::Resource::Clock::BEGIN@220" -> "File::Spec::Unix::catfile";
+"POE::Resource::Clock::BEGIN@12" -> "POE::Pipe::OneWay::BEGIN@6";
+"POE::Resource::Clock::BEGIN@220" -> "DynaLoader::BEGIN@21";
+"POE::Resource::Clock::BEGIN@11" -> "POSIX::BEGIN@204";
+"POE::Resource::Clock::BEGIN@11" -> "XSLoader::load";
+"POE::Resource::Clock::BEGIN@11" -> "POSIX::BEGIN@11";
+"POE::Resource::Clock::BEGIN@220" -> "Time::HiRes::BEGIN@3";
+"POE::Resource::Clock::BEGIN@220" -> "POE::Resource::Clock::_do_X";
+"POE::BEGIN@11" -> "POE::Resource::Clock::CORE:pack";
+"POE::Resource::Clock::_do_X" -> "UNIVERSAL::can";
+"POE::Resource::Clock::BEGIN@220" -> "DynaLoader::bootstrap";
+"POE::BEGIN@11" -> "POE::Resource::Clock::BEGIN@13";
+"POE::BEGIN@11" -> "POE::Resource::Clock::BEGIN@10";
+"POE::Resource::Clock::BEGIN@11" -> "Tie::Hash::BEGIN@5";
+"POE::BEGIN@11" -> "POE::Resource::Clock::BEGIN@11";
+}

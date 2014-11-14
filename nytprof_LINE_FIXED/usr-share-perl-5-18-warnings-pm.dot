@@ -1,0 +1,117 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Pipe_OneWay {
+	label="POE::Pipe::OneWay";
+	"POE::Pipe::OneWay::BEGIN@5";
+}
+subgraph cluster_warnings {
+	label="warnings";
+	"warnings::import";
+	"warnings::_mkMask";
+	"warnings::unimport";
+	"warnings::CORE:regcomp";
+	"warnings::register_categories";
+	"warnings::CORE:match";
+}
+subgraph cluster_POE_Pipe {
+	label="POE::Pipe";
+	"POE::Pipe::BEGIN@5";
+}
+subgraph cluster_POSIX {
+	label="POSIX";
+	"POSIX::BEGIN@3";
+}
+subgraph cluster_Exporter_Heavy {
+	label="Exporter::Heavy";
+	"Exporter::Heavy::BEGIN@202";
+}
+subgraph cluster_main {
+	label="main";
+	"main::BEGIN@3.6";
+	"main::BEGIN@9.43";
+	"main::BEGIN@3";
+	"main::BEGIN@2.1";
+}
+subgraph cluster_IO {
+	label="IO";
+	"IO::BEGIN@8";
+}
+subgraph cluster_parent {
+	label="parent";
+	"parent::BEGIN@9.45";
+}
+subgraph cluster_overloading {
+	label="overloading";
+	"overloading::BEGIN@2";
+}
+subgraph cluster_Config {
+	label="Config";
+	"Config::BEGIN@10";
+}
+subgraph cluster_POE_Component_SSLify {
+	label="POE::Component::SSLify";
+	"POE::Component::SSLify::BEGIN@9.44";
+}
+subgraph cluster_Test_Builder {
+	label="Test::Builder";
+	"Test::Builder::BEGIN@1282";
+	"Test::Builder::BEGIN@1471";
+	"Test::Builder::BEGIN@962";
+	"Test::Builder::BEGIN@5";
+}
+subgraph cluster_Carp {
+	label="Carp";
+	"Carp::BEGIN@568";
+	"Carp::BEGIN@5";
+	"Carp::BEGIN@6";
+}
+subgraph cluster_POE_Component_Server_TCP {
+	label="POE::Component::Server::TCP";
+	"POE::Component::Server::TCP::BEGIN@15";
+}
+subgraph cluster_Test_More {
+	label="Test::More";
+	"Test::More::BEGIN@1390";
+	"Test::More::BEGIN@1313";
+	"Test::More::BEGIN@1679";
+	"Test::More::BEGIN@5";
+}
+subgraph cluster_warnings_register {
+	label="warnings::register";
+	"warnings::register::import";
+}
+subgraph cluster_IO_Pipely {
+	label="IO::Pipely";
+	"IO::Pipely::BEGIN@6";
+}
+"main::BEGIN@2.1" -> "warnings::CORE:regcomp";
+"Config::BEGIN@10" -> "warnings::import";
+"POE::Pipe::BEGIN@5" -> "warnings::import";
+"Carp::BEGIN@5" -> "warnings::import";
+"Test::More::BEGIN@5" -> "warnings::import";
+"IO::BEGIN@8" -> "warnings::import";
+"overloading::BEGIN@2" -> "warnings::import";
+"parent::BEGIN@9.45" -> "warnings::import";
+"POSIX::BEGIN@3" -> "warnings::import";
+"POE::Pipe::OneWay::BEGIN@5" -> "warnings::import";
+"main::BEGIN@2.1" -> "warnings::import";
+"main::BEGIN@3.6" -> "warnings::import";
+"POE::Component::SSLify::BEGIN@9.44" -> "warnings::import";
+"main::BEGIN@9.43" -> "warnings::import";
+"Test::Builder::BEGIN@5" -> "warnings::import";
+"IO::Pipely::BEGIN@6" -> "warnings::import";
+"main::BEGIN@3" -> "warnings::import";
+"main::BEGIN@2.1" -> "warnings::CORE:match";
+"Test::More::BEGIN@1313" -> "warnings::unimport";
+"Test::More::BEGIN@1390" -> "warnings::unimport";
+"Carp::BEGIN@6" -> "warnings::unimport";
+"Test::Builder::BEGIN@1471" -> "warnings::unimport";
+"Test::Builder::BEGIN@962" -> "warnings::unimport";
+"Test::More::BEGIN@1679" -> "warnings::unimport";
+"Carp::BEGIN@568" -> "warnings::unimport";
+"Test::Builder::BEGIN@1282" -> "warnings::unimport";
+"POE::Component::Server::TCP::BEGIN@15" -> "warnings::unimport";
+"Exporter::Heavy::BEGIN@202" -> "warnings::unimport";
+"warnings::register_categories" -> "warnings::_mkMask";
+"warnings::register::import" -> "warnings::register_categories";
+}

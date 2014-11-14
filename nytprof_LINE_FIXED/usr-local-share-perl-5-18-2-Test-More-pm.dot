@@ -1,0 +1,95 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_Test_Builder {
+	label="Test::Builder";
+	"Test::Builder::is_eq";
+	"Test::Builder::diag";
+	"Test::Builder::ok";
+	"Test::Builder::done_testing";
+}
+subgraph cluster_Test_FailWarnings {
+	label="Test::FailWarnings";
+	"Test::FailWarnings::BEGIN@9";
+}
+subgraph cluster_Test_More {
+	label="Test::More";
+	"Test::More::BEGIN@4";
+	"Test::More::BEGIN@1679";
+	"Test::More::BEGIN@5";
+	"Test::More::done_testing";
+	"Test::More::BEGIN@1313";
+	"Test::More::is";
+	"Test::More::BEGIN@1390";
+	"Test::More::BEGIN@23";
+	"Test::More::import_extra";
+	"Test::More::BEGIN@3";
+	"Test::More::ok";
+	"Test::More::diag";
+}
+subgraph cluster_warnings {
+	label="warnings";
+	"warnings::unimport";
+	"warnings::import";
+}
+subgraph cluster_main {
+	label="main";
+	"main::__ANON__[t/simple_parallel_superbig.t:138]";
+	"main::__ANON__[t/simple_parallel_superbig.t:123]";
+	"main::__ANON__[t/simple_parallel_superbig.t:52]";
+	"main::RUNTIME";
+	"main::__ANON__[t/simple_parallel_superbig.t:47]";
+	"main::__ANON__[t/simple_parallel_superbig.t:110]";
+	"main::__ANON__[t/simple_parallel_superbig.t:81]";
+	"main::__ANON__[t/simple_parallel_superbig.t:67]";
+}
+subgraph cluster_UNIVERSAL {
+	label="UNIVERSAL";
+	"UNIVERSAL::VERSION";
+}
+subgraph cluster_Test_Builder_Module {
+	label="Test::Builder::Module";
+	"Test::Builder::Module::import";
+	"Test::Builder::Module::BEGIN@3";
+	"Test::Builder::Module::builder";
+	"Test::Builder::Module::BEGIN@5";
+}
+"main::__ANON__[t/simple_parallel_superbig.t:138]" -> "Test::More::ok";
+"main::__ANON__[t/simple_parallel_superbig.t:123]" -> "Test::More::ok";
+"main::__ANON__[t/simple_parallel_superbig.t:47]" -> "Test::More::ok";
+"main::__ANON__[t/simple_parallel_superbig.t:52]" -> "Test::More::ok";
+"main::__ANON__[t/simple_parallel_superbig.t:110]" -> "Test::More::ok";
+"main::__ANON__[t/simple_parallel_superbig.t:67]" -> "Test::More::ok";
+"main::__ANON__[t/simple_parallel_superbig.t:81]" -> "Test::More::ok";
+"Test::More::BEGIN@5" -> "warnings::import";
+"Test::FailWarnings::BEGIN@9" -> "Test::More::BEGIN@1313";
+"Test::More::ok" -> "Test::Builder::ok";
+"Test::More::BEGIN@23" -> "Test::Builder::Module::BEGIN@3";
+"Test::More::BEGIN@23" -> "UNIVERSAL::VERSION";
+"Test::FailWarnings::BEGIN@9" -> "Test::More::BEGIN@5";
+"Test::FailWarnings::BEGIN@9" -> "Test::More::BEGIN@1679";
+"main::RUNTIME" -> "Test::More::done_testing";
+"Test::More::BEGIN@4" -> "strict::import";
+"Test::More::BEGIN@23" -> "Test::Builder::Module::BEGIN@5";
+"Test::More::ok" -> "Test::Builder::Module::builder";
+"Test::More::done_testing" -> "Test::Builder::Module::builder";
+"Test::More::is" -> "Test::Builder::Module::builder";
+"Test::More::diag" -> "Test::Builder::Module::builder";
+"Test::FailWarnings::BEGIN@9" -> "Test::More::BEGIN@23";
+"Test::FailWarnings::BEGIN@9" -> "Test::More::BEGIN@3";
+"Test::More::diag" -> "Test::Builder::diag";
+"Test::More::BEGIN@23" -> "Test::Builder::Module::import";
+"Test::More::done_testing" -> "Test::Builder::done_testing";
+"main::RUNTIME" -> "Test::More::is";
+"Test::More::BEGIN@1313" -> "warnings::unimport";
+"Test::More::BEGIN@1390" -> "warnings::unimport";
+"Test::More::BEGIN@1679" -> "warnings::unimport";
+"Test::FailWarnings::BEGIN@9" -> "Test::More::BEGIN@1390";
+"Test::FailWarnings::BEGIN@9" -> "Test::More::BEGIN@4";
+"Test::More::is" -> "Test::Builder::is_eq";
+"Test::Builder::Module::import" -> "Test::More::import_extra";
+"main::RUNTIME" -> "Test::More::diag";
+}

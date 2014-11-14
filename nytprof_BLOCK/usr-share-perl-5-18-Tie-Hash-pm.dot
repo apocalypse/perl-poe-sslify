@@ -1,0 +1,29 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Resource_Clock {
+	label="POE::Resource::Clock";
+	"POE::Resource::Clock::BEGIN@11";
+}
+subgraph cluster_Tie_Hash {
+	label="Tie::Hash";
+	"Tie::Hash::BEGIN@5";
+	"Tie::Hash::BEGIN@6";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_warnings_register {
+	label="warnings::register";
+	"warnings::register::import";
+}
+subgraph cluster_Tie_StdHash {
+	label="Tie::StdHash";
+	"Tie::StdHash::TIEHASH";
+}
+"POE::Resource::Clock::BEGIN@11" -> "Tie::Hash::BEGIN@5";
+"Tie::Hash::BEGIN@6" -> "warnings::register::import";
+"POE::Resource::Clock::BEGIN@11" -> "Tie::StdHash::TIEHASH";
+"POE::Resource::Clock::BEGIN@11" -> "Tie::Hash::BEGIN@6";
+"Tie::Hash::BEGIN@5" -> "Exporter::import";
+}

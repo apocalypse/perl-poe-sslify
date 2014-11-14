@@ -1,0 +1,40 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_IO_Socket {
+	label="IO::Socket";
+	"IO::Socket::import";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_IO_Socket_INET {
+	label="IO::Socket::INET";
+	"IO::Socket::INET::BEGIN@14";
+	"IO::Socket::INET::BEGIN@13";
+	"IO::Socket::INET::BEGIN@12";
+	"IO::Socket::INET::BEGIN@11";
+	"IO::Socket::INET::BEGIN@9";
+	"IO::Socket::INET::BEGIN@15";
+}
+subgraph cluster_IO_Pipely {
+	label="IO::Pipely";
+	"IO::Pipely::BEGIN@10";
+}
+"IO::Pipely::BEGIN@10" -> "IO::Socket::INET::BEGIN@13";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::INET::BEGIN@9";
+"IO::Socket::INET::BEGIN@14" -> "Exporter::import";
+"IO::Socket::INET::BEGIN@15" -> "Exporter::import";
+"IO::Socket::INET::BEGIN@12" -> "Exporter::import";
+"IO::Socket::INET::BEGIN@13" -> "Exporter::import";
+"IO::Socket::INET::BEGIN@9" -> "strict::import";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::INET::BEGIN@11";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::INET::BEGIN@12";
+"IO::Socket::INET::BEGIN@11" -> "IO::Socket::import";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::INET::BEGIN@15";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::INET::BEGIN@14";
+}

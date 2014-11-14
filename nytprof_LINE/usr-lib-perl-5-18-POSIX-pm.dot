@@ -1,0 +1,67 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::_data_sig_unmask_all";
+	"POE::Kernel::_data_sig_mask_all";
+	"POE::Kernel::_recalc_id";
+	"POE::Kernel::BEGIN@10";
+	"POE::Kernel::BEGIN@16.35";
+}
+subgraph cluster_POSIX {
+	label="POSIX";
+	"POSIX::load_imports";
+	"POSIX::BEGIN@204";
+	"POSIX::import";
+	"POSIX::sigprocmask";
+	"POSIX::BEGIN@2";
+	"POSIX::uname";
+	"POSIX::CORE:subst";
+	"POSIX::BEGIN@3";
+	"POSIX::BEGIN@11";
+}
+subgraph cluster_warnings {
+	label="warnings";
+	"warnings::import";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+	"strict::unimport";
+}
+subgraph cluster_POE_Resource_Clock {
+	label="POE::Resource::Clock";
+	"POE::Resource::Clock::BEGIN@11";
+}
+subgraph cluster_Fcntl {
+	label="Fcntl";
+	"Fcntl::BEGIN@3";
+}
+subgraph cluster_XSLoader {
+	label="XSLoader";
+	"XSLoader::load";
+}
+"POSIX::import" -> "POSIX::load_imports";
+"POSIX::BEGIN@2" -> "strict::import";
+"POSIX::BEGIN@11" -> "Fcntl::BEGIN@3";
+"POE::Resource::Clock::BEGIN@11" -> "POSIX::import";
+"POE::Kernel::BEGIN@10" -> "POSIX::import";
+"POE::Kernel::BEGIN@16.35" -> "POSIX::import";
+"POSIX::BEGIN@3" -> "warnings::import";
+"POSIX::import" -> "POSIX::CORE:subst";
+"POE::Kernel::_recalc_id" -> "POSIX::uname";
+"POSIX::BEGIN@204" -> "strict::unimport";
+"POSIX::BEGIN@11" -> "Exporter::import";
+"POSIX::import" -> "Exporter::import";
+"POSIX::BEGIN@11" -> "XSLoader::load";
+"POE::Resource::Clock::BEGIN@11" -> "POSIX::BEGIN@11";
+"POE::Resource::Clock::BEGIN@11" -> "POSIX::BEGIN@2";
+"POE::Kernel::_data_sig_mask_all" -> "POSIX::sigprocmask";
+"POE::Kernel::_data_sig_unmask_all" -> "POSIX::sigprocmask";
+"POE::Resource::Clock::BEGIN@11" -> "POSIX::BEGIN@3";
+"POE::Resource::Clock::BEGIN@11" -> "POSIX::BEGIN@204";
+}

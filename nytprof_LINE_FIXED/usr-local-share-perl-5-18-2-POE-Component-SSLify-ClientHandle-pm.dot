@@ -1,0 +1,61 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Component_SSLify_ClientHandle {
+	label="POE::Component::SSLify::ClientHandle";
+	"POE::Component::SSLify::ClientHandle::TIEHANDLE";
+	"POE::Component::SSLify::ClientHandle::BEGIN@20";
+	"POE::Component::SSLify::ClientHandle::BEGIN@17";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_Net_SSLeay {
+	label="Net::SSLeay";
+	"Net::SSLeay::new";
+	"Net::SSLeay::set_fd";
+	"Net::SSLeay::connect";
+}
+subgraph cluster_POE_Component_SSLify {
+	label="POE::Component::SSLify";
+	"POE::Component::SSLify::BEGIN@9";
+	"POE::Component::SSLify::BEGIN@58";
+	"POE::Component::SSLify::Client_SSLify";
+	"POE::Component::SSLify::BEGIN@9.44";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_UNIVERSAL {
+	label="UNIVERSAL";
+	"UNIVERSAL::VERSION";
+}
+subgraph cluster_parent {
+	label="parent";
+	"parent::BEGIN@25";
+	"parent::import";
+	"parent::BEGIN@2";
+	"parent::BEGIN@3";
+}
+subgraph cluster_warnings {
+	label="warnings";
+	"warnings::import";
+}
+"POE::Component::SSLify::ClientHandle::TIEHANDLE" -> "Net::SSLeay::set_fd";
+"POE::Component::SSLify::ClientHandle::BEGIN@20" -> "parent::BEGIN@2";
+"POE::Component::SSLify::Client_SSLify" -> "POE::Component::SSLify::ClientHandle::TIEHANDLE";
+"POE::Component::SSLify::BEGIN@9.44" -> "warnings::import";
+"POE::Component::SSLify::ClientHandle::BEGIN@20" -> "parent::import";
+"POE::Component::SSLify::BEGIN@58" -> "POE::Component::SSLify::BEGIN@9.44";
+"POE::Component::SSLify::ClientHandle::TIEHANDLE" -> "Net::SSLeay::new";
+"POE::Component::SSLify::ClientHandle::BEGIN@20" -> "parent::BEGIN@3";
+"POE::Component::SSLify::ClientHandle::BEGIN@17" -> "UNIVERSAL::VERSION";
+"POE::Component::SSLify::BEGIN@58" -> "POE::Component::SSLify::BEGIN@9";
+"POE::Component::SSLify::BEGIN@9" -> "strict::import";
+"POE::Component::SSLify::ClientHandle::TIEHANDLE" -> "Net::SSLeay::connect";
+"POE::Component::SSLify::ClientHandle::BEGIN@20" -> "parent::BEGIN@25";
+"POE::Component::SSLify::BEGIN@58" -> "POE::Component::SSLify::ClientHandle::BEGIN@17";
+"POE::Component::SSLify::BEGIN@58" -> "POE::Component::SSLify::ClientHandle::BEGIN@20";
+"POE::Component::SSLify::ClientHandle::BEGIN@17" -> "Exporter::import";
+}

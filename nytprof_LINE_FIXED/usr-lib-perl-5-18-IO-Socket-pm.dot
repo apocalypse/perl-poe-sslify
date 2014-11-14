@@ -1,0 +1,116 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_Socket {
+	label="Socket";
+	"Socket::BEGIN@807";
+	"Socket::BEGIN@687";
+	"Socket::CORE:qr";
+	"Socket::BEGIN@4";
+	"Socket::BEGIN@3";
+	"Socket::CORE:match";
+	"Socket::BEGIN@919";
+	"Socket::BEGIN@688";
+	"Socket::CORE:regcomp";
+}
+subgraph cluster_IO_Pipely {
+	label="IO::Pipely";
+	"IO::Pipely::BEGIN@10";
+}
+subgraph cluster_IO_Socket_INET {
+	label="IO::Socket::INET";
+	"IO::Socket::INET::BEGIN@11";
+}
+subgraph cluster_IO_Handle {
+	label="IO::Handle";
+	"IO::Handle::BEGIN@7";
+	"IO::Handle::_create_getline_subs";
+	"IO::Handle::BEGIN@3";
+	"IO::Handle::BEGIN@4";
+	"IO::Handle::BEGIN@370";
+	"IO::Handle::BEGIN@9";
+	"IO::Handle::BEGIN@8";
+	"IO::Handle::BEGIN@6";
+}
+subgraph cluster_Errno {
+	label="Errno";
+	"Errno::BEGIN@16";
+	"Errno::TIEHASH";
+	"Errno::BEGIN@8";
+}
+subgraph cluster_IO_Socket_UNIX {
+	label="IO::Socket::UNIX";
+	"IO::Socket::UNIX::BEGIN@11";
+}
+subgraph cluster_XSLoader {
+	label="XSLoader";
+	"XSLoader::load";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::export";
+	"Exporter::import";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_IO_Socket {
+	label="IO::Socket";
+	"IO::Socket::BEGIN@14";
+	"IO::Socket::register_domain";
+	"IO::Socket::import";
+	"IO::Socket::BEGIN@13";
+	"IO::Socket::BEGIN@16";
+	"IO::Socket::BEGIN@11";
+	"IO::Socket::BEGIN@17";
+	"IO::Socket::BEGIN@12";
+}
+subgraph cluster_UNIVERSAL {
+	label="UNIVERSAL";
+	"UNIVERSAL::VERSION";
+}
+subgraph cluster_Exporter_Heavy {
+	label="Exporter::Heavy";
+	"Exporter::Heavy::heavy_export";
+}
+"IO::Socket::BEGIN@12" -> "Socket::CORE:qr";
+"IO::Socket::import" -> "Exporter::Heavy::heavy_export";
+"IO::Socket::BEGIN@11" -> "IO::Handle::BEGIN@4";
+"IO::Socket::BEGIN@11" -> "IO::Handle::BEGIN@6";
+"IO::Socket::BEGIN@12" -> "Socket::CORE:regcomp";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::BEGIN@12";
+"IO::Socket::BEGIN@14" -> "strict::import";
+"IO::Socket::BEGIN@17" -> "Errno::TIEHASH";
+"IO::Socket::BEGIN@12" -> "UNIVERSAL::VERSION";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::BEGIN@14";
+"IO::Socket::BEGIN@11" -> "IO::Handle::BEGIN@3";
+"IO::Socket::INET::BEGIN@11" -> "IO::Socket::import";
+"IO::Socket::UNIX::BEGIN@11" -> "IO::Socket::import";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::import";
+"IO::Socket::BEGIN@17" -> "Errno::BEGIN@8";
+"IO::Socket::BEGIN@11" -> "IO::Handle::BEGIN@7";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::register_domain";
+"IO::Socket::BEGIN@11" -> "IO::Handle::BEGIN@8";
+"IO::Socket::import" -> "Exporter::export";
+"IO::Socket::BEGIN@12" -> "Socket::CORE:match";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::BEGIN@16";
+"IO::Socket::BEGIN@11" -> "IO::Handle::BEGIN@370";
+"IO::Socket::BEGIN@12" -> "XSLoader::load";
+"IO::Socket::BEGIN@12" -> "Socket::BEGIN@4";
+"IO::Socket::BEGIN@12" -> "Socket::BEGIN@3";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::BEGIN@17";
+"IO::Socket::BEGIN@17" -> "Exporter::import";
+"IO::Socket::BEGIN@11" -> "Exporter::import";
+"IO::Socket::BEGIN@12" -> "Exporter::import";
+"IO::Socket::BEGIN@13" -> "Exporter::import";
+"IO::Socket::BEGIN@16" -> "Exporter::import";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::BEGIN@11";
+"IO::Socket::BEGIN@12" -> "Socket::BEGIN@688";
+"IO::Socket::BEGIN@12" -> "Socket::BEGIN@687";
+"IO::Socket::BEGIN@11" -> "IO::Handle::_create_getline_subs";
+"IO::Socket::BEGIN@11" -> "IO::Handle::BEGIN@9";
+"IO::Socket::BEGIN@17" -> "Errno::BEGIN@16";
+"IO::Socket::BEGIN@12" -> "Socket::BEGIN@807";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::BEGIN@13";
+"IO::Socket::BEGIN@12" -> "Socket::BEGIN@919";
+}

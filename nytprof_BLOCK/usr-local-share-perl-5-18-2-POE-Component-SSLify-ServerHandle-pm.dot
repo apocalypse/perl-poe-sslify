@@ -1,0 +1,124 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Component_Server_TCP {
+	label="POE::Component::Server::TCP";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:341]";
+}
+subgraph cluster_POE_Component_SSLify {
+	label="POE::Component::SSLify";
+	"POE::Component::SSLify::Server_SSLify";
+}
+subgraph cluster_POE_Driver_SysRW {
+	label="POE::Driver::SysRW";
+	"POE::Driver::SysRW::CORE:syswrite";
+	"POE::Driver::SysRW::CORE:sysread";
+}
+subgraph cluster_UNIVERSAL {
+	label="UNIVERSAL";
+	"UNIVERSAL::VERSION";
+}
+subgraph cluster_warnings {
+	label="warnings";
+	"warnings::import";
+}
+subgraph cluster_POE_Wheel_ReadWrite {
+	label="POE::Wheel::ReadWrite";
+	"POE::Wheel::ReadWrite::DESTROY";
+}
+subgraph cluster_POE_Component_SSLify_ServerHandle {
+	label="POE::Component::SSLify::ServerHandle";
+	"POE::Component::SSLify::ServerHandle::DESTROY";
+	"POE::Component::SSLify::ServerHandle::CORE:binmode";
+	"POE::Component::SSLify::ServerHandle::WRITE";
+	"POE::Component::SSLify::ServerHandle::TIEHANDLE";
+	"POE::Component::SSLify::ServerHandle::CORE:close";
+	"POE::Component::SSLify::ServerHandle::CLOSE";
+	"POE::Component::SSLify::ServerHandle::BEGIN@17";
+	"POE::Component::SSLify::ServerHandle::_check_status";
+	"POE::Component::SSLify::ServerHandle::BINMODE";
+	"POE::Component::SSLify::ServerHandle::READ";
+	"POE::Component::SSLify::ServerHandle::FILENO";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::loop_watch_filehandle";
+	"POE::Kernel::_data_handle_is_good";
+	"POE::Kernel::_data_handle_resume";
+	"POE::Kernel::_data_handle_pause";
+	"POE::Kernel::_data_handle_add";
+	"POE::Kernel::loop_pause_filehandle";
+	"POE::Kernel::CORE:binmode";
+	"POE::Kernel::loop_ignore_filehandle";
+	"POE::Kernel::loop_resume_filehandle";
+	"POE::Kernel::_data_handle_remove";
+}
+subgraph cluster_Net_SSLeay {
+	label="Net::SSLeay";
+	"Net::SSLeay::get_error";
+	"Net::SSLeay::new";
+	"Net::SSLeay::write";
+	"Net::SSLeay::connect";
+	"Net::SSLeay::read";
+	"Net::SSLeay::die_if_ssl_error";
+	"Net::SSLeay::CTX_free";
+	"Net::SSLeay::accept";
+	"Net::SSLeay::free";
+	"Net::SSLeay::ERROR_WANT_READ";
+	"Net::SSLeay::AUTOLOAD";
+	"Net::SSLeay::set_fd";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_parent {
+	label="parent";
+	"parent::BEGIN@9";
+	"parent::BEGIN@9.45";
+	"parent::import";
+}
+"parent::BEGIN@9.45" -> "warnings::import";
+"POE::Kernel::CORE:binmode" -> "POE::Component::SSLify::ServerHandle::BINMODE";
+"POE::Component::SSLify::ServerHandle::_check_status" -> "Net::SSLeay::get_error";
+"parent::import" -> "POE::Component::SSLify::ServerHandle::BEGIN@17";
+"POE::Component::SSLify::ServerHandle::TIEHANDLE" -> "Net::SSLeay::die_if_ssl_error";
+"parent::BEGIN@9" -> "strict::import";
+"POE::Component::SSLify::ServerHandle::TIEHANDLE" -> "Net::SSLeay::accept";
+"POE::Component::SSLify::ServerHandle::_check_status" -> "Net::SSLeay::accept";
+"POE::Component::SSLify::ServerHandle::CLOSE" -> "Net::SSLeay::free";
+"POE::Component::SSLify::ServerHandle::BEGIN@17" -> "Exporter::import";
+"POE::Driver::SysRW::CORE:sysread" -> "POE::Component::SSLify::ServerHandle::READ";
+"POE::Component::SSLify::ServerHandle::BEGIN@17" -> "UNIVERSAL::VERSION";
+"POE::Component::SSLify::Server_SSLify" -> "POE::Component::SSLify::ServerHandle::TIEHANDLE";
+"POE::Component::SSLify::ServerHandle::WRITE" -> "Net::SSLeay::write";
+"POE::Component::SSLify::ServerHandle::BINMODE" -> "POE::Component::SSLify::ServerHandle::CORE:binmode";
+"POE::Component::SSLify::ServerHandle::DESTROY" -> "POE::Component::SSLify::ServerHandle::CLOSE";
+"POE::Component::SSLify::ServerHandle::CLOSE" -> "POE::Component::SSLify::ServerHandle::CORE:close";
+"POE::Kernel::_data_handle_remove" -> "POE::Component::SSLify::ServerHandle::FILENO";
+"POE::Kernel::loop_resume_filehandle" -> "POE::Component::SSLify::ServerHandle::FILENO";
+"POE::Kernel::loop_ignore_filehandle" -> "POE::Component::SSLify::ServerHandle::FILENO";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:341]" -> "POE::Component::SSLify::ServerHandle::FILENO";
+"POE::Kernel::loop_pause_filehandle" -> "POE::Component::SSLify::ServerHandle::FILENO";
+"POE::Kernel::_data_handle_add" -> "POE::Component::SSLify::ServerHandle::FILENO";
+"POE::Kernel::_data_handle_pause" -> "POE::Component::SSLify::ServerHandle::FILENO";
+"POE::Kernel::_data_handle_resume" -> "POE::Component::SSLify::ServerHandle::FILENO";
+"POE::Kernel::loop_watch_filehandle" -> "POE::Component::SSLify::ServerHandle::FILENO";
+"POE::Kernel::_data_handle_is_good" -> "POE::Component::SSLify::ServerHandle::FILENO";
+"POE::Component::SSLify::ServerHandle::_check_status" -> "Net::SSLeay::AUTOLOAD";
+"parent::import" -> "parent::BEGIN@9";
+"POE::Component::SSLify::ServerHandle::_check_status" -> "Net::SSLeay::connect";
+"POE::Component::SSLify::ServerHandle::TIEHANDLE" -> "Net::SSLeay::set_fd";
+"POE::Component::SSLify::ServerHandle::CLOSE" -> "Net::SSLeay::CTX_free";
+"POE::Wheel::ReadWrite::DESTROY" -> "POE::Component::SSLify::ServerHandle::DESTROY";
+"POE::Driver::SysRW::CORE:syswrite" -> "POE::Component::SSLify::ServerHandle::WRITE";
+"parent::import" -> "parent::BEGIN@9.45";
+"POE::Component::SSLify::ServerHandle::_check_status" -> "Net::SSLeay::ERROR_WANT_READ";
+"POE::Component::SSLify::ServerHandle::TIEHANDLE" -> "Net::SSLeay::new";
+"POE::Component::SSLify::ServerHandle::READ" -> "Net::SSLeay::read";
+"POE::Component::SSLify::ServerHandle::READ" -> "POE::Component::SSLify::ServerHandle::_check_status";
+"POE::Component::SSLify::ServerHandle::WRITE" -> "POE::Component::SSLify::ServerHandle::_check_status";
+}

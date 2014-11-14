@@ -1,0 +1,119 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::BEGIN@2.28";
+	"POE::Kernel::BEGIN@39";
+	"POE::Kernel::_data_ses_finalize";
+	"POE::Kernel::_data_alias_clear_session";
+	"POE::Kernel::_data_sid_set";
+	"POE::Kernel::_data_ses_refcount_dec";
+	"POE::Kernel::_data_ses_stop";
+	"POE::Kernel::run";
+	"POE::Kernel::_data_ses_resolve";
+	"POE::Kernel::BEGIN@11.29";
+	"POE::Kernel::_dispatch_event";
+	"POE::Kernel::_data_sig_free_terminated_sessions";
+	"POE::Kernel::_resolve_session";
+	"POE::Kernel::_data_ses_get_children";
+	"POE::Kernel::_data_ses_refcount_inc";
+	"POE::Kernel::_dispatch_signal_event";
+	"POE::Kernel::_data_ev_clear_session";
+	"POE::Kernel::_data_handle_remove";
+	"POE::Kernel::_data_alias_add";
+	"POE::Kernel::_data_sig_clear_session";
+	"POE::Kernel::_data_ses_gc_sweep";
+	"POE::Kernel::_test_if_kernel_is_idle";
+	"POE::Kernel::_data_handle_clear_session";
+	"POE::Kernel::_data_ev_refcount_dec";
+	"POE::Kernel::_data_ev_enqueue";
+	"POE::Kernel::_data_handle_add";
+	"POE::Kernel::_data_ses_count";
+	"POE::Kernel::get_active_session";
+	"POE::Kernel::ID";
+	"POE::Kernel::_data_alias_remove";
+	"POE::Kernel::_data_ses_get_parent";
+	"POE::Kernel::_data_ev_dispatch_due";
+	"POE::Kernel::loop_run";
+	"POE::Kernel::_data_ses_free";
+	"POE::Kernel::session_alloc";
+	"POE::Kernel::_data_handle_enqueue_ready";
+	"POE::Kernel::loop_halt";
+	"POE::Kernel::_data_extref_clear_session";
+	"POE::Kernel::_data_ses_allocate";
+	"POE::Kernel::_data_sid_clear";
+	"POE::Kernel::_initialize_kernel_session";
+	"POE::Kernel::_finalize_kernel";
+	"POE::Kernel::_data_ses_exists";
+}
+subgraph cluster_POE_Resource_Sessions {
+	label="POE::Resource::Sessions";
+	"POE::Resource::Sessions::BEGIN@5";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_Time_HiRes {
+	label="Time::HiRes";
+	"Time::HiRes::time";
+}
+subgraph cluster_POE_Session {
+	label="POE::Session";
+	"POE::Session::ID";
+	"POE::Session::DESTROY";
+}
+"POE::Kernel::BEGIN@2.28" -> "POE::Kernel::BEGIN@11.29";
+"POE::Kernel::_data_ses_free" -> "POE::Kernel::_data_ses_refcount_dec";
+"POE::Kernel::_data_handle_remove" -> "POE::Kernel::_data_ses_refcount_dec";
+"POE::Kernel::_data_ev_refcount_dec" -> "POE::Kernel::_data_ses_refcount_dec";
+"POE::Kernel::_data_alias_remove" -> "POE::Kernel::_data_ses_refcount_dec";
+"POE::Kernel::_data_ses_allocate" -> "POE::Kernel::_data_sid_set";
+"POE::Kernel::_finalize_kernel" -> "POE::Kernel::_data_ses_finalize";
+"POE::Kernel::_data_ses_stop" -> "POE::Session::DESTROY";
+"POE::Kernel::_data_ses_stop" -> "Time::HiRes::time";
+"POE::Kernel::_data_ses_free" -> "POE::Kernel::_data_ev_clear_session";
+"POE::Kernel::_dispatch_signal_event" -> "POE::Kernel::_data_ses_get_children";
+"POE::Kernel::_data_ses_stop" -> "POE::Kernel::_data_ses_get_children";
+"POE::Kernel::_data_ses_free" -> "POE::Kernel::_data_ses_get_children";
+"POE::Kernel::_test_if_kernel_is_idle" -> "POE::Kernel::_data_ses_count";
+"POE::Kernel::run" -> "POE::Kernel::_data_ses_count";
+"POE::Kernel::loop_run" -> "POE::Kernel::_data_ses_count";
+"POE::Kernel::session_alloc" -> "POE::Kernel::_data_ses_get_parent";
+"POE::Kernel::_data_ses_stop" -> "POE::Kernel::_data_ses_get_parent";
+"POE::Kernel::_data_ses_free" -> "POE::Kernel::_data_handle_clear_session";
+"POE::Kernel::_data_ses_free" -> "POE::Kernel::_data_sig_clear_session";
+"POE::Kernel::session_alloc" -> "POE::Kernel::_data_ses_exists";
+"POE::Kernel::_data_sig_free_terminated_sessions" -> "POE::Kernel::_data_ses_exists";
+"POE::Kernel::BEGIN@11.29" -> "strict::import";
+"POE::Kernel::_data_ses_free" -> "POE::Kernel::_data_extref_clear_session";
+"POE::Resource::Sessions::BEGIN@5" -> "vars::import";
+"POE::Kernel::_data_ses_stop" -> "POE::Kernel::_data_ses_free";
+"POE::Kernel::_data_ses_allocate" -> "POE::Kernel::ID";
+"POE::Kernel::_data_ses_refcount_dec" -> "POE::Kernel::ID";
+"POE::Kernel::_data_ses_free" -> "POE::Kernel::ID";
+"POE::Kernel::_data_ses_gc_sweep" -> "POE::Kernel::ID";
+"POE::Kernel::_data_ses_free" -> "POE::Session::ID";
+"POE::Kernel::_data_sig_free_terminated_sessions" -> "POE::Kernel::_data_ses_stop";
+"POE::Kernel::_data_ses_gc_sweep" -> "POE::Kernel::_data_ses_stop";
+"POE::Kernel::BEGIN@2.28" -> "POE::Resource::Sessions::BEGIN@5";
+"POE::Kernel::_data_ses_free" -> "POE::Kernel::_data_alias_clear_session";
+"POE::Kernel::_data_ses_allocate" -> "POE::Kernel::_data_ses_refcount_inc";
+"POE::Kernel::_data_alias_add" -> "POE::Kernel::_data_ses_refcount_inc";
+"POE::Kernel::_data_handle_add" -> "POE::Kernel::_data_ses_refcount_inc";
+"POE::Kernel::_data_ev_enqueue" -> "POE::Kernel::_data_ses_refcount_inc";
+"POE::Kernel::_data_ses_stop" -> "POE::Kernel::_dispatch_event";
+"POE::Kernel::_data_handle_enqueue_ready" -> "POE::Kernel::_data_ses_gc_sweep";
+"POE::Kernel::_data_ev_dispatch_due" -> "POE::Kernel::_data_ses_gc_sweep";
+"POE::Kernel::_data_ses_free" -> "POE::Kernel::_data_sid_clear";
+"POE::Kernel::session_alloc" -> "POE::Kernel::_data_ses_allocate";
+"POE::Kernel::_initialize_kernel_session" -> "POE::Kernel::_data_ses_allocate";
+"POE::Kernel::_data_ses_stop" -> "POE::Kernel::loop_halt";
+"POE::Kernel::_resolve_session" -> "POE::Kernel::_data_ses_resolve";
+"POE::Kernel::BEGIN@2.28" -> "POE::Kernel::BEGIN@39";
+"POE::Kernel::_data_ses_stop" -> "POE::Kernel::get_active_session";
+}

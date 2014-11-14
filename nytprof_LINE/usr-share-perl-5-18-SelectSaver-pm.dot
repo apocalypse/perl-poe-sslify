@@ -1,0 +1,20 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_SelectSaver {
+	label="SelectSaver";
+	"SelectSaver::BEGIN@6";
+	"SelectSaver::BEGIN@7";
+}
+subgraph cluster_IO_Handle {
+	label="IO::Handle";
+	"IO::Handle::BEGIN@8";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+"IO::Handle::BEGIN@8" -> "SelectSaver::BEGIN@6";
+"SelectSaver::BEGIN@6" -> "Exporter::import";
+"SelectSaver::BEGIN@7" -> "Exporter::import";
+"IO::Handle::BEGIN@8" -> "SelectSaver::BEGIN@7";
+}

@@ -1,0 +1,87 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::_data_handle_condition";
+}
+subgraph cluster_XSLoader {
+	label="XSLoader";
+	"XSLoader::load";
+}
+subgraph cluster_main {
+	label="main";
+	"main::__ANON__[t/simple_parallel_superbig.t:67]";
+	"main::__ANON__[t/simple_parallel_superbig.t:123]";
+}
+subgraph cluster_SelectSaver {
+	label="SelectSaver";
+	"SelectSaver::BEGIN@6";
+	"SelectSaver::BEGIN@7";
+}
+subgraph cluster_POE_Wheel_SocketFactory {
+	label="POE::Wheel::SocketFactory";
+	"POE::Wheel::SocketFactory::new";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::unimport";
+	"strict::import";
+}
+subgraph cluster_POE_Component_SSLify {
+	label="POE::Component::SSLify";
+	"POE::Component::SSLify::Client_SSLify";
+	"POE::Component::SSLify::Server_SSLify";
+}
+subgraph cluster_IO_Socket {
+	label="IO::Socket";
+	"IO::Socket::BEGIN@11";
+}
+subgraph cluster_IO {
+	label="IO";
+	"IO::BEGIN@7";
+	"IO::BEGIN@6";
+	"IO::BEGIN@8";
+	"IO::BEGIN@5";
+}
+subgraph cluster_IO_Handle {
+	label="IO::Handle";
+	"IO::Handle::BEGIN@370";
+	"IO::Handle::BEGIN@6";
+	"IO::Handle::BEGIN@8";
+	"IO::Handle::BEGIN@7";
+	"IO::Handle::blocking";
+	"IO::Handle::BEGIN@3";
+	"IO::Handle::BEGIN@9";
+	"IO::Handle::_create_getline_subs";
+	"IO::Handle::BEGIN@4";
+}
+"IO::Socket::BEGIN@11" -> "IO::Handle::BEGIN@8";
+"IO::Handle::BEGIN@9" -> "IO::BEGIN@6";
+"IO::Handle::BEGIN@9" -> "IO::BEGIN@7";
+"IO::Handle::BEGIN@370" -> "strict::unimport";
+"IO::Socket::BEGIN@11" -> "IO::Handle::BEGIN@3";
+"IO::Socket::BEGIN@11" -> "IO::Handle::BEGIN@6";
+"IO::Socket::BEGIN@11" -> "IO::Handle::BEGIN@9";
+"IO::Socket::BEGIN@11" -> "IO::Handle::BEGIN@4";
+"IO::Handle::BEGIN@8" -> "SelectSaver::BEGIN@7";
+"IO::Handle::BEGIN@9" -> "XSLoader::load";
+"IO::Socket::BEGIN@11" -> "IO::Handle::BEGIN@370";
+"IO::Socket::BEGIN@11" -> "IO::Handle::BEGIN@7";
+"IO::Handle::BEGIN@6" -> "Exporter::import";
+"IO::Handle::BEGIN@7" -> "Exporter::import";
+"IO::Handle::BEGIN@9" -> "IO::BEGIN@5";
+"IO::Handle::BEGIN@9" -> "IO::BEGIN@8";
+"IO::Handle::BEGIN@4" -> "strict::import";
+"IO::Socket::BEGIN@11" -> "IO::Handle::_create_getline_subs";
+"POE::Component::SSLify::Client_SSLify" -> "IO::Handle::blocking";
+"main::__ANON__[t/simple_parallel_superbig.t:67]" -> "IO::Handle::blocking";
+"POE::Kernel::_data_handle_condition" -> "IO::Handle::blocking";
+"POE::Component::SSLify::Server_SSLify" -> "IO::Handle::blocking";
+"POE::Wheel::SocketFactory::new" -> "IO::Handle::blocking";
+"main::__ANON__[t/simple_parallel_superbig.t:123]" -> "IO::Handle::blocking";
+"IO::Handle::BEGIN@8" -> "SelectSaver::BEGIN@6";
+}

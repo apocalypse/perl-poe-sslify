@@ -1,0 +1,338 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_warnings {
+	label="warnings";
+	"warnings::CORE:match";
+	"warnings::CORE:regcomp";
+	"warnings::import";
+}
+subgraph cluster_Test_Builder {
+	label="Test::Builder";
+	"Test::Builder::BEGIN@19";
+}
+subgraph cluster_base {
+	label="base";
+	"base::import";
+}
+subgraph cluster_Test_Builder_Module {
+	label="Test::Builder::Module";
+	"Test::Builder::Module::import";
+	"Test::Builder::Module::BEGIN@5";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_POE_Component_SSLify {
+	label="POE::Component::SSLify";
+	"POE::Component::SSLify::SSLify_ContextCreate";
+	"POE::Component::SSLify::BEGIN@91";
+	"POE::Component::SSLify::BEGIN@95";
+	"POE::Component::SSLify::BEGIN@98";
+	"POE::Component::SSLify::BEGIN@17";
+	"POE::Component::SSLify::BEGIN@84";
+	"POE::Component::SSLify::BEGIN@1";
+	"POE::Component::SSLify::SSLify_GetCipher";
+	"POE::Component::SSLify::SSLify_GetSocket";
+	"POE::Component::SSLify::BEGIN@58";
+	"POE::Component::SSLify::BEGIN@99";
+	"POE::Component::SSLify::Client_SSLify";
+	"POE::Component::SSLify::Server_SSLify";
+	"POE::Component::SSLify::SSLify_Options";
+}
+subgraph cluster_POE_Component_Server_TCP {
+	label="POE::Component::Server::TCP";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:352]";
+	"POE::Component::Server::TCP::BEGIN@10";
+	"POE::Component::Server::TCP::BEGIN@34";
+	"POE::Component::Server::TCP::BEGIN@12";
+	"POE::Component::Server::TCP::BEGIN@8";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:341]";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:479]";
+	"POE::Component::Server::TCP::BEGIN@5";
+	"POE::Component::Server::TCP::BEGIN@3";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:389]";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:364]";
+	"POE::Component::Server::TCP::BEGIN@15";
+	"POE::Component::Server::TCP::BEGIN@31";
+	"POE::Component::Server::TCP::BEGIN@33";
+	"POE::Component::Server::TCP::BEGIN@9";
+	"POE::Component::Server::TCP::BEGIN@30";
+	"POE::Component::Server::TCP::BEGIN@32";
+}
+subgraph cluster_Internals {
+	label="Internals";
+	"Internals::SvREADONLY";
+}
+subgraph cluster_UNIVERSAL {
+	label="UNIVERSAL";
+	"UNIVERSAL::VERSION";
+	"UNIVERSAL::isa";
+	"UNIVERSAL::can";
+}
+subgraph cluster_POE_Component_SSLify_ServerHandle {
+	label="POE::Component::SSLify::ServerHandle";
+	"POE::Component::SSLify::ServerHandle::BEGIN@17";
+}
+subgraph cluster_version {
+	label="version";
+	"version::(cmp";
+	"version::(bool";
+}
+subgraph cluster_POE_Wheel_SocketFactory {
+	label="POE::Wheel::SocketFactory";
+	"POE::Wheel::SocketFactory::getsockname";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::_data_sig_unmask_all";
+	"POE::Kernel::post";
+	"POE::Kernel::_data_sig_mask_all";
+	"POE::Kernel::import";
+	"POE::Kernel::yield";
+	"POE::Kernel::_data_sig_mask_build";
+}
+subgraph cluster_IO_Prompt_Tiny {
+	label="IO::Prompt::Tiny";
+	"IO::Prompt::Tiny::prompt";
+}
+subgraph cluster_Test_More {
+	label="Test::More";
+	"Test::More::ok";
+	"Test::More::BEGIN@23";
+}
+subgraph cluster_IO_Socket {
+	label="IO::Socket";
+	"IO::Socket::BEGIN@12";
+}
+subgraph cluster_POE_Component_SSLify_ClientHandle {
+	label="POE::Component::SSLify::ClientHandle";
+	"POE::Component::SSLify::ClientHandle::BEGIN@17";
+}
+subgraph cluster_POE {
+	label="POE";
+	"POE::BEGIN@8";
+	"POE::BEGIN@6";
+	"POE::BEGIN@5";
+	"POE::import";
+	"POE::BEGIN@11";
+}
+subgraph cluster_constant {
+	label="constant";
+	"constant::import";
+}
+subgraph cluster_Cwd {
+	label="Cwd";
+	"Cwd::getcwd";
+}
+subgraph cluster_Socket {
+	label="Socket";
+	"Socket::sockaddr_in";
+}
+subgraph cluster_mro {
+	label="mro";
+	"mro::method_changed_in";
+}
+subgraph cluster_POE_Component_Client_TCP {
+	label="POE::Component::Client::TCP";
+	"POE::Component::Client::TCP::BEGIN@9";
+	"POE::Component::Client::TCP::BEGIN@12";
+	"POE::Component::Client::TCP::BEGIN@3";
+	"POE::Component::Client::TCP::BEGIN@15";
+	"POE::Component::Client::TCP::BEGIN@5";
+	"POE::Component::Client::TCP::BEGIN@8";
+	"POE::Component::Client::TCP::__ANON__[POE/Component/Client/TCP.pm:263]";
+	"POE::Component::Client::TCP::BEGIN@14";
+	"POE::Component::Client::TCP::BEGIN@13";
+	"POE::Component::Client::TCP::__ANON__[POE/Component/Client/TCP.pm:227]";
+	"POE::Component::Client::TCP::BEGIN@16";
+}
+subgraph cluster_POE_Wheel_ReadWrite {
+	label="POE::Wheel::ReadWrite";
+	"POE::Wheel::ReadWrite::put";
+	"POE::Wheel::ReadWrite::_define_read_state";
+	"POE::Wheel::ReadWrite::get_output_handle";
+}
+subgraph cluster_POE_Resource_Clock {
+	label="POE::Resource::Clock";
+	"POE::Resource::Clock::_do_X";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::CORE:regcomp";
+	"strict::CORE:match";
+	"strict::import";
+}
+subgraph cluster_main {
+	label="main";
+	"main::BEGIN@8";
+	"main::BEGIN@19";
+	"main::BEGIN@20";
+	"main::RUNTIME";
+	"main::__ANON__[t/simple_parallel_superbig.t:67]";
+	"main::BEGIN@41";
+	"main::__ANON__[t/simple_parallel_superbig.t:96]";
+	"main::BEGIN@22";
+	"main::BEGIN@1";
+	"main::__ANON__[t/simple_parallel_superbig.t:110]";
+	"main::__ANON__[t/simple_parallel_superbig.t:52]";
+	"main::BEGIN@2";
+	"main::BEGIN@3";
+	"main::__ANON__[t/simple_parallel_superbig.t:81]";
+	"main::__ANON__[t/simple_parallel_superbig.t:138]";
+	"main::BEGIN@2.1";
+	"main::BEGIN@9.43";
+	"main::BEGIN@21";
+	"main::BEGIN@10";
+	"main::__ANON__[t/simple_parallel_superbig.t:123]";
+	"main::BEGIN@1.3";
+	"main::__ANON__[t/simple_parallel_superbig.t:43]";
+	"main::BEGIN@2.2";
+	"main::BEGIN@7";
+	"main::__ANON__[t/simple_parallel_superbig.t:47]";
+	"main::BEGIN@9";
+}
+subgraph cluster_Test_FailWarnings {
+	label="Test::FailWarnings";
+	"Test::FailWarnings::BEGIN@12";
+	"Test::FailWarnings::BEGIN@9";
+	"Test::FailWarnings::BEGIN@11";
+	"Test::FailWarnings::BEGIN@10";
+	"Test::FailWarnings::import";
+}
+subgraph cluster_POSIX_SigSet {
+	label="POSIX::SigSet";
+	"POSIX::SigSet::emptyset";
+	"POSIX::SigSet::new";
+	"POSIX::SigSet::fillset";
+}
+subgraph cluster_IO_Handle {
+	label="IO::Handle";
+	"IO::Handle::blocking";
+}
+"main::BEGIN@10" -> "IO::Prompt::Tiny::prompt";
+"base::import" -> "UNIVERSAL::isa";
+"main::BEGIN@22" -> "POE::Component::SSLify::BEGIN@98";
+"main::BEGIN@22" -> "POE::Component::SSLify::BEGIN@95";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:479]" -> "main::__ANON__[t/simple_parallel_superbig.t:43]";
+"main::RUNTIME" -> "main::BEGIN@2.1";
+"main::BEGIN@7" -> "Test::FailWarnings::BEGIN@12";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@5";
+"main::BEGIN@19" -> "POE::BEGIN@11";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@8";
+"main::BEGIN@2" -> "strict::import";
+"main::BEGIN@7" -> "Test::FailWarnings::import";
+"main::BEGIN@2.1" -> "warnings::import";
+"main::BEGIN@2" -> "strict::CORE:match";
+"main::RUNTIME" -> "main::BEGIN@10";
+"Test::More::BEGIN@23" -> "UNIVERSAL::VERSION";
+"POE::Component::SSLify::BEGIN@95" -> "UNIVERSAL::VERSION";
+"POE::Component::SSLify::BEGIN@1" -> "UNIVERSAL::VERSION";
+"Test::FailWarnings::BEGIN@9" -> "UNIVERSAL::VERSION";
+"POE::Component::SSLify::ServerHandle::BEGIN@17" -> "UNIVERSAL::VERSION";
+"Test::Builder::Module::BEGIN@5" -> "UNIVERSAL::VERSION";
+"POE::Component::SSLify::BEGIN@99" -> "UNIVERSAL::VERSION";
+"main::BEGIN@19" -> "UNIVERSAL::VERSION";
+"main::BEGIN@8" -> "UNIVERSAL::VERSION";
+"IO::Socket::BEGIN@12" -> "UNIVERSAL::VERSION";
+"POE::Component::SSLify::ClientHandle::BEGIN@17" -> "UNIVERSAL::VERSION";
+"main::__ANON__[t/simple_parallel_superbig.t:67]" -> "POE::Component::SSLify::Server_SSLify";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@32";
+"main::BEGIN@20" -> "POE::Component::Client::TCP::BEGIN@8";
+"main::BEGIN@20" -> "POE::Component::Client::TCP::BEGIN@3";
+"Test::Builder::BEGIN@19" -> "version::(cmp";
+"POE::Component::Client::TCP::__ANON__[POE/Component/Client/TCP.pm:227]" -> "main::__ANON__[t/simple_parallel_superbig.t:110]";
+"main::BEGIN@19" -> "POE::import";
+"POE::Kernel::_data_sig_mask_build" -> "POSIX::SigSet::fillset";
+"main::__ANON__[t/simple_parallel_superbig.t:138]" -> "POE::Wheel::ReadWrite::get_output_handle";
+"main::__ANON__[t/simple_parallel_superbig.t:81]" -> "POE::Wheel::ReadWrite::get_output_handle";
+"main::RUNTIME" -> "main::BEGIN@8";
+"main::BEGIN@20" -> "POE::Component::Client::TCP::BEGIN@14";
+"main::BEGIN@20" -> "POE::Component::Client::TCP::BEGIN@13";
+"main::__ANON__[t/simple_parallel_superbig.t:123]" -> "POE::Component::SSLify::SSLify_GetCipher";
+"main::__ANON__[t/simple_parallel_superbig.t:138]" -> "POE::Component::SSLify::SSLify_GetCipher";
+"main::__ANON__[t/simple_parallel_superbig.t:81]" -> "POE::Component::SSLify::SSLify_GetCipher";
+"main::__ANON__[t/simple_parallel_superbig.t:67]" -> "POE::Component::SSLify::SSLify_GetCipher";
+"main::__ANON__[t/simple_parallel_superbig.t:81]" -> "POE::Wheel::ReadWrite::put";
+"main::__ANON__[t/simple_parallel_superbig.t:110]" -> "POE::Wheel::ReadWrite::put";
+"main::BEGIN@2.1" -> "warnings::CORE:match";
+"main::__ANON__[t/simple_parallel_superbig.t:43]" -> "POE::Wheel::SocketFactory::getsockname";
+"main::__ANON__[t/simple_parallel_superbig.t:138]" -> "POE::Kernel::yield";
+"main::BEGIN@20" -> "POE::Component::Client::TCP::BEGIN@12";
+"main::RUNTIME" -> "main::BEGIN@20";
+"main::BEGIN@22" -> "main::BEGIN@9";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@9";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:341]" -> "main::__ANON__[t/simple_parallel_superbig.t:47]";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@33";
+"constant::import" -> "Internals::SvREADONLY";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@30";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:389]" -> "main::__ANON__[t/simple_parallel_superbig.t:52]";
+"main::RUNTIME" -> "main::BEGIN@22";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@10";
+"main::BEGIN@7" -> "Test::FailWarnings::BEGIN@9";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:341]" -> "main::__ANON__[t/simple_parallel_superbig.t:67]";
+"main::__ANON__[t/simple_parallel_superbig.t:52]" -> "POE::Kernel::post";
+"main::BEGIN@2.1" -> "warnings::CORE:regcomp";
+"main::BEGIN@41" -> "Exporter::import";
+"main::BEGIN@22" -> "Exporter::import";
+"main::__ANON__[t/simple_parallel_superbig.t:67]" -> "POE::Component::SSLify::SSLify_Options";
+"main::__ANON__[t/simple_parallel_superbig.t:123]" -> "POE::Component::SSLify::SSLify_ContextCreate";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@31";
+"main::BEGIN@22" -> "POE::Component::SSLify::BEGIN@17";
+"main::BEGIN@20" -> "POE::Component::Client::TCP::BEGIN@9";
+"main::BEGIN@7" -> "main::BEGIN@3";
+"main::BEGIN@20" -> "POE::Component::Client::TCP::BEGIN@15";
+"main::RUNTIME" -> "main::BEGIN@2";
+"main::BEGIN@22" -> "POE::Component::SSLify::BEGIN@99";
+"main::BEGIN@19" -> "POE::BEGIN@8";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:364]" -> "main::__ANON__[t/simple_parallel_superbig.t:96]";
+"main::BEGIN@20" -> "POE::Component::Client::TCP::BEGIN@16";
+"main::RUNTIME" -> "main::BEGIN@7";
+"main::BEGIN@10" -> "main::BEGIN@1.3";
+"main::__ANON__[t/simple_parallel_superbig.t:67]" -> "Test::More::ok";
+"main::__ANON__[t/simple_parallel_superbig.t:81]" -> "Test::More::ok";
+"main::__ANON__[t/simple_parallel_superbig.t:47]" -> "Test::More::ok";
+"main::__ANON__[t/simple_parallel_superbig.t:138]" -> "Test::More::ok";
+"main::__ANON__[t/simple_parallel_superbig.t:123]" -> "Test::More::ok";
+"main::__ANON__[t/simple_parallel_superbig.t:110]" -> "Test::More::ok";
+"main::__ANON__[t/simple_parallel_superbig.t:52]" -> "Test::More::ok";
+"main::BEGIN@19" -> "POE::BEGIN@5";
+"main::__ANON__[t/simple_parallel_superbig.t:123]" -> "POE::Component::SSLify::Client_SSLify";
+"main::BEGIN@7" -> "Test::FailWarnings::BEGIN@10";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@34";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@3";
+"main::RUNTIME" -> "main::BEGIN@19";
+"main::BEGIN@8" -> "Test::Builder::Module::import";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@15";
+"main::BEGIN@22" -> "POE::Component::SSLify::BEGIN@58";
+"POE::Component::Client::TCP::__ANON__[POE/Component/Client/TCP.pm:227]" -> "main::__ANON__[t/simple_parallel_superbig.t:123]";
+"main::RUNTIME" -> "main::BEGIN@21";
+"main::BEGIN@20" -> "POE::Component::Client::TCP::BEGIN@5";
+"main::BEGIN@7" -> "Cwd::getcwd";
+"POE::Kernel::_data_sig_mask_build" -> "POSIX::SigSet::emptyset";
+"Test::Builder::BEGIN@19" -> "version::(bool";
+"main::BEGIN@7" -> "main::BEGIN@1";
+"main::RUNTIME" -> "main::BEGIN@41";
+"main::BEGIN@22" -> "POE::Component::SSLify::BEGIN@84";
+"main::BEGIN@7" -> "Test::FailWarnings::BEGIN@11";
+"main::__ANON__[t/simple_parallel_superbig.t:67]" -> "POE::Component::SSLify::SSLify_GetSocket";
+"main::__ANON__[t/simple_parallel_superbig.t:123]" -> "POE::Component::SSLify::SSLify_GetSocket";
+"main::BEGIN@19" -> "POE::BEGIN@6";
+"main::BEGIN@22" -> "POE::Component::SSLify::BEGIN@91";
+"POE::Resource::Clock::_do_X" -> "UNIVERSAL::can";
+"POE::Kernel::import" -> "UNIVERSAL::can";
+"POE::Wheel::ReadWrite::_define_read_state" -> "UNIVERSAL::can";
+"main::BEGIN@7" -> "main::BEGIN@2.2";
+"POE::Kernel::_data_sig_mask_build" -> "POSIX::SigSet::new";
+"POE::Kernel::_data_sig_unmask_all" -> "POSIX::SigSet::new";
+"POE::Kernel::_data_sig_mask_all" -> "POSIX::SigSet::new";
+"main::BEGIN@22" -> "main::BEGIN@9.43";
+"POE::Component::Client::TCP::__ANON__[POE/Component/Client/TCP.pm:263]" -> "main::__ANON__[t/simple_parallel_superbig.t:138]";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:352]" -> "main::__ANON__[t/simple_parallel_superbig.t:81]";
+"constant::import" -> "mro::method_changed_in";
+"main::BEGIN@2" -> "strict::CORE:regcomp";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@12";
+"main::__ANON__[t/simple_parallel_superbig.t:43]" -> "Socket::sockaddr_in";
+"main::__ANON__[t/simple_parallel_superbig.t:67]" -> "IO::Handle::blocking";
+"main::__ANON__[t/simple_parallel_superbig.t:123]" -> "IO::Handle::blocking";
+}

@@ -1,0 +1,90 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_warnings {
+	label="warnings";
+	"warnings::import";
+}
+subgraph cluster_Test_Builder {
+	label="Test::Builder";
+	"Test::Builder::END";
+}
+subgraph cluster_POE_Component_Server_TCP {
+	label="POE::Component::Server::TCP";
+	"POE::Component::Server::TCP::new";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::run";
+}
+subgraph cluster_IO_Prompt_Tiny {
+	label="IO::Prompt::Tiny";
+	"IO::Prompt::Tiny::BEGIN@10";
+	"IO::Prompt::Tiny::CORE:print";
+	"IO::Prompt::Tiny::BEGIN@9";
+	"IO::Prompt::Tiny::prompt";
+}
+subgraph cluster_Test_More {
+	label="Test::More";
+	"Test::More::diag";
+	"Test::More::done_testing";
+	"Test::More::is";
+}
+subgraph cluster_POE_Component_Client_TCP {
+	label="POE::Component::Client::TCP";
+	"POE::Component::Client::TCP::new";
+}
+subgraph cluster_IO_Pipely {
+	label="IO::Pipely";
+	"IO::Pipely::BEGIN@10";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_main {
+	label="main";
+	"main::BEGIN@7";
+	"main::BEGIN@2.5";
+	"main::BEGIN@3.6";
+	"main::BEGIN@2";
+	"main::BEGIN@2.1";
+	"main::BEGIN@21";
+	"main::BEGIN@10";
+	"main::BEGIN@1.3";
+	"main::BEGIN@1.4";
+	"main::BEGIN@41";
+	"main::BEGIN@22";
+	"main::BEGIN@19";
+	"main::BEGIN@8";
+	"main::CORE:pack";
+	"main::BEGIN@20";
+	"main::RUNTIME";
+}
+"main::RUNTIME" -> "main::BEGIN@19";
+"main::RUNTIME" -> "Test::More::is";
+"main::RUNTIME" -> "main::BEGIN@7";
+"main::BEGIN@1.3" -> "main::BEGIN@3.6";
+"main::RUNTIME" -> "Test::More::diag";
+"main::RUNTIME" -> "Test::More::done_testing";
+"main::RUNTIME" -> "main::BEGIN@2";
+"main::RUNTIME" -> "Test::Builder::END";
+"main::BEGIN@1.3" -> "IO::Prompt::Tiny::BEGIN@10";
+"main::RUNTIME" -> "main::BEGIN@41";
+"main::RUNTIME" -> "POE::Component::Client::TCP::new";
+"main::BEGIN@1.3" -> "IO::Prompt::Tiny::BEGIN@9";
+"main::RUNTIME" -> "main::BEGIN@21";
+"main::RUNTIME" -> "POE::Component::Server::TCP::new";
+"main::RUNTIME" -> "main::BEGIN@8";
+"IO::Pipely::BEGIN@10" -> "main::CORE:pack";
+"main::BEGIN@3.6" -> "warnings::import";
+"main::RUNTIME" -> "main::BEGIN@10";
+"main::BEGIN@2.5" -> "strict::import";
+"IO::Prompt::Tiny::prompt" -> "IO::Prompt::Tiny::CORE:print";
+"main::BEGIN@10" -> "IO::Prompt::Tiny::prompt";
+"main::BEGIN@1.3" -> "main::BEGIN@2.5";
+"main::RUNTIME" -> "main::BEGIN@2.1";
+"main::RUNTIME" -> "main::BEGIN@22";
+"main::RUNTIME" -> "main::BEGIN@20";
+"main::RUNTIME" -> "POE::Kernel::run";
+"main::BEGIN@1.3" -> "main::BEGIN@1.4";
+}

@@ -1,0 +1,65 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+	"vars::BEGIN@7";
+	"vars::BEGIN@8";
+	"vars::BEGIN@3";
+}
+subgraph cluster_DynaLoader {
+	label="DynaLoader";
+	"DynaLoader::BEGIN@21";
+}
+subgraph cluster_warnings {
+	label="warnings";
+	"warnings::import";
+}
+subgraph cluster_Test_Builder {
+	label="Test::Builder";
+	"Test::Builder::BEGIN@19";
+	"Test::Builder::BEGIN@18";
+}
+subgraph cluster_Config {
+	label="Config";
+	"Config::BEGIN@11";
+	"Config::FETCH";
+	"Config::TIEHASH";
+	"Config::BEGIN@10";
+	"Config::import";
+	"Config::BEGIN@47";
+	"Config::BEGIN@9";
+}
+subgraph cluster_POE_Resource_Clock {
+	label="POE::Resource::Clock";
+	"POE::Resource::Clock::BEGIN@220";
+	"POE::Resource::Clock::BEGIN@10";
+}
+subgraph cluster_Test_FailWarnings {
+	label="Test::FailWarnings";
+	"Test::FailWarnings::BEGIN@10";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::unimport";
+	"strict::import";
+}
+"Test::Builder::BEGIN@19" -> "Config::BEGIN@11";
+"Test::Builder::BEGIN@19" -> "Config::TIEHASH";
+"Config::BEGIN@47" -> "strict::unimport";
+"Config::BEGIN@10" -> "warnings::import";
+"Test::Builder::BEGIN@19" -> "Config::BEGIN@9";
+"DynaLoader::BEGIN@21" -> "Config::import";
+"POE::Resource::Clock::BEGIN@10" -> "Config::import";
+"Test::Builder::BEGIN@19" -> "Config::import";
+"Config::BEGIN@11" -> "vars::BEGIN@8";
+"Config::BEGIN@11" -> "vars::BEGIN@7";
+"Config::BEGIN@9" -> "strict::import";
+"Config::BEGIN@11" -> "vars::import";
+"POE::Resource::Clock::BEGIN@220" -> "Config::FETCH";
+"Test::Builder::BEGIN@18" -> "Config::FETCH";
+"Test::FailWarnings::BEGIN@10" -> "Config::FETCH";
+"Test::Builder::BEGIN@19" -> "Config::BEGIN@10";
+"Config::BEGIN@11" -> "vars::BEGIN@3";
+"Test::Builder::BEGIN@19" -> "Config::BEGIN@47";
+}

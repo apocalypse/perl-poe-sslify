@@ -1,0 +1,113 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_base {
+	label="base";
+	"base::import";
+}
+subgraph cluster_IO_Socket_UNIX {
+	label="IO::Socket::UNIX";
+	"IO::Socket::UNIX::BEGIN@9";
+	"IO::Socket::UNIX::BEGIN@12";
+	"IO::Socket::UNIX::BEGIN@11";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_Symbol {
+	label="Symbol";
+	"Symbol::BEGIN@3";
+	"Symbol::gensym";
+}
+subgraph cluster_IO_Socket_INET {
+	label="IO::Socket::INET";
+	"IO::Socket::INET::BEGIN@15";
+	"IO::Socket::INET::BEGIN@13";
+	"IO::Socket::INET::BEGIN@14";
+	"IO::Socket::INET::BEGIN@11";
+	"IO::Socket::INET::BEGIN@12";
+	"IO::Socket::INET::BEGIN@9";
+}
+subgraph cluster_IO_Pipely {
+	label="IO::Pipely";
+	"IO::Pipely::BEGIN@51";
+	"IO::Pipely::BEGIN@10";
+	"IO::Pipely::BEGIN@24";
+	"IO::Pipely::BEGIN@9";
+	"IO::Pipely::BEGIN@23";
+	"IO::Pipely::BEGIN@7";
+	"IO::Pipely::_try_oneway_type";
+	"IO::Pipely::CORE:select";
+	"IO::Pipely::BEGIN@6";
+	"IO::Pipely::pipely";
+	"IO::Pipely::BEGIN@27";
+}
+subgraph cluster_POE_Pipe_OneWay {
+	label="POE::Pipe::OneWay";
+	"POE::Pipe::OneWay::new";
+}
+subgraph cluster_warnings {
+	label="warnings";
+	"warnings::import";
+}
+subgraph cluster_POE_Pipe {
+	label="POE::Pipe";
+	"POE::Pipe::BEGIN@11";
+}
+subgraph cluster_main {
+	label="main";
+	"main::CORE:pack";
+}
+subgraph cluster_IO_Socket {
+	label="IO::Socket";
+	"IO::Socket::register_domain";
+	"IO::Socket::import";
+	"IO::Socket::BEGIN@14";
+	"IO::Socket::BEGIN@17";
+	"IO::Socket::BEGIN@12";
+	"IO::Socket::BEGIN@13";
+	"IO::Socket::BEGIN@11";
+	"IO::Socket::BEGIN@16";
+}
+"IO::Pipely::pipely" -> "Symbol::gensym";
+"POE::Pipe::BEGIN@11" -> "IO::Pipely::BEGIN@24";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::BEGIN@12";
+"IO::Pipely::BEGIN@7" -> "strict::import";
+"POE::Pipe::BEGIN@11" -> "IO::Pipely::BEGIN@51";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::INET::BEGIN@11";
+"IO::Pipely::BEGIN@6" -> "warnings::import";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::BEGIN@16";
+"POE::Pipe::BEGIN@11" -> "IO::Pipely::BEGIN@9";
+"POE::Pipe::BEGIN@11" -> "IO::Pipely::BEGIN@7";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::BEGIN@14";
+"IO::Pipely::BEGIN@9" -> "Symbol::BEGIN@3";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::import";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::INET::BEGIN@14";
+"POE::Pipe::BEGIN@11" -> "IO::Pipely::BEGIN@10";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::INET::BEGIN@15";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::INET::BEGIN@12";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::register_domain";
+"IO::Pipely::_try_oneway_type" -> "IO::Pipely::CORE:select";
+"IO::Pipely::BEGIN@10" -> "main::CORE:pack";
+"IO::Pipely::BEGIN@24" -> "Exporter::import";
+"IO::Pipely::BEGIN@23" -> "Exporter::import";
+"IO::Pipely::BEGIN@9" -> "Exporter::import";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::BEGIN@11";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::INET::BEGIN@9";
+"IO::Pipely::BEGIN@27" -> "base::import";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::INET::BEGIN@13";
+"POE::Pipe::OneWay::new" -> "IO::Pipely::pipely";
+"POE::Pipe::BEGIN@11" -> "IO::Pipely::BEGIN@23";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::BEGIN@17";
+"POE::Pipe::BEGIN@11" -> "IO::Pipely::BEGIN@6";
+"IO::Pipely::pipely" -> "IO::Pipely::_try_oneway_type";
+"POE::Pipe::BEGIN@11" -> "IO::Pipely::BEGIN@27";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::UNIX::BEGIN@9";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::BEGIN@13";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::UNIX::BEGIN@11";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::UNIX::BEGIN@12";
+}

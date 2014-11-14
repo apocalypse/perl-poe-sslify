@@ -1,0 +1,134 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_UNIVERSAL {
+	label="UNIVERSAL";
+	"UNIVERSAL::can";
+}
+subgraph cluster_POE_Session {
+	label="POE::Session";
+	"POE::Session::_invoke_state";
+}
+subgraph cluster_POE_Filter_Line {
+	label="POE::Filter::Line";
+	"POE::Filter::Line::get_one_start";
+	"POE::Filter::Line::get_one";
+	"POE::Filter::Line::put";
+}
+subgraph cluster_POE {
+	label="POE";
+	"POE::import";
+}
+subgraph cluster_POE_Wheel_ReadWrite {
+	label="POE::Wheel::ReadWrite";
+	"POE::Wheel::ReadWrite::put";
+	"POE::Wheel::ReadWrite::new";
+	"POE::Wheel::ReadWrite::BEGIN@5";
+	"POE::Wheel::ReadWrite::__ANON__[POE/Wheel/ReadWrite.pm:293]";
+	"POE::Wheel::ReadWrite::get_driver_out_octets";
+	"POE::Wheel::ReadWrite::_define_write_state";
+	"POE::Wheel::ReadWrite::BEGIN@8";
+	"POE::Wheel::ReadWrite::get_output_handle";
+	"POE::Wheel::ReadWrite::BEGIN@3";
+	"POE::Wheel::ReadWrite::BEGIN@9";
+	"POE::Wheel::ReadWrite::__ANON__[POE/Wheel/ReadWrite.pm:231]";
+	"POE::Wheel::ReadWrite::_define_read_state";
+	"POE::Wheel::ReadWrite::DESTROY";
+}
+subgraph cluster_main {
+	label="main";
+	"main::__ANON__[t/simple_parallel_superbig.t:138]";
+	"main::__ANON__[t/simple_parallel_superbig.t:110]";
+	"main::__ANON__[t/simple_parallel_superbig.t:81]";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::select_resume_write";
+	"POE::Kernel::call";
+	"POE::Kernel::select_pause_write";
+	"POE::Kernel::state";
+	"POE::Kernel::select_read";
+	"POE::Kernel::select_write";
+}
+subgraph cluster_POE_Component_Client_TCP {
+	label="POE::Component::Client::TCP";
+	"POE::Component::Client::TCP::__ANON__[POE/Component/Client/TCP.pm:227]";
+	"POE::Component::Client::TCP::__ANON__[POE/Component/Client/TCP.pm:298]";
+	"POE::Component::Client::TCP::BEGIN@15";
+}
+subgraph cluster_POE_Wheel {
+	label="POE::Wheel";
+	"POE::Wheel::allocate_wheel_id";
+	"POE::Wheel::free_wheel_id";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_POE_Component_SSLify_ServerHandle {
+	label="POE::Component::SSLify::ServerHandle";
+	"POE::Component::SSLify::ServerHandle::DESTROY";
+}
+subgraph cluster_POE_Driver_SysRW {
+	label="POE::Driver::SysRW";
+	"POE::Driver::SysRW::flush";
+	"POE::Driver::SysRW::get";
+	"POE::Driver::SysRW::put";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_POE_Component_Server_TCP {
+	label="POE::Component::Server::TCP";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:389]";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:341]";
+}
+"POE::Wheel::ReadWrite::__ANON__[POE/Wheel/ReadWrite.pm:231]" -> "POE::Driver::SysRW::flush";
+"POE::Component::Client::TCP::BEGIN@15" -> "POE::Wheel::ReadWrite::BEGIN@9";
+"POE::Wheel::ReadWrite::DESTROY" -> "POE::Component::SSLify::ServerHandle::DESTROY";
+"main::__ANON__[t/simple_parallel_superbig.t:81]" -> "POE::Wheel::ReadWrite::put";
+"main::__ANON__[t/simple_parallel_superbig.t:110]" -> "POE::Wheel::ReadWrite::put";
+"POE::Wheel::ReadWrite::_define_read_state" -> "POE::Kernel::select_read";
+"POE::Wheel::ReadWrite::DESTROY" -> "POE::Kernel::select_read";
+"POE::Wheel::ReadWrite::__ANON__[POE/Wheel/ReadWrite.pm:293]" -> "POE::Kernel::select_read";
+"POE::Wheel::ReadWrite::new" -> "POE::Wheel::allocate_wheel_id";
+"POE::Component::Client::TCP::BEGIN@15" -> "POE::Wheel::ReadWrite::BEGIN@3";
+"POE::Wheel::ReadWrite::BEGIN@3" -> "strict::import";
+"POE::Session::_invoke_state" -> "POE::Wheel::ReadWrite::__ANON__[POE/Wheel/ReadWrite.pm:293]";
+"POE::Wheel::ReadWrite::put" -> "POE::Driver::SysRW::put";
+"POE::Wheel::ReadWrite::DESTROY" -> "POE::Wheel::free_wheel_id";
+"POE::Wheel::ReadWrite::put" -> "POE::Filter::Line::put";
+"POE::Component::Client::TCP::BEGIN@15" -> "POE::Wheel::ReadWrite::BEGIN@5";
+"POE::Wheel::ReadWrite::BEGIN@9" -> "POE::import";
+"POE::Wheel::ReadWrite::DESTROY" -> "POE::Kernel::state";
+"POE::Wheel::ReadWrite::_define_read_state" -> "POE::Kernel::state";
+"POE::Wheel::ReadWrite::_define_write_state" -> "POE::Kernel::state";
+"POE::Wheel::ReadWrite::__ANON__[POE/Wheel/ReadWrite.pm:293]" -> "POE::Filter::Line::get_one";
+"POE::Session::_invoke_state" -> "POE::Wheel::ReadWrite::__ANON__[POE/Wheel/ReadWrite.pm:231]";
+"POE::Component::Client::TCP::__ANON__[POE/Component/Client/TCP.pm:298]" -> "POE::Wheel::ReadWrite::DESTROY";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:389]" -> "POE::Wheel::ReadWrite::DESTROY";
+"POE::Component::Client::TCP::BEGIN@15" -> "POE::Wheel::ReadWrite::BEGIN@8";
+"POE::Wheel::ReadWrite::_define_read_state" -> "UNIVERSAL::can";
+"POE::Wheel::ReadWrite::BEGIN@8" -> "Exporter::import";
+"POE::Wheel::ReadWrite::__ANON__[POE/Wheel/ReadWrite.pm:293]" -> "POE::Filter::Line::get_one_start";
+"POE::Wheel::ReadWrite::__ANON__[POE/Wheel/ReadWrite.pm:231]" -> "POE::Kernel::call";
+"POE::Wheel::ReadWrite::__ANON__[POE/Wheel/ReadWrite.pm:293]" -> "POE::Kernel::call";
+"main::__ANON__[t/simple_parallel_superbig.t:81]" -> "POE::Wheel::ReadWrite::get_output_handle";
+"main::__ANON__[t/simple_parallel_superbig.t:138]" -> "POE::Wheel::ReadWrite::get_output_handle";
+"POE::Wheel::ReadWrite::put" -> "POE::Kernel::select_resume_write";
+"POE::Wheel::ReadWrite::__ANON__[POE/Wheel/ReadWrite.pm:293]" -> "POE::Driver::SysRW::get";
+"POE::Component::Client::TCP::__ANON__[POE/Component/Client/TCP.pm:298]" -> "POE::Wheel::ReadWrite::get_driver_out_octets";
+"POE::Wheel::ReadWrite::_define_write_state" -> "POE::Kernel::select_write";
+"POE::Wheel::ReadWrite::DESTROY" -> "POE::Kernel::select_write";
+"POE::Wheel::ReadWrite::__ANON__[POE/Wheel/ReadWrite.pm:231]" -> "POE::Kernel::select_pause_write";
+"POE::Wheel::ReadWrite::_define_write_state" -> "POE::Kernel::select_pause_write";
+"POE::Wheel::ReadWrite::new" -> "POE::Wheel::ReadWrite::_define_write_state";
+"POE::Wheel::ReadWrite::BEGIN@5" -> "vars::import";
+"POE::Wheel::ReadWrite::new" -> "POE::Wheel::ReadWrite::_define_read_state";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:341]" -> "POE::Wheel::ReadWrite::new";
+"POE::Component::Client::TCP::__ANON__[POE/Component/Client/TCP.pm:227]" -> "POE::Wheel::ReadWrite::new";
+}

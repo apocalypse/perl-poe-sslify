@@ -1,0 +1,12 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_PerlIO {
+	label="PerlIO";
+	"PerlIO::get_layers";
+}
+subgraph cluster_Test_Builder {
+	label="Test::Builder";
+	"Test::Builder::__ANON__[Test/Builder.pm:1973]";
+}
+"Test::Builder::__ANON__[Test/Builder.pm:1973]" -> "PerlIO::get_layers";
+}

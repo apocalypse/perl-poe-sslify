@@ -1,0 +1,49 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_IO_File {
+	label="IO::File";
+	"IO::File::BEGIN@10";
+	"IO::File::BEGIN@6";
+	"IO::File::CORE:match";
+	"IO::File::BEGIN@9";
+	"IO::File::BEGIN@5";
+	"IO::File::BEGIN@8";
+	"IO::File::BEGIN@11";
+}
+subgraph cluster_IO_Seekable {
+	label="IO::Seekable";
+	"IO::Seekable::BEGIN@6";
+	"IO::Seekable::BEGIN@5";
+	"IO::Seekable::BEGIN@12";
+	"IO::Seekable::BEGIN@9";
+	"IO::Seekable::BEGIN@7";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::BEGIN@16.21";
+}
+"IO::File::BEGIN@8" -> "Exporter::import";
+"IO::File::BEGIN@11" -> "Exporter::import";
+"IO::File::BEGIN@9" -> "Exporter::import";
+"POE::Kernel::BEGIN@16.21" -> "IO::File::BEGIN@8";
+"POE::Kernel::BEGIN@16.21" -> "IO::File::BEGIN@5";
+"POE::Kernel::BEGIN@16.21" -> "IO::File::CORE:match";
+"POE::Kernel::BEGIN@16.21" -> "IO::File::BEGIN@9";
+"IO::File::BEGIN@11" -> "IO::Seekable::BEGIN@9";
+"IO::File::BEGIN@11" -> "IO::Seekable::BEGIN@6";
+"POE::Kernel::BEGIN@16.21" -> "IO::File::BEGIN@10";
+"IO::File::BEGIN@6" -> "strict::import";
+"IO::File::BEGIN@11" -> "IO::Seekable::BEGIN@12";
+"POE::Kernel::BEGIN@16.21" -> "IO::File::BEGIN@11";
+"POE::Kernel::BEGIN@16.21" -> "IO::File::BEGIN@6";
+"IO::File::BEGIN@11" -> "IO::Seekable::BEGIN@5";
+"IO::File::BEGIN@11" -> "IO::Seekable::BEGIN@7";
+}

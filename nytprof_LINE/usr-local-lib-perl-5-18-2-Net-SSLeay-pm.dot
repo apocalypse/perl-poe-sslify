@@ -1,0 +1,139 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Component_SSLify_ClientHandle {
+	label="POE::Component::SSLify::ClientHandle";
+	"POE::Component::SSLify::ClientHandle::TIEHANDLE";
+}
+subgraph cluster_Net_SSLeay {
+	label="Net::SSLeay";
+	"Net::SSLeay::CORE:match";
+	"Net::SSLeay::new";
+	"Net::SSLeay::BEGIN@1";
+	"Net::SSLeay::BEGIN@16";
+	"Net::SSLeay::CTX_free";
+	"Net::SSLeay::BEGIN@18";
+	"Net::SSLeay::RAND_seed";
+	"Net::SSLeay::CORE:subst";
+	"Net::SSLeay::AUTOLOAD";
+	"Net::SSLeay::CTX_use_RSAPrivateKey_file";
+	"Net::SSLeay::CTX_set_options";
+	"Net::SSLeay::CTX_v3_new";
+	"Net::SSLeay::set_fd";
+	"Net::SSLeay::CORE:fteread";
+	"Net::SSLeay::get_error";
+	"Net::SSLeay::ERR_get_error";
+	"Net::SSLeay::load_error_strings";
+	"Net::SSLeay::die_if_ssl_error";
+	"Net::SSLeay::constant";
+	"Net::SSLeay::connect";
+	"Net::SSLeay::BEGIN@444";
+	"Net::SSLeay::CTX_use_certificate_chain_file";
+	"Net::SSLeay::write";
+	"Net::SSLeay::BEGIN@17";
+	"Net::SSLeay::read";
+	"Net::SSLeay::BEGIN@19";
+	"Net::SSLeay::BEGIN@20";
+	"Net::SSLeay::RAND_load_file";
+	"Net::SSLeay::BEGIN@24";
+	"Net::SSLeay::SSLeay_add_ssl_algorithms";
+	"Net::SSLeay::accept";
+	"Net::SSLeay::print_errs";
+	"Net::SSLeay::randomize";
+	"Net::SSLeay::get_cipher";
+	"Net::SSLeay::free";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_POE_Component_SSLify {
+	label="POE::Component::SSLify";
+	"POE::Component::SSLify::BEGIN@58";
+	"POE::Component::SSLify::SSLify_GetCipher";
+	"POE::Component::SSLify::SSLify_Options";
+	"POE::Component::SSLify::BEGIN@1";
+	"POE::Component::SSLify::_createSSLcontext";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_AutoLoader {
+	label="AutoLoader";
+	"AutoLoader::BEGIN@146";
+	"AutoLoader::BEGIN@194";
+	"AutoLoader::BEGIN@3";
+	"AutoLoader::BEGIN@37";
+	"AutoLoader::BEGIN@4";
+	"AutoLoader::import";
+	"AutoLoader::BEGIN@13";
+}
+subgraph cluster_POE_Component_SSLify_ServerHandle {
+	label="POE::Component::SSLify::ServerHandle";
+	"POE::Component::SSLify::ServerHandle::TIEHANDLE";
+	"POE::Component::SSLify::ServerHandle::CLOSE";
+	"POE::Component::SSLify::ServerHandle::WRITE";
+	"POE::Component::SSLify::ServerHandle::READ";
+	"POE::Component::SSLify::ServerHandle::_check_status";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+"Net::SSLeay::BEGIN@16" -> "strict::import";
+"POE::Component::SSLify::ServerHandle::READ" -> "Net::SSLeay::read";
+"POE::Component::SSLify::BEGIN@1" -> "Net::SSLeay::BEGIN@17";
+"POE::Component::SSLify::ServerHandle::WRITE" -> "Net::SSLeay::write";
+"POE::Component::SSLify::_createSSLcontext" -> "Net::SSLeay::CTX_use_certificate_chain_file";
+"POE::Component::SSLify::BEGIN@58" -> "Net::SSLeay::randomize";
+"Net::SSLeay::BEGIN@24" -> "AutoLoader::BEGIN@146";
+"POE::Component::SSLify::BEGIN@58" -> "Net::SSLeay::SSLeay_add_ssl_algorithms";
+"Net::SSLeay::BEGIN@24" -> "AutoLoader::BEGIN@194";
+"POE::Component::SSLify::BEGIN@1" -> "Net::SSLeay::BEGIN@16";
+"Net::SSLeay::BEGIN@444" -> "Net::SSLeay::BEGIN@1";
+"Net::SSLeay::BEGIN@24" -> "AutoLoader::BEGIN@4";
+"POE::Component::SSLify::BEGIN@58" -> "Net::SSLeay::load_error_strings";
+"Net::SSLeay::randomize" -> "Net::SSLeay::CORE:fteread";
+"Net::SSLeay::BEGIN@24" -> "AutoLoader::BEGIN@13";
+"Net::SSLeay::randomize" -> "Net::SSLeay::RAND_load_file";
+"POE::Component::SSLify::BEGIN@1" -> "Net::SSLeay::BEGIN@20";
+"POE::Component::SSLify::SSLify_GetCipher" -> "Net::SSLeay::get_cipher";
+"Net::SSLeay::die_if_ssl_error" -> "Net::SSLeay::print_errs";
+"POE::Component::SSLify::_createSSLcontext" -> "Net::SSLeay::AUTOLOAD";
+"POE::Component::SSLify::SSLify_Options" -> "Net::SSLeay::AUTOLOAD";
+"POE::Component::SSLify::ServerHandle::_check_status" -> "Net::SSLeay::AUTOLOAD";
+"POE::Component::SSLify::BEGIN@58" -> "Net::SSLeay::AUTOLOAD";
+"Net::SSLeay::BEGIN@20" -> "Exporter::import";
+"Net::SSLeay::BEGIN@17" -> "Exporter::import";
+"Net::SSLeay::BEGIN@19" -> "Exporter::import";
+"Net::SSLeay::AUTOLOAD" -> "Net::SSLeay::CORE:subst";
+"Net::SSLeay::randomize" -> "Net::SSLeay::RAND_seed";
+"Net::SSLeay::BEGIN@24" -> "AutoLoader::import";
+"POE::Component::SSLify::_createSSLcontext" -> "Net::SSLeay::CTX_set_options";
+"POE::Component::SSLify::BEGIN@1" -> "Net::SSLeay::BEGIN@19";
+"Net::SSLeay::BEGIN@24" -> "AutoLoader::BEGIN@3";
+"POE::Component::SSLify::ServerHandle::CLOSE" -> "Net::SSLeay::free";
+"POE::Component::SSLify::ClientHandle::TIEHANDLE" -> "Net::SSLeay::new";
+"POE::Component::SSLify::ServerHandle::TIEHANDLE" -> "Net::SSLeay::new";
+"Net::SSLeay::AUTOLOAD" -> "Net::SSLeay::CORE:match";
+"Net::SSLeay::AUTOLOAD" -> "Net::SSLeay::constant";
+"Net::SSLeay::print_errs" -> "Net::SSLeay::ERR_get_error";
+"POE::Component::SSLify::_createSSLcontext" -> "Net::SSLeay::CTX_v3_new";
+"POE::Component::SSLify::BEGIN@1" -> "Net::SSLeay::BEGIN@444";
+"POE::Component::SSLify::ServerHandle::TIEHANDLE" -> "Net::SSLeay::accept";
+"POE::Component::SSLify::ServerHandle::_check_status" -> "Net::SSLeay::accept";
+"POE::Component::SSLify::BEGIN@1" -> "Net::SSLeay::BEGIN@24";
+"Net::SSLeay::BEGIN@18" -> "vars::import";
+"POE::Component::SSLify::BEGIN@1" -> "Net::SSLeay::BEGIN@18";
+"POE::Component::SSLify::SSLify_Options" -> "Net::SSLeay::CTX_free";
+"POE::Component::SSLify::ServerHandle::CLOSE" -> "Net::SSLeay::CTX_free";
+"POE::Component::SSLify::ClientHandle::TIEHANDLE" -> "Net::SSLeay::connect";
+"POE::Component::SSLify::ServerHandle::_check_status" -> "Net::SSLeay::connect";
+"POE::Component::SSLify::ServerHandle::TIEHANDLE" -> "Net::SSLeay::die_if_ssl_error";
+"POE::Component::SSLify::_createSSLcontext" -> "Net::SSLeay::die_if_ssl_error";
+"POE::Component::SSLify::ServerHandle::_check_status" -> "Net::SSLeay::get_error";
+"Net::SSLeay::BEGIN@24" -> "AutoLoader::BEGIN@37";
+"POE::Component::SSLify::ServerHandle::TIEHANDLE" -> "Net::SSLeay::set_fd";
+"POE::Component::SSLify::ClientHandle::TIEHANDLE" -> "Net::SSLeay::set_fd";
+"POE::Component::SSLify::_createSSLcontext" -> "Net::SSLeay::CTX_use_RSAPrivateKey_file";
+}

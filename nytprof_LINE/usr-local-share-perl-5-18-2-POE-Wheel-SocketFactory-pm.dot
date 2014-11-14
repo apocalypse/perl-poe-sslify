@@ -1,0 +1,175 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_POE_Component_Server_TCP {
+	label="POE::Component::Server::TCP";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:479]";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:540]";
+}
+subgraph cluster_POE_Wheel_SocketFactory {
+	label="POE::Wheel::SocketFactory";
+	"POE::Wheel::SocketFactory::CORE:unpack";
+	"POE::Wheel::SocketFactory::BEGIN@11";
+	"POE::Wheel::SocketFactory::CORE:socket";
+	"POE::Wheel::SocketFactory::_shutdown";
+	"POE::Wheel::SocketFactory::_define_connect_state";
+	"POE::Wheel::SocketFactory::CORE:binmode";
+	"POE::Wheel::SocketFactory::_define_accept_state";
+	"POE::Wheel::SocketFactory::BEGIN@12";
+	"POE::Wheel::SocketFactory::new";
+	"POE::Wheel::SocketFactory::event";
+	"POE::Wheel::SocketFactory::BEGIN@26";
+	"POE::Wheel::SocketFactory::BEGIN@775";
+	"POE::Wheel::SocketFactory::BEGIN@17";
+	"POE::Wheel::SocketFactory::BEGIN@9";
+	"POE::Wheel::SocketFactory::BEGIN@25";
+	"POE::Wheel::SocketFactory::BEGIN@53";
+	"POE::Wheel::SocketFactory::CORE:bind";
+	"POE::Wheel::SocketFactory::CORE:accept";
+	"POE::Wheel::SocketFactory::CORE:connect";
+	"POE::Wheel::SocketFactory::BEGIN@8";
+	"POE::Wheel::SocketFactory::BEGIN@702";
+	"POE::Wheel::SocketFactory::CORE:gsockopt";
+	"POE::Wheel::SocketFactory::BEGIN@5";
+	"POE::Wheel::SocketFactory::CORE:listen";
+	"POE::Wheel::SocketFactory::CORE:match";
+	"POE::Wheel::SocketFactory::BEGIN@3";
+	"POE::Wheel::SocketFactory::getsockname";
+	"POE::Wheel::SocketFactory::DESTROY";
+	"POE::Wheel::SocketFactory::CORE:ssockopt";
+	"POE::Wheel::SocketFactory::CORE:getsockname";
+	"POE::Wheel::SocketFactory::__ANON__[POE/Wheel/SocketFactory.pm:203]";
+	"POE::Wheel::SocketFactory::BEGIN@24";
+	"POE::Wheel::SocketFactory::__ANON__[POE/Wheel/SocketFactory.pm:320]";
+	"POE::Wheel::SocketFactory::CORE:getpeername";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::call";
+	"POE::Kernel::select_write";
+	"POE::Kernel::select";
+	"POE::Kernel::state";
+	"POE::Kernel::__ANON__[POE/Kernel.pm:92]";
+	"POE::Kernel::select_read";
+}
+subgraph cluster_POE_Wheel {
+	label="POE::Wheel";
+	"POE::Wheel::allocate_wheel_id";
+	"POE::Wheel::free_wheel_id";
+}
+subgraph cluster_POE {
+	label="POE";
+	"POE::import";
+}
+subgraph cluster_Socket {
+	label="Socket";
+	"Socket::inet_aton";
+	"Socket::unpack_sockaddr_in";
+	"Socket::pack_sockaddr_in";
+}
+subgraph cluster_POE_Component_Client_TCP {
+	label="POE::Component::Client::TCP";
+	"POE::Component::Client::TCP::__ANON__[POE/Component/Client/TCP.pm:181]";
+	"POE::Component::Client::TCP::__ANON__[POE/Component/Client/TCP.pm:227]";
+	"POE::Component::Client::TCP::BEGIN@16";
+}
+subgraph cluster_POE_Session {
+	label="POE::Session";
+	"POE::Session::_invoke_state";
+}
+subgraph cluster_main {
+	label="main";
+	"main::__ANON__[t/simple_parallel_superbig.t:43]";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_Symbol {
+	label="Symbol";
+	"Symbol::gensym";
+}
+subgraph cluster_bytes {
+	label="bytes";
+	"bytes::import";
+}
+subgraph cluster_IO_Handle {
+	label="IO::Handle";
+	"IO::Handle::blocking";
+}
+"POE::Wheel::SocketFactory::new" -> "IO::Handle::blocking";
+"POE::Wheel::SocketFactory::BEGIN@5" -> "vars::import";
+"POE::Wheel::SocketFactory::__ANON__[POE/Wheel/SocketFactory.pm:320]" -> "POE::Kernel::call";
+"POE::Wheel::SocketFactory::__ANON__[POE/Wheel/SocketFactory.pm:203]" -> "POE::Kernel::call";
+"POE::Wheel::SocketFactory::__ANON__[POE/Wheel/SocketFactory.pm:320]" -> "POE::Wheel::SocketFactory::CORE:unpack";
+"POE::Wheel::SocketFactory::new" -> "POE::Wheel::SocketFactory::_define_connect_state";
+"POE::Wheel::SocketFactory::event" -> "POE::Kernel::select_read";
+"POE::Wheel::SocketFactory::_define_accept_state" -> "POE::Kernel::select_read";
+"POE::Component::Client::TCP::BEGIN@16" -> "POE::Wheel::SocketFactory::BEGIN@24";
+"POE::Session::_invoke_state" -> "POE::Wheel::SocketFactory::__ANON__[POE/Wheel/SocketFactory.pm:203]";
+"POE::Component::Client::TCP::__ANON__[POE/Component/Client/TCP.pm:227]" -> "POE::Wheel::SocketFactory::DESTROY";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:540]" -> "POE::Wheel::SocketFactory::DESTROY";
+"POE::Component::Client::TCP::BEGIN@16" -> "POE::Wheel::SocketFactory::BEGIN@25";
+"POE::Component::Client::TCP::BEGIN@16" -> "POE::Wheel::SocketFactory::BEGIN@26";
+"POE::Wheel::SocketFactory::new" -> "POE::Wheel::allocate_wheel_id";
+"POE::Wheel::SocketFactory::new" -> "Symbol::gensym";
+"POE::Wheel::SocketFactory::__ANON__[POE/Wheel/SocketFactory.pm:203]" -> "Symbol::gensym";
+"POE::Wheel::SocketFactory::new" -> "POE::Wheel::SocketFactory::_define_accept_state";
+"POE::Wheel::SocketFactory::getsockname" -> "POE::Wheel::SocketFactory::CORE:getsockname";
+"POE::Wheel::SocketFactory::new" -> "POE::Wheel::SocketFactory::CORE:bind";
+"POE::Wheel::SocketFactory::_shutdown" -> "POE::Kernel::select";
+"POE::Component::Client::TCP::BEGIN@16" -> "POE::Wheel::SocketFactory::BEGIN@9";
+"POE::Wheel::SocketFactory::new" -> "POE::Wheel::SocketFactory::CORE:listen";
+"POE::Component::Client::TCP::BEGIN@16" -> "POE::Wheel::SocketFactory::BEGIN@5";
+"POE::Wheel::SocketFactory::_define_connect_state" -> "POE::Kernel::select_write";
+"POE::Wheel::SocketFactory::event" -> "POE::Kernel::select_write";
+"POE::Component::Client::TCP::BEGIN@16" -> "POE::Wheel::SocketFactory::BEGIN@775";
+"POE::Wheel::SocketFactory::BEGIN@9" -> "Exporter::import";
+"POE::Wheel::SocketFactory::BEGIN@8" -> "Exporter::import";
+"POE::Wheel::SocketFactory::BEGIN@53" -> "Exporter::import";
+"POE::Wheel::SocketFactory::BEGIN@12" -> "Exporter::import";
+"POE::Wheel::SocketFactory::BEGIN@17" -> "Exporter::import";
+"POE::Wheel::SocketFactory::BEGIN@11" -> "Exporter::import";
+"POE::Wheel::SocketFactory::new" -> "POE::Wheel::SocketFactory::event";
+"POE::Wheel::SocketFactory::new" -> "POE::Kernel::__ANON__[POE/Kernel.pm:92]";
+"POE::Component::Client::TCP::BEGIN@16" -> "POE::Wheel::SocketFactory::BEGIN@11";
+"main::__ANON__[t/simple_parallel_superbig.t:43]" -> "POE::Wheel::SocketFactory::getsockname";
+"POE::Component::Client::TCP::BEGIN@16" -> "POE::Wheel::SocketFactory::BEGIN@3";
+"POE::Session::_invoke_state" -> "POE::Wheel::SocketFactory::__ANON__[POE/Wheel/SocketFactory.pm:320]";
+"POE::Component::Client::TCP::BEGIN@16" -> "POE::Wheel::SocketFactory::BEGIN@17";
+"POE::Wheel::SocketFactory::__ANON__[POE/Wheel/SocketFactory.pm:320]" -> "POE::Wheel::SocketFactory::CORE:gsockopt";
+"POE::Component::Client::TCP::BEGIN@16" -> "POE::Wheel::SocketFactory::BEGIN@702";
+"POE::Wheel::SocketFactory::BEGIN@26" -> "POE::import";
+"POE::Component::Client::TCP::__ANON__[POE/Component/Client/TCP.pm:181]" -> "POE::Wheel::SocketFactory::new";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:479]" -> "POE::Wheel::SocketFactory::new";
+"POE::Wheel::SocketFactory::__ANON__[POE/Wheel/SocketFactory.pm:320]" -> "Socket::unpack_sockaddr_in";
+"POE::Wheel::SocketFactory::__ANON__[POE/Wheel/SocketFactory.pm:203]" -> "Socket::unpack_sockaddr_in";
+"POE::Wheel::SocketFactory::DESTROY" -> "POE::Wheel::free_wheel_id";
+"POE::Wheel::SocketFactory::new" -> "Socket::inet_aton";
+"POE::Wheel::SocketFactory::DESTROY" -> "POE::Wheel::SocketFactory::_shutdown";
+"POE::Wheel::SocketFactory::__ANON__[POE/Wheel/SocketFactory.pm:320]" -> "POE::Wheel::SocketFactory::_shutdown";
+"POE::Component::Client::TCP::BEGIN@16" -> "POE::Wheel::SocketFactory::BEGIN@12";
+"POE::Wheel::SocketFactory::new" -> "POE::Wheel::SocketFactory::CORE:binmode";
+"POE::Wheel::SocketFactory::BEGIN@702" -> "bytes::import";
+"POE::Wheel::SocketFactory::BEGIN@775" -> "bytes::import";
+"POE::Wheel::SocketFactory::new" -> "POE::Wheel::SocketFactory::CORE:socket";
+"POE::Wheel::SocketFactory::BEGIN@3" -> "strict::import";
+"POE::Wheel::SocketFactory::__ANON__[POE/Wheel/SocketFactory.pm:320]" -> "POE::Wheel::SocketFactory::CORE:getpeername";
+"POE::Wheel::SocketFactory::new" -> "Socket::pack_sockaddr_in";
+"POE::Wheel::SocketFactory::new" -> "POE::Wheel::SocketFactory::CORE:ssockopt";
+"POE::Component::Client::TCP::BEGIN@16" -> "POE::Wheel::SocketFactory::BEGIN@53";
+"POE::Wheel::SocketFactory::new" -> "POE::Wheel::SocketFactory::CORE:connect";
+"POE::Component::Client::TCP::BEGIN@16" -> "POE::Wheel::SocketFactory::BEGIN@8";
+"POE::Wheel::SocketFactory::_define_connect_state" -> "POE::Kernel::state";
+"POE::Wheel::SocketFactory::_shutdown" -> "POE::Kernel::state";
+"POE::Wheel::SocketFactory::_define_accept_state" -> "POE::Kernel::state";
+"POE::Wheel::SocketFactory::__ANON__[POE/Wheel/SocketFactory.pm:203]" -> "POE::Wheel::SocketFactory::CORE:accept";
+"POE::Wheel::SocketFactory::new" -> "POE::Wheel::SocketFactory::CORE:match";
+}

@@ -1,0 +1,31 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_XSLoader {
+	label="XSLoader";
+	"XSLoader::load";
+}
+subgraph cluster_Sys_Hostname {
+	label="Sys::Hostname";
+	"Sys::Hostname::BEGIN@5";
+	"Sys::Hostname::BEGIN@3";
+	"Sys::Hostname::BEGIN@16";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::BEGIN@13";
+}
+"POE::Kernel::BEGIN@13" -> "Sys::Hostname::BEGIN@16";
+"Sys::Hostname::BEGIN@3" -> "strict::import";
+"Sys::Hostname::BEGIN@5" -> "Exporter::import";
+"POE::Kernel::BEGIN@13" -> "Sys::Hostname::BEGIN@5";
+"Sys::Hostname::BEGIN@16" -> "XSLoader::load";
+"POE::Kernel::BEGIN@13" -> "Sys::Hostname::BEGIN@3";
+}

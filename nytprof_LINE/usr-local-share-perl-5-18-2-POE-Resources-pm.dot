@@ -1,0 +1,59 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Resources {
+	label="POE::Resources";
+	"POE::Resources::CORE:subst";
+	"POE::Resources::CORE:match";
+	"POE::Resources::BEGIN@3";
+	"POE::Resources::load";
+	"POE::Resources::BEGIN@5";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::BEGIN@2.24";
+	"POE::Kernel::BEGIN@2.28";
+	"POE::Kernel::BEGIN@2.25";
+	"POE::Kernel::BEGIN@2.27";
+	"POE::Kernel::BEGIN@2";
+	"POE::Kernel::BEGIN@2.30";
+	"POE::Kernel::BEGIN@2.17";
+	"POE::Kernel::BEGIN@2.8";
+	"POE::Kernel::BEGIN@2.14";
+	"POE::Kernel::BEGIN@2.13";
+	"POE::Kernel::BEGIN@2.31";
+	"POE::Kernel::new";
+	"POE::Kernel::BEGIN@2.10";
+	"POE::Kernel::BEGIN@575";
+	"POE::Kernel::BEGIN@2.11";
+	"POE::Kernel::BEGIN@2.16";
+}
+"POE::Resources::load" -> "POE::Kernel::BEGIN@2.30";
+"POE::Resources::load" -> "POE::Kernel::BEGIN@2";
+"POE::Resources::load" -> "POE::Resources::CORE:subst";
+"POE::Kernel::BEGIN@575" -> "POE::Resources::BEGIN@3";
+"POE::Resources::load" -> "POE::Kernel::BEGIN@2.16";
+"POE::Kernel::BEGIN@575" -> "POE::Resources::BEGIN@5";
+"POE::Resources::load" -> "POE::Kernel::BEGIN@2.31";
+"POE::Resources::BEGIN@3" -> "strict::import";
+"POE::Resources::load" -> "POE::Kernel::BEGIN@2.11";
+"POE::Resources::load" -> "POE::Kernel::BEGIN@2.25";
+"POE::Resources::load" -> "POE::Kernel::BEGIN@2.13";
+"POE::Resources::load" -> "POE::Kernel::BEGIN@2.24";
+"POE::Resources::load" -> "POE::Kernel::BEGIN@2.14";
+"POE::Resources::load" -> "POE::Kernel::BEGIN@2.17";
+"POE::Resources::load" -> "POE::Kernel::BEGIN@2.10";
+"POE::Resources::BEGIN@5" -> "vars::import";
+"POE::Resources::load" -> "POE::Resources::CORE:match";
+"POE::Resources::load" -> "POE::Kernel::BEGIN@2.28";
+"POE::Resources::load" -> "POE::Kernel::BEGIN@2.8";
+"POE::Resources::load" -> "POE::Kernel::BEGIN@2.27";
+"POE::Kernel::new" -> "POE::Resources::load";
+}

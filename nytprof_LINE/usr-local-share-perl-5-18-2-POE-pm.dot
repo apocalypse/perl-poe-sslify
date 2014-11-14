@@ -1,0 +1,87 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE {
+	label="POE";
+	"POE::BEGIN@8";
+	"POE::CORE:match";
+	"POE::BEGIN@11";
+	"POE::import";
+	"POE::BEGIN@5";
+	"POE::BEGIN@6";
+}
+subgraph cluster_POE_Wheel_ReadWrite {
+	label="POE::Wheel::ReadWrite";
+	"POE::Wheel::ReadWrite::BEGIN@1.37";
+	"POE::Wheel::ReadWrite::BEGIN@1";
+	"POE::Wheel::ReadWrite::BEGIN@9";
+	"POE::Wheel::ReadWrite::BEGIN@1.39";
+	"POE::Wheel::ReadWrite::BEGIN@1.40";
+	"POE::Wheel::ReadWrite::BEGIN@1.38";
+}
+subgraph cluster_POE_Resource_Clock {
+	label="POE::Resource::Clock";
+	"POE::Resource::Clock::BEGIN@220";
+	"POE::Resource::Clock::BEGIN@13";
+	"POE::Resource::Clock::BEGIN@12";
+	"POE::Resource::Clock::CORE:pack";
+	"POE::Resource::Clock::BEGIN@5";
+	"POE::Resource::Clock::BEGIN@8";
+	"POE::Resource::Clock::BEGIN@10";
+	"POE::Resource::Clock::BEGIN@11";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_main {
+	label="main";
+	"main::BEGIN@1.36";
+	"main::BEGIN@19";
+	"main::BEGIN@1.7";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_POE_Wheel_SocketFactory {
+	label="POE::Wheel::SocketFactory";
+	"POE::Wheel::SocketFactory::BEGIN@1";
+	"POE::Wheel::SocketFactory::BEGIN@1.41";
+	"POE::Wheel::SocketFactory::BEGIN@26";
+	"POE::Wheel::SocketFactory::BEGIN@1.42";
+}
+"POE::BEGIN@11" -> "POE::Resource::Clock::BEGIN@12";
+"POE::BEGIN@8" -> "vars::import";
+"POE::import" -> "POE::Wheel::SocketFactory::BEGIN@1";
+"POE::BEGIN@11" -> "POE::Resource::Clock::BEGIN@13";
+"main::BEGIN@19" -> "POE::BEGIN@6";
+"main::BEGIN@19" -> "POE::BEGIN@5";
+"POE::import" -> "POE::Wheel::ReadWrite::BEGIN@1.38";
+"POE::BEGIN@11" -> "POE::Resource::Clock::BEGIN@11";
+"POE::import" -> "POE::Wheel::SocketFactory::BEGIN@1.41";
+"POE::BEGIN@11" -> "POE::Resource::Clock::BEGIN@10";
+"POE::import" -> "POE::Wheel::ReadWrite::BEGIN@1.37";
+"POE::BEGIN@11" -> "POE::Resource::Clock::BEGIN@5";
+"POE::BEGIN@11" -> "POE::Resource::Clock::BEGIN@8";
+"main::BEGIN@19" -> "POE::BEGIN@8";
+"POE::import" -> "POE::Wheel::ReadWrite::BEGIN@1.39";
+"POE::BEGIN@6" -> "Exporter::import";
+"POE::BEGIN@11" -> "Exporter::import";
+"POE::BEGIN@11" -> "POE::Resource::Clock::CORE:pack";
+"POE::import" -> "POE::CORE:match";
+"main::BEGIN@19" -> "POE::import";
+"POE::Wheel::SocketFactory::BEGIN@26" -> "POE::import";
+"POE::Wheel::ReadWrite::BEGIN@9" -> "POE::import";
+"POE::import" -> "main::BEGIN@1.7";
+"POE::import" -> "POE::Wheel::ReadWrite::BEGIN@1.40";
+"POE::import" -> "POE::Wheel::ReadWrite::BEGIN@1";
+"POE::import" -> "main::BEGIN@1.36";
+"main::BEGIN@19" -> "POE::BEGIN@11";
+"POE::import" -> "POE::Wheel::SocketFactory::BEGIN@1.42";
+"POE::BEGIN@5" -> "strict::import";
+"POE::BEGIN@11" -> "POE::Resource::Clock::BEGIN@220";
+}

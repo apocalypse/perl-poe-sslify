@@ -1,0 +1,66 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_POE_Queue_Array {
+	label="POE::Queue::Array";
+	"POE::Queue::Array::import";
+	"POE::Queue::Array::BEGIN@12";
+	"POE::Queue::Array::BEGIN@7";
+	"POE::Queue::Array::remove_items";
+	"POE::Queue::Array::dequeue_next";
+	"POE::Queue::Array::BEGIN@5";
+	"POE::Queue::Array::BEGIN@11";
+	"POE::Queue::Array::get_next_priority";
+	"POE::Queue::Array::enqueue";
+	"POE::Queue::Array::get_item_count";
+	"POE::Queue::Array::new";
+	"POE::Queue::Array::BEGIN@24";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::_data_handle_remove";
+	"POE::Kernel::__ANON__[POE/Resource/Events.pm:199]";
+	"POE::Kernel::_test_if_kernel_is_idle";
+	"POE::Kernel::__ANON__[POE/Resource/FileHandles.pm:504]";
+	"POE::Kernel::_data_ev_dispatch_due";
+	"POE::Kernel::_data_ev_clear_session";
+	"POE::Kernel::_invoke_state";
+	"POE::Kernel::_data_ev_enqueue";
+	"POE::Kernel::new";
+	"POE::Kernel::BEGIN@27";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::unimport";
+	"strict::import";
+}
+"POE::Queue::Array::BEGIN@5" -> "strict::import";
+"POE::Kernel::_data_ev_dispatch_due" -> "POE::Queue::Array::get_next_priority";
+"POE::Kernel::_data_ev_enqueue" -> "POE::Queue::Array::get_next_priority";
+"POE::Kernel::_data_ev_enqueue" -> "POE::Queue::Array::enqueue";
+"POE::Kernel::BEGIN@27" -> "POE::Queue::Array::BEGIN@5";
+"POE::Kernel::new" -> "POE::Queue::Array::new";
+"POE::Queue::Array::BEGIN@24" -> "strict::unimport";
+"POE::Queue::Array::remove_items" -> "POE::Kernel::__ANON__[POE/Resource/FileHandles.pm:504]";
+"POE::Kernel::_data_ev_dispatch_due" -> "POE::Queue::Array::dequeue_next";
+"POE::Queue::Array::remove_items" -> "POE::Kernel::__ANON__[POE/Resource/Events.pm:199]";
+"POE::Queue::Array::BEGIN@11" -> "Exporter::import";
+"POE::Queue::Array::BEGIN@12" -> "Exporter::import";
+"POE::Kernel::BEGIN@27" -> "POE::Queue::Array::BEGIN@12";
+"POE::Kernel::BEGIN@27" -> "POE::Queue::Array::import";
+"POE::Kernel::_data_handle_remove" -> "POE::Queue::Array::remove_items";
+"POE::Kernel::_data_ev_clear_session" -> "POE::Queue::Array::remove_items";
+"POE::Kernel::BEGIN@27" -> "POE::Queue::Array::BEGIN@24";
+"POE::Kernel::BEGIN@27" -> "POE::Queue::Array::BEGIN@7";
+"POE::Kernel::BEGIN@27" -> "POE::Queue::Array::BEGIN@11";
+"POE::Queue::Array::BEGIN@7" -> "vars::import";
+"POE::Kernel::_test_if_kernel_is_idle" -> "POE::Queue::Array::get_item_count";
+"POE::Kernel::_invoke_state" -> "POE::Queue::Array::get_item_count";
+}

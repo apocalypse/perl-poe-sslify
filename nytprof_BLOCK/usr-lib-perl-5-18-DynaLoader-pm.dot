@@ -1,0 +1,46 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Resource_Clock {
+	label="POE::Resource::Clock";
+	"POE::Resource::Clock::BEGIN@220";
+}
+subgraph cluster_Time_HiRes {
+	label="Time::HiRes";
+	"Time::HiRes::bootstrap";
+}
+subgraph cluster_DynaLoader {
+	label="DynaLoader";
+	"DynaLoader::BEGIN@17";
+	"DynaLoader::bootstrap";
+	"DynaLoader::CORE:subst";
+	"DynaLoader::dl_undef_symbols";
+	"DynaLoader::CORE:regcomp";
+	"DynaLoader::dl_load_file";
+	"DynaLoader::BEGIN@21";
+	"DynaLoader::dl_install_xsub";
+	"DynaLoader::CORE:ftsize";
+	"DynaLoader::CORE:ftdir";
+	"DynaLoader::dl_load_flags";
+	"DynaLoader::dl_find_symbol";
+	"DynaLoader::CORE:ftfile";
+}
+subgraph cluster_Config {
+	label="Config";
+	"Config::import";
+}
+"POE::Resource::Clock::BEGIN@220" -> "DynaLoader::BEGIN@21";
+"DynaLoader::bootstrap" -> "Time::HiRes::bootstrap";
+"DynaLoader::bootstrap" -> "DynaLoader::dl_install_xsub";
+"POE::Resource::Clock::BEGIN@220" -> "DynaLoader::BEGIN@17";
+"DynaLoader::bootstrap" -> "DynaLoader::dl_undef_symbols";
+"DynaLoader::bootstrap" -> "DynaLoader::dl_find_symbol";
+"DynaLoader::bootstrap" -> "DynaLoader::CORE:subst";
+"DynaLoader::bootstrap" -> "DynaLoader::CORE:ftdir";
+"DynaLoader::BEGIN@21" -> "Config::import";
+"DynaLoader::bootstrap" -> "DynaLoader::dl_load_file";
+"DynaLoader::bootstrap" -> "DynaLoader::dl_load_flags";
+"POE::Resource::Clock::BEGIN@220" -> "DynaLoader::bootstrap";
+"POE::Resource::Clock::BEGIN@220" -> "DynaLoader::CORE:regcomp";
+"DynaLoader::bootstrap" -> "DynaLoader::CORE:ftsize";
+"DynaLoader::bootstrap" -> "DynaLoader::CORE:ftfile";
+}

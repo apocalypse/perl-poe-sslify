@@ -1,0 +1,31 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_IO_Socket {
+	label="IO::Socket";
+	"IO::Socket::import";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_IO_Socket_UNIX {
+	label="IO::Socket::UNIX";
+	"IO::Socket::UNIX::BEGIN@11";
+	"IO::Socket::UNIX::BEGIN@12";
+	"IO::Socket::UNIX::BEGIN@9";
+}
+subgraph cluster_IO_Pipely {
+	label="IO::Pipely";
+	"IO::Pipely::BEGIN@10";
+}
+"IO::Socket::UNIX::BEGIN@12" -> "Exporter::import";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::UNIX::BEGIN@11";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::UNIX::BEGIN@12";
+"IO::Pipely::BEGIN@10" -> "IO::Socket::UNIX::BEGIN@9";
+"IO::Socket::UNIX::BEGIN@9" -> "strict::import";
+"IO::Socket::UNIX::BEGIN@11" -> "IO::Socket::import";
+}

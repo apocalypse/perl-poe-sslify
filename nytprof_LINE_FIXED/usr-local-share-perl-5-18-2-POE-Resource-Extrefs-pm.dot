@@ -1,0 +1,33 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::_data_ses_free";
+	"POE::Kernel::_data_extref_clear_session";
+	"POE::Kernel::BEGIN@13.15";
+	"POE::Kernel::BEGIN@2.14";
+	"POE::Kernel::_test_if_kernel_is_idle";
+	"POE::Kernel::_data_extref_finalize";
+	"POE::Kernel::_finalize_kernel";
+	"POE::Kernel::_data_extref_count";
+}
+subgraph cluster_POE_Resource_Extrefs {
+	label="POE::Resource::Extrefs";
+	"POE::Resource::Extrefs::BEGIN@7";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+"POE::Kernel::_test_if_kernel_is_idle" -> "POE::Kernel::_data_extref_count";
+"POE::Kernel::BEGIN@2.14" -> "POE::Resource::Extrefs::BEGIN@7";
+"POE::Resource::Extrefs::BEGIN@7" -> "vars::import";
+"POE::Kernel::_data_ses_free" -> "POE::Kernel::_data_extref_clear_session";
+"POE::Kernel::_finalize_kernel" -> "POE::Kernel::_data_extref_finalize";
+"POE::Kernel::BEGIN@2.14" -> "POE::Kernel::BEGIN@13.15";
+"POE::Kernel::BEGIN@13.15" -> "strict::import";
+}

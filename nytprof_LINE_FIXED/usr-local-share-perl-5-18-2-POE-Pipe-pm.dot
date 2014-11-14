@@ -1,0 +1,57 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_IO_Pipely {
+	label="IO::Pipely";
+	"IO::Pipely::BEGIN@51";
+	"IO::Pipely::BEGIN@24";
+	"IO::Pipely::BEGIN@10";
+	"IO::Pipely::BEGIN@9";
+	"IO::Pipely::BEGIN@23";
+	"IO::Pipely::BEGIN@7";
+	"IO::Pipely::BEGIN@6";
+	"IO::Pipely::BEGIN@27";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_base {
+	label="base";
+	"base::import";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_POE_Pipe {
+	label="POE::Pipe";
+	"POE::Pipe::BEGIN@5";
+	"POE::Pipe::BEGIN@8";
+	"POE::Pipe::BEGIN@11";
+	"POE::Pipe::BEGIN@6";
+}
+subgraph cluster_warnings {
+	label="warnings";
+	"warnings::import";
+}
+"base::import" -> "POE::Pipe::BEGIN@8";
+"POE::Pipe::BEGIN@11" -> "IO::Pipely::BEGIN@6";
+"POE::Pipe::BEGIN@11" -> "IO::Pipely::BEGIN@27";
+"POE::Pipe::BEGIN@8" -> "vars::import";
+"base::import" -> "POE::Pipe::BEGIN@6";
+"base::import" -> "POE::Pipe::BEGIN@5";
+"POE::Pipe::BEGIN@11" -> "Exporter::import";
+"POE::Pipe::BEGIN@11" -> "IO::Pipely::BEGIN@23";
+"POE::Pipe::BEGIN@11" -> "IO::Pipely::BEGIN@9";
+"POE::Pipe::BEGIN@5" -> "warnings::import";
+"POE::Pipe::BEGIN@11" -> "IO::Pipely::BEGIN@7";
+"POE::Pipe::BEGIN@11" -> "IO::Pipely::BEGIN@10";
+"POE::Pipe::BEGIN@6" -> "strict::import";
+"base::import" -> "POE::Pipe::BEGIN@11";
+"POE::Pipe::BEGIN@11" -> "IO::Pipely::BEGIN@24";
+"POE::Pipe::BEGIN@11" -> "IO::Pipely::BEGIN@51";
+}

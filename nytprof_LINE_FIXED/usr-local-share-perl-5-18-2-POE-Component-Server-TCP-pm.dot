@@ -1,0 +1,158 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_POE_Session {
+	label="POE::Session";
+	"POE::Session::ID";
+	"POE::Session::create";
+	"POE::Session::import";
+	"POE::Session::_invoke_state";
+}
+subgraph cluster_warnings {
+	label="warnings";
+	"warnings::unimport";
+}
+subgraph cluster_POE_Filter_Line {
+	label="POE::Filter::Line";
+	"POE::Filter::Line::new";
+}
+subgraph cluster_POE_Wheel_SocketFactory {
+	label="POE::Wheel::SocketFactory";
+	"POE::Wheel::SocketFactory::new";
+	"POE::Wheel::SocketFactory::DESTROY";
+}
+subgraph cluster_POE_Wheel_ReadWrite {
+	label="POE::Wheel::ReadWrite";
+	"POE::Wheel::ReadWrite::DESTROY";
+	"POE::Wheel::ReadWrite::new";
+}
+subgraph cluster_main {
+	label="main";
+	"main::RUNTIME";
+	"main::__ANON__[t/simple_parallel_superbig.t:47]";
+	"main::__ANON__[t/simple_parallel_superbig.t:52]";
+	"main::__ANON__[t/simple_parallel_superbig.t:96]";
+	"main::__ANON__[t/simple_parallel_superbig.t:43]";
+	"main::__ANON__[t/simple_parallel_superbig.t:67]";
+	"main::__ANON__[t/simple_parallel_superbig.t:81]";
+	"main::BEGIN@21";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::alias_remove";
+	"POE::Kernel::alias_set";
+	"POE::Kernel::yield";
+	"POE::Kernel::call";
+}
+subgraph cluster_Socket {
+	label="Socket";
+	"Socket::inet_ntoa";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_POE_Component_SSLify_ServerHandle {
+	label="POE::Component::SSLify::ServerHandle";
+	"POE::Component::SSLify::ServerHandle::FILENO";
+}
+subgraph cluster_POE_Driver_SysRW {
+	label="POE::Driver::SysRW";
+	"POE::Driver::SysRW::new";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_POE_Component_Server_TCP {
+	label="POE::Component::Server::TCP";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:408]";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:364]";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:540]";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:389]";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:549]";
+	"POE::Component::Server::TCP::BEGIN@5";
+	"POE::Component::Server::TCP::BEGIN@8";
+	"POE::Component::Server::TCP::BEGIN@12";
+	"POE::Component::Server::TCP::BEGIN@3";
+	"POE::Component::Server::TCP::CORE:sort";
+	"POE::Component::Server::TCP::BEGIN@33";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:479]";
+	"POE::Component::Server::TCP::BEGIN@32";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:374]";
+	"POE::Component::Server::TCP::BEGIN@15";
+	"POE::Component::Server::TCP::BEGIN@31";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:509]";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:422]";
+	"POE::Component::Server::TCP::BEGIN@30";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:449]";
+	"POE::Component::Server::TCP::BEGIN@9";
+	"POE::Component::Server::TCP::new";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:548]";
+	"POE::Component::Server::TCP::BEGIN@34";
+	"POE::Component::Server::TCP::BEGIN@10";
+	"POE::Component::Server::TCP::_get_filters";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:352]";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:341]";
+}
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:341]" -> "POE::Component::Server::TCP::_get_filters";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:341]" -> "POE::Component::SSLify::ServerHandle::FILENO";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:408]" -> "POE::Kernel::call";
+"POE::Session::_invoke_state" -> "POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:548]";
+"POE::Component::Server::TCP::BEGIN@9" -> "Exporter::import";
+"POE::Component::Server::TCP::BEGIN@8" -> "Exporter::import";
+"POE::Component::Server::TCP::BEGIN@12" -> "Exporter::import";
+"POE::Component::Server::TCP::BEGIN@10" -> "Exporter::import";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:364]" -> "main::__ANON__[t/simple_parallel_superbig.t:96]";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:479]" -> "POE::Wheel::SocketFactory::new";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@33";
+"POE::Component::Server::TCP::new" -> "POE::Session::ID";
+"POE::Session::_invoke_state" -> "POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:549]";
+"POE::Session::_invoke_state" -> "POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:364]";
+"POE::Session::_invoke_state" -> "POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:352]";
+"main::RUNTIME" -> "POE::Component::Server::TCP::new";
+"POE::Component::Server::TCP::_get_filters" -> "POE::Filter::Line::new";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@12";
+"POE::Session::_invoke_state" -> "POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:540]";
+"POE::Session::_invoke_state" -> "POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:389]";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:389]" -> "POE::Wheel::ReadWrite::DESTROY";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@34";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:364]" -> "POE::Kernel::yield";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:352]" -> "main::__ANON__[t/simple_parallel_superbig.t:81]";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:540]" -> "POE::Wheel::SocketFactory::DESTROY";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:341]" -> "POE::Wheel::ReadWrite::new";
+"POE::Component::Server::TCP::BEGIN@5" -> "vars::import";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:341]" -> "main::__ANON__[t/simple_parallel_superbig.t:47]";
+"POE::Component::Server::TCP::BEGIN@15" -> "warnings::unimport";
+"POE::Session::_invoke_state" -> "POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:509]";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@31";
+"POE::Session::_invoke_state" -> "POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:479]";
+"POE::Component::Server::TCP::new" -> "POE::Component::Server::TCP::CORE:sort";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:479]" -> "POE::Kernel::alias_set";
+"POE::Component::Server::TCP::BEGIN@30" -> "POE::Session::import";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@10";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:341]" -> "main::__ANON__[t/simple_parallel_superbig.t:67]";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@15";
+"POE::Session::_invoke_state" -> "POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:374]";
+"POE::Component::Server::TCP::BEGIN@3" -> "strict::import";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@3";
+"POE::Session::_invoke_state" -> "POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:341]";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:449]" -> "POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:422]";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@30";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@5";
+"POE::Session::_invoke_state" -> "POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:408]";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:389]" -> "main::__ANON__[t/simple_parallel_superbig.t:52]";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:341]" -> "Socket::inet_ntoa";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@8";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:540]" -> "POE::Kernel::alias_remove";
+"POE::Component::Server::TCP::new" -> "POE::Session::create";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:422]" -> "POE::Session::create";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:479]" -> "main::__ANON__[t/simple_parallel_superbig.t:43]";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@9";
+"POE::Session::_invoke_state" -> "POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:449]";
+"main::BEGIN@21" -> "POE::Component::Server::TCP::BEGIN@32";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:341]" -> "POE::Driver::SysRW::new";
+}

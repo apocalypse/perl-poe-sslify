@@ -1,0 +1,44 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Component_SSLify {
+	label="POE::Component::SSLify";
+	"POE::Component::SSLify::BEGIN@1";
+	"POE::Component::SSLify::BEGIN@98";
+}
+subgraph cluster_IO_Socket {
+	label="IO::Socket";
+	"IO::Socket::BEGIN@12";
+}
+subgraph cluster_IO_Handle {
+	label="IO::Handle";
+	"IO::Handle::BEGIN@9";
+}
+subgraph cluster_POE_Resource_Clock {
+	label="POE::Resource::Clock";
+	"POE::Resource::Clock::BEGIN@11";
+}
+subgraph cluster_Test_FailWarnings {
+	label="Test::FailWarnings";
+	"Test::FailWarnings::BEGIN@10";
+}
+subgraph cluster_XSLoader {
+	label="XSLoader";
+	"XSLoader::load";
+}
+subgraph cluster_Sys_Hostname {
+	label="Sys::Hostname";
+	"Sys::Hostname::BEGIN@16";
+}
+subgraph cluster_POSIX {
+	label="POSIX";
+	"POSIX::BEGIN@11";
+}
+"POE::Component::SSLify::BEGIN@1" -> "XSLoader::load";
+"POE::Resource::Clock::BEGIN@11" -> "XSLoader::load";
+"IO::Handle::BEGIN@9" -> "XSLoader::load";
+"Test::FailWarnings::BEGIN@10" -> "XSLoader::load";
+"Sys::Hostname::BEGIN@16" -> "XSLoader::load";
+"POSIX::BEGIN@11" -> "XSLoader::load";
+"IO::Socket::BEGIN@12" -> "XSLoader::load";
+"POE::Component::SSLify::BEGIN@98" -> "XSLoader::load";
+}

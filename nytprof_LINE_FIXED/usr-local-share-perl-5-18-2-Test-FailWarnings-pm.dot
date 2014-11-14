@@ -1,0 +1,151 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_UNIVERSAL {
+	label="UNIVERSAL";
+	"UNIVERSAL::VERSION";
+}
+subgraph cluster_Test_Builder_Module {
+	label="Test::Builder::Module";
+	"Test::Builder::Module::import";
+}
+subgraph cluster_File_Spec {
+	label="File::Spec";
+	"File::Spec::BEGIN@3";
+	"File::Spec::BEGIN@4";
+}
+subgraph cluster_Cwd {
+	label="Cwd";
+	"Cwd::CORE:regcomp";
+	"Cwd::BEGIN@209";
+	"Cwd::CORE:fteexec";
+	"Cwd::BEGIN@172";
+	"Cwd::BEGIN@842";
+	"Cwd::BEGIN@170";
+	"Cwd::CORE:match";
+	"Cwd::BEGIN@171";
+}
+subgraph cluster_warnings {
+	label="warnings";
+	"warnings::import";
+}
+subgraph cluster_main {
+	label="main";
+	"main::BEGIN@7";
+	"main::BEGIN@1";
+	"main::BEGIN@3";
+	"main::BEGIN@2.2";
+}
+subgraph cluster_Test_More {
+	label="Test::More";
+	"Test::More::BEGIN@4";
+	"Test::More::BEGIN@23";
+	"Test::More::BEGIN@5";
+	"Test::More::BEGIN@1679";
+	"Test::More::BEGIN@3";
+	"Test::More::BEGIN@1390";
+	"Test::More::BEGIN@1313";
+}
+subgraph cluster_File_Spec_Unix {
+	label="File::Spec::Unix";
+	"File::Spec::Unix::BEGIN@4";
+	"File::Spec::Unix::BEGIN@127";
+	"File::Spec::Unix::BEGIN@136";
+	"File::Spec::Unix::BEGIN@179";
+	"File::Spec::Unix::BEGIN@242";
+	"File::Spec::Unix::BEGIN@220";
+	"File::Spec::Unix::BEGIN@145";
+	"File::Spec::Unix::BEGIN@3";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_Config {
+	label="Config";
+	"Config::FETCH";
+}
+subgraph cluster_Carp {
+	label="Carp";
+	"Carp::BEGIN@6";
+	"Carp::BEGIN@4";
+	"Carp::BEGIN@171";
+	"Carp::BEGIN@555";
+	"Carp::BEGIN@3";
+	"Carp::BEGIN@5";
+	"Carp::BEGIN@575";
+	"Carp::BEGIN@568";
+	"Carp::BEGIN@49";
+	"Carp::BEGIN@73";
+	"Carp::BEGIN@61";
+	"Carp::BEGIN@131";
+}
+subgraph cluster_XSLoader {
+	label="XSLoader";
+	"XSLoader::load";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_Test_FailWarnings {
+	label="Test::FailWarnings";
+	"Test::FailWarnings::BEGIN@9";
+	"Test::FailWarnings::import";
+	"Test::FailWarnings::BEGIN@12";
+	"Test::FailWarnings::BEGIN@10";
+	"Test::FailWarnings::BEGIN@11";
+}
+"Test::FailWarnings::BEGIN@11" -> "File::Spec::Unix::BEGIN@127";
+"main::BEGIN@7" -> "main::BEGIN@1";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@575";
+"Test::FailWarnings::BEGIN@10" -> "Cwd::BEGIN@842";
+"main::BEGIN@7" -> "Test::FailWarnings::BEGIN@11";
+"Test::FailWarnings::BEGIN@9" -> "Test::Builder::Module::import";
+"main::BEGIN@2.2" -> "strict::import";
+"main::BEGIN@7" -> "main::BEGIN@2.2";
+"Test::FailWarnings::BEGIN@9" -> "UNIVERSAL::VERSION";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@555";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@4";
+"Test::FailWarnings::BEGIN@9" -> "Test::More::BEGIN@5";
+"Test::FailWarnings::BEGIN@9" -> "Test::More::BEGIN@1679";
+"Test::FailWarnings::BEGIN@9" -> "Test::More::BEGIN@23";
+"Test::FailWarnings::BEGIN@10" -> "Config::FETCH";
+"Test::FailWarnings::BEGIN@9" -> "Test::More::BEGIN@3";
+"Test::FailWarnings::BEGIN@10" -> "Cwd::BEGIN@172";
+"Test::FailWarnings::BEGIN@11" -> "File::Spec::BEGIN@4";
+"Test::FailWarnings::BEGIN@10" -> "Cwd::CORE:regcomp";
+"main::BEGIN@7" -> "Test::FailWarnings::BEGIN@9";
+"Test::FailWarnings::BEGIN@10" -> "Cwd::CORE:match";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@5";
+"Test::FailWarnings::BEGIN@9" -> "Test::More::BEGIN@1313";
+"main::BEGIN@7" -> "Test::FailWarnings::BEGIN@10";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@3";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@73";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@49";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@131";
+"Test::FailWarnings::BEGIN@11" -> "File::Spec::Unix::BEGIN@145";
+"main::BEGIN@3" -> "warnings::import";
+"Test::FailWarnings::BEGIN@10" -> "Cwd::BEGIN@209";
+"Test::FailWarnings::BEGIN@10" -> "Cwd::CORE:fteexec";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@61";
+"main::BEGIN@7" -> "Test::FailWarnings::import";
+"Test::FailWarnings::BEGIN@11" -> "File::Spec::Unix::BEGIN@3";
+"Test::FailWarnings::BEGIN@11" -> "File::Spec::Unix::BEGIN@4";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@171";
+"Test::FailWarnings::BEGIN@10" -> "XSLoader::load";
+"Test::FailWarnings::BEGIN@11" -> "File::Spec::Unix::BEGIN@136";
+"Test::FailWarnings::BEGIN@11" -> "File::Spec::Unix::BEGIN@242";
+"Test::FailWarnings::BEGIN@10" -> "Cwd::BEGIN@170";
+"Test::FailWarnings::BEGIN@9" -> "Test::More::BEGIN@4";
+"Test::FailWarnings::BEGIN@11" -> "File::Spec::Unix::BEGIN@179";
+"Test::FailWarnings::BEGIN@12" -> "Exporter::import";
+"Test::FailWarnings::BEGIN@10" -> "Exporter::import";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@6";
+"Test::FailWarnings::BEGIN@10" -> "Cwd::BEGIN@171";
+"Test::FailWarnings::BEGIN@11" -> "File::Spec::Unix::BEGIN@220";
+"Test::FailWarnings::BEGIN@9" -> "Test::More::BEGIN@1390";
+"main::BEGIN@7" -> "Test::FailWarnings::BEGIN@12";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@568";
+"Test::FailWarnings::BEGIN@11" -> "File::Spec::BEGIN@3";
+"main::BEGIN@7" -> "main::BEGIN@3";
+}

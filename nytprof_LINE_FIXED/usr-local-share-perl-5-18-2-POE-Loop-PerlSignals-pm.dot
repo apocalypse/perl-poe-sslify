@@ -1,0 +1,44 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_POE_Loop_Select {
+	label="POE::Loop::Select";
+	"POE::Loop::Select::BEGIN@9";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::loop_ignore_all_signals";
+	"POE::Kernel::loop_finalize";
+	"POE::Kernel::_finalize_kernel";
+	"POE::Kernel::import";
+	"POE::Kernel::_data_sig_kernel_awaits_pids";
+	"POE::Kernel::BEGIN@16";
+	"POE::Kernel::_data_sig_initialize";
+	"POE::Kernel::BEGIN@17";
+	"POE::Kernel::loop_ignore_signal";
+}
+subgraph cluster_POE_Loop_PerlSignals {
+	label="POE::Loop::PerlSignals";
+	"POE::Loop::PerlSignals::BEGIN@10";
+	"POE::Loop::PerlSignals::BEGIN@8";
+}
+"POE::Loop::PerlSignals::BEGIN@10" -> "vars::import";
+"POE::Loop::Select::BEGIN@9" -> "POE::Kernel::BEGIN@17";
+"POE::Kernel::BEGIN@17" -> "POE::Kernel::import";
+"POE::Loop::Select::BEGIN@9" -> "POE::Kernel::BEGIN@16";
+"POE::Loop::Select::BEGIN@9" -> "POE::Loop::PerlSignals::BEGIN@8";
+"POE::Kernel::loop_finalize" -> "POE::Kernel::loop_ignore_all_signals";
+"POE::Kernel::_data_sig_initialize" -> "POE::Kernel::loop_ignore_signal";
+"POE::Kernel::_finalize_kernel" -> "POE::Kernel::loop_ignore_signal";
+"POE::Kernel::BEGIN@16" -> "strict::import";
+"POE::Loop::PerlSignals::BEGIN@8" -> "strict::import";
+"POE::Loop::Select::BEGIN@9" -> "POE::Loop::PerlSignals::BEGIN@10";
+"POE::Kernel::loop_ignore_signal" -> "POE::Kernel::_data_sig_kernel_awaits_pids";
+}

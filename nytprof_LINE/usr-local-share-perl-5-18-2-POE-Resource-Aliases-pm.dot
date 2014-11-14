@@ -1,0 +1,57 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Resource_Aliases {
+	label="POE::Resource::Aliases";
+	"POE::Resource::Aliases::BEGIN@6";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::BEGIN@12.9";
+	"POE::Kernel::_resolve_session";
+	"POE::Kernel::_data_ses_free";
+	"POE::Kernel::alias_remove";
+	"POE::Kernel::new";
+	"POE::Kernel::_data_alias_loggable";
+	"POE::Kernel::BEGIN@2.8";
+	"POE::Kernel::_data_alias_resolve";
+	"POE::Kernel::_data_alias_finalize";
+	"POE::Kernel::_data_alias_remove";
+	"POE::Kernel::_finalize_kernel";
+	"POE::Kernel::_data_alias_add";
+	"POE::Kernel::_data_alias_initialize";
+	"POE::Kernel::session_alloc";
+	"POE::Kernel::_data_ses_refcount_inc";
+	"POE::Kernel::_data_alias_clear_session";
+	"POE::Kernel::_data_ses_refcount_dec";
+	"POE::Kernel::alias_set";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_POE_Session {
+	label="POE::Session";
+	"POE::Session::ID";
+}
+"POE::Kernel::_data_ses_free" -> "POE::Kernel::_data_alias_clear_session";
+"POE::Kernel::_data_alias_add" -> "POE::Kernel::_data_ses_refcount_inc";
+"POE::Kernel::_data_alias_remove" -> "POE::Kernel::_data_ses_refcount_dec";
+"POE::Kernel::alias_set" -> "POE::Kernel::_data_alias_resolve";
+"POE::Kernel::_resolve_session" -> "POE::Kernel::_data_alias_resolve";
+"POE::Kernel::alias_remove" -> "POE::Kernel::_data_alias_resolve";
+"POE::Kernel::BEGIN@2.8" -> "POE::Resource::Aliases::BEGIN@6";
+"POE::Resource::Aliases::BEGIN@6" -> "vars::import";
+"POE::Kernel::BEGIN@2.8" -> "POE::Kernel::BEGIN@12.9";
+"POE::Kernel::_data_alias_remove" -> "POE::Session::ID";
+"POE::Kernel::_data_alias_add" -> "POE::Session::ID";
+"POE::Kernel::_finalize_kernel" -> "POE::Kernel::_data_alias_finalize";
+"POE::Kernel::BEGIN@12.9" -> "strict::import";
+"POE::Kernel::alias_remove" -> "POE::Kernel::_data_alias_remove";
+"POE::Kernel::new" -> "POE::Kernel::_data_alias_initialize";
+"POE::Kernel::alias_set" -> "POE::Kernel::_data_alias_add";
+"POE::Kernel::session_alloc" -> "POE::Kernel::_data_alias_loggable";
+}

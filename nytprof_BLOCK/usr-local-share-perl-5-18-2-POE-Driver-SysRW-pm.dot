@@ -1,0 +1,75 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Component_SSLify_ServerHandle {
+	label="POE::Component::SSLify::ServerHandle";
+	"POE::Component::SSLify::ServerHandle::WRITE";
+	"POE::Component::SSLify::ServerHandle::READ";
+}
+subgraph cluster_POE_Wheel_ReadWrite {
+	label="POE::Wheel::ReadWrite";
+	"POE::Wheel::ReadWrite::__ANON__[POE/Wheel/ReadWrite.pm:231]";
+	"POE::Wheel::ReadWrite::__ANON__[POE/Wheel/ReadWrite.pm:293]";
+	"POE::Wheel::ReadWrite::put";
+}
+subgraph cluster_POE_Component_Client_TCP {
+	label="POE::Component::Client::TCP";
+	"POE::Component::Client::TCP::__ANON__[POE/Component/Client/TCP.pm:227]";
+	"POE::Component::Client::TCP::BEGIN@13";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_bytes {
+	label="bytes";
+	"bytes::import";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_POE_Component_Server_TCP {
+	label="POE::Component::Server::TCP";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:341]";
+}
+subgraph cluster_POE_Driver_SysRW {
+	label="POE::Driver::SysRW";
+	"POE::Driver::SysRW::new";
+	"POE::Driver::SysRW::CORE:syswrite";
+	"POE::Driver::SysRW::put";
+	"POE::Driver::SysRW::BEGIN@12";
+	"POE::Driver::SysRW::CORE:sysread";
+	"POE::Driver::SysRW::BEGIN@9";
+	"POE::Driver::SysRW::BEGIN@121";
+	"POE::Driver::SysRW::BEGIN@7";
+	"POE::Driver::SysRW::flush";
+	"POE::Driver::SysRW::get";
+	"POE::Driver::SysRW::BEGIN@59";
+	"POE::Driver::SysRW::BEGIN@13";
+}
+"POE::Driver::SysRW::BEGIN@121" -> "bytes::import";
+"POE::Driver::SysRW::BEGIN@59" -> "bytes::import";
+"POE::Driver::SysRW::BEGIN@7" -> "strict::import";
+"POE::Component::Client::TCP::BEGIN@13" -> "POE::Driver::SysRW::BEGIN@9";
+"POE::Component::Client::TCP::BEGIN@13" -> "POE::Driver::SysRW::BEGIN@121";
+"POE::Driver::SysRW::BEGIN@9" -> "vars::import";
+"POE::Driver::SysRW::BEGIN@13" -> "Exporter::import";
+"POE::Driver::SysRW::BEGIN@12" -> "Exporter::import";
+"POE::Driver::SysRW::CORE:sysread" -> "POE::Component::SSLify::ServerHandle::READ";
+"POE::Component::Client::TCP::BEGIN@13" -> "POE::Driver::SysRW::BEGIN@59";
+"POE::Wheel::ReadWrite::__ANON__[POE/Wheel/ReadWrite.pm:293]" -> "POE::Driver::SysRW::get";
+"POE::Component::Client::TCP::BEGIN@13" -> "POE::Driver::SysRW::BEGIN@7";
+"POE::Component::Client::TCP::BEGIN@13" -> "POE::Driver::SysRW::BEGIN@12";
+"POE::Driver::SysRW::flush" -> "POE::Driver::SysRW::CORE:syswrite";
+"POE::Driver::SysRW::CORE:syswrite" -> "POE::Component::SSLify::ServerHandle::WRITE";
+"POE::Component::Client::TCP::__ANON__[POE/Component/Client/TCP.pm:227]" -> "POE::Driver::SysRW::new";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:341]" -> "POE::Driver::SysRW::new";
+"POE::Driver::SysRW::get" -> "POE::Driver::SysRW::CORE:sysread";
+"POE::Wheel::ReadWrite::__ANON__[POE/Wheel/ReadWrite.pm:231]" -> "POE::Driver::SysRW::flush";
+"POE::Component::Client::TCP::BEGIN@13" -> "POE::Driver::SysRW::BEGIN@13";
+"POE::Wheel::ReadWrite::put" -> "POE::Driver::SysRW::put";
+}

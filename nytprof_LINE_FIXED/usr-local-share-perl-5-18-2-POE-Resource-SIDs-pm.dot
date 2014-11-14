@@ -1,0 +1,41 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Resource_SIDs {
+	label="POE::Resource::SIDs";
+	"POE::Resource::SIDs::BEGIN@6";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::session_alloc";
+	"POE::Kernel::_data_ses_allocate";
+	"POE::Kernel::_data_ses_free";
+	"POE::Kernel::new";
+	"POE::Kernel::BEGIN@2.25";
+	"POE::Kernel::_data_sid_resolve";
+	"POE::Kernel::_data_sid_clear";
+	"POE::Kernel::_finalize_kernel";
+	"POE::Kernel::_data_sid_allocate";
+	"POE::Kernel::_resolve_session";
+	"POE::Kernel::BEGIN@12.26";
+	"POE::Kernel::_data_sid_set";
+	"POE::Kernel::_data_sid_finalize";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+"POE::Kernel::BEGIN@12.26" -> "strict::import";
+"POE::Kernel::_data_ses_allocate" -> "POE::Kernel::_data_sid_set";
+"POE::Kernel::new" -> "POE::Kernel::_data_sid_set";
+"POE::Kernel::_data_ses_free" -> "POE::Kernel::_data_sid_clear";
+"POE::Kernel::BEGIN@2.25" -> "POE::Kernel::BEGIN@12.26";
+"POE::Kernel::_resolve_session" -> "POE::Kernel::_data_sid_resolve";
+"POE::Kernel::session_alloc" -> "POE::Kernel::_data_sid_allocate";
+"POE::Resource::SIDs::BEGIN@6" -> "vars::import";
+"POE::Kernel::BEGIN@2.25" -> "POE::Resource::SIDs::BEGIN@6";
+"POE::Kernel::_finalize_kernel" -> "POE::Kernel::_data_sid_finalize";
+}

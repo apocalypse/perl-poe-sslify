@@ -1,0 +1,40 @@
+Hello,
+
+	I was playing with the SSLify testsuite in an attempt to improve it and stumbled on something totally
+unexpected! The t/simple_parallel_superbig.t test sends a ~3MB packet via Server/Client::TCP and Filter::Line.
+I rushed out SSLify with that test but I did notice that it took a while to run (~180s on my beefy box!) and
+it made me feel that something was fishy.
+
+	So I brought out the big guns and ran NYTProf on the test.
+
+  apoc@box:~/eclipse_ws/perl-poe-sslify$ PERL_MM_USE_DEFAULT=1 AUTOMATED_TESTING=1 NYTPROF=blocks=1:calls=2 perl -d:NYTProf t/simple_superbig.t
+
+	Here's the NYTProf output:
+
+  XXXLINKNYTPROF_LINEXXX
+
+	Thanks to NYTProf, the slowdown was *somewhere* in POE::Filter::Line. I immediately jumped to the
+conclusion that POE::Filter::Line was not really suited for my purposes and decided to re-run the test with
+POE::Filter::Block utilizing BlockSize => length($str). The results was surprising!
+
+XXXLINKNYTPROF_BLOCKXXX
+
+	For starters, the runtime went from 183s to 3s in my crude testing! The difference was just too great
+for me to let Filter::Line lose to Filter::Block! I dug deeper into the source for Filter::Line and based
+on the NYTProf diagnostics it was THIS line taking up 180s out of the total runtime of 183s. Line 155 is:
+
+unless $self->[FRAMING_BUFFER] =~ s/^(.*?)$self->[INPUT_REGEXP]//s;
+
+	You'll note that it's a super-backtracking regex that when confronted with a 3MB string will take
+exponential time trying to match the INPUT_REGEXP! I remember hitting weird regex bugs in the past which looked
+like this and then the answer dawned on me. The solution is to simply avoid doing the costly backtracking unless
+necessary. Here's the oneliner patch :)
+
+# Insert before lines 154/155
+last LINE unless $self->[FRAMING_BUFFER] =~ $self->[INPUT_REGEXP];
+
+	The runtime went from 183s to 11.5s which is a speed-up of almost 16x! It's not reaching the 3s that
+Filter::Block was able to achieve, but I doubt I can speed it up more without calling in the regex wizards :)
+
+	With grep.cpan.me I can see ~130 dists using POE::Filter::Line so I hope this will have a meaningful
+impact for some of them. Oh, this patch passes the testsuite ;)

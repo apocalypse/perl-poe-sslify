@@ -1,0 +1,71 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+	"strict::unimport";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_POE_Wheel_SocketFactory {
+	label="POE::Wheel::SocketFactory";
+	"POE::Wheel::SocketFactory::new";
+	"POE::Wheel::SocketFactory::__ANON__[POE/Wheel/SocketFactory.pm:203]";
+	"POE::Wheel::SocketFactory::__ANON__[POE/Wheel/SocketFactory.pm:320]";
+}
+subgraph cluster_main {
+	label="main";
+	"main::__ANON__[t/simple_parallel_superbig.t:43]";
+}
+subgraph cluster_warnings_register {
+	label="warnings::register";
+	"warnings::register::import";
+}
+subgraph cluster_Socket {
+	label="Socket";
+	"Socket::sockaddr_in";
+	"Socket::BEGIN@3";
+	"Socket::BEGIN@919";
+	"Socket::CORE:match";
+	"Socket::inet_ntoa";
+	"Socket::BEGIN@807";
+	"Socket::CORE:regcomp";
+	"Socket::BEGIN@688";
+	"Socket::CORE:qr";
+	"Socket::BEGIN@4";
+	"Socket::unpack_sockaddr_in";
+	"Socket::pack_sockaddr_in";
+	"Socket::inet_aton";
+	"Socket::BEGIN@687";
+}
+subgraph cluster_IO_Socket {
+	label="IO::Socket";
+	"IO::Socket::BEGIN@12";
+}
+subgraph cluster_POE_Component_Server_TCP {
+	label="POE::Component::Server::TCP";
+	"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:341]";
+}
+"POE::Wheel::SocketFactory::new" -> "Socket::pack_sockaddr_in";
+"Socket::BEGIN@687" -> "Exporter::import";
+"POE::Wheel::SocketFactory::new" -> "Socket::inet_aton";
+"IO::Socket::BEGIN@12" -> "Socket::CORE:qr";
+"main::__ANON__[t/simple_parallel_superbig.t:43]" -> "Socket::sockaddr_in";
+"IO::Socket::BEGIN@12" -> "Socket::BEGIN@919";
+"Socket::BEGIN@3" -> "strict::import";
+"IO::Socket::BEGIN@12" -> "Socket::BEGIN@3";
+"IO::Socket::BEGIN@12" -> "Socket::BEGIN@4";
+"Socket::BEGIN@688" -> "warnings::register::import";
+"Socket::BEGIN@919" -> "strict::unimport";
+"IO::Socket::BEGIN@12" -> "Socket::BEGIN@688";
+"IO::Socket::BEGIN@12" -> "Socket::BEGIN@807";
+"IO::Socket::BEGIN@12" -> "Socket::CORE:regcomp";
+"IO::Socket::BEGIN@12" -> "Socket::CORE:match";
+"POE::Component::Server::TCP::__ANON__[POE/Component/Server/TCP.pm:341]" -> "Socket::inet_ntoa";
+"IO::Socket::BEGIN@12" -> "Socket::BEGIN@687";
+"Socket::sockaddr_in" -> "Socket::unpack_sockaddr_in";
+"POE::Wheel::SocketFactory::__ANON__[POE/Wheel/SocketFactory.pm:203]" -> "Socket::unpack_sockaddr_in";
+"POE::Wheel::SocketFactory::__ANON__[POE/Wheel/SocketFactory.pm:320]" -> "Socket::unpack_sockaddr_in";
+}

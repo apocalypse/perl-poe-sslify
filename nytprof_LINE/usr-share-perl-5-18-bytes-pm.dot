@@ -1,0 +1,26 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Driver_SysRW {
+	label="POE::Driver::SysRW";
+	"POE::Driver::SysRW::BEGIN@59";
+	"POE::Driver::SysRW::BEGIN@121";
+}
+subgraph cluster_bytes {
+	label="bytes";
+	"bytes::import";
+}
+subgraph cluster_Net_SSLeay {
+	label="Net::SSLeay";
+	"Net::SSLeay::BEGIN@1";
+}
+subgraph cluster_POE_Wheel_SocketFactory {
+	label="POE::Wheel::SocketFactory";
+	"POE::Wheel::SocketFactory::BEGIN@702";
+	"POE::Wheel::SocketFactory::BEGIN@775";
+}
+"POE::Driver::SysRW::BEGIN@59" -> "bytes::import";
+"POE::Driver::SysRW::BEGIN@121" -> "bytes::import";
+"POE::Wheel::SocketFactory::BEGIN@702" -> "bytes::import";
+"Net::SSLeay::BEGIN@1" -> "bytes::import";
+"POE::Wheel::SocketFactory::BEGIN@775" -> "bytes::import";
+}

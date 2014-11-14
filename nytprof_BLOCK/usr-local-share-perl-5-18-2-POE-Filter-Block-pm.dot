@@ -1,0 +1,74 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Component_Server_TCP {
+	label="POE::Component::Server::TCP";
+	"POE::Component::Server::TCP::_load_filter";
+	"POE::Component::Server::TCP::_test_filter";
+}
+subgraph cluster_POE_Filter {
+	label="POE::Filter";
+	"POE::Filter::__param_max";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_bytes {
+	label="bytes";
+	"bytes::import";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_base {
+	label="base";
+	"base::import";
+}
+subgraph cluster_POE_Wheel_ReadWrite {
+	label="POE::Wheel::ReadWrite";
+	"POE::Wheel::ReadWrite::__ANON__[POE/Wheel/ReadWrite.pm:293]";
+	"POE::Wheel::ReadWrite::put";
+}
+subgraph cluster_POE_Component_Client_TCP {
+	label="POE::Component::Client::TCP";
+	"POE::Component::Client::TCP::_get_filter";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_POE_Filter_Block {
+	label="POE::Filter::Block";
+	"POE::Filter::Block::get_one";
+	"POE::Filter::Block::BEGIN@10";
+	"POE::Filter::Block::BEGIN@6";
+	"POE::Filter::Block::BEGIN@21";
+	"POE::Filter::Block::new";
+	"POE::Filter::Block::put";
+	"POE::Filter::Block::BEGIN@161";
+	"POE::Filter::Block::BEGIN@3";
+	"POE::Filter::Block::get_one_start";
+	"POE::Filter::Block::BEGIN@4";
+	"POE::Filter::Block::BEGIN@118";
+}
+"POE::Component::Server::TCP::_test_filter" -> "POE::Filter::Block::BEGIN@10";
+"POE::Component::Server::TCP::_test_filter" -> "POE::Filter::Block::BEGIN@161";
+"POE::Component::Server::TCP::_test_filter" -> "POE::Filter::Block::BEGIN@3";
+"POE::Filter::Block::BEGIN@161" -> "bytes::import";
+"POE::Filter::Block::BEGIN@118" -> "bytes::import";
+"POE::Filter::Block::BEGIN@3" -> "strict::import";
+"POE::Filter::Block::BEGIN@10" -> "Exporter::import";
+"POE::Component::Server::TCP::_test_filter" -> "POE::Filter::Block::BEGIN@4";
+"POE::Filter::Block::BEGIN@6" -> "vars::import";
+"POE::Component::Server::TCP::_test_filter" -> "POE::Filter::Block::BEGIN@21";
+"POE::Filter::Block::new" -> "POE::Filter::__param_max";
+"POE::Wheel::ReadWrite::__ANON__[POE/Wheel/ReadWrite.pm:293]" -> "POE::Filter::Block::get_one";
+"POE::Filter::Block::BEGIN@21" -> "base::import";
+"POE::Wheel::ReadWrite::__ANON__[POE/Wheel/ReadWrite.pm:293]" -> "POE::Filter::Block::get_one_start";
+"POE::Component::Server::TCP::_test_filter" -> "POE::Filter::Block::BEGIN@6";
+"POE::Component::Server::TCP::_test_filter" -> "POE::Filter::Block::BEGIN@118";
+"POE::Wheel::ReadWrite::put" -> "POE::Filter::Block::put";
+"POE::Component::Client::TCP::_get_filter" -> "POE::Filter::Block::new";
+"POE::Component::Server::TCP::_load_filter" -> "POE::Filter::Block::new";
+}
