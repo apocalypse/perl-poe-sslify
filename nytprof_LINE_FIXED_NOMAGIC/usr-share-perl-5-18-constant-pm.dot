@@ -1,0 +1,76 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_File_Spec_Unix {
+	label="File::Spec::Unix";
+	"File::Spec::Unix::BEGIN@136";
+	"File::Spec::Unix::BEGIN@242";
+	"File::Spec::Unix::BEGIN@127";
+	"File::Spec::Unix::BEGIN@145";
+	"File::Spec::Unix::BEGIN@220";
+}
+subgraph cluster_Internals {
+	label="Internals";
+	"Internals::SvREADONLY";
+}
+subgraph cluster_mro {
+	label="mro";
+	"mro::method_changed_in";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_warnings_register {
+	label="warnings::register";
+	"warnings::register::import";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::BEGIN@109";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+	"strict::unimport";
+}
+subgraph cluster_constant {
+	label="constant";
+	"constant::CORE:regcomp";
+	"constant::import";
+	"constant::BEGIN@4";
+	"constant::BEGIN@28";
+	"constant::BEGIN@3";
+	"constant::BEGIN@116";
+	"constant::BEGIN@6";
+	"constant::BEGIN@2";
+	"constant::CORE:match";
+	"constant::BEGIN@54";
+	"constant::CORE:qr";
+	"constant::BEGIN@24";
+}
+"File::Spec::Unix::BEGIN@127" -> "constant::BEGIN@116";
+"File::Spec::Unix::BEGIN@127" -> "constant::BEGIN@24";
+"constant::import" -> "constant::CORE:match";
+"File::Spec::Unix::BEGIN@127" -> "constant::BEGIN@6";
+"File::Spec::Unix::BEGIN@127" -> "constant::BEGIN@28";
+"File::Spec::Unix::BEGIN@220" -> "constant::import";
+"File::Spec::Unix::BEGIN@145" -> "constant::import";
+"POE::Kernel::BEGIN@109" -> "constant::import";
+"File::Spec::Unix::BEGIN@242" -> "constant::import";
+"File::Spec::Unix::BEGIN@136" -> "constant::import";
+"File::Spec::Unix::BEGIN@127" -> "constant::import";
+"constant::BEGIN@4" -> "warnings::register::import";
+"constant::BEGIN@6" -> "vars::import";
+"File::Spec::Unix::BEGIN@127" -> "constant::BEGIN@2";
+"constant::import" -> "mro::method_changed_in";
+"File::Spec::Unix::BEGIN@127" -> "constant::BEGIN@4";
+"constant::import" -> "constant::CORE:regcomp";
+"File::Spec::Unix::BEGIN@127" -> "constant::BEGIN@3";
+"constant::BEGIN@116" -> "strict::unimport";
+"constant::BEGIN@54" -> "strict::unimport";
+"constant::BEGIN@28" -> "strict::unimport";
+"constant::import" -> "Internals::SvREADONLY";
+"File::Spec::Unix::BEGIN@127" -> "constant::CORE:qr";
+"File::Spec::Unix::BEGIN@127" -> "constant::BEGIN@54";
+"constant::BEGIN@3" -> "strict::import";
+}

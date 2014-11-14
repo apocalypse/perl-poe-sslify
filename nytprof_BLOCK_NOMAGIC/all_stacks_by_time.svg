@@ -1,0 +1,1828 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="1200" height="482" onload="init(evt)" viewBox="0 0 1200 482" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs >
+	<linearGradient id="background" y1="0" y2="1" x1="0" x2="0" >
+		<stop stop-color="#eeeeee" offset="5%" />
+		<stop stop-color="#eeeeb0" offset="95%" />
+	</linearGradient>
+</defs>
+<style type="text/css">
+	.func_g:hover { stroke:black; stroke-width:0.5; }
+</style>
+<script type="text/ecmascript">
+<![CDATA[
+	var details;
+	function init(evt) { details = document.getElementById("details").firstChild; }
+	function s(info) { details.nodeValue = "sub " + info; }
+	function c() { details.nodeValue = ' '; }
+]]>
+</script>
+<rect x="0.0" y="0" width="1200.0" height="482.0" fill="url(#background)"  />
+<text text-anchor="middle" x="600" y="24" font-size="17" font-family="Verdana" fill="rgb(0,0,0)"  >Flame Graph</text>
+<text text-anchor="" x="10" y="465" font-size="12" font-family="Verdana" fill="rgb(0,0,0)" id="details" > </text>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_handle_add (347 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::_data_handle_add (347 microseconds, 0.02%)</title><a xlink:href="POE-Resource-FileHandles-pm-71-line.html#264" target="_top"><rect x="473.9" y="241" width="0.2" height="15.0" fill="rgb(209,46,8)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_dispatch_event (1,021,160 microseconds, 50.58%)')" onmouseout="c()">
+<title>POE::Kernel::_dispatch_event (1,021,160 microseconds, 50.58%)</title><a xlink:href="POE-Kernel-pm-53-line.html#996" target="_top"><rect x="505.9" y="353" width="596.8" height="15.0" fill="rgb(251,197,19)" rx="2" ry="2" />
+<text text-anchor="" x="508.892888175017" y="363.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE::Kernel::_dispatch_event</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Session::_invoke_state (27,376 microseconds, 1.36%)')" onmouseout="c()">
+<title>POE::Session::_invoke_state (27,376 microseconds, 1.36%)</title><a xlink:href="POE-Session-pm-86-line.html#405" target="_top"><rect x="1028.8" y="177" width="16.0" height="15.0" fill="rgb(232,18,45)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::session_alloc (28,860 microseconds, 1.43%)')" onmouseout="c()">
+<title>POE::Kernel::session_alloc (28,860 microseconds, 1.43%)</title><a xlink:href="POE-Kernel-pm-53-line.html#1444" target="_top"><rect x="1028.0" y="209" width="16.8" height="15.0" fill="rgb(220,89,18)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Time::HiRes::time (236 microseconds, 0.01%)')" onmouseout="c()">
+<title>Time::HiRes::time (236 microseconds, 0.01%)</title><a xlink:href="Time-HiRes-pm-50-line.html#Time__HiRes__time" target="_top"><rect x="1102.7" y="353" width="0.2" height="15.0" fill="rgb(232,161,4)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Wheel::ReadWrite::put (41,695 microseconds, 2.07%)')" onmouseout="c()">
+<title>POE::Wheel::ReadWrite::put (41,695 microseconds, 2.07%)</title><a xlink:href="POE-Wheel-ReadWrite-pm-93-line.html#419" target="_top"><rect x="995.1" y="241" width="24.4" height="15.0" fill="rgb(220,28,39)" rx="2" ry="2" />
+<text text-anchor="" x="998.122227354593" y="251.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >P..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::More::ok (5,584 microseconds, 0.28%)')" onmouseout="c()">
+<title>Test::More::ok (5,584 microseconds, 0.28%)</title><a xlink:href="Test-More-pm-4-line.html#290" target="_top"><rect x="479.3" y="289" width="3.2" height="15.0" fill="rgb(219,12,54)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::new (14,341 microseconds, 0.71%)')" onmouseout="c()">
+<title>POE::Kernel::new (14,341 microseconds, 0.71%)</title><a xlink:href="POE-Kernel-pm-53-line.html#797" target="_top"><rect x="1138.2" y="353" width="8.4" height="15.0" fill="rgb(231,192,29)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::delay (4,340 microseconds, 0.21%)')" onmouseout="c()">
+<title>POE::Kernel::delay (4,340 microseconds, 0.21%)</title><a xlink:href="POE-Kernel-pm-53-line.html#1875" target="_top"><rect x="482.8" y="305" width="2.5" height="15.0" fill="rgb(213,180,46)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::ServerHandle::CLOSE (628 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Component::SSLify::ServerHandle::CLOSE (628 microseconds, 0.03%)</title><a xlink:href="lib-POE-Component-SSLify-ServerHandle-pm-113-line.html#211" target="_top"><rect x="478.2" y="273" width="0.3" height="15.0" fill="rgb(235,61,44)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_try (910 microseconds, 0.05%)')" onmouseout="c()">
+<title>Test::Builder::_try (910 microseconds, 0.05%)</title><a xlink:href="Test-Builder-pm-6-line.html#1518" target="_top"><rect x="1097.9" y="177" width="0.6" height="15.0" fill="rgb(211,64,27)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_handle_condition (250 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::_data_handle_condition (250 microseconds, 0.01%)</title><a xlink:href="POE-Resource-FileHandles-pm-71-line.html#434" target="_top"><rect x="1032.0" y="65" width="0.1" height="15.0" fill="rgb(228,174,41)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_unoverload_str (791 microseconds, 0.04%)')" onmouseout="c()">
+<title>Test::Builder::_unoverload_str (791 microseconds, 0.04%)</title><a xlink:href="Test-Builder-pm-6-line.html#936" target="_top"><rect x="1033.5" y="97" width="0.5" height="15.0" fill="rgb(218,96,14)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::CORE:fteread (1,029 microseconds, 0.05%)')" onmouseout="c()">
+<title>POE::Kernel::CORE:fteread (1,029 microseconds, 0.05%)</title><a xlink:href="POE-Kernel-pm-53-line.html#POE__Kernel__CORE_fteread" target="_top"><rect x="1136.4" y="321" width="0.6" height="15.0" fill="rgb(253,149,3)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Exporter::import (716 microseconds, 0.04%)')" onmouseout="c()">
+<title>Exporter::import (716 microseconds, 0.04%)</title><a xlink:href="Exporter-pm-12-line.html#28" target="_top"><rect x="1121.4" y="289" width="0.4" height="15.0" fill="rgb(219,1,14)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::select_resume_write (4,427 microseconds, 0.22%)')" onmouseout="c()">
+<title>POE::Kernel::select_resume_write (4,427 microseconds, 0.22%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2302" target="_top"><rect x="1016.9" y="225" width="2.6" height="15.0" fill="rgb(247,95,13)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_dispatch_event (190 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::_dispatch_event (190 microseconds, 0.01%)</title><a xlink:href="POE-Kernel-pm-53-line.html#996" target="_top"><rect x="1104.0" y="369" width="0.1" height="15.0" fill="rgb(212,57,51)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::Client_SSLify (1,205 microseconds, 0.06%)')" onmouseout="c()">
+<title>POE::Component::SSLify::Client_SSLify (1,205 microseconds, 0.06%)</title><a xlink:href="lib-POE-Component-SSLify-pm-105-line.html#160" target="_top"><rect x="1093.3" y="241" width="0.8" height="15.0" fill="rgb(247,179,39)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_handle_remove (516 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Kernel::_data_handle_remove (516 microseconds, 0.03%)</title><a xlink:href="POE-Resource-FileHandles-pm-71-line.html#466" target="_top"><rect x="1024.2" y="273" width="0.3" height="15.0" fill="rgb(233,228,0)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Client::TCP::BEGIN@16 (4,692 microseconds, 0.23%)')" onmouseout="c()">
+<title>POE::Component::Client::TCP::BEGIN@16 (4,692 microseconds, 0.23%)</title><a xlink:href="POE-Component-Client-TCP-pm-87-line.html#16" target="_top"><rect x="1153.8" y="401" width="2.8" height="15.0" fill="rgb(232,202,53)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_ses_free (230 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::_data_ses_free (230 microseconds, 0.01%)</title><a xlink:href="POE-Resource-Sessions-pm-81-line.html#152" target="_top"><rect x="485.5" y="305" width="0.1" height="15.0" fill="rgb(210,39,27)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::More::ok (13,820 microseconds, 0.68%)')" onmouseout="c()">
+<title>Test::More::ok (13,820 microseconds, 0.68%)</title><a xlink:href="Test-More-pm-4-line.html#290" target="_top"><rect x="1036.7" y="129" width="8.1" height="15.0" fill="rgb(242,168,37)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('main::BEGIN@20 (11,445 microseconds, 0.57%)')" onmouseout="c()">
+<title>main::BEGIN@20 (11,445 microseconds, 0.57%)</title><a xlink:href="t-simple_parallel_superbig-t-1-line.html#20" target="_top"><rect x="1149.9" y="417" width="6.7" height="15.0" fill="rgb(236,189,49)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_handle_is_good (216 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::_data_handle_is_good (216 microseconds, 0.01%)</title><a xlink:href="POE-Resource-FileHandles-pm-71-line.html#250" target="_top"><rect x="723.2" y="289" width="0.1" height="15.0" fill="rgb(208,205,38)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Resource::Clock::BEGIN@11 (7,284 microseconds, 0.36%)')" onmouseout="c()">
+<title>POE::Resource::Clock::BEGIN@11 (7,284 microseconds, 0.36%)</title><a xlink:href="POE-Resource-Clock-pm-21-line.html#11" target="_top"><rect x="1107.9" y="385" width="4.3" height="15.0" fill="rgb(221,197,32)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Filter::Block::get_one_start (89,068 microseconds, 4.41%)')" onmouseout="c()">
+<title>POE::Filter::Block::get_one_start (89,068 microseconds, 4.41%)</title><a xlink:href="POE-Filter-Block-pm-123-line.html#107" target="_top"><rect x="912.1" y="305" width="52.1" height="15.0" fill="rgb(249,212,50)" rx="2" ry="2" />
+<text text-anchor="" x="915.139563067827" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE::..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Wheel::ReadWrite::BEGIN@1.35 (253 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Wheel::ReadWrite::BEGIN@1.35 (253 microseconds, 0.01%)</title><a xlink:href="(eval 41)[POE-pm-59]-96-line.html#1" target="_top"><rect x="1153.7" y="353" width="0.1" height="15.0" fill="rgb(242,137,49)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_unoverload_str (5,508 microseconds, 0.27%)')" onmouseout="c()">
+<title>Test::Builder::_unoverload_str (5,508 microseconds, 0.27%)</title><a xlink:href="Test-Builder-pm-6-line.html#936" target="_top"><rect x="1020.3" y="209" width="3.2" height="15.0" fill="rgb(234,48,34)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_ev_dispatch_due (35,108 microseconds, 1.74%)')" onmouseout="c()">
+<title>POE::Kernel::_data_ev_dispatch_due (35,108 microseconds, 1.74%)</title><a xlink:href="POE-Resource-Events-pm-65-line.html#352" target="_top"><rect x="466.2" y="369" width="20.5" height="15.0" fill="rgb(229,80,54)" rx="2" ry="2" />
+<text text-anchor="" x="469.213122570653" y="379.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >P..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::todo (281 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::todo (281 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#2215" target="_top"><rect x="987.5" y="209" width="0.1" height="15.0" fill="rgb(207,47,3)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Queue::Array::get_item_count (308 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Queue::Array::get_item_count (308 microseconds, 0.02%)</title><a xlink:href="POE-Queue-Array-pm-55-line.html#121" target="_top"><rect x="1103.6" y="353" width="0.2" height="15.0" fill="rgb(210,229,23)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_internal_select (776 microseconds, 0.04%)')" onmouseout="c()">
+<title>POE::Kernel::_internal_select (776 microseconds, 0.04%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2162" target="_top"><rect x="1031.7" y="97" width="0.5" height="15.0" fill="rgb(245,162,40)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_ses_count (343 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::_data_ses_count (343 microseconds, 0.02%)</title><a xlink:href="POE-Resource-Sessions-pm-81-line.html#513" target="_top"><rect x="13.7" y="385" width="0.2" height="15.0" fill="rgb(228,47,42)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_unoverload (589 microseconds, 0.03%)')" onmouseout="c()">
+<title>Test::Builder::_unoverload (589 microseconds, 0.03%)</title><a xlink:href="Test-Builder-pm-6-line.html#913" target="_top"><rect x="482.0" y="241" width="0.3" height="15.0" fill="rgb(221,137,53)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_internal_select (534 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Kernel::_internal_select (534 microseconds, 0.03%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2162" target="_top"><rect x="477.3" y="273" width="0.3" height="15.0" fill="rgb(235,127,50)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Net::SSLeay::write (231,303 microseconds, 11.46%)')" onmouseout="c()">
+<title>Net::SSLeay::write (231,303 microseconds, 11.46%)</title><a xlink:href="Net-SSLeay-pm-107-line.html#Net__SSLeay__write" target="_top"><rect x="586.1" y="257" width="135.1" height="15.0" fill="rgb(215,72,44)" rx="2" ry="2" />
+<text text-anchor="" x="589.051215314983" y="267.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >Net::SSLeay::write</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('Exporter::import (242 microseconds, 0.01%)')" onmouseout="c()">
+<title>Exporter::import (242 microseconds, 0.01%)</title><a xlink:href="Exporter-pm-12-line.html#28" target="_top"><rect x="1141.3" y="289" width="0.1" height="15.0" fill="rgb(206,214,23)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_ses_stop (4,821 microseconds, 0.24%)')" onmouseout="c()">
+<title>POE::Kernel::_data_ses_stop (4,821 microseconds, 0.24%)</title><a xlink:href="POE-Resource-Sessions-pm-81-line.html#526" target="_top"><rect x="470.0" y="337" width="2.8" height="15.0" fill="rgb(242,141,25)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('IO::Pipely::BEGIN@24 (260 microseconds, 0.01%)')" onmouseout="c()">
+<title>IO::Pipely::BEGIN@24 (260 microseconds, 0.01%)</title><a xlink:href="IO-Pipely-pm-30-line.html#24" target="_top"><rect x="1122.6" y="321" width="0.1" height="15.0" fill="rgb(232,130,1)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('base::import (15,151 microseconds, 0.75%)')" onmouseout="c()">
+<title>base::import (15,151 microseconds, 0.75%)</title><a xlink:href="base-pm-26-line.html#57" target="_top"><rect x="1114.3" y="353" width="8.8" height="15.0" fill="rgb(217,59,14)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::yield (635 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Kernel::yield (635 microseconds, 0.03%)</title><a xlink:href="POE-Kernel-pm-53-line.html#1685" target="_top"><rect x="982.9" y="241" width="0.4" height="15.0" fill="rgb(217,152,32)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_unoverload_str (638 microseconds, 0.03%)')" onmouseout="c()">
+<title>Test::Builder::_unoverload_str (638 microseconds, 0.03%)</title><a xlink:href="Test-Builder-pm-6-line.html#936" target="_top"><rect x="482.0" y="257" width="0.3" height="15.0" fill="rgb(205,87,11)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_unoverload (734 microseconds, 0.04%)')" onmouseout="c()">
+<title>Test::Builder::_unoverload (734 microseconds, 0.04%)</title><a xlink:href="Test-Builder-pm-6-line.html#913" target="_top"><rect x="1033.6" y="81" width="0.4" height="15.0" fill="rgb(212,171,46)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_handle_pause (320 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::_data_handle_pause (320 microseconds, 0.02%)</title><a xlink:href="POE-Resource-FileHandles-pm-71-line.html#640" target="_top"><rect x="723.3" y="289" width="0.2" height="15.0" fill="rgb(242,101,37)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_ev_enqueue (551 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Kernel::_data_ev_enqueue (551 microseconds, 0.03%)</title><a xlink:href="POE-Resource-Events-pm-65-line.html#63" target="_top"><rect x="983.0" y="225" width="0.3" height="15.0" fill="rgb(230,119,12)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::More::is (818 microseconds, 0.04%)')" onmouseout="c()">
+<title>Test::More::is (818 microseconds, 0.04%)</title><a xlink:href="Test-More-pm-4-line.html#373" target="_top"><rect x="1104.4" y="417" width="0.5" height="15.0" fill="rgb(206,221,40)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_dup_stdhandles (388 microseconds, 0.02%)')" onmouseout="c()">
+<title>Test::Builder::_dup_stdhandles (388 microseconds, 0.02%)</title><a xlink:href="Test-Builder-pm-6-line.html#1929" target="_top"><rect x="1172.8" y="321" width="0.3" height="15.0" fill="rgb(218,214,27)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('overload::BEGIN@83 (319 microseconds, 0.02%)')" onmouseout="c()">
+<title>overload::BEGIN@83 (319 microseconds, 0.02%)</title><a xlink:href="overload-pm-121-line.html#83" target="_top"><rect x="1043.8" y="33" width="0.2" height="15.0" fill="rgb(254,204,15)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_try (2,222 microseconds, 0.11%)')" onmouseout="c()">
+<title>Test::Builder::_try (2,222 microseconds, 0.11%)</title><a xlink:href="Test-Builder-pm-6-line.html#1518" target="_top"><rect x="1042.7" y="65" width="1.3" height="15.0" fill="rgb(252,186,28)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_ses_gc_sweep (5,467 microseconds, 0.27%)')" onmouseout="c()">
+<title>POE::Kernel::_data_ses_gc_sweep (5,467 microseconds, 0.27%)</title><a xlink:href="POE-Resource-Sessions-pm-81-line.html#376" target="_top"><rect x="469.6" y="353" width="3.2" height="15.0" fill="rgb(253,82,17)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_internal_select (322 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::_internal_select (322 microseconds, 0.02%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2162" target="_top"><rect x="1032.7" y="97" width="0.2" height="15.0" fill="rgb(205,160,26)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Server::TCP::new (815 microseconds, 0.04%)')" onmouseout="c()">
+<title>POE::Component::Server::TCP::new (815 microseconds, 0.04%)</title><a xlink:href="POE-Component-Server-TCP-pm-104-line.html#42" target="_top"><rect x="11.7" y="417" width="0.5" height="15.0" fill="rgb(218,176,13)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::find_TODO (452 microseconds, 0.02%)')" onmouseout="c()">
+<title>Test::Builder::find_TODO (452 microseconds, 0.02%)</title><a xlink:href="Test-Builder-pm-6-line.html#2242" target="_top"><rect x="1044.1" y="81" width="0.2" height="15.0" fill="rgb(223,182,47)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::BEGIN@87 (175 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Component::SSLify::BEGIN@87 (175 microseconds, 0.01%)</title><a xlink:href="lib-POE-Component-SSLify-pm-105-line.html#87" target="_top"><rect x="1164.6" y="401" width="0.1" height="15.0" fill="rgb(222,80,32)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_internal_select (5,281 microseconds, 0.26%)')" onmouseout="c()">
+<title>POE::Kernel::_internal_select (5,281 microseconds, 0.26%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2162" target="_top"><rect x="1099.6" y="273" width="3.0" height="15.0" fill="rgb(243,133,12)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Resource::Clock::BEGIN@13 (4,495 microseconds, 0.22%)')" onmouseout="c()">
+<title>POE::Resource::Clock::BEGIN@13 (4,495 microseconds, 0.22%)</title><a xlink:href="POE-Resource-Clock-pm-21-line.html#13" target="_top"><rect x="1123.1" y="385" width="2.7" height="15.0" fill="rgb(215,186,28)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Net::SSLeay::BEGIN@24 (1,228 microseconds, 0.06%)')" onmouseout="c()">
+<title>Net::SSLeay::BEGIN@24 (1,228 microseconds, 0.06%)</title><a xlink:href="Net-SSLeay-pm-107-line.html#24" target="_top"><rect x="1162.1" y="369" width="0.7" height="15.0" fill="rgb(254,95,16)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_print (573 microseconds, 0.03%)')" onmouseout="c()">
+<title>Test::Builder::_print (573 microseconds, 0.03%)</title><a xlink:href="Test-Builder-pm-6-line.html#1802" target="_top"><rect x="1020.0" y="209" width="0.3" height="15.0" fill="rgb(219,111,2)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_print_to_fh (1,139 microseconds, 0.06%)')" onmouseout="c()">
+<title>Test::Builder::_print_to_fh (1,139 microseconds, 0.06%)</title><a xlink:href="Test-Builder-pm-6-line.html#1807" target="_top"><rect x="1038.1" y="81" width="0.6" height="15.0" fill="rgb(210,115,30)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('IO::Prompt::Tiny::BEGIN@10 (2,845 microseconds, 0.14%)')" onmouseout="c()">
+<title>IO::Prompt::Tiny::BEGIN@10 (2,845 microseconds, 0.14%)</title><a xlink:href="IO-Prompt-Tiny-pm-17-line.html#10" target="_top"><rect x="1105.1" y="385" width="1.7" height="15.0" fill="rgb(223,108,47)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('IO::Socket::INET::BEGIN@11 (648 microseconds, 0.03%)')" onmouseout="c()">
+<title>IO::Socket::INET::BEGIN@11 (648 microseconds, 0.03%)</title><a xlink:href="IO-Socket-INET-pm-41-line.html#11" target="_top"><rect x="1121.0" y="305" width="0.4" height="15.0" fill="rgb(244,177,50)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_unoverload (603 microseconds, 0.03%)')" onmouseout="c()">
+<title>Test::Builder::_unoverload (603 microseconds, 0.03%)</title><a xlink:href="Test-Builder-pm-6-line.html#913" target="_top"><rect x="1092.6" y="193" width="0.4" height="15.0" fill="rgb(252,2,34)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_internal_select (375 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::_internal_select (375 microseconds, 0.02%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2162" target="_top"><rect x="473.8" y="257" width="0.3" height="15.0" fill="rgb(213,35,49)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::todo (211 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::todo (211 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#2215" target="_top"><rect x="1034.1" y="97" width="0.1" height="15.0" fill="rgb(224,42,6)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_handle_add (637 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Kernel::_data_handle_add (637 microseconds, 0.03%)</title><a xlink:href="POE-Resource-FileHandles-pm-71-line.html#264" target="_top"><rect x="1045.9" y="193" width="0.3" height="15.0" fill="rgb(233,109,3)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_handle_add (207 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::_data_handle_add (207 microseconds, 0.01%)</title><a xlink:href="POE-Resource-FileHandles-pm-71-line.html#264" target="_top"><rect x="1046.6" y="193" width="0.2" height="15.0" fill="rgb(220,222,49)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_print_to_fh (461 microseconds, 0.02%)')" onmouseout="c()">
+<title>Test::Builder::_print_to_fh (461 microseconds, 0.02%)</title><a xlink:href="Test-Builder-pm-6-line.html#1807" target="_top"><rect x="986.6" y="193" width="0.2" height="15.0" fill="rgb(241,202,23)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_ev_enqueue (450 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::_data_ev_enqueue (450 microseconds, 0.02%)</title><a xlink:href="POE-Resource-Events-pm-65-line.html#63" target="_top"><rect x="1028.2" y="193" width="0.3" height="15.0" fill="rgb(241,7,40)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Exporter::import (560 microseconds, 0.03%)')" onmouseout="c()">
+<title>Exporter::import (560 microseconds, 0.03%)</title><a xlink:href="Exporter-pm-12-line.html#28" target="_top"><rect x="1120.0" y="289" width="0.3" height="15.0" fill="rgb(242,223,16)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_unoverload (8,679 microseconds, 0.43%)')" onmouseout="c()">
+<title>Test::Builder::_unoverload (8,679 microseconds, 0.43%)</title><a xlink:href="Test-Builder-pm-6-line.html#913" target="_top"><rect x="1038.9" y="81" width="5.1" height="15.0" fill="rgb(244,131,14)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_ses_stop (331 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::_data_ses_stop (331 microseconds, 0.02%)</title><a xlink:href="POE-Resource-Sessions-pm-81-line.html#526" target="_top"><rect x="485.4" y="321" width="0.2" height="15.0" fill="rgb(217,41,37)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('XSLoader::load (220 microseconds, 0.01%)')" onmouseout="c()">
+<title>XSLoader::load (220 microseconds, 0.01%)</title><a xlink:href="XSLoader-pm-49-line.html#17" target="_top"><rect x="1120.4" y="289" width="0.2" height="15.0" fill="rgb(232,21,25)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Wheel::ReadWrite::DESTROY (1,969 microseconds, 0.10%)')" onmouseout="c()">
+<title>POE::Wheel::ReadWrite::DESTROY (1,969 microseconds, 0.10%)</title><a xlink:href="POE-Wheel-ReadWrite-pm-93-line.html#386" target="_top"><rect x="478.0" y="305" width="1.2" height="15.0" fill="rgb(216,134,41)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Server::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Server/TCP.pm:408] (436 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Component::Server::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Server/TCP.pm:408] (436 microseconds, 0.02%)</title><a xlink:href="POE-Component-Server-TCP-pm-104-line.html#390" target="_top"><rect x="472.5" y="289" width="0.3" height="15.0" fill="rgb(209,55,45)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Net::SSLeay::free (223 microseconds, 0.01%)')" onmouseout="c()">
+<title>Net::SSLeay::free (223 microseconds, 0.01%)</title><a xlink:href="Net-SSLeay-pm-107-line.html#Net__SSLeay__free" target="_top"><rect x="478.2" y="257" width="0.1" height="15.0" fill="rgb(206,162,5)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Driver::SysRW::CORE:syswrite (280,524 microseconds, 13.89%)')" onmouseout="c()">
+<title>POE::Driver::SysRW::CORE:syswrite (280,524 microseconds, 13.89%)</title><a xlink:href="POE-Driver-SysRW-pm-88-line.html#POE__Driver__SysRW__CORE_syswrite" target="_top"><rect x="558.8" y="289" width="164.0" height="15.0" fill="rgb(214,140,44)" rx="2" ry="2" />
+<text text-anchor="" x="561.817282972501" y="299.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE::Driver::SysRW::CO..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('Exporter::export_to_level (1,256 microseconds, 0.06%)')" onmouseout="c()">
+<title>Exporter::export_to_level (1,256 microseconds, 0.06%)</title><a xlink:href="Exporter-pm-12-line.html#80" target="_top"><rect x="1167.0" y="385" width="0.7" height="15.0" fill="rgb(223,107,54)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Session::try_alloc (624 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Session::try_alloc (624 microseconds, 0.03%)</title><a xlink:href="POE-Session-pm-86-line.html#185" target="_top"><rect x="11.8" y="385" width="0.4" height="15.0" fill="rgb(232,108,23)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::is_eq (780 microseconds, 0.04%)')" onmouseout="c()">
+<title>Test::Builder::is_eq (780 microseconds, 0.04%)</title><a xlink:href="Test-Builder-pm-6-line.html#987" target="_top"><rect x="1104.4" y="401" width="0.5" height="15.0" fill="rgb(229,187,25)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_handle_remove (480 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::_data_handle_remove (480 microseconds, 0.02%)</title><a xlink:href="POE-Resource-FileHandles-pm-71-line.html#466" target="_top"><rect x="477.3" y="257" width="0.3" height="15.0" fill="rgb(205,90,27)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::in_todo (188 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::in_todo (188 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#2262" target="_top"><rect x="1034.0" y="97" width="0.1" height="15.0" fill="rgb(237,79,24)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_dispatch_event (463 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::_dispatch_event (463 microseconds, 0.02%)</title><a xlink:href="POE-Kernel-pm-53-line.html#996" target="_top"><rect x="11.9" y="353" width="0.3" height="15.0" fill="rgb(247,206,26)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('main::BEGIN@2.1 (4,914 microseconds, 0.24%)')" onmouseout="c()">
+<title>main::BEGIN@2.1 (4,914 microseconds, 0.24%)</title><a xlink:href="t-simple_parallel_superbig-t-1-line.html#2" target="_top"><rect x="1147.1" y="417" width="2.8" height="15.0" fill="rgb(248,69,27)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('main::BEGIN@1 (3,245 microseconds, 0.16%)')" onmouseout="c()">
+<title>main::BEGIN@1 (3,245 microseconds, 0.16%)</title><a xlink:href="(eval 4)[t-simple_parallel_superbig-t-11]-16-line.html#1" target="_top"><rect x="1104.9" y="401" width="1.9" height="15.0" fill="rgb(221,107,24)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_try (288 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::_try (288 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#1518" target="_top"><rect x="987.2" y="177" width="0.2" height="15.0" fill="rgb(243,107,10)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_internal_select (591 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Kernel::_internal_select (591 microseconds, 0.03%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2162" target="_top"><rect x="478.7" y="273" width="0.3" height="15.0" fill="rgb(237,77,37)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('main::__ANON__[t/simple_parallel_superbig.t:161] (4,614 microseconds, 0.23%)')" onmouseout="c()">
+<title>main::__ANON__[t/simple_parallel_superbig.t:161] (4,614 microseconds, 0.23%)</title><a xlink:href="t-simple_parallel_superbig-t-1-line.html#161" target="_top"><rect x="482.6" y="321" width="2.7" height="15.0" fill="rgb(205,16,16)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::ok (572 microseconds, 0.03%)')" onmouseout="c()">
+<title>Test::Builder::ok (572 microseconds, 0.03%)</title><a xlink:href="Test-Builder-pm-6-line.html#809" target="_top"><rect x="1104.5" y="369" width="0.4" height="15.0" fill="rgb(231,24,13)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::BEGIN@2.5 (555 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Kernel::BEGIN@2.5 (555 microseconds, 0.03%)</title><a xlink:href="(eval 18)[POE-Resources-pm-22]-61-line.html#2" target="_top"><rect x="1145.3" y="321" width="0.3" height="15.0" fill="rgb(212,36,12)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::BEGIN@2.22 (350 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::BEGIN@2.22 (350 microseconds, 0.02%)</title><a xlink:href="(eval 27)[POE-Resources-pm-22]-77-line.html#2" target="_top"><rect x="1141.8" y="321" width="0.2" height="15.0" fill="rgb(205,111,22)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Server::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Server/TCP.pm:389] (8,106 microseconds, 0.40%)')" onmouseout="c()">
+<title>POE::Component::Server::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Server/TCP.pm:389] (8,106 microseconds, 0.40%)</title><a xlink:href="POE-Component-Server-TCP-pm-104-line.html#375" target="_top"><rect x="477.8" y="321" width="4.7" height="15.0" fill="rgb(237,189,4)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::caller (327 microseconds, 0.02%)')" onmouseout="c()">
+<title>Test::Builder::caller (327 microseconds, 0.02%)</title><a xlink:href="Test-Builder-pm-6-line.html#2367" target="_top"><rect x="1098.7" y="177" width="0.2" height="15.0" fill="rgb(233,172,31)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_dispatch_event (680 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Kernel::_dispatch_event (680 microseconds, 0.03%)</title><a xlink:href="POE-Kernel-pm-53-line.html#996" target="_top"><rect x="11.3" y="353" width="0.4" height="15.0" fill="rgb(240,116,20)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::ok (7,198 microseconds, 0.36%)')" onmouseout="c()">
+<title>Test::Builder::ok (7,198 microseconds, 0.36%)</title><a xlink:href="Test-Builder-pm-6-line.html#809" target="_top"><rect x="1019.6" y="225" width="4.2" height="15.0" fill="rgb(210,117,42)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('XSLoader::load (346 microseconds, 0.02%)')" onmouseout="c()">
+<title>XSLoader::load (346 microseconds, 0.02%)</title><a xlink:href="XSLoader-pm-49-line.html#17" target="_top"><rect x="1112.0" y="369" width="0.2" height="15.0" fill="rgb(229,54,3)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Driver::SysRW::put (15,002 microseconds, 0.74%)')" onmouseout="c()">
+<title>POE::Driver::SysRW::put (15,002 microseconds, 0.74%)</title><a xlink:href="POE-Driver-SysRW-pm-88-line.html#54" target="_top"><rect x="999.6" y="225" width="8.8" height="15.0" fill="rgb(205,226,21)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Wheel::ReadWrite::__ANON__[/usr/local/share/perl/5.18.2/POE/Wheel/ReadWrite.pm:293] (514,972 microseconds, 25.51%)')" onmouseout="c()">
+<title>POE::Wheel::ReadWrite::__ANON__[/usr/local/share/perl/5.18.2/POE/Wheel/ReadWrite.pm:293] (514,972 microseconds, 25.51%)</title><a xlink:href="POE-Wheel-ReadWrite-pm-93-line.html#270" target="_top"><rect x="723.5" y="321" width="301.0" height="15.0" fill="rgb(228,191,4)" rx="2" ry="2" />
+<text text-anchor="" x="726.506186263063" y="331.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE::Wheel::ReadWrite::__ANON__[/usr/local/..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::SSLify_ContextCreate (754 microseconds, 0.04%)')" onmouseout="c()">
+<title>POE::Component::SSLify::SSLify_ContextCreate (754 microseconds, 0.04%)</title><a xlink:href="lib-POE-Component-SSLify-pm-105-line.html#292" target="_top"><rect x="1094.1" y="241" width="0.4" height="15.0" fill="rgb(219,78,25)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::BEGIN@2.28 (3,632 microseconds, 0.18%)')" onmouseout="c()">
+<title>POE::Kernel::BEGIN@2.28 (3,632 microseconds, 0.18%)</title><a xlink:href="(eval 31)[POE-Resources-pm-22]-83-line.html#2" target="_top"><rect x="1143.2" y="321" width="2.1" height="15.0" fill="rgb(207,36,30)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::More::ok (2,121 microseconds, 0.11%)')" onmouseout="c()">
+<title>Test::More::ok (2,121 microseconds, 0.11%)</title><a xlink:href="Test-More-pm-4-line.html#290" target="_top"><rect x="1033.0" y="129" width="1.2" height="15.0" fill="rgb(242,45,53)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::todo (726 microseconds, 0.04%)')" onmouseout="c()">
+<title>Test::Builder::todo (726 microseconds, 0.04%)</title><a xlink:href="Test-Builder-pm-6-line.html#2215" target="_top"><rect x="1044.3" y="97" width="0.5" height="15.0" fill="rgb(208,118,6)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::More::BEGIN@23 (9,114 microseconds, 0.45%)')" onmouseout="c()">
+<title>Test::More::BEGIN@23 (9,114 microseconds, 0.45%)</title><a xlink:href="Test-More-pm-4-line.html#23" target="_top"><rect x="1167.8" y="401" width="5.3" height="15.0" fill="rgb(212,64,3)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::BEGIN@16.18 (1,827 microseconds, 0.09%)')" onmouseout="c()">
+<title>POE::Kernel::BEGIN@16.18 (1,827 microseconds, 0.09%)</title><a xlink:href="POE-Resource-FileHandles-pm-71-line.html#16" target="_top"><rect x="1140.7" y="305" width="1.1" height="15.0" fill="rgb(245,114,22)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::call (560 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Kernel::call (560 microseconds, 0.03%)</title><a xlink:href="POE-Kernel-pm-53-line.html#1710" target="_top"><rect x="722.8" y="305" width="0.3" height="15.0" fill="rgb(244,136,36)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_is_object (298 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::_is_object (298 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#930" target="_top"><rect x="1033.7" y="65" width="0.1" height="15.0" fill="rgb(241,143,34)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('IO::Socket::UNIX::BEGIN@11 (642 microseconds, 0.03%)')" onmouseout="c()">
+<title>IO::Socket::UNIX::BEGIN@11 (642 microseconds, 0.03%)</title><a xlink:href="IO-Socket-UNIX-pm-42-line.html#11" target="_top"><rect x="1121.8" y="305" width="0.4" height="15.0" fill="rgb(253,142,4)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Session::create (33,960 microseconds, 1.68%)')" onmouseout="c()">
+<title>POE::Session::create (33,960 microseconds, 1.68%)</title><a xlink:href="POE-Session-pm-86-line.html#210" target="_top"><rect x="1025.0" y="241" width="19.8" height="15.0" fill="rgb(206,10,12)" rx="2" ry="2" />
+<text text-anchor="" x="1027.98294579042" y="251.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >P..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('main::BEGIN@22 (10,874 microseconds, 0.54%)')" onmouseout="c()">
+<title>main::BEGIN@22 (10,874 microseconds, 0.54%)</title><a xlink:href="t-simple_parallel_superbig-t-1-line.html#22" target="_top"><rect x="1158.4" y="417" width="6.3" height="15.0" fill="rgb(254,84,16)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::BEGIN@1 (5,290 microseconds, 0.26%)')" onmouseout="c()">
+<title>POE::Component::SSLify::BEGIN@1 (5,290 microseconds, 0.26%)</title><a xlink:href="(eval 47)[lib-POE-Component-SSLify-pm-48]-106-line.html#1" target="_top"><rect x="1160.4" y="385" width="3.1" height="15.0" fill="rgb(219,116,51)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::ServerHandle::WRITE (263,768 microseconds, 13.06%)')" onmouseout="c()">
+<title>POE::Component::SSLify::ServerHandle::WRITE (263,768 microseconds, 13.06%)</title><a xlink:href="lib-POE-Component-SSLify-ServerHandle-pm-113-line.html#143" target="_top"><rect x="568.6" y="273" width="154.2" height="15.0" fill="rgb(254,56,21)" rx="2" ry="2" />
+<text text-anchor="" x="571.610964118198" y="283.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE::Component::SSLif..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('IO::File::BEGIN@11 (404 microseconds, 0.02%)')" onmouseout="c()">
+<title>IO::File::BEGIN@11 (404 microseconds, 0.02%)</title><a xlink:href="IO-File-pm-73-line.html#11" target="_top"><rect x="1141.5" y="289" width="0.2" height="15.0" fill="rgb(222,11,5)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_handle_enqueue_ready (1,054,179 microseconds, 52.21%)')" onmouseout="c()">
+<title>POE::Kernel::_data_handle_enqueue_ready (1,054,179 microseconds, 52.21%)</title><a xlink:href="POE-Resource-FileHandles-pm-71-line.html#202" target="_top"><rect x="486.7" y="369" width="616.2" height="15.0" fill="rgb(206,59,16)" rx="2" ry="2" />
+<text text-anchor="" x="489.732481636728" y="379.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE::Kernel::_data_handle_enqueue_ready</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('XSLoader::load (1,208 microseconds, 0.06%)')" onmouseout="c()">
+<title>XSLoader::load (1,208 microseconds, 0.06%)</title><a xlink:href="XSLoader-pm-49-line.html#17" target="_top"><rect x="1162.8" y="369" width="0.7" height="15.0" fill="rgb(228,58,7)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_sig_initialize (472 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::_data_sig_initialize (472 microseconds, 0.02%)</title><a xlink:href="POE-Resource-Signals-pm-84-line.html#141" target="_top"><rect x="1138.2" y="337" width="0.3" height="15.0" fill="rgb(232,75,43)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Exporter::Heavy::heavy_export (506 microseconds, 0.03%)')" onmouseout="c()">
+<title>Exporter::Heavy::heavy_export (506 microseconds, 0.03%)</title><a xlink:href="Exporter-Heavy-pm-15-line.html#39" target="_top"><rect x="1122.3" y="289" width="0.2" height="15.0" fill="rgb(211,96,31)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_test_if_kernel_is_idle (1,615 microseconds, 0.08%)')" onmouseout="c()">
+<title>POE::Kernel::_test_if_kernel_is_idle (1,615 microseconds, 0.08%)</title><a xlink:href="POE-Kernel-pm-53-line.html#609" target="_top"><rect x="1102.9" y="369" width="0.9" height="15.0" fill="rgb(249,69,6)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Exporter::Heavy::heavy_export (622 microseconds, 0.03%)')" onmouseout="c()">
+<title>Exporter::Heavy::heavy_export (622 microseconds, 0.03%)</title><a xlink:href="Exporter-Heavy-pm-15-line.html#39" target="_top"><rect x="1121.9" y="273" width="0.3" height="15.0" fill="rgb(223,49,25)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_dispatch_signal_event (715 microseconds, 0.04%)')" onmouseout="c()">
+<title>POE::Kernel::_dispatch_signal_event (715 microseconds, 0.04%)</title><a xlink:href="POE-Kernel-pm-53-line.html#874" target="_top"><rect x="485.3" y="353" width="0.4" height="15.0" fill="rgb(223,229,44)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Time::HiRes::time (208 microseconds, 0.01%)')" onmouseout="c()">
+<title>Time::HiRes::time (208 microseconds, 0.01%)</title><a xlink:href="Time-HiRes-pm-50-line.html#Time__HiRes__time" target="_top"><rect x="1103.8" y="369" width="0.1" height="15.0" fill="rgb(206,178,12)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::More::ok (1,714 microseconds, 0.08%)')" onmouseout="c()">
+<title>Test::More::ok (1,714 microseconds, 0.08%)</title><a xlink:href="Test-More-pm-4-line.html#290" target="_top"><rect x="1092.2" y="241" width="1.0" height="15.0" fill="rgb(213,157,17)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Session::_invoke_state (981,158 microseconds, 48.60%)')" onmouseout="c()">
+<title>POE::Session::_invoke_state (981,158 microseconds, 48.60%)</title><a xlink:href="POE-Session-pm-86-line.html#405" target="_top"><rect x="529.3" y="337" width="573.4" height="15.0" fill="rgb(237,78,45)" rx="2" ry="2" />
+<text text-anchor="" x="532.27276311632" y="347.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE::Session::_invoke_state</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_try (4,921 microseconds, 0.24%)')" onmouseout="c()">
+<title>Test::Builder::_try (4,921 microseconds, 0.24%)</title><a xlink:href="Test-Builder-pm-6-line.html#1518" target="_top"><rect x="1020.6" y="177" width="2.9" height="15.0" fill="rgb(246,144,44)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_try (174 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::_try (174 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#1518" target="_top"><rect x="1092.8" y="161" width="0.1" height="15.0" fill="rgb(222,89,43)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::ServerHandle::_check_status (2,625 microseconds, 0.13%)')" onmouseout="c()">
+<title>POE::Component::SSLify::ServerHandle::_check_status (2,625 microseconds, 0.13%)</title><a xlink:href="lib-POE-Component-SSLify-ServerHandle-pm-113-line.html#49" target="_top"><rect x="721.2" y="257" width="1.6" height="15.0" fill="rgb(240,135,39)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_try (5,457 microseconds, 0.27%)')" onmouseout="c()">
+<title>Test::Builder::_try (5,457 microseconds, 0.27%)</title><a xlink:href="Test-Builder-pm-6-line.html#1518" target="_top"><rect x="1039.5" y="49" width="3.2" height="15.0" fill="rgb(238,56,28)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Wheel::ReadWrite::_define_read_state (1,228 microseconds, 0.06%)')" onmouseout="c()">
+<title>POE::Wheel::ReadWrite::_define_read_state (1,228 microseconds, 0.06%)</title><a xlink:href="POE-Wheel-ReadWrite-pm-93-line.html#245" target="_top"><rect x="1031.6" y="129" width="0.7" height="15.0" fill="rgb(245,130,54)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Client::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Client/TCP.pm:263] (24,054 microseconds, 1.19%)')" onmouseout="c()">
+<title>POE::Component::Client::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Client/TCP.pm:263] (24,054 microseconds, 1.19%)</title><a xlink:href="POE-Component-Client-TCP-pm-87-line.html#259" target="_top"><rect x="973.6" y="273" width="14.0" height="15.0" fill="rgb(251,169,43)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_print_to_fh (490 microseconds, 0.02%)')" onmouseout="c()">
+<title>Test::Builder::_print_to_fh (490 microseconds, 0.02%)</title><a xlink:href="Test-Builder-pm-6-line.html#1807" target="_top"><rect x="1020.0" y="193" width="0.3" height="15.0" fill="rgb(234,22,24)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Exporter::import (255 microseconds, 0.01%)')" onmouseout="c()">
+<title>Exporter::import (255 microseconds, 0.01%)</title><a xlink:href="Exporter-pm-12-line.html#28" target="_top"><rect x="1122.6" y="305" width="0.1" height="15.0" fill="rgb(233,33,31)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Server::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Server/TCP.pm:341] (27,228 microseconds, 1.35%)')" onmouseout="c()">
+<title>POE::Component::Server::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Server/TCP.pm:341] (27,228 microseconds, 1.35%)</title><a xlink:href="POE-Component-Server-TCP-pm-104-line.html#273" target="_top"><rect x="1028.9" y="161" width="15.9" height="15.0" fill="rgb(245,178,39)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::ok (7,207 microseconds, 0.36%)')" onmouseout="c()">
+<title>Test::Builder::ok (7,207 microseconds, 0.36%)</title><a xlink:href="Test-Builder-pm-6-line.html#809" target="_top"><rect x="983.4" y="225" width="4.2" height="15.0" fill="rgb(223,173,45)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Pipe::OneWay::BEGIN@13 (2,597 microseconds, 0.13%)')" onmouseout="c()">
+<title>POE::Pipe::OneWay::BEGIN@13 (2,597 microseconds, 0.13%)</title><a xlink:href="POE-Pipe-OneWay-pm-25-line.html#13" target="_top"><rect x="1112.3" y="369" width="1.5" height="15.0" fill="rgb(240,195,3)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Exporter::Heavy::heavy_export (2,097 microseconds, 0.10%)')" onmouseout="c()">
+<title>Exporter::Heavy::heavy_export (2,097 microseconds, 0.10%)</title><a xlink:href="Exporter-Heavy-pm-15-line.html#39" target="_top"><rect x="1110.5" y="337" width="1.2" height="15.0" fill="rgb(208,159,7)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Exporter::import (1,126 microseconds, 0.06%)')" onmouseout="c()">
+<title>Exporter::import (1,126 microseconds, 0.06%)</title><a xlink:href="Exporter-pm-12-line.html#28" target="_top"><rect x="1132.8" y="337" width="0.7" height="15.0" fill="rgb(228,91,1)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Wheel::ReadWrite::_define_write_state (862 microseconds, 0.04%)')" onmouseout="c()">
+<title>POE::Wheel::ReadWrite::_define_write_state (862 microseconds, 0.04%)</title><a xlink:href="POE-Wheel-ReadWrite-pm-93-line.html#155" target="_top"><rect x="1046.3" y="241" width="0.5" height="15.0" fill="rgb(248,192,35)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::loop_run (1,866,800 microseconds, 92.47%)')" onmouseout="c()">
+<title>POE::Kernel::loop_run (1,866,800 microseconds, 92.47%)</title><a xlink:href="POE-Loop-Select-pm-58-line.html#312" target="_top"><rect x="12.8" y="401" width="1091.1" height="15.0" fill="rgb(213,45,30)" rx="2" ry="2" />
+<text text-anchor="" x="15.8448520638897" y="411.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE::Kernel::loop_run</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('IO::Socket::BEGIN@11 (2,490 microseconds, 0.12%)')" onmouseout="c()">
+<title>IO::Socket::BEGIN@11 (2,490 microseconds, 0.12%)</title><a xlink:href="IO-Socket-pm-32-line.html#11" target="_top"><rect x="1117.2" y="305" width="1.5" height="15.0" fill="rgb(224,38,42)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Net::SSLeay::connect (2,088 microseconds, 0.10%)')" onmouseout="c()">
+<title>Net::SSLeay::connect (2,088 microseconds, 0.10%)</title><a xlink:href="Net-SSLeay-pm-107-line.html#Net__SSLeay__connect" target="_top"><rect x="721.5" y="241" width="1.2" height="15.0" fill="rgb(245,211,7)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('vars::BEGIN@7 (210 microseconds, 0.01%)')" onmouseout="c()">
+<title>vars::BEGIN@7 (210 microseconds, 0.01%)</title><a xlink:href="vars-pm-8-line.html#7" target="_top"><rect x="1172.6" y="337" width="0.1" height="15.0" fill="rgb(210,152,16)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::select_read (734 microseconds, 0.04%)')" onmouseout="c()">
+<title>POE::Kernel::select_read (734 microseconds, 0.04%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2211" target="_top"><rect x="1045.8" y="225" width="0.4" height="15.0" fill="rgb(215,185,8)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::BEGIN@16.32 (181 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::BEGIN@16.32 (181 microseconds, 0.01%)</title><a xlink:href="POE-Resource-Signals-pm-84-line.html#16" target="_top"><rect x="1145.2" y="305" width="0.1" height="15.0" fill="rgb(245,209,37)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Client::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Client/TCP.pm:181] (1,902 microseconds, 0.09%)')" onmouseout="c()">
+<title>POE::Component::Client::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Client/TCP.pm:181] (1,902 microseconds, 0.09%)</title><a xlink:href="POE-Component-Client-TCP-pm-87-line.html#155" target="_top"><rect x="473.2" y="321" width="1.1" height="15.0" fill="rgb(231,47,34)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Session::_invoke_state (662 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Session::_invoke_state (662 microseconds, 0.03%)</title><a xlink:href="POE-Session-pm-86-line.html#405" target="_top"><rect x="472.4" y="305" width="0.4" height="15.0" fill="rgb(221,102,38)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::Server_SSLify (1,109 microseconds, 0.05%)')" onmouseout="c()">
+<title>POE::Component::SSLify::Server_SSLify (1,109 microseconds, 0.05%)</title><a xlink:href="lib-POE-Component-SSLify-pm-105-line.html#224" target="_top"><rect x="1036.1" y="129" width="0.6" height="15.0" fill="rgb(251,28,48)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('main::__ANON__[t/simple_parallel_superbig.t:138] (23,981 microseconds, 1.19%)')" onmouseout="c()">
+<title>main::__ANON__[t/simple_parallel_superbig.t:138] (23,981 microseconds, 1.19%)</title><a xlink:href="t-simple_parallel_superbig-t-1-line.html#125" target="_top"><rect x="973.6" y="257" width="14.0" height="15.0" fill="rgb(211,103,35)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::select_pause_write (298 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::select_pause_write (298 microseconds, 0.01%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2281" target="_top"><rect x="1046.4" y="225" width="0.2" height="15.0" fill="rgb(234,125,35)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::More::ok (7,373 microseconds, 0.37%)')" onmouseout="c()">
+<title>Test::More::ok (7,373 microseconds, 0.37%)</title><a xlink:href="Test-More-pm-4-line.html#290" target="_top"><rect x="1019.5" y="241" width="4.3" height="15.0" fill="rgb(208,120,47)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Exporter::import (2,591 microseconds, 0.13%)')" onmouseout="c()">
+<title>Exporter::import (2,591 microseconds, 0.13%)</title><a xlink:href="Exporter-pm-12-line.html#28" target="_top"><rect x="1112.3" y="353" width="1.5" height="15.0" fill="rgb(238,9,36)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_handle_add (288 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::_data_handle_add (288 microseconds, 0.01%)</title><a xlink:href="POE-Resource-FileHandles-pm-71-line.html#264" target="_top"><rect x="1032.7" y="81" width="0.2" height="15.0" fill="rgb(243,81,40)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('parent::import (780 microseconds, 0.04%)')" onmouseout="c()">
+<title>parent::import (780 microseconds, 0.04%)</title><a xlink:href="parent-pm-112-line.html#6" target="_top"><rect x="1163.7" y="369" width="0.5" height="15.0" fill="rgb(219,202,32)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('main::BEGIN@10 (3,337 microseconds, 0.17%)')" onmouseout="c()">
+<title>main::BEGIN@10 (3,337 microseconds, 0.17%)</title><a xlink:href="t-simple_parallel_superbig-t-1-line.html#10" target="_top"><rect x="1104.9" y="417" width="1.9" height="15.0" fill="rgb(234,191,18)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Client::TCP::BEGIN@13 (869 microseconds, 0.04%)')" onmouseout="c()">
+<title>POE::Component::Client::TCP::BEGIN@13 (869 microseconds, 0.04%)</title><a xlink:href="POE-Component-Client-TCP-pm-87-line.html#13" target="_top"><rect x="1150.9" y="401" width="0.5" height="15.0" fill="rgb(252,226,52)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::_createSSLcontext (697 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Component::SSLify::_createSSLcontext (697 microseconds, 0.03%)</title><a xlink:href="lib-POE-Component-SSLify-pm-105-line.html#342" target="_top"><rect x="1094.1" y="225" width="0.4" height="15.0" fill="rgb(232,106,2)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::loop_ignore_signal (400 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::loop_ignore_signal (400 microseconds, 0.02%)</title><a xlink:href="POE-Loop-PerlSignals-pm-59-line.html#126" target="_top"><rect x="12.6" y="385" width="0.2" height="15.0" fill="rgb(248,154,37)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::import (34,763 microseconds, 1.72%)')" onmouseout="c()">
+<title>POE::import (34,763 microseconds, 1.72%)</title><a xlink:href="POE-pm-20-line.html#13" target="_top"><rect x="1126.3" y="401" width="20.3" height="15.0" fill="rgb(218,70,14)" rx="2" ry="2" />
+<text text-anchor="" x="1129.26935809757" y="411.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >P..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::alarm_remove_all (245 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::alarm_remove_all (245 microseconds, 0.01%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2133" target="_top"><rect x="482.6" y="305" width="0.2" height="15.0" fill="rgb(229,142,44)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Filter::Block::new (192 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Filter::Block::new (192 microseconds, 0.01%)</title><a xlink:href="POE-Filter-Block-pm-123-line.html#42" target="_top"><rect x="1031.2" y="113" width="0.2" height="15.0" fill="rgb(252,181,39)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POSIX::BEGIN@11 (836 microseconds, 0.04%)')" onmouseout="c()">
+<title>POSIX::BEGIN@11 (836 microseconds, 0.04%)</title><a xlink:href="POSIX-pm-22-line.html#11" target="_top"><rect x="1109.5" y="369" width="0.5" height="15.0" fill="rgb(245,139,8)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::in_todo (642 microseconds, 0.03%)')" onmouseout="c()">
+<title>Test::Builder::in_todo (642 microseconds, 0.03%)</title><a xlink:href="Test-Builder-pm-6-line.html#2262" target="_top"><rect x="1044.0" y="97" width="0.3" height="15.0" fill="rgb(239,41,43)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_test_loop (5,049 microseconds, 0.25%)')" onmouseout="c()">
+<title>POE::Kernel::_test_loop (5,049 microseconds, 0.25%)</title><a xlink:href="POE-Kernel-pm-53-line.html#511" target="_top"><rect x="1135.3" y="353" width="2.9" height="15.0" fill="rgb(234,102,21)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Session::_invoke_state (508 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Session::_invoke_state (508 microseconds, 0.03%)</title><a xlink:href="POE-Session-pm-86-line.html#405" target="_top"><rect x="11.4" y="337" width="0.3" height="15.0" fill="rgb(231,166,54)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::ServerHandle::_check_status (20,409 microseconds, 1.01%)')" onmouseout="c()">
+<title>POE::Component::SSLify::ServerHandle::_check_status (20,409 microseconds, 1.01%)</title><a xlink:href="lib-POE-Component-SSLify-ServerHandle-pm-113-line.html#49" target="_top"><rect x="874.1" y="257" width="12.0" height="15.0" fill="rgb(229,195,32)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::CORE:print (558 microseconds, 0.03%)')" onmouseout="c()">
+<title>Test::Builder::CORE:print (558 microseconds, 0.03%)</title><a xlink:href="Test-Builder-pm-6-line.html#Test__Builder__CORE_print" target="_top"><rect x="1038.3" y="65" width="0.4" height="15.0" fill="rgb(227,6,0)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::ServerHandle::CLOSE (607 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Component::SSLify::ServerHandle::CLOSE (607 microseconds, 0.03%)</title><a xlink:href="lib-POE-Component-SSLify-ServerHandle-pm-113-line.html#211" target="_top"><rect x="476.6" y="273" width="0.4" height="15.0" fill="rgb(236,161,31)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_ev_enqueue (257 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::_data_ev_enqueue (257 microseconds, 0.01%)</title><a xlink:href="POE-Resource-Events-pm-65-line.html#63" target="_top"><rect x="11.5" y="289" width="0.2" height="15.0" fill="rgb(229,2,16)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::caller (304 microseconds, 0.02%)')" onmouseout="c()">
+<title>Test::Builder::caller (304 microseconds, 0.02%)</title><a xlink:href="Test-Builder-pm-6-line.html#2367" target="_top"><rect x="1044.2" y="65" width="0.1" height="15.0" fill="rgb(232,137,13)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_print_to_fh (313 microseconds, 0.02%)')" onmouseout="c()">
+<title>Test::Builder::_print_to_fh (313 microseconds, 0.02%)</title><a xlink:href="Test-Builder-pm-6-line.html#1807" target="_top"><rect x="1033.3" y="81" width="0.2" height="15.0" fill="rgb(217,223,53)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_is_object (282 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::_is_object (282 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#930" target="_top"><rect x="1020.5" y="177" width="0.1" height="15.0" fill="rgb(224,25,16)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Session::_invoke_state (34,404 microseconds, 1.70%)')" onmouseout="c()">
+<title>POE::Session::_invoke_state (34,404 microseconds, 1.70%)</title><a xlink:href="POE-Session-pm-86-line.html#405" target="_top"><rect x="1024.7" y="289" width="20.1" height="15.0" fill="rgb(253,201,18)" rx="2" ry="2" />
+<text text-anchor="" x="1027.72367464452" y="299.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >P..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_check_is_passing_plan (197 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::_check_is_passing_plan (197 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#903" target="_top"><rect x="1037.8" y="97" width="0.2" height="15.0" fill="rgb(254,175,1)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_try (176 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::_try (176 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#1518" target="_top"><rect x="987.1" y="161" width="0.1" height="15.0" fill="rgb(207,90,48)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::__ANON__[/usr/local/share/perl/5.18.2/Test/Builder.pm:917] (1,465 microseconds, 0.07%)')" onmouseout="c()">
+<title>Test::Builder::__ANON__[/usr/local/share/perl/5.18.2/Test/Builder.pm:917] (1,465 microseconds, 0.07%)</title><a xlink:href="Test-Builder-pm-6-line.html#917" target="_top"><rect x="1043.1" y="49" width="0.9" height="15.0" fill="rgb(215,28,1)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::SSLify_Options (2,806 microseconds, 0.14%)')" onmouseout="c()">
+<title>POE::Component::SSLify::SSLify_Options (2,806 microseconds, 0.14%)</title><a xlink:href="lib-POE-Component-SSLify-pm-105-line.html#317" target="_top"><rect x="1034.4" y="129" width="1.7" height="15.0" fill="rgb(253,89,51)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('main::BEGIN@1.4 (31,916 microseconds, 1.58%)')" onmouseout="c()">
+<title>main::BEGIN@1.4 (31,916 microseconds, 1.58%)</title><a xlink:href="(eval 15)[POE-pm-47]-52-line.html#1" target="_top"><rect x="1127.9" y="385" width="18.7" height="15.0" fill="rgb(215,88,16)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Wheel::ReadWrite::put (77,393 microseconds, 3.83%)')" onmouseout="c()">
+<title>POE::Wheel::ReadWrite::put (77,393 microseconds, 3.83%)</title><a xlink:href="POE-Wheel-ReadWrite-pm-93-line.html#419" target="_top"><rect x="1046.9" y="241" width="45.3" height="15.0" fill="rgb(223,159,51)" rx="2" ry="2" />
+<text text-anchor="" x="1049.94454444084" y="251.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE:..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_try (180 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::_try (180 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#1518" target="_top"><rect x="1020.5" y="161" width="0.1" height="15.0" fill="rgb(210,59,6)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_sig_pipe_build (199 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::_data_sig_pipe_build (199 microseconds, 0.01%)</title><a xlink:href="POE-Resource-Signals-pm-84-line.html#811" target="_top"><rect x="1138.4" y="321" width="0.1" height="15.0" fill="rgb(242,208,24)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Net::SSLeay::die_if_ssl_error (268 microseconds, 0.01%)')" onmouseout="c()">
+<title>Net::SSLeay::die_if_ssl_error (268 microseconds, 0.01%)</title><a xlink:href="Net-SSLeay-pm-107-line.html#426" target="_top"><rect x="1035.9" y="97" width="0.2" height="15.0" fill="rgb(214,166,40)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('AutoLoader::autoload_sub (227 microseconds, 0.01%)')" onmouseout="c()">
+<title>AutoLoader::autoload_sub (227 microseconds, 0.01%)</title><a xlink:href="AutoLoader-pm-108-line.html#27" target="_top"><rect x="1159.2" y="369" width="0.1" height="15.0" fill="rgb(210,99,27)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_unoverload (194 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::_unoverload (194 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#913" target="_top"><rect x="1104.7" y="337" width="0.1" height="15.0" fill="rgb(210,219,23)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_dispatch_event (27,612 microseconds, 1.37%)')" onmouseout="c()">
+<title>POE::Kernel::_dispatch_event (27,612 microseconds, 1.37%)</title><a xlink:href="POE-Kernel-pm-53-line.html#996" target="_top"><rect x="1028.7" y="193" width="16.1" height="15.0" fill="rgb(236,4,21)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Pipe::OneWay::BEGIN@8 (15,895 microseconds, 0.79%)')" onmouseout="c()">
+<title>POE::Pipe::OneWay::BEGIN@8 (15,895 microseconds, 0.79%)</title><a xlink:href="POE-Pipe-OneWay-pm-25-line.html#8" target="_top"><rect x="1113.8" y="369" width="9.3" height="15.0" fill="rgb(250,32,27)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Wheel::ReadWrite::new (2,173 microseconds, 0.11%)')" onmouseout="c()">
+<title>POE::Wheel::ReadWrite::new (2,173 microseconds, 0.11%)</title><a xlink:href="POE-Wheel-ReadWrite-pm-93-line.html#36" target="_top"><rect x="1045.6" y="257" width="1.2" height="15.0" fill="rgb(221,31,23)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::import (506 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::import (506 microseconds, 0.03%)</title><a xlink:href="POE-pm-20-line.html#13" target="_top"><rect x="1153.5" y="369" width="0.3" height="15.0" fill="rgb(221,179,12)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::todo (176 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::todo (176 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#2215" target="_top"><rect x="482.4" y="257" width="0.1" height="15.0" fill="rgb(228,128,50)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Net::SSLeay::print_errs (177 microseconds, 0.01%)')" onmouseout="c()">
+<title>Net::SSLeay::print_errs (177 microseconds, 0.01%)</title><a xlink:href="Net-SSLeay-pm-107-line.html#410" target="_top"><rect x="1036.0" y="81" width="0.1" height="15.0" fill="rgb(241,99,48)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_ev_enqueue (216 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::_data_ev_enqueue (216 microseconds, 0.01%)</title><a xlink:href="POE-Resource-Events-pm-65-line.html#63" target="_top"><rect x="11.0" y="353" width="0.2" height="15.0" fill="rgb(247,83,49)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::ServerHandle::READ (208,110 microseconds, 10.31%)')" onmouseout="c()">
+<title>POE::Component::SSLify::ServerHandle::READ (208,110 microseconds, 10.31%)</title><a xlink:href="lib-POE-Component-SSLify-ServerHandle-pm-113-line.html#94" target="_top"><rect x="764.4" y="273" width="121.7" height="15.0" fill="rgb(243,196,10)" rx="2" ry="2" />
+<text text-anchor="" x="767.435316162897" y="283.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE::Component::..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::CORE:print (271 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::CORE:print (271 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#Test__Builder__CORE_print" target="_top"><rect x="1020.1" y="177" width="0.2" height="15.0" fill="rgb(237,36,22)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::call (34,629 microseconds, 1.72%)')" onmouseout="c()">
+<title>POE::Kernel::call (34,629 microseconds, 1.72%)</title><a xlink:href="POE-Kernel-pm-53-line.html#1710" target="_top"><rect x="1024.6" y="305" width="20.2" height="15.0" fill="rgb(228,114,18)" rx="2" ry="2" />
+<text text-anchor="" x="1027.59193497751" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >P..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_unoverload_str (8,893 microseconds, 0.44%)')" onmouseout="c()">
+<title>Test::Builder::_unoverload_str (8,893 microseconds, 0.44%)</title><a xlink:href="Test-Builder-pm-6-line.html#936" target="_top"><rect x="1038.8" y="97" width="5.2" height="15.0" fill="rgb(235,165,42)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::find_TODO (234 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::find_TODO (234 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#2242" target="_top"><rect x="1023.7" y="193" width="0.1" height="15.0" fill="rgb(219,201,14)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_ses_allocate (232 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::_data_ses_allocate (232 microseconds, 0.01%)</title><a xlink:href="POE-Resource-Sessions-pm-81-line.html#93" target="_top"><rect x="1028.5" y="193" width="0.1" height="15.0" fill="rgb(254,102,11)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::CORE:print (254 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::CORE:print (254 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#Test__Builder__CORE_print" target="_top"><rect x="986.7" y="177" width="0.1" height="15.0" fill="rgb(249,70,17)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Exporter::Heavy::_rebuild_cache (421 microseconds, 0.02%)')" onmouseout="c()">
+<title>Exporter::Heavy::_rebuild_cache (421 microseconds, 0.02%)</title><a xlink:href="Exporter-Heavy-pm-15-line.html#28" target="_top"><rect x="1122.3" y="273" width="0.2" height="15.0" fill="rgb(224,224,33)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::state (250 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::state (250 microseconds, 0.01%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2578" target="_top"><rect x="477.6" y="289" width="0.2" height="15.0" fill="rgb(244,188,20)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::create (433 microseconds, 0.02%)')" onmouseout="c()">
+<title>Test::Builder::create (433 microseconds, 0.02%)</title><a xlink:href="Test-Builder-pm-6-line.html#141" target="_top"><rect x="1172.8" y="353" width="0.3" height="15.0" fill="rgb(251,166,54)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_is_object (236 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::_is_object (236 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#930" target="_top"><rect x="482.1" y="225" width="0.1" height="15.0" fill="rgb(231,107,24)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('main::__ANON__[t/simple_parallel_superbig.t:52] (5,727 microseconds, 0.28%)')" onmouseout="c()">
+<title>main::__ANON__[t/simple_parallel_superbig.t:52] (5,727 microseconds, 0.28%)</title><a xlink:href="t-simple_parallel_superbig-t-1-line.html#49" target="_top"><rect x="479.2" y="305" width="3.3" height="15.0" fill="rgb(213,218,9)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_print (374 microseconds, 0.02%)')" onmouseout="c()">
+<title>Test::Builder::_print (374 microseconds, 0.02%)</title><a xlink:href="Test-Builder-pm-6-line.html#1802" target="_top"><rect x="1033.3" y="97" width="0.2" height="15.0" fill="rgb(242,53,50)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::BEGIN@575 (214 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::BEGIN@575 (214 microseconds, 0.01%)</title><a xlink:href="POE-Kernel-pm-53-line.html#575" target="_top"><rect x="1135.1" y="369" width="0.1" height="15.0" fill="rgb(225,154,54)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::ServerHandle::DESTROY (668 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Component::SSLify::ServerHandle::DESTROY (668 microseconds, 0.03%)</title><a xlink:href="lib-POE-Component-SSLify-ServerHandle-pm-113-line.html#230" target="_top"><rect x="478.1" y="289" width="0.4" height="15.0" fill="rgb(237,60,18)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('IO::Socket::import (522 microseconds, 0.03%)')" onmouseout="c()">
+<title>IO::Socket::import (522 microseconds, 0.03%)</title><a xlink:href="IO-Socket-pm-32-line.html#30" target="_top"><rect x="1122.2" y="305" width="0.4" height="15.0" fill="rgb(241,59,47)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Session::_register_state (257 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Session::_register_state (257 microseconds, 0.01%)</title><a xlink:href="POE-Session-pm-86-line.html#500" target="_top"><rect x="1027.8" y="225" width="0.1" height="15.0" fill="rgb(220,206,19)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Queue::Array::dequeue_next (207 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Queue::Array::dequeue_next (207 microseconds, 0.01%)</title><a xlink:href="POE-Queue-Array-pm-55-line.html#100" target="_top"><rect x="485.9" y="353" width="0.1" height="15.0" fill="rgb(242,66,45)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::More::done_testing (191 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::More::done_testing (191 microseconds, 0.01%)</title><a xlink:href="Test-More-pm-4-line.html#218" target="_top"><rect x="1104.3" y="417" width="0.1" height="15.0" fill="rgb(232,72,19)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::yield (300 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::yield (300 microseconds, 0.01%)</title><a xlink:href="POE-Kernel-pm-53-line.html#1685" target="_top"><rect x="11.5" y="305" width="0.2" height="15.0" fill="rgb(252,86,4)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Exporter::import (366 microseconds, 0.02%)')" onmouseout="c()">
+<title>Exporter::import (366 microseconds, 0.02%)</title><a xlink:href="Exporter-pm-12-line.html#28" target="_top"><rect x="1109.7" y="353" width="0.2" height="15.0" fill="rgb(249,31,18)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::ServerHandle::TIEHANDLE (854 microseconds, 0.04%)')" onmouseout="c()">
+<title>POE::Component::SSLify::ServerHandle::TIEHANDLE (854 microseconds, 0.04%)</title><a xlink:href="lib-POE-Component-SSLify-ServerHandle-pm-113-line.html#9" target="_top"><rect x="1036.2" y="113" width="0.5" height="15.0" fill="rgb(229,163,1)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_dispatch_event (1,113 microseconds, 0.06%)')" onmouseout="c()">
+<title>POE::Kernel::_dispatch_event (1,113 microseconds, 0.06%)</title><a xlink:href="POE-Kernel-pm-53-line.html#996" target="_top"><rect x="472.1" y="321" width="0.7" height="15.0" fill="rgb(212,38,42)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::loop_reset_time_watcher (320 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::loop_reset_time_watcher (320 microseconds, 0.02%)</title><a xlink:href="POE-Loop-Select-pm-58-line.html#95" target="_top"><rect x="485.7" y="353" width="0.2" height="15.0" fill="rgb(231,114,9)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POSIX::import (1,138 microseconds, 0.06%)')" onmouseout="c()">
+<title>POSIX::import (1,138 microseconds, 0.06%)</title><a xlink:href="POSIX-pm-22-line.html#21" target="_top"><rect x="1132.8" y="353" width="0.7" height="15.0" fill="rgb(208,0,31)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Session::try_alloc (274 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Session::try_alloc (274 microseconds, 0.01%)</title><a xlink:href="POE-Session-pm-86-line.html#185" target="_top"><rect x="1104.0" y="401" width="0.1" height="15.0" fill="rgb(235,176,54)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::_createSSLcontext (2,586 microseconds, 0.13%)')" onmouseout="c()">
+<title>POE::Component::SSLify::_createSSLcontext (2,586 microseconds, 0.13%)</title><a xlink:href="lib-POE-Component-SSLify-pm-105-line.html#342" target="_top"><rect x="1034.6" y="113" width="1.5" height="15.0" fill="rgb(238,194,31)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::More::ok (8,266 microseconds, 0.41%)')" onmouseout="c()">
+<title>Test::More::ok (8,266 microseconds, 0.41%)</title><a xlink:href="Test-More-pm-4-line.html#290" target="_top"><rect x="1094.5" y="241" width="4.9" height="15.0" fill="rgb(210,68,45)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Session::_register_state (351 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Session::_register_state (351 microseconds, 0.02%)</title><a xlink:href="POE-Session-pm-86-line.html#500" target="_top"><rect x="10.6" y="385" width="0.2" height="15.0" fill="rgb(207,22,19)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_is_object (246 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::_is_object (246 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#930" target="_top"><rect x="1092.7" y="177" width="0.2" height="15.0" fill="rgb(211,76,39)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Exporter::import (2,870 microseconds, 0.14%)')" onmouseout="c()">
+<title>Exporter::import (2,870 microseconds, 0.14%)</title><a xlink:href="Exporter-pm-12-line.html#28" target="_top"><rect x="1110.0" y="353" width="1.7" height="15.0" fill="rgb(238,41,45)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Session::create (2,371 microseconds, 0.12%)')" onmouseout="c()">
+<title>POE::Session::create (2,371 microseconds, 0.12%)</title><a xlink:href="POE-Session-pm-86-line.html#210" target="_top"><rect x="10.3" y="401" width="1.4" height="15.0" fill="rgb(244,114,47)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::BEGIN@11 (32,882 microseconds, 1.63%)')" onmouseout="c()">
+<title>POE::BEGIN@11 (32,882 microseconds, 1.63%)</title><a xlink:href="POE-pm-20-line.html#11" target="_top"><rect x="1107.0" y="401" width="19.2" height="15.0" fill="rgb(227,213,25)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_unoverload_str (211 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::_unoverload_str (211 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#936" target="_top"><rect x="1104.7" y="353" width="0.1" height="15.0" fill="rgb(244,59,47)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_handle_remove (449 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::_data_handle_remove (449 microseconds, 0.02%)</title><a xlink:href="POE-Resource-FileHandles-pm-71-line.html#466" target="_top"><rect x="477.0" y="257" width="0.3" height="15.0" fill="rgb(220,70,40)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_unoverload_str (651 microseconds, 0.03%)')" onmouseout="c()">
+<title>Test::Builder::_unoverload_str (651 microseconds, 0.03%)</title><a xlink:href="Test-Builder-pm-6-line.html#936" target="_top"><rect x="1092.6" y="209" width="0.4" height="15.0" fill="rgb(213,205,23)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('IO::Handle::BEGIN@9 (378 microseconds, 0.02%)')" onmouseout="c()">
+<title>IO::Handle::BEGIN@9 (378 microseconds, 0.02%)</title><a xlink:href="IO-Handle-pm-33-line.html#9" target="_top"><rect x="1118.4" y="289" width="0.3" height="15.0" fill="rgb(250,28,50)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Wheel::ReadWrite::new (2,663 microseconds, 0.13%)')" onmouseout="c()">
+<title>POE::Wheel::ReadWrite::new (2,663 microseconds, 0.13%)</title><a xlink:href="POE-Wheel-ReadWrite-pm-93-line.html#36" target="_top"><rect x="1031.4" y="145" width="1.5" height="15.0" fill="rgb(253,17,31)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_open_testhandles (311 microseconds, 0.02%)')" onmouseout="c()">
+<title>Test::Builder::_open_testhandles (311 microseconds, 0.02%)</title><a xlink:href="Test-Builder-pm-6-line.html#1946" target="_top"><rect x="1172.9" y="305" width="0.1" height="15.0" fill="rgb(248,228,40)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::yield (407 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::yield (407 microseconds, 0.02%)</title><a xlink:href="POE-Kernel-pm-53-line.html#1685" target="_top"><rect x="1023.9" y="257" width="0.2" height="15.0" fill="rgb(227,72,28)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::find_TODO (554 microseconds, 0.03%)')" onmouseout="c()">
+<title>Test::Builder::find_TODO (554 microseconds, 0.03%)</title><a xlink:href="Test-Builder-pm-6-line.html#2242" target="_top"><rect x="1044.4" y="81" width="0.4" height="15.0" fill="rgb(245,47,27)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('main::BEGIN@8 (14,207 microseconds, 0.70%)')" onmouseout="c()">
+<title>main::BEGIN@8 (14,207 microseconds, 0.70%)</title><a xlink:href="t-simple_parallel_superbig-t-1-line.html#8" target="_top"><rect x="1164.8" y="417" width="8.3" height="15.0" fill="rgb(213,26,41)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::select_resume_write (494 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::select_resume_write (494 microseconds, 0.02%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2302" target="_top"><rect x="1091.9" y="225" width="0.3" height="15.0" fill="rgb(243,33,12)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::in_todo (689 microseconds, 0.03%)')" onmouseout="c()">
+<title>Test::Builder::in_todo (689 microseconds, 0.03%)</title><a xlink:href="Test-Builder-pm-6-line.html#2262" target="_top"><rect x="1098.5" y="209" width="0.4" height="15.0" fill="rgb(242,130,7)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_handle_add (723 microseconds, 0.04%)')" onmouseout="c()">
+<title>POE::Kernel::_data_handle_add (723 microseconds, 0.04%)</title><a xlink:href="POE-Resource-FileHandles-pm-71-line.html#264" target="_top"><rect x="1031.8" y="81" width="0.4" height="15.0" fill="rgb(221,206,26)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::cmp_ok (763 microseconds, 0.04%)')" onmouseout="c()">
+<title>Test::Builder::cmp_ok (763 microseconds, 0.04%)</title><a xlink:href="Test-Builder-pm-6-line.html#1158" target="_top"><rect x="1104.4" y="385" width="0.5" height="15.0" fill="rgb(211,89,5)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_check_is_passing_plan (198 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::_check_is_passing_plan (198 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#903" target="_top"><rect x="1095.7" y="209" width="0.2" height="15.0" fill="rgb(251,104,9)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Client::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Client/TCP.pm:149] (461 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Component::Client::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Client/TCP.pm:149] (461 microseconds, 0.02%)</title><a xlink:href="POE-Component-Client-TCP-pm-87-line.html#143" target="_top"><rect x="11.4" y="321" width="0.3" height="15.0" fill="rgb(236,121,12)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Wheel::SocketFactory::_shutdown (5,632 microseconds, 0.28%)')" onmouseout="c()">
+<title>POE::Wheel::SocketFactory::_shutdown (5,632 microseconds, 0.28%)</title><a xlink:href="POE-Wheel-SocketFactory-pm-100-line.html#1101" target="_top"><rect x="1099.4" y="305" width="3.3" height="15.0" fill="rgb(216,52,21)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Client::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Client/TCP.pm:298] (5,981 microseconds, 0.30%)')" onmouseout="c()">
+<title>POE::Component::Client::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Client/TCP.pm:298] (5,981 microseconds, 0.30%)</title><a xlink:href="POE-Component-Client-TCP-pm-87-line.html#274" target="_top"><rect x="474.3" y="321" width="3.5" height="15.0" fill="rgb(230,23,20)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::CORE:sselect (757,778 microseconds, 37.53%)')" onmouseout="c()">
+<title>POE::Kernel::CORE:sselect (757,778 microseconds, 37.53%)</title><a xlink:href="POE-Kernel-pm-53-line.html#POE__Kernel__CORE_sselect" target="_top"><rect x="23.3" y="369" width="442.9" height="15.0" fill="rgb(214,1,6)" rx="2" ry="2" />
+<text text-anchor="" x="26.3144149794605" y="379.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE::Kernel::CORE:sselect</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_unoverload_str (867 microseconds, 0.04%)')" onmouseout="c()">
+<title>Test::Builder::_unoverload_str (867 microseconds, 0.04%)</title><a xlink:href="Test-Builder-pm-6-line.html#936" target="_top"><rect x="986.9" y="209" width="0.5" height="15.0" fill="rgb(238,214,26)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Pipe::BEGIN@11 (14,960 microseconds, 0.74%)')" onmouseout="c()">
+<title>POE::Pipe::BEGIN@11 (14,960 microseconds, 0.74%)</title><a xlink:href="POE-Pipe-pm-29-line.html#11" target="_top"><rect x="1114.4" y="337" width="8.7" height="15.0" fill="rgb(231,156,45)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_internal_select (235 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::_internal_select (235 microseconds, 0.01%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2162" target="_top"><rect x="1046.6" y="209" width="0.2" height="15.0" fill="rgb(227,11,10)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::select_pause_write (691 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Kernel::select_pause_write (691 microseconds, 0.03%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2281" target="_top"><rect x="723.1" y="305" width="0.4" height="15.0" fill="rgb(251,51,34)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Server::TCP::_test_filter (3,514 microseconds, 0.17%)')" onmouseout="c()">
+<title>POE::Component::Server::TCP::_test_filter (3,514 microseconds, 0.17%)</title><a xlink:href="POE-Component-Server-TCP-pm-104-line.html#602" target="_top"><rect x="1029.2" y="113" width="2.0" height="15.0" fill="rgb(227,226,34)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::select_write (412 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::select_write (412 microseconds, 0.02%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2234" target="_top"><rect x="473.8" y="273" width="0.3" height="15.0" fill="rgb(236,154,12)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Server::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Server/TCP.pm:422] (34,267 microseconds, 1.70%)')" onmouseout="c()">
+<title>POE::Component::Server::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Server/TCP.pm:422] (34,267 microseconds, 1.70%)</title><a xlink:href="POE-Component-Server-TCP-pm-104-line.html#267" target="_top"><rect x="1024.8" y="257" width="20.0" height="15.0" fill="rgb(245,201,4)" rx="2" ry="2" />
+<text text-anchor="" x="1027.80345487765" y="267.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >P..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::select (5,408 microseconds, 0.27%)')" onmouseout="c()">
+<title>POE::Kernel::select (5,408 microseconds, 0.27%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2178" target="_top"><rect x="1099.5" y="289" width="3.1" height="15.0" fill="rgb(241,185,23)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Session::try_alloc (28,915 microseconds, 1.43%)')" onmouseout="c()">
+<title>POE::Session::try_alloc (28,915 microseconds, 1.43%)</title><a xlink:href="POE-Session-pm-86-line.html#185" target="_top"><rect x="1027.9" y="225" width="16.9" height="15.0" fill="rgb(240,0,33)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::select_write (296 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::select_write (296 microseconds, 0.01%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2234" target="_top"><rect x="1046.6" y="225" width="0.2" height="15.0" fill="rgb(221,156,1)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Session::_invoke_state (188 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Session::_invoke_state (188 microseconds, 0.01%)</title><a xlink:href="POE-Session-pm-86-line.html#405" target="_top"><rect x="723.0" y="289" width="0.1" height="15.0" fill="rgb(224,151,2)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::select_write (388 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::select_write (388 microseconds, 0.02%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2234" target="_top"><rect x="1032.6" y="113" width="0.3" height="15.0" fill="rgb(219,0,31)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Wheel::SocketFactory::__ANON__[/usr/local/share/perl/5.18.2/POE/Wheel/SocketFactory.pm:320] (98,964 microseconds, 4.90%)')" onmouseout="c()">
+<title>POE::Wheel::SocketFactory::__ANON__[/usr/local/share/perl/5.18.2/POE/Wheel/SocketFactory.pm:320] (98,964 microseconds, 4.90%)</title><a xlink:href="POE-Wheel-SocketFactory-pm-100-line.html#242" target="_top"><rect x="1044.9" y="321" width="57.8" height="15.0" fill="rgb(220,189,39)" rx="2" ry="2" />
+<text text-anchor="" x="1047.88925367315" y="331.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE::W..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('IO::Socket::INET::BEGIN@12 (728 microseconds, 0.04%)')" onmouseout="c()">
+<title>IO::Socket::INET::BEGIN@12 (728 microseconds, 0.04%)</title><a xlink:href="IO-Socket-INET-pm-41-line.html#12" target="_top"><rect x="1121.4" y="305" width="0.4" height="15.0" fill="rgb(239,214,27)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('IO::Socket::import (642 microseconds, 0.03%)')" onmouseout="c()">
+<title>IO::Socket::import (642 microseconds, 0.03%)</title><a xlink:href="IO-Socket-pm-32-line.html#30" target="_top"><rect x="1121.0" y="289" width="0.4" height="15.0" fill="rgb(244,133,9)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('main::__ANON__[t/simple_parallel_superbig.t:123] (10,597 microseconds, 0.52%)')" onmouseout="c()">
+<title>main::__ANON__[t/simple_parallel_superbig.t:123] (10,597 microseconds, 0.52%)</title><a xlink:href="t-simple_parallel_superbig-t-1-line.html#112" target="_top"><rect x="1093.2" y="257" width="6.2" height="15.0" fill="rgb(205,93,12)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Exporter::as_heavy (1,251 microseconds, 0.06%)')" onmouseout="c()">
+<title>Exporter::as_heavy (1,251 microseconds, 0.06%)</title><a xlink:href="Exporter-pm-12-line.html#15" target="_top"><rect x="1167.0" y="369" width="0.7" height="15.0" fill="rgb(225,46,21)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::import (19,426 microseconds, 0.96%)')" onmouseout="c()">
+<title>POE::Kernel::import (19,426 microseconds, 0.96%)</title><a xlink:href="POE-Kernel-pm-53-line.html#40" target="_top"><rect x="1135.2" y="369" width="11.4" height="15.0" fill="rgb(241,51,49)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Net::SSLeay::BEGIN@19 (604 microseconds, 0.03%)')" onmouseout="c()">
+<title>Net::SSLeay::BEGIN@19 (604 microseconds, 0.03%)</title><a xlink:href="Net-SSLeay-pm-107-line.html#19" target="_top"><rect x="1161.7" y="369" width="0.3" height="15.0" fill="rgb(214,75,32)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Session::try_alloc (1,452 microseconds, 0.07%)')" onmouseout="c()">
+<title>POE::Session::try_alloc (1,452 microseconds, 0.07%)</title><a xlink:href="POE-Session-pm-86-line.html#185" target="_top"><rect x="10.9" y="385" width="0.8" height="15.0" fill="rgb(237,141,37)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_print (1,376 microseconds, 0.07%)')" onmouseout="c()">
+<title>Test::Builder::_print (1,376 microseconds, 0.07%)</title><a xlink:href="Test-Builder-pm-6-line.html#1802" target="_top"><rect x="1038.0" y="97" width="0.8" height="15.0" fill="rgb(214,124,10)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_internal_select (509 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Kernel::_internal_select (509 microseconds, 0.03%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2162" target="_top"><rect x="477.0" y="273" width="0.3" height="15.0" fill="rgb(234,179,52)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::ServerHandle::CORE:close (321 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Component::SSLify::ServerHandle::CORE:close (321 microseconds, 0.02%)</title><a xlink:href="lib-POE-Component-SSLify-ServerHandle-pm-113-line.html#POE__Component__SSLify__ServerHandle__CORE_close" target="_top"><rect x="478.3" y="257" width="0.2" height="15.0" fill="rgb(245,44,52)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_internal_select (582 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Kernel::_internal_select (582 microseconds, 0.03%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2162" target="_top"><rect x="1024.2" y="289" width="0.3" height="15.0" fill="rgb(241,45,7)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Net::SSLeay::CTX_use_certificate_chain_file (712 microseconds, 0.04%)')" onmouseout="c()">
+<title>Net::SSLeay::CTX_use_certificate_chain_file (712 microseconds, 0.04%)</title><a xlink:href="Net-SSLeay-pm-107-line.html#Net__SSLeay__CTX_use_certificate_chain_file" target="_top"><rect x="1035.2" y="97" width="0.4" height="15.0" fill="rgb(242,229,25)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('IO::Socket::import (638 microseconds, 0.03%)')" onmouseout="c()">
+<title>IO::Socket::import (638 microseconds, 0.03%)</title><a xlink:href="IO-Socket-pm-32-line.html#30" target="_top"><rect x="1121.8" y="289" width="0.4" height="15.0" fill="rgb(239,222,26)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('AutoLoader::import (274 microseconds, 0.01%)')" onmouseout="c()">
+<title>AutoLoader::import (274 microseconds, 0.01%)</title><a xlink:href="AutoLoader-pm-108-line.html#136" target="_top"><rect x="1162.6" y="353" width="0.2" height="15.0" fill="rgb(223,114,26)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::BEGIN@338 (218 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::BEGIN@338 (218 microseconds, 0.01%)</title><a xlink:href="POE-Kernel-pm-53-line.html#338" target="_top"><rect x="1134.9" y="369" width="0.1" height="15.0" fill="rgb(219,97,39)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::session_alloc (617 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Kernel::session_alloc (617 microseconds, 0.03%)</title><a xlink:href="POE-Kernel-pm-53-line.html#1444" target="_top"><rect x="11.8" y="369" width="0.4" height="15.0" fill="rgb(227,23,24)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('main::BEGIN@1.33 (2,779 microseconds, 0.14%)')" onmouseout="c()">
+<title>main::BEGIN@1.33 (2,779 microseconds, 0.14%)</title><a xlink:href="(eval 32)[POE-pm-59]-85-line.html#1" target="_top"><rect x="1126.3" y="385" width="1.6" height="15.0" fill="rgb(240,19,41)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Net::SSLeay::free (197 microseconds, 0.01%)')" onmouseout="c()">
+<title>Net::SSLeay::free (197 microseconds, 0.01%)</title><a xlink:href="Net-SSLeay-pm-107-line.html#Net__SSLeay__free" target="_top"><rect x="476.7" y="257" width="0.1" height="15.0" fill="rgb(240,167,28)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::BEGIN@2.25 (1,991 microseconds, 0.10%)')" onmouseout="c()">
+<title>POE::Kernel::BEGIN@2.25 (1,991 microseconds, 0.10%)</title><a xlink:href="(eval 29)[POE-Resources-pm-22]-80-line.html#2" target="_top"><rect x="1142.0" y="321" width="1.2" height="15.0" fill="rgb(248,13,7)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_print_to_fh (305 microseconds, 0.02%)')" onmouseout="c()">
+<title>Test::Builder::_print_to_fh (305 microseconds, 0.02%)</title><a xlink:href="Test-Builder-pm-6-line.html#1807" target="_top"><rect x="481.8" y="241" width="0.1" height="15.0" fill="rgb(238,37,2)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::BEGIN@19 (1,127 microseconds, 0.06%)')" onmouseout="c()">
+<title>Test::Builder::BEGIN@19 (1,127 microseconds, 0.06%)</title><a xlink:href="Test-Builder-pm-6-line.html#19" target="_top"><rect x="1172.1" y="369" width="0.7" height="15.0" fill="rgb(251,165,14)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Client::TCP::new (2,923 microseconds, 0.14%)')" onmouseout="c()">
+<title>POE::Component::Client::TCP::new (2,923 microseconds, 0.14%)</title><a xlink:href="POE-Component-Client-TCP-pm-87-line.html#22" target="_top"><rect x="10.0" y="417" width="1.7" height="15.0" fill="rgb(217,163,8)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Loop::Select::BEGIN@9 (646 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Loop::Select::BEGIN@9 (646 microseconds, 0.03%)</title><a xlink:href="POE-Loop-Select-pm-58-line.html#9" target="_top"><rect x="1137.8" y="321" width="0.4" height="15.0" fill="rgb(213,167,33)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::call (92,932 microseconds, 4.60%)')" onmouseout="c()">
+<title>POE::Kernel::call (92,932 microseconds, 4.60%)</title><a xlink:href="POE-Kernel-pm-53-line.html#1710" target="_top"><rect x="1045.1" y="305" width="54.3" height="15.0" fill="rgb(243,34,29)" rx="2" ry="2" />
+<text text-anchor="" x="1048.05746430387" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE::K..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Queue::Array::get_next_priority (853 microseconds, 0.04%)')" onmouseout="c()">
+<title>POE::Queue::Array::get_next_priority (853 microseconds, 0.04%)</title><a xlink:href="POE-Queue-Array-pm-55-line.html#113" target="_top"><rect x="486.0" y="353" width="0.5" height="15.0" fill="rgb(234,221,22)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::new (437 microseconds, 0.02%)')" onmouseout="c()">
+<title>Test::Builder::new (437 microseconds, 0.02%)</title><a xlink:href="Test-Builder-pm-6-line.html#121" target="_top"><rect x="1172.8" y="369" width="0.3" height="15.0" fill="rgb(225,191,21)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Filter::Block::put (14,577 microseconds, 0.72%)')" onmouseout="c()">
+<title>POE::Filter::Block::put (14,577 microseconds, 0.72%)</title><a xlink:href="POE-Filter-Block-pm-123-line.html#156" target="_top"><rect x="1008.4" y="225" width="8.5" height="15.0" fill="rgb(225,84,53)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_try (238 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::_try (238 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#1518" target="_top"><rect x="1033.8" y="65" width="0.2" height="15.0" fill="rgb(220,55,42)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Server::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Server/TCP.pm:449] (34,334 microseconds, 1.70%)')" onmouseout="c()">
+<title>POE::Component::Server::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Server/TCP.pm:449] (34,334 microseconds, 1.70%)</title><a xlink:href="POE-Component-Server-TCP-pm-104-line.html#433" target="_top"><rect x="1024.8" y="273" width="20.0" height="15.0" fill="rgb(223,125,7)" rx="2" ry="2" />
+<text text-anchor="" x="1027.76417845519" y="283.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >P..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Resource::Clock::BEGIN@12 (18,712 microseconds, 0.93%)')" onmouseout="c()">
+<title>POE::Resource::Clock::BEGIN@12 (18,712 microseconds, 0.93%)</title><a xlink:href="POE-Resource-Clock-pm-21-line.html#12" target="_top"><rect x="1112.2" y="385" width="10.9" height="15.0" fill="rgb(234,206,6)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Session::_invoke_state (172 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Session::_invoke_state (172 microseconds, 0.01%)</title><a xlink:href="POE-Session-pm-86-line.html#405" target="_top"><rect x="1104.0" y="353" width="0.1" height="15.0" fill="rgb(210,129,12)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('IO::Socket::BEGIN@12 (3,205 microseconds, 0.16%)')" onmouseout="c()">
+<title>IO::Socket::BEGIN@12 (3,205 microseconds, 0.16%)</title><a xlink:href="IO-Socket-pm-32-line.html#12" target="_top"><rect x="1118.7" y="305" width="1.9" height="15.0" fill="rgb(253,169,15)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::in_todo (176 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::in_todo (176 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#2262" target="_top"><rect x="987.4" y="209" width="0.1" height="15.0" fill="rgb(222,46,38)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POSIX::import (174 microseconds, 0.01%)')" onmouseout="c()">
+<title>POSIX::import (174 microseconds, 0.01%)</title><a xlink:href="POSIX-pm-22-line.html#21" target="_top"><rect x="1145.2" y="289" width="0.1" height="15.0" fill="rgb(215,99,12)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_try (210 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::_try (210 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#1518" target="_top"><rect x="1033.7" y="49" width="0.1" height="15.0" fill="rgb(241,99,51)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_is_object (268 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::_is_object (268 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#930" target="_top"><rect x="987.0" y="177" width="0.2" height="15.0" fill="rgb(239,212,3)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Net::SSLeay::CTX_use_RSAPrivateKey_file (753 microseconds, 0.04%)')" onmouseout="c()">
+<title>Net::SSLeay::CTX_use_RSAPrivateKey_file (753 microseconds, 0.04%)</title><a xlink:href="Net-SSLeay-pm-107-line.html#Net__SSLeay__CTX_use_RSAPrivateKey_file" target="_top"><rect x="1034.7" y="97" width="0.5" height="15.0" fill="rgb(205,210,24)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('all (2,018,921 microseconds, 100%)')" onmouseout="c()">
+<title>all (2,018,921 microseconds, 100%)</title><rect x="10.0" y="433" width="1180.0" height="15.0" fill="rgb(243,35,6)" rx="2" ry="2" />
+<text text-anchor="" x="13" y="443.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  ></text>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::ServerHandle::DESTROY (652 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Component::SSLify::ServerHandle::DESTROY (652 microseconds, 0.03%)</title><a xlink:href="lib-POE-Component-SSLify-ServerHandle-pm-113-line.html#230" target="_top"><rect x="476.6" y="289" width="0.4" height="15.0" fill="rgb(221,180,22)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Net::SSLeay::load_error_strings (1,660 microseconds, 0.08%)')" onmouseout="c()">
+<title>Net::SSLeay::load_error_strings (1,660 microseconds, 0.08%)</title><a xlink:href="Net-SSLeay-pm-107-line.html#Net__SSLeay__load_error_strings" target="_top"><rect x="1159.4" y="385" width="1.0" height="15.0" fill="rgb(251,87,2)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_unoverload_str (3,018 microseconds, 0.15%)')" onmouseout="c()">
+<title>Test::Builder::_unoverload_str (3,018 microseconds, 0.15%)</title><a xlink:href="Test-Builder-pm-6-line.html#936" target="_top"><rect x="1096.7" y="209" width="1.8" height="15.0" fill="rgb(235,53,2)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::find_TODO (600 microseconds, 0.03%)')" onmouseout="c()">
+<title>Test::Builder::find_TODO (600 microseconds, 0.03%)</title><a xlink:href="Test-Builder-pm-6-line.html#2242" target="_top"><rect x="1099.0" y="193" width="0.3" height="15.0" fill="rgb(243,65,29)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_dispatch_event (177 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::_dispatch_event (177 microseconds, 0.01%)</title><a xlink:href="POE-Kernel-pm-53-line.html#996" target="_top"><rect x="472.6" y="257" width="0.1" height="15.0" fill="rgb(226,49,19)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_finalize_kernel (1,080 microseconds, 0.05%)')" onmouseout="c()">
+<title>POE::Kernel::_finalize_kernel (1,080 microseconds, 0.05%)</title><a xlink:href="POE-Kernel-pm-53-line.html#1205" target="_top"><rect x="12.2" y="401" width="0.6" height="15.0" fill="rgb(238,227,49)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Client::TCP::BEGIN@14 (1,416 microseconds, 0.07%)')" onmouseout="c()">
+<title>POE::Component::Client::TCP::BEGIN@14 (1,416 microseconds, 0.07%)</title><a xlink:href="POE-Component-Client-TCP-pm-87-line.html#14" target="_top"><rect x="1151.4" y="401" width="0.8" height="15.0" fill="rgb(236,167,42)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('main::BEGIN@21 (3,014 microseconds, 0.15%)')" onmouseout="c()">
+<title>main::BEGIN@21 (3,014 microseconds, 0.15%)</title><a xlink:href="t-simple_parallel_superbig-t-1-line.html#21" target="_top"><rect x="1156.6" y="417" width="1.8" height="15.0" fill="rgb(238,93,16)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POSIX::load_imports (361 microseconds, 0.02%)')" onmouseout="c()">
+<title>POSIX::load_imports (361 microseconds, 0.02%)</title><a xlink:href="POSIX-pm-22-line.html#234" target="_top"><rect x="1111.7" y="353" width="0.2" height="15.0" fill="rgb(251,134,53)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Wheel::SocketFactory::_define_connect_state (629 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Wheel::SocketFactory::_define_connect_state (629 microseconds, 0.03%)</title><a xlink:href="POE-Wheel-SocketFactory-pm-100-line.html#217" target="_top"><rect x="473.7" y="289" width="0.4" height="15.0" fill="rgb(212,161,38)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Queue::Array::remove_items (184 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Queue::Array::remove_items (184 microseconds, 0.01%)</title><a xlink:href="POE-Queue-Array-pm-55-line.html#231" target="_top"><rect x="1102.5" y="241" width="0.1" height="15.0" fill="rgb(246,103,34)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::ok (1,634 microseconds, 0.08%)')" onmouseout="c()">
+<title>Test::Builder::ok (1,634 microseconds, 0.08%)</title><a xlink:href="Test-Builder-pm-6-line.html#809" target="_top"><rect x="1092.2" y="225" width="1.0" height="15.0" fill="rgb(221,11,11)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::session_alloc (1,420 microseconds, 0.07%)')" onmouseout="c()">
+<title>POE::Kernel::session_alloc (1,420 microseconds, 0.07%)</title><a xlink:href="POE-Kernel-pm-53-line.html#1444" target="_top"><rect x="10.9" y="369" width="0.8" height="15.0" fill="rgb(221,85,48)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::todo (303 microseconds, 0.02%)')" onmouseout="c()">
+<title>Test::Builder::todo (303 microseconds, 0.02%)</title><a xlink:href="Test-Builder-pm-6-line.html#2215" target="_top"><rect x="1023.6" y="209" width="0.2" height="15.0" fill="rgb(228,168,4)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Wheel::ReadWrite::BEGIN@9 (512 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Wheel::ReadWrite::BEGIN@9 (512 microseconds, 0.03%)</title><a xlink:href="POE-Wheel-ReadWrite-pm-93-line.html#9" target="_top"><rect x="1153.5" y="385" width="0.3" height="15.0" fill="rgb(254,37,47)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Exporter::import (592 microseconds, 0.03%)')" onmouseout="c()">
+<title>Exporter::import (592 microseconds, 0.03%)</title><a xlink:href="Exporter-pm-12-line.html#28" target="_top"><rect x="1161.7" y="353" width="0.3" height="15.0" fill="rgb(251,121,28)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('main::__ANON__[t/simple_parallel_superbig.t:67] (18,081 microseconds, 0.90%)')" onmouseout="c()">
+<title>main::__ANON__[t/simple_parallel_superbig.t:67] (18,081 microseconds, 0.90%)</title><a xlink:href="t-simple_parallel_superbig-t-1-line.html#54" target="_top"><rect x="1034.2" y="145" width="10.6" height="15.0" fill="rgb(235,119,7)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('IO::Handle::BEGIN@8 (237 microseconds, 0.01%)')" onmouseout="c()">
+<title>IO::Handle::BEGIN@8 (237 microseconds, 0.01%)</title><a xlink:href="IO-Handle-pm-33-line.html#8" target="_top"><rect x="1118.3" y="289" width="0.1" height="15.0" fill="rgb(219,108,10)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::loop_do_timeslice (1,864,947 microseconds, 92.37%)')" onmouseout="c()">
+<title>POE::Kernel::loop_do_timeslice (1,864,947 microseconds, 92.37%)</title><a xlink:href="POE-Loop-Select-pm-58-line.html#145" target="_top"><rect x="13.9" y="385" width="1090.0" height="15.0" fill="rgb(249,5,5)" rx="2" ry="2" />
+<text text-anchor="" x="16.9277591403524" y="395.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE::Kernel::loop_do_timeslice</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::call (102,530 microseconds, 5.08%)')" onmouseout="c()">
+<title>POE::Kernel::call (102,530 microseconds, 5.08%)</title><a xlink:href="POE-Kernel-pm-53-line.html#1710" target="_top"><rect x="964.2" y="305" width="59.9" height="15.0" fill="rgb(210,96,52)" rx="2" ry="2" />
+<text text-anchor="" x="967.197246453563" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE::Ke..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::BEGIN@86 (753 microseconds, 0.04%)')" onmouseout="c()">
+<title>POE::Component::SSLify::BEGIN@86 (753 microseconds, 0.04%)</title><a xlink:href="lib-POE-Component-SSLify-pm-105-line.html#86" target="_top"><rect x="1164.2" y="401" width="0.4" height="15.0" fill="rgb(251,163,16)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_ending (265 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::_ending (265 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#2455" target="_top"><rect x="1104.1" y="401" width="0.2" height="15.0" fill="rgb(218,208,35)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::select_write (581 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Kernel::select_write (581 microseconds, 0.03%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2234" target="_top"><rect x="477.3" y="289" width="0.3" height="15.0" fill="rgb(242,31,28)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::state (240 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::state (240 microseconds, 0.01%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2578" target="_top"><rect x="479.0" y="289" width="0.2" height="15.0" fill="rgb(216,136,7)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_try (265 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::_try (265 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#1518" target="_top"><rect x="1172.9" y="273" width="0.1" height="15.0" fill="rgb(246,180,18)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Net::SSLeay::CTX_v3_new (549 microseconds, 0.03%)')" onmouseout="c()">
+<title>Net::SSLeay::CTX_v3_new (549 microseconds, 0.03%)</title><a xlink:href="Net-SSLeay-pm-107-line.html#Net__SSLeay__CTX_v3_new" target="_top"><rect x="1035.6" y="97" width="0.3" height="15.0" fill="rgb(238,133,9)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::select_write (635 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Kernel::select_write (635 microseconds, 0.03%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2234" target="_top"><rect x="478.7" y="289" width="0.3" height="15.0" fill="rgb(237,152,42)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::ServerHandle::CORE:close (241 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Component::SSLify::ServerHandle::CORE:close (241 microseconds, 0.01%)</title><a xlink:href="lib-POE-Component-SSLify-ServerHandle-pm-113-line.html#POE__Component__SSLify__ServerHandle__CORE_close" target="_top"><rect x="476.8" y="257" width="0.2" height="15.0" fill="rgb(250,48,43)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::run (1,867,929 microseconds, 92.52%)')" onmouseout="c()">
+<title>POE::Kernel::run (1,867,929 microseconds, 92.52%)</title><a xlink:href="POE-Kernel-pm-53-line.html#1249" target="_top"><rect x="12.2" y="417" width="1091.7" height="15.0" fill="rgb(212,147,26)" rx="2" ry="2" />
+<text text-anchor="" x="15.1848094465271" y="427.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE::Kernel::run</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_try (184 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::_try (184 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#1518" target="_top"><rect x="482.2" y="225" width="0.1" height="15.0" fill="rgb(232,148,23)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::Module::builder (210 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::Module::builder (210 microseconds, 0.01%)</title><a xlink:href="Test-Builder-Module-pm-5-line.html#169" target="_top"><rect x="1094.7" y="225" width="0.1" height="15.0" fill="rgb(249,100,23)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_ev_clear_alarm_by_name (4,110 microseconds, 0.20%)')" onmouseout="c()">
+<title>POE::Kernel::_data_ev_clear_alarm_by_name (4,110 microseconds, 0.20%)</title><a xlink:href="POE-Resource-Events-pm-65-line.html#251" target="_top"><rect x="482.8" y="289" width="2.4" height="15.0" fill="rgb(214,168,2)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('IO::Pipely::BEGIN@10 (12,532 microseconds, 0.62%)')" onmouseout="c()">
+<title>IO::Pipely::BEGIN@10 (12,532 microseconds, 0.62%)</title><a xlink:href="IO-Pipely-pm-30-line.html#10" target="_top"><rect x="1115.2" y="321" width="7.4" height="15.0" fill="rgb(223,195,7)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_print_to_fh (1,203 microseconds, 0.06%)')" onmouseout="c()">
+<title>Test::Builder::_print_to_fh (1,203 microseconds, 0.06%)</title><a xlink:href="Test-Builder-pm-6-line.html#1807" target="_top"><rect x="1096.0" y="193" width="0.7" height="15.0" fill="rgb(230,54,22)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('main::__ANON__[t/simple_parallel_superbig.t:47] (2,162 microseconds, 0.11%)')" onmouseout="c()">
+<title>main::__ANON__[t/simple_parallel_superbig.t:47] (2,162 microseconds, 0.11%)</title><a xlink:href="t-simple_parallel_superbig-t-1-line.html#45" target="_top"><rect x="1033.0" y="145" width="1.2" height="15.0" fill="rgb(208,66,40)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::call (393 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::call (393 microseconds, 0.02%)</title><a xlink:href="POE-Kernel-pm-53-line.html#1710" target="_top"><rect x="472.6" y="273" width="0.2" height="15.0" fill="rgb(222,12,22)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::ok (13,365 microseconds, 0.66%)')" onmouseout="c()">
+<title>Test::Builder::ok (13,365 microseconds, 0.66%)</title><a xlink:href="Test-Builder-pm-6-line.html#809" target="_top"><rect x="1037.0" y="113" width="7.8" height="15.0" fill="rgb(252,154,17)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::select_read (215 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::select_read (215 microseconds, 0.01%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2211" target="_top"><rect x="478.5" y="289" width="0.2" height="15.0" fill="rgb(253,55,35)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::ok (1,747 microseconds, 0.09%)')" onmouseout="c()">
+<title>Test::Builder::ok (1,747 microseconds, 0.09%)</title><a xlink:href="Test-Builder-pm-6-line.html#809" target="_top"><rect x="481.5" y="273" width="1.0" height="15.0" fill="rgb(229,35,48)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('main::BEGIN@2 (818 microseconds, 0.04%)')" onmouseout="c()">
+<title>main::BEGIN@2 (818 microseconds, 0.04%)</title><a xlink:href="t-simple_parallel_superbig-t-1-line.html#2" target="_top"><rect x="1146.6" y="417" width="0.5" height="15.0" fill="rgb(223,205,35)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_handle_condition (218 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::_data_handle_condition (218 microseconds, 0.01%)</title><a xlink:href="POE-Resource-FileHandles-pm-71-line.html#434" target="_top"><rect x="1046.1" y="177" width="0.1" height="15.0" fill="rgb(211,152,5)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Server::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Server/TCP.pm:352] (61,864 microseconds, 3.06%)')" onmouseout="c()">
+<title>POE::Component::Server::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Server/TCP.pm:352] (61,864 microseconds, 3.06%)</title><a xlink:href="POE-Component-Server-TCP-pm-104-line.html#348" target="_top"><rect x="987.6" y="273" width="36.2" height="15.0" fill="rgb(250,91,37)" rx="2" ry="2" />
+<text text-anchor="" x="990.643108122486" y="283.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('Config::BEGIN@11 (577 microseconds, 0.03%)')" onmouseout="c()">
+<title>Config::BEGIN@11 (577 microseconds, 0.03%)</title><a xlink:href="Config-pm-7-line.html#11" target="_top"><rect x="1172.4" y="353" width="0.3" height="15.0" fill="rgb(238,168,27)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_unoverload (802 microseconds, 0.04%)')" onmouseout="c()">
+<title>Test::Builder::_unoverload (802 microseconds, 0.04%)</title><a xlink:href="Test-Builder-pm-6-line.html#913" target="_top"><rect x="986.9" y="193" width="0.5" height="15.0" fill="rgb(236,64,8)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::select_write (174 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::select_write (174 microseconds, 0.01%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2234" target="_top"><rect x="474.2" y="273" width="0.1" height="15.0" fill="rgb(247,226,52)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Client::TCP::BEGIN@15 (2,793 microseconds, 0.14%)')" onmouseout="c()">
+<title>POE::Component::Client::TCP::BEGIN@15 (2,793 microseconds, 0.14%)</title><a xlink:href="POE-Component-Client-TCP-pm-87-line.html#15" target="_top"><rect x="1152.2" y="401" width="1.6" height="15.0" fill="rgb(238,39,11)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::__ANON__[/usr/local/share/perl/5.18.2/Test/Builder.pm:1973] (184 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::__ANON__[/usr/local/share/perl/5.18.2/Test/Builder.pm:1973] (184 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#1968" target="_top"><rect x="1172.9" y="257" width="0.1" height="15.0" fill="rgb(238,83,19)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_unoverload (5,445 microseconds, 0.27%)')" onmouseout="c()">
+<title>Test::Builder::_unoverload (5,445 microseconds, 0.27%)</title><a xlink:href="Test-Builder-pm-6-line.html#913" target="_top"><rect x="1020.3" y="193" width="3.2" height="15.0" fill="rgb(230,71,39)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Server::TCP::_get_filters (3,883 microseconds, 0.19%)')" onmouseout="c()">
+<title>POE::Component::Server::TCP::_get_filters (3,883 microseconds, 0.19%)</title><a xlink:href="POE-Component-Server-TCP-pm-104-line.html#559" target="_top"><rect x="1029.1" y="145" width="2.3" height="15.0" fill="rgb(223,116,33)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::select_pause_write (382 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::select_pause_write (382 microseconds, 0.02%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2281" target="_top"><rect x="1032.4" y="113" width="0.2" height="15.0" fill="rgb(242,144,31)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_sig_finalize (213 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::_data_sig_finalize (213 microseconds, 0.01%)</title><a xlink:href="POE-Resource-Signals-pm-84-line.html#217" target="_top"><rect x="12.4" y="385" width="0.2" height="15.0" fill="rgb(245,208,9)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::More::ok (7,389 microseconds, 0.37%)')" onmouseout="c()">
+<title>Test::More::ok (7,389 microseconds, 0.37%)</title><a xlink:href="Test-More-pm-4-line.html#290" target="_top"><rect x="983.3" y="241" width="4.3" height="15.0" fill="rgb(234,1,46)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_is_object (1,108 microseconds, 0.05%)')" onmouseout="c()">
+<title>Test::Builder::_is_object (1,108 microseconds, 0.05%)</title><a xlink:href="Test-Builder-pm-6-line.html#930" target="_top"><rect x="1097.3" y="177" width="0.6" height="15.0" fill="rgb(213,31,21)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Time::HiRes::time (322 microseconds, 0.02%)')" onmouseout="c()">
+<title>Time::HiRes::time (322 microseconds, 0.02%)</title><a xlink:href="Time-HiRes-pm-50-line.html#Time__HiRes__time" target="_top"><rect x="486.5" y="353" width="0.2" height="15.0" fill="rgb(227,67,3)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Driver::SysRW::flush (300,358 microseconds, 14.88%)')" onmouseout="c()">
+<title>POE::Driver::SysRW::flush (300,358 microseconds, 14.88%)</title><a xlink:href="POE-Driver-SysRW-pm-88-line.html#117" target="_top"><rect x="547.2" y="305" width="175.6" height="15.0" fill="rgb(253,125,54)" rx="2" ry="2" />
+<text text-anchor="" x="550.224893640375" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE::Driver::SysRW::flush</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('Net::SSLeay::accept (20,238 microseconds, 1.00%)')" onmouseout="c()">
+<title>Net::SSLeay::accept (20,238 microseconds, 1.00%)</title><a xlink:href="Net-SSLeay-pm-107-line.html#Net__SSLeay__accept" target="_top"><rect x="874.2" y="241" width="11.9" height="15.0" fill="rgb(211,227,51)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Client::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Client/TCP.pm:227] (92,605 microseconds, 4.59%)')" onmouseout="c()">
+<title>POE::Component::Client::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Client/TCP.pm:227] (92,605 microseconds, 4.59%)</title><a xlink:href="POE-Component-Client-TCP-pm-87-line.html#190" target="_top"><rect x="1045.2" y="273" width="54.2" height="15.0" fill="rgb(227,226,38)" rx="2" ry="2" />
+<text text-anchor="" x="1048.24864462809" y="283.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE::C..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Driver::SysRW::put (48,445 microseconds, 2.40%)')" onmouseout="c()">
+<title>POE::Driver::SysRW::put (48,445 microseconds, 2.40%)</title><a xlink:href="POE-Driver-SysRW-pm-88-line.html#54" target="_top"><rect x="1052.3" y="225" width="28.3" height="15.0" fill="rgb(233,88,42)" rx="2" ry="2" />
+<text text-anchor="" x="1055.26509695512" y="235.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >PO..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Resources::load (13,753 microseconds, 0.68%)')" onmouseout="c()">
+<title>POE::Resources::load (13,753 microseconds, 0.68%)</title><a xlink:href="POE-Resources-pm-56-line.html#18" target="_top"><rect x="1138.5" y="337" width="8.1" height="15.0" fill="rgb(206,42,38)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Driver::SysRW::CORE:sysread (217,234 microseconds, 10.76%)')" onmouseout="c()">
+<title>POE::Driver::SysRW::CORE:sysread (217,234 microseconds, 10.76%)</title><a xlink:href="POE-Driver-SysRW-pm-88-line.html#POE__Driver__SysRW__CORE_sysread" target="_top"><rect x="759.1" y="289" width="127.0" height="15.0" fill="rgb(218,44,42)" rx="2" ry="2" />
+<text text-anchor="" x="762.102372872484" y="299.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE::Driver::SysR..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('POSIX::import (3,255 microseconds, 0.16%)')" onmouseout="c()">
+<title>POSIX::import (3,255 microseconds, 0.16%)</title><a xlink:href="POSIX-pm-22-line.html#21" target="_top"><rect x="1110.0" y="369" width="1.9" height="15.0" fill="rgb(232,23,17)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_handle_is_good (178 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::_data_handle_is_good (178 microseconds, 0.01%)</title><a xlink:href="POE-Resource-FileHandles-pm-71-line.html#250" target="_top"><rect x="1092.0" y="209" width="0.1" height="15.0" fill="rgb(214,25,38)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_handle_remove (819 microseconds, 0.04%)')" onmouseout="c()">
+<title>POE::Kernel::_data_handle_remove (819 microseconds, 0.04%)</title><a xlink:href="POE-Resource-FileHandles-pm-71-line.html#466" target="_top"><rect x="1102.2" y="257" width="0.4" height="15.0" fill="rgb(213,82,30)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_load_loop (2,032 microseconds, 0.10%)')" onmouseout="c()">
+<title>POE::Kernel::_load_loop (2,032 microseconds, 0.10%)</title><a xlink:href="POE-Kernel-pm-53-line.html#491" target="_top"><rect x="1137.0" y="337" width="1.2" height="15.0" fill="rgb(224,160,24)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Server::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Server/TCP.pm:479] (414 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Component::Server::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Server/TCP.pm:479] (414 microseconds, 0.02%)</title><a xlink:href="POE-Component-Server-TCP-pm-104-line.html#458" target="_top"><rect x="11.9" y="321" width="0.3" height="15.0" fill="rgb(218,11,19)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Exporter::Heavy::CORE:subst (238 microseconds, 0.01%)')" onmouseout="c()">
+<title>Exporter::Heavy::CORE:subst (238 microseconds, 0.01%)</title><a xlink:href="Exporter-Heavy-pm-15-line.html#Exporter__Heavy__CORE_subst" target="_top"><rect x="1111.6" y="321" width="0.1" height="15.0" fill="rgb(230,3,29)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_print_to_fh (244 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::_print_to_fh (244 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#1807" target="_top"><rect x="1092.5" y="193" width="0.1" height="15.0" fill="rgb(221,203,22)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_try (769 microseconds, 0.04%)')" onmouseout="c()">
+<title>Test::Builder::_try (769 microseconds, 0.04%)</title><a xlink:href="Test-Builder-pm-6-line.html#1518" target="_top"><rect x="1097.5" y="161" width="0.4" height="15.0" fill="rgb(214,96,14)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::END (277 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::END (277 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#2588" target="_top"><rect x="1104.1" y="417" width="0.2" height="15.0" fill="rgb(232,116,40)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Session::_invoke_state (86,734 microseconds, 4.30%)')" onmouseout="c()">
+<title>POE::Session::_invoke_state (86,734 microseconds, 4.30%)</title><a xlink:href="POE-Session-pm-86-line.html#405" target="_top"><rect x="973.4" y="289" width="50.7" height="15.0" fill="rgb(237,92,18)" rx="2" ry="2" />
+<text text-anchor="" x="976.429894296855" y="299.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE::..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_print (1,453 microseconds, 0.07%)')" onmouseout="c()">
+<title>Test::Builder::_print (1,453 microseconds, 0.07%)</title><a xlink:href="Test-Builder-pm-6-line.html#1802" target="_top"><rect x="1095.9" y="209" width="0.8" height="15.0" fill="rgb(225,223,44)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Net::SSLeay::accept (544 microseconds, 0.03%)')" onmouseout="c()">
+<title>Net::SSLeay::accept (544 microseconds, 0.03%)</title><a xlink:href="Net-SSLeay-pm-107-line.html#Net__SSLeay__accept" target="_top"><rect x="1036.3" y="97" width="0.3" height="15.0" fill="rgb(227,26,13)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('main::__ANON__[t/simple_parallel_superbig.t:110] (79,171 microseconds, 3.92%)')" onmouseout="c()">
+<title>main::__ANON__[t/simple_parallel_superbig.t:110] (79,171 microseconds, 3.92%)</title><a xlink:href="t-simple_parallel_superbig-t-1-line.html#106" target="_top"><rect x="1046.9" y="257" width="46.3" height="15.0" fill="rgb(230,191,3)" rx="2" ry="2" />
+<text text-anchor="" x="1049.9066123007" y="267.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >main:..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('Net::SSLeay::read (171,155 microseconds, 8.48%)')" onmouseout="c()">
+<title>Net::SSLeay::read (171,155 microseconds, 8.48%)</title><a xlink:href="Net-SSLeay-pm-107-line.html#Net__SSLeay__read" target="_top"><rect x="774.1" y="257" width="100.0" height="15.0" fill="rgb(235,210,22)" rx="2" ry="2" />
+<text text-anchor="" x="777.105849358998" y="267.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >Net::SSLeay::..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('IO::Pipely::BEGIN@9 (549 microseconds, 0.03%)')" onmouseout="c()">
+<title>IO::Pipely::BEGIN@9 (549 microseconds, 0.03%)</title><a xlink:href="IO-Pipely-pm-30-line.html#9" target="_top"><rect x="1122.8" y="321" width="0.3" height="15.0" fill="rgb(230,214,42)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::ok (2,019 microseconds, 0.10%)')" onmouseout="c()">
+<title>Test::Builder::ok (2,019 microseconds, 0.10%)</title><a xlink:href="Test-Builder-pm-6-line.html#809" target="_top"><rect x="1033.0" y="113" width="1.2" height="15.0" fill="rgb(245,133,30)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Filter::Block::get_one (44,605 microseconds, 2.21%)')" onmouseout="c()">
+<title>POE::Filter::Block::get_one (44,605 microseconds, 2.21%)</title><a xlink:href="POE-Filter-Block-pm-123-line.html#114" target="_top"><rect x="886.1" y="305" width="26.0" height="15.0" fill="rgb(226,118,46)" rx="2" ry="2" />
+<text text-anchor="" x="889.06925318785" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >P..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::CORE:print (591 microseconds, 0.03%)')" onmouseout="c()">
+<title>Test::Builder::CORE:print (591 microseconds, 0.03%)</title><a xlink:href="Test-Builder-pm-6-line.html#Test__Builder__CORE_print" target="_top"><rect x="1096.3" y="177" width="0.3" height="15.0" fill="rgb(211,197,24)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_print (545 microseconds, 0.03%)')" onmouseout="c()">
+<title>Test::Builder::_print (545 microseconds, 0.03%)</title><a xlink:href="Test-Builder-pm-6-line.html#1802" target="_top"><rect x="986.5" y="209" width="0.4" height="15.0" fill="rgb(236,51,49)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::select_read (840 microseconds, 0.04%)')" onmouseout="c()">
+<title>POE::Kernel::select_read (840 microseconds, 0.04%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2211" target="_top"><rect x="1031.7" y="113" width="0.5" height="15.0" fill="rgb(248,169,34)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_print (361 microseconds, 0.02%)')" onmouseout="c()">
+<title>Test::Builder::_print (361 microseconds, 0.02%)</title><a xlink:href="Test-Builder-pm-6-line.html#1802" target="_top"><rect x="481.7" y="257" width="0.3" height="15.0" fill="rgb(233,176,38)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_print (295 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::_print (295 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#1802" target="_top"><rect x="1092.4" y="209" width="0.2" height="15.0" fill="rgb(214,147,16)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::select_read (550 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Kernel::select_read (550 microseconds, 0.03%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2211" target="_top"><rect x="477.0" y="289" width="0.3" height="15.0" fill="rgb(210,229,34)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_ses_gc_sweep (711 microseconds, 0.04%)')" onmouseout="c()">
+<title>POE::Kernel::_data_ses_gc_sweep (711 microseconds, 0.04%)</title><a xlink:href="POE-Resource-Sessions-pm-81-line.html#376" target="_top"><rect x="505.5" y="353" width="0.4" height="15.0" fill="rgb(241,113,40)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Client::TCP::_get_filter (236 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Component::Client::TCP::_get_filter (236 microseconds, 0.01%)</title><a xlink:href="POE-Component-Client-TCP-pm-87-line.html#313" target="_top"><rect x="1045.4" y="257" width="0.1" height="15.0" fill="rgb(229,188,51)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('main::__ANON__[t/simple_parallel_superbig.t:81] (61,784 microseconds, 3.06%)')" onmouseout="c()">
+<title>main::__ANON__[t/simple_parallel_superbig.t:81] (61,784 microseconds, 3.06%)</title><a xlink:href="t-simple_parallel_superbig-t-1-line.html#69" target="_top"><rect x="987.7" y="257" width="36.1" height="15.0" fill="rgb(214,221,50)" rx="2" ry="2" />
+<text text-anchor="" x="990.689865768274" y="267.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >mai..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Server::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Server/TCP.pm:364] (551 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Component::Server::TCP::__ANON__[/usr/local/share/perl/5.18.2/POE/Component/Server/TCP.pm:364] (551 microseconds, 0.03%)</title><a xlink:href="POE-Component-Server-TCP-pm-104-line.html#353" target="_top"><rect x="1023.8" y="273" width="0.3" height="15.0" fill="rgb(249,71,28)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_find_loop (2,486 microseconds, 0.12%)')" onmouseout="c()">
+<title>POE::Kernel::_find_loop (2,486 microseconds, 0.12%)</title><a xlink:href="POE-Kernel-pm-53-line.html#482" target="_top"><rect x="1135.6" y="337" width="1.4" height="15.0" fill="rgb(240,210,34)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Wheel::ReadWrite::_define_read_state (1,028 microseconds, 0.05%)')" onmouseout="c()">
+<title>POE::Wheel::ReadWrite::_define_read_state (1,028 microseconds, 0.05%)</title><a xlink:href="POE-Wheel-ReadWrite-pm-93-line.html#245" target="_top"><rect x="1045.7" y="241" width="0.6" height="15.0" fill="rgb(251,208,3)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::find_TODO (216 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::find_TODO (216 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#2242" target="_top"><rect x="987.5" y="193" width="0.1" height="15.0" fill="rgb(250,36,36)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Session::_invoke_state (428 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Session::_invoke_state (428 microseconds, 0.02%)</title><a xlink:href="POE-Session-pm-86-line.html#405" target="_top"><rect x="11.9" y="337" width="0.3" height="15.0" fill="rgb(219,107,14)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Wheel::SocketFactory::event (262 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Wheel::SocketFactory::event (262 microseconds, 0.01%)</title><a xlink:href="POE-Wheel-SocketFactory-pm-100-line.html#369" target="_top"><rect x="474.1" y="289" width="0.2" height="15.0" fill="rgb(254,90,17)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::Server::TCP::_load_filter (3,832 microseconds, 0.19%)')" onmouseout="c()">
+<title>POE::Component::Server::TCP::_load_filter (3,832 microseconds, 0.19%)</title><a xlink:href="POE-Component-Server-TCP-pm-104-line.html#578" target="_top"><rect x="1029.1" y="129" width="2.3" height="15.0" fill="rgb(244,57,32)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::ok (7,766 microseconds, 0.38%)')" onmouseout="c()">
+<title>Test::Builder::ok (7,766 microseconds, 0.38%)</title><a xlink:href="Test-Builder-pm-6-line.html#809" target="_top"><rect x="1094.8" y="225" width="4.6" height="15.0" fill="rgb(207,179,5)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Wheel::SocketFactory::new (1,738 microseconds, 0.09%)')" onmouseout="c()">
+<title>POE::Wheel::SocketFactory::new (1,738 microseconds, 0.09%)</title><a xlink:href="POE-Wheel-SocketFactory-pm-100-line.html#446" target="_top"><rect x="473.3" y="305" width="1.0" height="15.0" fill="rgb(207,183,26)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_sig_free_terminated_sessions (381 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::_data_sig_free_terminated_sessions (381 microseconds, 0.02%)</title><a xlink:href="POE-Resource-Signals-pm-84-line.html#534" target="_top"><rect x="485.4" y="337" width="0.2" height="15.0" fill="rgb(212,22,24)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::session_alloc (271 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::session_alloc (271 microseconds, 0.01%)</title><a xlink:href="POE-Kernel-pm-53-line.html#1444" target="_top"><rect x="1104.0" y="385" width="0.1" height="15.0" fill="rgb(220,109,32)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::BEGIN@27 (1,529 microseconds, 0.08%)')" onmouseout="c()">
+<title>POE::Kernel::BEGIN@27 (1,529 microseconds, 0.08%)</title><a xlink:href="POE-Kernel-pm-53-line.html#27" target="_top"><rect x="1134.0" y="369" width="0.9" height="15.0" fill="rgb(233,219,22)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::caller (394 microseconds, 0.02%)')" onmouseout="c()">
+<title>Test::Builder::caller (394 microseconds, 0.02%)</title><a xlink:href="Test-Builder-pm-6-line.html#2367" target="_top"><rect x="1099.1" y="177" width="0.2" height="15.0" fill="rgb(219,161,46)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::caller (369 microseconds, 0.02%)')" onmouseout="c()">
+<title>Test::Builder::caller (369 microseconds, 0.02%)</title><a xlink:href="Test-Builder-pm-6-line.html#2367" target="_top"><rect x="1044.5" y="65" width="0.3" height="15.0" fill="rgb(232,203,44)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_dispatch_event (21,328 microseconds, 1.06%)')" onmouseout="c()">
+<title>POE::Kernel::_dispatch_event (21,328 microseconds, 1.06%)</title><a xlink:href="POE-Kernel-pm-53-line.html#996" target="_top"><rect x="472.8" y="353" width="12.5" height="15.0" fill="rgb(244,220,36)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::ClientHandle::TIEHANDLE (862 microseconds, 0.04%)')" onmouseout="c()">
+<title>POE::Component::SSLify::ClientHandle::TIEHANDLE (862 microseconds, 0.04%)</title><a xlink:href="lib-POE-Component-SSLify-ClientHandle-pm-111-line.html#12" target="_top"><rect x="1093.5" y="225" width="0.5" height="15.0" fill="rgb(212,39,53)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('main::BEGIN@19 (68,056 microseconds, 3.37%)')" onmouseout="c()">
+<title>main::BEGIN@19 (68,056 microseconds, 3.37%)</title><a xlink:href="t-simple_parallel_superbig-t-1-line.html#19" target="_top"><rect x="1106.8" y="417" width="39.8" height="15.0" fill="rgb(215,17,16)" rx="2" ry="2" />
+<text text-anchor="" x="1109.81484596727" y="427.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >main..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::find_TODO (488 microseconds, 0.02%)')" onmouseout="c()">
+<title>Test::Builder::find_TODO (488 microseconds, 0.02%)</title><a xlink:href="Test-Builder-pm-6-line.html#2242" target="_top"><rect x="1098.6" y="193" width="0.3" height="15.0" fill="rgb(216,168,40)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Wheel::ReadWrite::_define_write_state (1,091 microseconds, 0.05%)')" onmouseout="c()">
+<title>POE::Wheel::ReadWrite::_define_write_state (1,091 microseconds, 0.05%)</title><a xlink:href="POE-Wheel-ReadWrite-pm-93-line.html#155" target="_top"><rect x="1032.3" y="129" width="0.6" height="15.0" fill="rgb(235,123,40)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_ses_free (1,000 microseconds, 0.05%)')" onmouseout="c()">
+<title>POE::Kernel::_data_ses_free (1,000 microseconds, 0.05%)</title><a xlink:href="POE-Resource-Sessions-pm-81-line.html#152" target="_top"><rect x="471.5" y="321" width="0.6" height="15.0" fill="rgb(213,68,25)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Wheel::SocketFactory::__ANON__[/usr/local/share/perl/5.18.2/POE/Wheel/SocketFactory.pm:203] (34,898 microseconds, 1.73%)')" onmouseout="c()">
+<title>POE::Wheel::SocketFactory::__ANON__[/usr/local/share/perl/5.18.2/POE/Wheel/SocketFactory.pm:203] (34,898 microseconds, 1.73%)</title><a xlink:href="POE-Wheel-SocketFactory-pm-100-line.html#164" target="_top"><rect x="1024.5" y="321" width="20.4" height="15.0" fill="rgb(227,23,33)" rx="2" ry="2" />
+<text text-anchor="" x="1027.49228274492" y="331.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >P..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('File::Spec::Unix::BEGIN@127 (963 microseconds, 0.05%)')" onmouseout="c()">
+<title>File::Spec::Unix::BEGIN@127 (963 microseconds, 0.05%)</title><a xlink:href="File-Spec-Unix-pm-46-line.html#127" target="_top"><rect x="1125.1" y="369" width="0.5" height="15.0" fill="rgb(247,115,26)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_handle_resume (204 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::_data_handle_resume (204 microseconds, 0.01%)</title><a xlink:href="POE-Resource-FileHandles-pm-71-line.html#620" target="_top"><rect x="1092.1" y="209" width="0.1" height="15.0" fill="rgb(238,164,19)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::select_read (632 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Kernel::select_read (632 microseconds, 0.03%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2211" target="_top"><rect x="1024.1" y="305" width="0.4" height="15.0" fill="rgb(251,130,28)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Session::_invoke_state (20,948 microseconds, 1.04%)')" onmouseout="c()">
+<title>POE::Session::_invoke_state (20,948 microseconds, 1.04%)</title><a xlink:href="POE-Session-pm-86-line.html#405" target="_top"><rect x="473.1" y="337" width="12.2" height="15.0" fill="rgb(234,106,33)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Driver::SysRW::get (239,816 microseconds, 11.88%)')" onmouseout="c()">
+<title>POE::Driver::SysRW::get (239,816 microseconds, 11.88%)</title><a xlink:href="POE-Driver-SysRW-pm-88-line.html#76" target="_top"><rect x="745.9" y="305" width="140.2" height="15.0" fill="rgb(217,168,32)" rx="2" ry="2" />
+<text text-anchor="" x="748.90368306635" y="315.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE::Driver::SysRW:..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Resource::Clock::BEGIN@220 (763 microseconds, 0.04%)')" onmouseout="c()">
+<title>POE::Resource::Clock::BEGIN@220 (763 microseconds, 0.04%)</title><a xlink:href="POE-Resource-Clock-pm-21-line.html#220" target="_top"><rect x="1125.8" y="385" width="0.4" height="15.0" fill="rgb(226,48,40)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::BEGIN@2.8 (1,567 microseconds, 0.08%)')" onmouseout="c()">
+<title>POE::Kernel::BEGIN@2.8 (1,567 microseconds, 0.08%)</title><a xlink:href="(eval 20)[POE-Resources-pm-22]-64-line.html#2" target="_top"><rect x="1145.7" y="321" width="0.9" height="15.0" fill="rgb(213,157,54)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::Module::builder (202 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::Module::builder (202 microseconds, 0.01%)</title><a xlink:href="Test-Builder-Module-pm-5-line.html#169" target="_top"><rect x="1036.9" y="113" width="0.1" height="15.0" fill="rgb(251,132,17)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_ev_clear_alarm_by_session (191 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::_data_ev_clear_alarm_by_session (191 microseconds, 0.01%)</title><a xlink:href="POE-Resource-Events-pm-65-line.html#294" target="_top"><rect x="482.7" y="289" width="0.1" height="15.0" fill="rgb(205,91,49)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_internal_select (683 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Kernel::_internal_select (683 microseconds, 0.03%)</title><a xlink:href="POE-Kernel-pm-53-line.html#2162" target="_top"><rect x="1045.8" y="209" width="0.4" height="15.0" fill="rgb(229,134,52)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::BEGIN@46 (8,735 microseconds, 0.43%)')" onmouseout="c()">
+<title>POE::Component::SSLify::BEGIN@46 (8,735 microseconds, 0.43%)</title><a xlink:href="lib-POE-Component-SSLify-pm-105-line.html#46" target="_top"><rect x="1159.1" y="401" width="5.1" height="15.0" fill="rgb(240,110,26)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Session::create (305 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Session::create (305 microseconds, 0.02%)</title><a xlink:href="POE-Session-pm-86-line.html#210" target="_top"><rect x="1103.9" y="417" width="0.2" height="15.0" fill="rgb(224,72,34)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_is_object (5,766 microseconds, 0.29%)')" onmouseout="c()">
+<title>Test::Builder::_is_object (5,766 microseconds, 0.29%)</title><a xlink:href="Test-Builder-pm-6-line.html#930" target="_top"><rect x="1039.3" y="65" width="3.4" height="15.0" fill="rgb(205,116,29)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::reset (427 microseconds, 0.02%)')" onmouseout="c()">
+<title>Test::Builder::reset (427 microseconds, 0.02%)</title><a xlink:href="Test-Builder-pm-6-line.html#432" target="_top"><rect x="1172.8" y="337" width="0.3" height="15.0" fill="rgb(249,45,10)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_resolve_session (349 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::_resolve_session (349 microseconds, 0.02%)</title><a xlink:href="POE-Kernel-pm-53-line.html#583" target="_top"><rect x="973.2" y="289" width="0.2" height="15.0" fill="rgb(248,59,30)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_ev_refcount_dec (676 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Kernel::_data_ev_refcount_dec (676 microseconds, 0.03%)</title><a xlink:href="POE-Resource-Events-pm-65-line.html#316" target="_top"><rect x="469.3" y="353" width="0.3" height="15.0" fill="rgb(245,210,44)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Net::SSLeay::CTX_v3_new (618 microseconds, 0.03%)')" onmouseout="c()">
+<title>Net::SSLeay::CTX_v3_new (618 microseconds, 0.03%)</title><a xlink:href="Net-SSLeay-pm-107-line.html#Net__SSLeay__CTX_v3_new" target="_top"><rect x="1094.1" y="209" width="0.4" height="15.0" fill="rgb(253,211,19)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_try (196 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::_try (196 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#1518" target="_top"><rect x="1092.9" y="177" width="0.1" height="15.0" fill="rgb(221,74,11)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Wheel::ReadWrite::DESTROY (2,263 microseconds, 0.11%)')" onmouseout="c()">
+<title>POE::Wheel::ReadWrite::DESTROY (2,263 microseconds, 0.11%)</title><a xlink:href="POE-Wheel-ReadWrite-pm-93-line.html#386" target="_top"><rect x="476.5" y="305" width="1.3" height="15.0" fill="rgb(211,147,11)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_handle_pause (181 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::_data_handle_pause (181 microseconds, 0.01%)</title><a xlink:href="POE-Resource-FileHandles-pm-71-line.html#640" target="_top"><rect x="1032.5" y="97" width="0.1" height="15.0" fill="rgb(237,147,4)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::BEGIN@10 (1,138 microseconds, 0.06%)')" onmouseout="c()">
+<title>POE::Kernel::BEGIN@10 (1,138 microseconds, 0.06%)</title><a xlink:href="POE-Kernel-pm-53-line.html#10" target="_top"><rect x="1132.8" y="369" width="0.7" height="15.0" fill="rgb(245,126,18)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::BEGIN@2.14 (4,453 microseconds, 0.22%)')" onmouseout="c()">
+<title>POE::Kernel::BEGIN@2.14 (4,453 microseconds, 0.22%)</title><a xlink:href="(eval 24)[POE-Resources-pm-22]-70-line.html#2" target="_top"><rect x="1139.2" y="321" width="2.6" height="15.0" fill="rgb(231,68,42)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Exporter::import (1,082 microseconds, 0.05%)')" onmouseout="c()">
+<title>Exporter::import (1,082 microseconds, 0.05%)</title><a xlink:href="Exporter-pm-12-line.html#28" target="_top"><rect x="1161.0" y="369" width="0.6" height="15.0" fill="rgb(221,196,22)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_copy_io_layers (279 microseconds, 0.01%)')" onmouseout="c()">
+<title>Test::Builder::_copy_io_layers (279 microseconds, 0.01%)</title><a xlink:href="Test-Builder-pm-6-line.html#1964" target="_top"><rect x="1172.9" y="289" width="0.1" height="15.0" fill="rgb(253,140,22)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_ev_enqueue (361 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Kernel::_data_ev_enqueue (361 microseconds, 0.02%)</title><a xlink:href="POE-Resource-Events-pm-65-line.html#63" target="_top"><rect x="1023.9" y="241" width="0.2" height="15.0" fill="rgb(235,178,27)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::_unoverload (2,790 microseconds, 0.14%)')" onmouseout="c()">
+<title>Test::Builder::_unoverload (2,790 microseconds, 0.14%)</title><a xlink:href="Test-Builder-pm-6-line.html#913" target="_top"><rect x="1096.8" y="193" width="1.7" height="15.0" fill="rgb(219,27,0)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::Module::import (1,452 microseconds, 0.07%)')" onmouseout="c()">
+<title>Test::Builder::Module::import (1,452 microseconds, 0.07%)</title><a xlink:href="Test-Builder-Module-pm-5-line.html#76" target="_top"><rect x="1166.9" y="401" width="0.8" height="15.0" fill="rgb(226,9,26)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::todo (781 microseconds, 0.04%)')" onmouseout="c()">
+<title>Test::Builder::todo (781 microseconds, 0.04%)</title><a xlink:href="Test-Builder-pm-6-line.html#2215" target="_top"><rect x="1098.9" y="209" width="0.4" height="15.0" fill="rgb(220,177,25)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Session::create (710 microseconds, 0.04%)')" onmouseout="c()">
+<title>POE::Session::create (710 microseconds, 0.04%)</title><a xlink:href="POE-Session-pm-86-line.html#210" target="_top"><rect x="11.8" y="401" width="0.4" height="15.0" fill="rgb(220,137,15)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::BEGIN@13 (711 microseconds, 0.04%)')" onmouseout="c()">
+<title>POE::Kernel::BEGIN@13 (711 microseconds, 0.04%)</title><a xlink:href="POE-Kernel-pm-53-line.html#13" target="_top"><rect x="1133.5" y="369" width="0.4" height="15.0" fill="rgb(205,110,18)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Component::SSLify::ClientHandle::BEGIN@9 (1,046 microseconds, 0.05%)')" onmouseout="c()">
+<title>POE::Component::SSLify::ClientHandle::BEGIN@9 (1,046 microseconds, 0.05%)</title><a xlink:href="lib-POE-Component-SSLify-ClientHandle-pm-111-line.html#9" target="_top"><rect x="1163.5" y="385" width="0.7" height="15.0" fill="rgb(229,83,8)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Filter::Block::put (19,350 microseconds, 0.96%)')" onmouseout="c()">
+<title>POE::Filter::Block::put (19,350 microseconds, 0.96%)</title><a xlink:href="POE-Filter-Block-pm-123-line.html#156" target="_top"><rect x="1080.6" y="225" width="11.3" height="15.0" fill="rgb(234,127,50)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_handle_is_good (183 microseconds, 0.01%)')" onmouseout="c()">
+<title>POE::Kernel::_data_handle_is_good (183 microseconds, 0.01%)</title><a xlink:href="POE-Resource-FileHandles-pm-71-line.html#250" target="_top"><rect x="1017.0" y="209" width="0.1" height="15.0" fill="rgb(213,152,18)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Test::Builder::Module::BEGIN@5 (8,269 microseconds, 0.41%)')" onmouseout="c()">
+<title>Test::Builder::Module::BEGIN@5 (8,269 microseconds, 0.41%)</title><a xlink:href="Test-Builder-Module-pm-5-line.html#5" target="_top"><rect x="1168.2" y="385" width="4.9" height="15.0" fill="rgb(229,147,33)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Wheel::ReadWrite::__ANON__[/usr/local/share/perl/5.18.2/POE/Wheel/ReadWrite.pm:231] (302,228 microseconds, 14.97%)')" onmouseout="c()">
+<title>POE::Wheel::ReadWrite::__ANON__[/usr/local/share/perl/5.18.2/POE/Wheel/ReadWrite.pm:231] (302,228 microseconds, 14.97%)</title><a xlink:href="POE-Wheel-ReadWrite-pm-93-line.html#179" target="_top"><rect x="546.9" y="321" width="176.6" height="15.0" fill="rgb(246,218,18)" rx="2" ry="2" />
+<text text-anchor="" x="549.863106356086" y="331.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE::Wheel::ReadWrite::_..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('AutoLoader::AUTOLOAD (233 microseconds, 0.01%)')" onmouseout="c()">
+<title>AutoLoader::AUTOLOAD (233 microseconds, 0.01%)</title><a xlink:href="AutoLoader-pm-108-line.html#21" target="_top"><rect x="1159.2" y="385" width="0.1" height="15.0" fill="rgb(220,142,4)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Wheel::SocketFactory::new (342 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Wheel::SocketFactory::new (342 microseconds, 0.02%)</title><a xlink:href="POE-Wheel-SocketFactory-pm-100-line.html#446" target="_top"><rect x="12.0" y="305" width="0.2" height="15.0" fill="rgb(210,188,26)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_handle_resume (4,132 microseconds, 0.20%)')" onmouseout="c()">
+<title>POE::Kernel::_data_handle_resume (4,132 microseconds, 0.20%)</title><a xlink:href="POE-Resource-FileHandles-pm-71-line.html#620" target="_top"><rect x="1017.1" y="209" width="2.4" height="15.0" fill="rgb(234,69,30)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::_data_handle_remove (538 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Kernel::_data_handle_remove (538 microseconds, 0.03%)</title><a xlink:href="POE-Resource-FileHandles-pm-71-line.html#466" target="_top"><rect x="478.7" y="257" width="0.3" height="15.0" fill="rgb(216,31,18)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Filter::Line::BEGIN@4 (332 microseconds, 0.02%)')" onmouseout="c()">
+<title>POE::Filter::Line::BEGIN@4 (332 microseconds, 0.02%)</title><a xlink:href="POE-Filter-Line-pm-90-line.html#4" target="_top"><rect x="1152.0" y="385" width="0.2" height="15.0" fill="rgb(234,4,15)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Exporter::Heavy::heavy_export (623 microseconds, 0.03%)')" onmouseout="c()">
+<title>Exporter::Heavy::heavy_export (623 microseconds, 0.03%)</title><a xlink:href="Exporter-Heavy-pm-15-line.html#39" target="_top"><rect x="1121.0" y="273" width="0.4" height="15.0" fill="rgb(230,145,17)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('IO::Socket::BEGIN@17 (662 microseconds, 0.03%)')" onmouseout="c()">
+<title>IO::Socket::BEGIN@17 (662 microseconds, 0.03%)</title><a xlink:href="IO-Socket-pm-32-line.html#17" target="_top"><rect x="1120.6" y="305" width="0.4" height="15.0" fill="rgb(212,28,35)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('Net::SSLeay::connect (596 microseconds, 0.03%)')" onmouseout="c()">
+<title>Net::SSLeay::connect (596 microseconds, 0.03%)</title><a xlink:href="Net-SSLeay-pm-107-line.html#Net__SSLeay__connect" target="_top"><rect x="1093.6" y="209" width="0.4" height="15.0" fill="rgb(254,123,54)" rx="2" ry="2" />
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Session::_invoke_state (92,686 microseconds, 4.59%)')" onmouseout="c()">
+<title>POE::Session::_invoke_state (92,686 microseconds, 4.59%)</title><a xlink:href="POE-Session-pm-86-line.html#405" target="_top"><rect x="1045.2" y="289" width="54.2" height="15.0" fill="rgb(247,56,53)" rx="2" ry="2" />
+<text text-anchor="" x="1048.20124406467" y="299.5" font-size="12" font-family="Verdana" fill="rgb(0,0,0)"  >POE::S..</text>
+</a>
+</g>
+<g class="func_g" onmouseover="s('POE::Kernel::BEGIN@2.11 (566 microseconds, 0.03%)')" onmouseout="c()">
+<title>POE::Kernel::BEGIN@2.11 (566 microseconds, 0.03%)</title><a xlink:href="(eval 22)[POE-Resources-pm-22]-67-line.html#2" target="_top"><rect x="1138.8" y="321" width="0.4" height="15.0" fill="rgb(237,62,4)" rx="2" ry="2" />
+</a>
+</g>
+</svg>

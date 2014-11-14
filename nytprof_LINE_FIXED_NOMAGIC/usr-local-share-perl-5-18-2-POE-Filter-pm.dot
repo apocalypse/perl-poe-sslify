@@ -1,0 +1,34 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Filter {
+	label="POE::Filter";
+	"POE::Filter::__param_max";
+	"POE::Filter::BEGIN@5";
+	"POE::Filter::BEGIN@3";
+	"POE::Filter::BEGIN@8";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_POE_Filter_Line {
+	label="POE::Filter::Line";
+	"POE::Filter::Line::BEGIN@4";
+	"POE::Filter::Line::new";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+"POE::Filter::Line::new" -> "POE::Filter::__param_max";
+"POE::Filter::BEGIN@5" -> "vars::import";
+"POE::Filter::BEGIN@8" -> "Exporter::import";
+"POE::Filter::Line::BEGIN@4" -> "POE::Filter::BEGIN@8";
+"POE::Filter::Line::BEGIN@4" -> "POE::Filter::BEGIN@5";
+"POE::Filter::Line::BEGIN@4" -> "POE::Filter::BEGIN@3";
+"POE::Filter::BEGIN@3" -> "strict::import";
+}

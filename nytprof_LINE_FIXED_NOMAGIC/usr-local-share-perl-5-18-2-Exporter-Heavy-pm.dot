@@ -1,0 +1,52 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_Exporter_Heavy {
+	label="Exporter::Heavy";
+	"Exporter::Heavy::_rebuild_cache";
+	"Exporter::Heavy::CORE:match";
+	"Exporter::Heavy::CORE:subst";
+	"Exporter::Heavy::BEGIN@3";
+	"Exporter::Heavy::BEGIN@202";
+	"Exporter::Heavy::BEGIN@4";
+	"Exporter::Heavy::heavy_export_to_level";
+	"Exporter::Heavy::heavy_export";
+}
+subgraph cluster_Test_Builder_Module {
+	label="Test::Builder::Module";
+	"Test::Builder::Module::import";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+	"strict::unimport";
+}
+subgraph cluster_warnings {
+	label="warnings";
+	"warnings::unimport";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+	"Exporter::export";
+	"Exporter::as_heavy";
+}
+subgraph cluster_IO_Socket {
+	label="IO::Socket";
+	"IO::Socket::import";
+}
+"Exporter::Heavy::heavy_export" -> "Exporter::Heavy::CORE:match";
+"Exporter::as_heavy" -> "Exporter::Heavy::BEGIN@4";
+"Exporter::Heavy::heavy_export" -> "Exporter::Heavy::_rebuild_cache";
+"Exporter::as_heavy" -> "Exporter::Heavy::BEGIN@202";
+"IO::Socket::import" -> "Exporter::Heavy::heavy_export";
+"Exporter::import" -> "Exporter::Heavy::heavy_export";
+"Exporter::Heavy::heavy_export_to_level" -> "Exporter::Heavy::heavy_export";
+"Exporter::Heavy::BEGIN@3" -> "strict::import";
+"Exporter::Heavy::_rebuild_cache" -> "Exporter::Heavy::CORE:subst";
+"Exporter::Heavy::heavy_export" -> "Exporter::Heavy::CORE:subst";
+"Exporter::Heavy::BEGIN@4" -> "strict::unimport";
+"Exporter::Heavy::BEGIN@202" -> "warnings::unimport";
+"Exporter::as_heavy" -> "Exporter::Heavy::BEGIN@3";
+"Test::Builder::Module::import" -> "Exporter::Heavy::heavy_export_to_level";
+"Exporter::Heavy::heavy_export_to_level" -> "Exporter::export";
+}

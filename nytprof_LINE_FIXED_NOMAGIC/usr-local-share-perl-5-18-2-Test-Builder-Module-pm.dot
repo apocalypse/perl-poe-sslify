@@ -1,0 +1,90 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_UNIVERSAL {
+	label="UNIVERSAL";
+	"UNIVERSAL::VERSION";
+}
+subgraph cluster_Test_FailWarnings {
+	label="Test::FailWarnings";
+	"Test::FailWarnings::BEGIN@9";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::export_to_level";
+}
+subgraph cluster_Test_More {
+	label="Test::More";
+	"Test::More::import_extra";
+	"Test::More::done_testing";
+	"Test::More::BEGIN@23";
+	"Test::More::ok";
+	"Test::More::is";
+}
+subgraph cluster_Test_Builder_Module {
+	label="Test::Builder::Module";
+	"Test::Builder::Module::BEGIN@3";
+	"Test::Builder::Module::builder";
+	"Test::Builder::Module::import";
+	"Test::Builder::Module::_strip_imports";
+	"Test::Builder::Module::BEGIN@5";
+}
+subgraph cluster_Test_Builder {
+	label="Test::Builder";
+	"Test::Builder::BEGIN@2248";
+	"Test::Builder::BEGIN@1667";
+	"Test::Builder::exported_to";
+	"Test::Builder::BEGIN@1471";
+	"Test::Builder::BEGIN@5";
+	"Test::Builder::BEGIN@962";
+	"Test::Builder::new";
+	"Test::Builder::plan";
+	"Test::Builder::BEGIN@19";
+	"Test::Builder::BEGIN@1282";
+	"Test::Builder::BEGIN@18";
+	"Test::Builder::BEGIN@10";
+	"Test::Builder::BEGIN@3";
+	"Test::Builder::BEGIN@4";
+}
+subgraph cluster_Exporter_Heavy {
+	label="Exporter::Heavy";
+	"Exporter::Heavy::heavy_export_to_level";
+}
+subgraph cluster_main {
+	label="main";
+	"main::BEGIN@8";
+}
+"Test::More::BEGIN@23" -> "Test::Builder::Module::BEGIN@3";
+"Test::Builder::Module::BEGIN@5" -> "Test::Builder::BEGIN@10";
+"Test::Builder::Module::import" -> "Exporter::export_to_level";
+"Test::Builder::Module::import" -> "Test::Builder::plan";
+"Test::Builder::Module::BEGIN@3" -> "strict::import";
+"Test::Builder::Module::BEGIN@5" -> "Test::Builder::BEGIN@1471";
+"Test::Builder::Module::BEGIN@5" -> "Test::Builder::BEGIN@1667";
+"Test::Builder::Module::BEGIN@5" -> "Test::Builder::BEGIN@1282";
+"Test::Builder::Module::BEGIN@5" -> "Test::Builder::BEGIN@19";
+"Test::Builder::Module::import" -> "Exporter::Heavy::heavy_export_to_level";
+"Test::Builder::Module::BEGIN@5" -> "Test::Builder::BEGIN@962";
+"Test::Builder::Module::import" -> "Test::Builder::Module::_strip_imports";
+"Test::Builder::Module::import" -> "Test::Builder::exported_to";
+"Test::Builder::Module::BEGIN@5" -> "Test::Builder::BEGIN@4";
+"Test::Builder::Module::BEGIN@5" -> "Test::Builder::BEGIN@2248";
+"Test::Builder::Module::import" -> "Test::More::import_extra";
+"Test::Builder::Module::BEGIN@5" -> "Test::Builder::BEGIN@3";
+"Test::Builder::Module::BEGIN@5" -> "Test::Builder::BEGIN@18";
+"Test::Builder::Module::BEGIN@5" -> "Test::Builder::new";
+"Test::Builder::Module::builder" -> "Test::Builder::new";
+"Test::Builder::Module::BEGIN@5" -> "Test::Builder::BEGIN@5";
+"Test::More::done_testing" -> "Test::Builder::Module::builder";
+"Test::More::ok" -> "Test::Builder::Module::builder";
+"Test::More::is" -> "Test::Builder::Module::builder";
+"Test::Builder::Module::import" -> "Test::Builder::Module::builder";
+"Test::More::BEGIN@23" -> "Test::Builder::Module::BEGIN@5";
+"Test::Builder::Module::BEGIN@5" -> "UNIVERSAL::VERSION";
+"Test::More::BEGIN@23" -> "Test::Builder::Module::import";
+"Test::FailWarnings::BEGIN@9" -> "Test::Builder::Module::import";
+"main::BEGIN@8" -> "Test::Builder::Module::import";
+}

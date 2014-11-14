@@ -1,0 +1,29 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_overloading {
+	label="overloading";
+	"overloading::BEGIN@2";
+	"overloading::unimport";
+}
+subgraph cluster_overload {
+	label="overload";
+	"overload::BEGIN@144";
+	"overload::BEGIN@114";
+	"overload::BEGIN@83";
+}
+subgraph cluster_warnings_register {
+	label="warnings::register";
+	"warnings::register::import";
+}
+subgraph cluster_Test_Builder {
+	label="Test::Builder";
+	"Test::Builder::__ANON__[Test/Builder.pm:917]";
+}
+"overload::BEGIN@144" -> "warnings::register::import";
+"Test::Builder::__ANON__[Test/Builder.pm:917]" -> "overload::BEGIN@144";
+"overload::BEGIN@83" -> "overloading::BEGIN@2";
+"Test::Builder::__ANON__[Test/Builder.pm:917]" -> "overload::BEGIN@83";
+"Test::Builder::__ANON__[Test/Builder.pm:917]" -> "overload::BEGIN@114";
+"overload::BEGIN@114" -> "overloading::unimport";
+"overload::BEGIN@83" -> "overloading::unimport";
+}

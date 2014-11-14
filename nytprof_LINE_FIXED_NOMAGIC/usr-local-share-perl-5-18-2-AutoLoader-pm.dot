@@ -1,0 +1,56 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_Net_SSLeay {
+	label="Net::SSLeay";
+	"Net::SSLeay::BEGIN@24";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::unimport";
+	"strict::import";
+}
+subgraph cluster_POE_Component_SSLify {
+	label="POE::Component::SSLify";
+	"POE::Component::SSLify::BEGIN@58";
+}
+subgraph cluster_AutoLoader {
+	label="AutoLoader";
+	"AutoLoader::BEGIN@13";
+	"AutoLoader::BEGIN@3";
+	"AutoLoader::import";
+	"AutoLoader::CORE:subst";
+	"AutoLoader::BEGIN@4";
+	"AutoLoader::CORE:fteread";
+	"AutoLoader::BEGIN@37";
+	"AutoLoader::BEGIN@146";
+	"AutoLoader::autoload_sub";
+	"AutoLoader::AUTOLOAD";
+	"AutoLoader::find_filename";
+	"AutoLoader::BEGIN@194";
+	"AutoLoader::CORE:substcont";
+	"AutoLoader::CORE:match";
+	"AutoLoader::CORE:regcomp";
+}
+"AutoLoader::import" -> "AutoLoader::CORE:regcomp";
+"AutoLoader::find_filename" -> "AutoLoader::CORE:regcomp";
+"Net::SSLeay::BEGIN@24" -> "AutoLoader::BEGIN@13";
+"AutoLoader::find_filename" -> "AutoLoader::CORE:subst";
+"AutoLoader::import" -> "AutoLoader::CORE:subst";
+"Net::SSLeay::BEGIN@24" -> "AutoLoader::BEGIN@146";
+"AutoLoader::find_filename" -> "AutoLoader::CORE:fteread";
+"AutoLoader::find_filename" -> "AutoLoader::CORE:match";
+"Net::SSLeay::BEGIN@24" -> "AutoLoader::BEGIN@3";
+"Net::SSLeay::BEGIN@24" -> "AutoLoader::BEGIN@4";
+"AutoLoader::AUTOLOAD" -> "AutoLoader::autoload_sub";
+"AutoLoader::import" -> "AutoLoader::CORE:substcont";
+"AutoLoader::find_filename" -> "AutoLoader::CORE:substcont";
+"Net::SSLeay::BEGIN@24" -> "AutoLoader::BEGIN@37";
+"AutoLoader::autoload_sub" -> "AutoLoader::find_filename";
+"POE::Component::SSLify::BEGIN@58" -> "AutoLoader::AUTOLOAD";
+"Net::SSLeay::BEGIN@24" -> "AutoLoader::import";
+"AutoLoader::BEGIN@3" -> "strict::import";
+"Net::SSLeay::BEGIN@24" -> "AutoLoader::BEGIN@194";
+"AutoLoader::BEGIN@194" -> "strict::unimport";
+"AutoLoader::BEGIN@37" -> "strict::unimport";
+"AutoLoader::BEGIN@146" -> "strict::unimport";
+}

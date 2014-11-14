@@ -1,0 +1,46 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Component_SSLify_ServerHandle {
+	label="POE::Component::SSLify::ServerHandle";
+	"POE::Component::SSLify::ServerHandle::BEGIN@17";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+	"strict::unimport";
+}
+subgraph cluster_parent {
+	label="parent";
+	"parent::BEGIN@9.45";
+	"parent::import";
+	"parent::BEGIN@9";
+	"parent::CORE:subst";
+	"parent::BEGIN@3";
+	"parent::BEGIN@25";
+	"parent::BEGIN@2";
+}
+subgraph cluster_POE_Component_SSLify {
+	label="POE::Component::SSLify";
+	"POE::Component::SSLify::BEGIN@84";
+}
+subgraph cluster_POE_Component_SSLify_ClientHandle {
+	label="POE::Component::SSLify::ClientHandle";
+	"POE::Component::SSLify::ClientHandle::BEGIN@20";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+"POE::Component::SSLify::ClientHandle::BEGIN@20" -> "parent::BEGIN@2";
+"parent::import" -> "parent::BEGIN@9.45";
+"parent::BEGIN@2" -> "strict::import";
+"POE::Component::SSLify::ClientHandle::BEGIN@20" -> "parent::BEGIN@3";
+"POE::Component::SSLify::BEGIN@84" -> "parent::import";
+"POE::Component::SSLify::ClientHandle::BEGIN@20" -> "parent::import";
+"parent::import" -> "POE::Component::SSLify::ServerHandle::BEGIN@17";
+"parent::BEGIN@25" -> "strict::unimport";
+"parent::import" -> "parent::BEGIN@9";
+"parent::BEGIN@3" -> "vars::import";
+"POE::Component::SSLify::ClientHandle::BEGIN@20" -> "parent::BEGIN@25";
+"parent::import" -> "parent::CORE:subst";
+}

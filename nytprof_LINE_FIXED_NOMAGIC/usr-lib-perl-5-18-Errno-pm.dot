@@ -1,0 +1,27 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_IO_Socket {
+	label="IO::Socket";
+	"IO::Socket::BEGIN@17";
+}
+subgraph cluster_POE_Session {
+	label="POE::Session";
+	"POE::Session::_invoke_state";
+}
+subgraph cluster_Errno {
+	label="Errno";
+	"Errno::BEGIN@8";
+	"Errno::BEGIN@16";
+	"Errno::ENOSYS";
+	"Errno::TIEHASH";
+}
+"Errno::BEGIN@8" -> "strict::import";
+"IO::Socket::BEGIN@17" -> "Errno::BEGIN@16";
+"IO::Socket::BEGIN@17" -> "Errno::TIEHASH";
+"POE::Session::_invoke_state" -> "Errno::ENOSYS";
+"IO::Socket::BEGIN@17" -> "Errno::BEGIN@8";
+}

@@ -1,0 +1,29 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Wheel_SocketFactory {
+	label="POE::Wheel::SocketFactory";
+	"POE::Wheel::SocketFactory::__ANON__[POE/Wheel/SocketFactory.pm:203]";
+	"POE::Wheel::SocketFactory::new";
+}
+subgraph cluster_POE_Component_SSLify {
+	label="POE::Component::SSLify";
+	"POE::Component::SSLify::Client_SSLify";
+	"POE::Component::SSLify::Server_SSLify";
+}
+subgraph cluster_IO_Pipely {
+	label="IO::Pipely";
+	"IO::Pipely::pipely";
+	"IO::Pipely::BEGIN@9";
+}
+subgraph cluster_Symbol {
+	label="Symbol";
+	"Symbol::BEGIN@3";
+	"Symbol::gensym";
+}
+"IO::Pipely::BEGIN@9" -> "Symbol::BEGIN@3";
+"POE::Wheel::SocketFactory::new" -> "Symbol::gensym";
+"POE::Component::SSLify::Client_SSLify" -> "Symbol::gensym";
+"POE::Wheel::SocketFactory::__ANON__[POE/Wheel/SocketFactory.pm:203]" -> "Symbol::gensym";
+"POE::Component::SSLify::Server_SSLify" -> "Symbol::gensym";
+"IO::Pipely::pipely" -> "Symbol::gensym";
+}

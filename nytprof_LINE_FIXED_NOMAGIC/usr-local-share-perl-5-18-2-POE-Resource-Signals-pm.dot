@@ -1,0 +1,154 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POSIX {
+	label="POSIX";
+	"POSIX::sigprocmask";
+	"POSIX::import";
+}
+subgraph cluster_POSIX_SigSet {
+	label="POSIX::SigSet";
+	"POSIX::SigSet::emptyset";
+	"POSIX::SigSet::new";
+	"POSIX::SigSet::fillset";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_POE_Pipe_OneWay {
+	label="POE::Pipe::OneWay";
+	"POE::Pipe::OneWay::new";
+}
+subgraph cluster_POE_Resource_Signals {
+	label="POE::Resource::Signals";
+	"POE::Resource::Signals::BEGIN@6";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::_dispatch_signal_event";
+	"POE::Kernel::_data_sig_signal_watch";
+	"POE::Kernel::_data_sig_remove";
+	"POE::Kernel::CORE:match";
+	"POE::Kernel::_data_sig_mask_all";
+	"POE::Kernel::_data_sig_get_safe_signals";
+	"POE::Kernel::BEGIN@785";
+	"POE::Kernel::_data_sig_explicitly_watched";
+	"POE::Kernel::_data_sig_mask_build";
+	"POE::Kernel::_data_sig_pipe_finalize";
+	"POE::Kernel::_data_sig_cease_polling";
+	"POE::Kernel::loop_watch_filehandle";
+	"POE::Kernel::_data_sig_signal_ignore";
+	"POE::Kernel::BEGIN@89";
+	"POE::Kernel::_data_sig_handled_status";
+	"POE::Kernel::BEGIN@109";
+	"POE::Kernel::_data_sig_finalize";
+	"POE::Kernel::_data_ses_stop";
+	"POE::Kernel::CORE:sselect";
+	"POE::Kernel::_data_sig_type";
+	"POE::Kernel::_data_sig_reset_procs";
+	"POE::Kernel::_data_sig_watchers";
+	"POE::Kernel::CORE:waitpid";
+	"POE::Kernel::_data_sig_free_terminated_sessions";
+	"POE::Kernel::BEGIN@12.32";
+	"POE::Kernel::_data_sig_add";
+	"POE::Kernel::_data_sig_kernel_awaits_pids";
+	"POE::Kernel::run";
+	"POE::Kernel::__ANON__[POE/Kernel.pm:92]";
+	"POE::Kernel::_data_sig_initialize";
+	"POE::Kernel::_data_ses_free";
+	"POE::Kernel::BEGIN@2.31";
+	"POE::Kernel::ID";
+	"POE::Kernel::_data_sig_touched_session";
+	"POE::Kernel::_data_sig_pipe_build";
+	"POE::Kernel::_data_sig_reset_handled";
+	"POE::Kernel::_data_handle_condition";
+	"POE::Kernel::BEGIN@15.34";
+	"POE::Kernel::_test_if_kernel_is_idle";
+	"POE::Kernel::BEGIN@16.35";
+	"POE::Kernel::new";
+	"POE::Kernel::loop_ignore_filehandle";
+	"POE::Kernel::BEGIN@14.33";
+	"POE::Kernel::loop_ignore_signal";
+	"POE::Kernel::_finalize_kernel";
+	"POE::Kernel::CORE:close";
+	"POE::Kernel::_data_sig_unmask_all";
+	"POE::Kernel::_data_sig_clear_session";
+	"POE::Kernel::_data_sig_pipe_has_signals";
+	"POE::Kernel::_data_ses_exists";
+}
+subgraph cluster_constant {
+	label="constant";
+	"constant::import";
+}
+"POE::Kernel::_data_sig_pipe_build" -> "POE::Kernel::loop_watch_filehandle";
+"POE::Kernel::BEGIN@109" -> "constant::import";
+"POE::Kernel::BEGIN@16.35" -> "POSIX::import";
+"POE::Kernel::BEGIN@89" -> "vars::import";
+"POE::Resource::Signals::BEGIN@6" -> "vars::import";
+"POE::Kernel::BEGIN@785" -> "vars::import";
+"POE::Kernel::_dispatch_signal_event" -> "POE::Kernel::_data_sig_explicitly_watched";
+"POE::Kernel::BEGIN@2.31" -> "POE::Kernel::BEGIN@14.33";
+"POE::Kernel::_data_sig_pipe_finalize" -> "POE::Kernel::CORE:close";
+"POE::Kernel::_data_sig_free_terminated_sessions" -> "POE::Kernel::_data_ses_exists";
+"POE::Kernel::_data_sig_mask_build" -> "POSIX::SigSet::emptyset";
+"POE::Kernel::BEGIN@2.31" -> "POE::Kernel::BEGIN@89";
+"POE::Kernel::BEGIN@2.31" -> "POE::Kernel::BEGIN@109";
+"POE::Kernel::_data_sig_finalize" -> "POE::Kernel::_data_sig_pipe_finalize";
+"POE::Kernel::_data_sig_mask_all" -> "POE::Kernel::_data_sig_mask_build";
+"POE::Kernel::_data_sig_add" -> "POE::Kernel::_data_sig_signal_watch";
+"POE::Kernel::_finalize_kernel" -> "POE::Kernel::_data_sig_remove";
+"POE::Kernel::_data_sig_clear_session" -> "POE::Kernel::_data_sig_remove";
+"POE::Kernel::_data_sig_pipe_build" -> "POE::Pipe::OneWay::new";
+"POE::Kernel::_data_sig_mask_build" -> "POSIX::SigSet::fillset";
+"POE::Kernel::BEGIN@2.31" -> "POE::Kernel::BEGIN@16.35";
+"POE::Kernel::BEGIN@2.31" -> "POE::Kernel::BEGIN@15.34";
+"POE::Kernel::run" -> "POE::Kernel::_data_sig_add";
+"POE::Kernel::_data_sig_reset_handled" -> "POE::Kernel::_data_sig_type";
+"POE::Kernel::_data_sig_remove" -> "POE::Kernel::_data_sig_signal_ignore";
+"POE::Kernel::_data_sig_free_terminated_sessions" -> "POE::Kernel::_data_ses_stop";
+"POE::Kernel::_finalize_kernel" -> "POE::Kernel::_data_sig_finalize";
+"POE::Kernel::_data_sig_initialize" -> "POE::Kernel::CORE:match";
+"POE::Kernel::_data_sig_mask_build" -> "POSIX::SigSet::new";
+"POE::Kernel::_data_sig_unmask_all" -> "POSIX::SigSet::new";
+"POE::Kernel::_data_sig_mask_all" -> "POSIX::SigSet::new";
+"POE::Kernel::_data_sig_mask_all" -> "POSIX::sigprocmask";
+"POE::Kernel::_data_sig_unmask_all" -> "POSIX::sigprocmask";
+"POE::Kernel::_data_sig_initialize" -> "POE::Kernel::loop_ignore_signal";
+"POE::Kernel::_data_sig_pipe_finalize" -> "POE::Kernel::loop_ignore_filehandle";
+"POE::Kernel::_data_sig_kernel_awaits_pids" -> "POE::Kernel::_data_sig_pipe_has_signals";
+"POE::Kernel::_data_sig_finalize" -> "POE::Kernel::_data_sig_pipe_has_signals";
+"POE::Kernel::_data_sig_add" -> "POE::Kernel::ID";
+"POE::Kernel::_data_sig_free_terminated_sessions" -> "POE::Kernel::ID";
+"POE::Kernel::_data_sig_pipe_build" -> "POE::Kernel::_data_handle_condition";
+"POE::Kernel::new" -> "POE::Kernel::_data_sig_initialize";
+"POE::Kernel::_data_sig_initialize" -> "POE::Kernel::_data_sig_reset_procs";
+"POE::Kernel::_data_sig_finalize" -> "POE::Kernel::CORE:waitpid";
+"POE::Kernel::BEGIN@12.32" -> "strict::import";
+"POE::Kernel::_dispatch_signal_event" -> "POE::Kernel::_data_sig_handled_status";
+"POE::Kernel::_data_sig_reset_procs" -> "POE::Kernel::_data_sig_cease_polling";
+"POE::Kernel::_data_sig_pipe_build" -> "POE::Kernel::_data_sig_mask_all";
+"POE::Kernel::_finalize_kernel" -> "POE::Kernel::_data_sig_get_safe_signals";
+"POE::Kernel::BEGIN@2.31" -> "POE::Kernel::BEGIN@785";
+"POE::Kernel::BEGIN@2.31" -> "POE::Resource::Signals::BEGIN@6";
+"POE::Kernel::_data_sig_pipe_build" -> "POE::Kernel::_data_sig_unmask_all";
+"POE::Kernel::_data_ses_free" -> "POE::Kernel::_data_sig_clear_session";
+"POE::Kernel::_data_sig_initialize" -> "POE::Kernel::_data_sig_pipe_build";
+"POE::Kernel::_dispatch_signal_event" -> "POE::Kernel::_data_sig_reset_handled";
+"POE::Kernel::_dispatch_signal_event" -> "POE::Kernel::_data_sig_touched_session";
+"POE::Kernel::_data_sig_pipe_build" -> "POE::Kernel::__ANON__[POE/Kernel.pm:92]";
+"POE::Kernel::_data_sig_initialize" -> "POE::Kernel::__ANON__[POE/Kernel.pm:92]";
+"POE::Kernel::_data_sig_unmask_all" -> "POE::Kernel::__ANON__[POE/Kernel.pm:92]";
+"POE::Kernel::_data_sig_mask_build" -> "POE::Kernel::__ANON__[POE/Kernel.pm:92]";
+"POE::Kernel::_data_sig_finalize" -> "POE::Kernel::__ANON__[POE/Kernel.pm:92]";
+"POE::Kernel::_data_sig_mask_all" -> "POE::Kernel::__ANON__[POE/Kernel.pm:92]";
+"POE::Kernel::_test_if_kernel_is_idle" -> "POE::Kernel::_data_sig_kernel_awaits_pids";
+"POE::Kernel::loop_ignore_signal" -> "POE::Kernel::_data_sig_kernel_awaits_pids";
+"POE::Kernel::_dispatch_signal_event" -> "POE::Kernel::_data_sig_watchers";
+"POE::Kernel::_data_sig_pipe_has_signals" -> "POE::Kernel::CORE:sselect";
+"POE::Kernel::BEGIN@2.31" -> "POE::Kernel::BEGIN@12.32";
+"POE::Kernel::_dispatch_signal_event" -> "POE::Kernel::_data_sig_free_terminated_sessions";
+}

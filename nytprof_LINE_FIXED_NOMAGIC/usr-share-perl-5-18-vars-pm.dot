@@ -1,0 +1,203 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_POE_Resource_Events {
+	label="POE::Resource::Events";
+	"POE::Resource::Events::BEGIN@5";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_POE_Resource_Signals {
+	label="POE::Resource::Signals";
+	"POE::Resource::Signals::BEGIN@6";
+}
+subgraph cluster_parent {
+	label="parent";
+	"parent::BEGIN@3";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::BEGIN@785";
+	"POE::Kernel::BEGIN@176";
+	"POE::Kernel::BEGIN@20";
+	"POE::Kernel::BEGIN@5";
+	"POE::Kernel::BEGIN@89";
+}
+subgraph cluster_POE_Resource_Sessions {
+	label="POE::Resource::Sessions";
+	"POE::Resource::Sessions::BEGIN@5";
+}
+subgraph cluster_constant {
+	label="constant";
+	"constant::BEGIN@6";
+}
+subgraph cluster_Config {
+	label="Config";
+	"Config::BEGIN@11";
+}
+subgraph cluster_Cwd {
+	label="Cwd";
+	"Cwd::BEGIN@172";
+}
+subgraph cluster_POE {
+	label="POE";
+	"POE::BEGIN@8";
+}
+subgraph cluster_base {
+	label="base";
+	"base::BEGIN@4";
+}
+subgraph cluster_POE_Pipe {
+	label="POE::Pipe";
+	"POE::Pipe::BEGIN@8";
+}
+subgraph cluster_POE_Resource_SIDs {
+	label="POE::Resource::SIDs";
+	"POE::Resource::SIDs::BEGIN@6";
+}
+subgraph cluster_POE_Pipe_OneWay {
+	label="POE::Pipe::OneWay";
+	"POE::Pipe::OneWay::BEGIN@10";
+}
+subgraph cluster_File_Spec {
+	label="File::Spec";
+	"File::Spec::BEGIN@4";
+}
+subgraph cluster_Net_SSLeay {
+	label="Net::SSLeay";
+	"Net::SSLeay::BEGIN@18";
+}
+subgraph cluster_POE_Queue_Array {
+	label="POE::Queue::Array";
+	"POE::Queue::Array::BEGIN@7";
+}
+subgraph cluster_POE_Wheel_SocketFactory {
+	label="POE::Wheel::SocketFactory";
+	"POE::Wheel::SocketFactory::BEGIN@5";
+}
+subgraph cluster_POE_Loop_PerlSignals {
+	label="POE::Loop::PerlSignals";
+	"POE::Loop::PerlSignals::BEGIN@10";
+}
+subgraph cluster_POE_Wheel {
+	label="POE::Wheel";
+	"POE::Wheel::BEGIN@5";
+}
+subgraph cluster_File_Spec_Unix {
+	label="File::Spec::Unix";
+	"File::Spec::Unix::BEGIN@4";
+}
+subgraph cluster_POE_Resource_Clock {
+	label="POE::Resource::Clock";
+	"POE::Resource::Clock::BEGIN@5";
+}
+subgraph cluster_POE_Filter_Line {
+	label="POE::Filter::Line";
+	"POE::Filter::Line::BEGIN@6";
+}
+subgraph cluster_POE_Driver_SysRW {
+	label="POE::Driver::SysRW";
+	"POE::Driver::SysRW::BEGIN@9";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::BEGIN@3";
+	"vars::BEGIN@7";
+	"vars::BEGIN@8";
+	"vars::CORE:match";
+	"vars::import";
+}
+subgraph cluster_Task_Weaken {
+	label="Task::Weaken";
+	"Task::Weaken::BEGIN@6";
+}
+subgraph cluster_POE_Component_Client_TCP {
+	label="POE::Component::Client::TCP";
+	"POE::Component::Client::TCP::BEGIN@5";
+}
+subgraph cluster_POE_Resource_Aliases {
+	label="POE::Resource::Aliases";
+	"POE::Resource::Aliases::BEGIN@6";
+}
+subgraph cluster_POE_Filter {
+	label="POE::Filter";
+	"POE::Filter::BEGIN@5";
+}
+subgraph cluster_POE_Component_Server_TCP {
+	label="POE::Component::Server::TCP";
+	"POE::Component::Server::TCP::BEGIN@5";
+}
+subgraph cluster_POE_Session {
+	label="POE::Session";
+	"POE::Session::BEGIN@5";
+}
+subgraph cluster_POE_Loop_Select {
+	label="POE::Loop::Select";
+	"POE::Loop::Select::BEGIN@11";
+}
+subgraph cluster_POE_Wheel_ReadWrite {
+	label="POE::Wheel::ReadWrite";
+	"POE::Wheel::ReadWrite::BEGIN@5";
+}
+subgraph cluster_POE_Resource_FileHandles {
+	label="POE::Resource::FileHandles";
+	"POE::Resource::FileHandles::BEGIN@6";
+}
+subgraph cluster_POE_Resource_Extrefs {
+	label="POE::Resource::Extrefs";
+	"POE::Resource::Extrefs::BEGIN@7";
+}
+subgraph cluster_POE_Resources {
+	label="POE::Resources";
+	"POE::Resources::BEGIN@5";
+}
+subgraph cluster_warnings_register {
+	label="warnings::register";
+	"warnings::register::import";
+}
+"vars::import" -> "vars::CORE:match";
+"Config::BEGIN@11" -> "vars::BEGIN@3";
+"vars::BEGIN@8" -> "strict::import";
+"Config::BEGIN@11" -> "vars::BEGIN@7";
+"Config::BEGIN@11" -> "vars::BEGIN@8";
+"POE::Loop::Select::BEGIN@11" -> "vars::import";
+"POE::BEGIN@8" -> "vars::import";
+"POE::Resource::FileHandles::BEGIN@6" -> "vars::import";
+"Cwd::BEGIN@172" -> "vars::import";
+"POE::Component::Server::TCP::BEGIN@5" -> "vars::import";
+"POE::Pipe::BEGIN@8" -> "vars::import";
+"POE::Kernel::BEGIN@176" -> "vars::import";
+"POE::Loop::PerlSignals::BEGIN@10" -> "vars::import";
+"File::Spec::Unix::BEGIN@4" -> "vars::import";
+"constant::BEGIN@6" -> "vars::import";
+"POE::Wheel::SocketFactory::BEGIN@5" -> "vars::import";
+"POE::Resource::Aliases::BEGIN@6" -> "vars::import";
+"POE::Driver::SysRW::BEGIN@9" -> "vars::import";
+"base::BEGIN@4" -> "vars::import";
+"POE::Resource::Events::BEGIN@5" -> "vars::import";
+"POE::Resource::Clock::BEGIN@5" -> "vars::import";
+"POE::Wheel::ReadWrite::BEGIN@5" -> "vars::import";
+"parent::BEGIN@3" -> "vars::import";
+"POE::Kernel::BEGIN@89" -> "vars::import";
+"POE::Kernel::BEGIN@5" -> "vars::import";
+"POE::Filter::Line::BEGIN@6" -> "vars::import";
+"POE::Kernel::BEGIN@20" -> "vars::import";
+"POE::Filter::BEGIN@5" -> "vars::import";
+"Net::SSLeay::BEGIN@18" -> "vars::import";
+"POE::Kernel::BEGIN@785" -> "vars::import";
+"POE::Wheel::BEGIN@5" -> "vars::import";
+"File::Spec::BEGIN@4" -> "vars::import";
+"POE::Session::BEGIN@5" -> "vars::import";
+"POE::Resource::SIDs::BEGIN@6" -> "vars::import";
+"POE::Queue::Array::BEGIN@7" -> "vars::import";
+"POE::Component::Client::TCP::BEGIN@5" -> "vars::import";
+"Task::Weaken::BEGIN@6" -> "vars::import";
+"Config::BEGIN@11" -> "vars::import";
+"POE::Resource::Extrefs::BEGIN@7" -> "vars::import";
+"POE::Resources::BEGIN@5" -> "vars::import";
+"POE::Resource::Sessions::BEGIN@5" -> "vars::import";
+"POE::Pipe::OneWay::BEGIN@10" -> "vars::import";
+"POE::Resource::Signals::BEGIN@6" -> "vars::import";
+"vars::BEGIN@7" -> "warnings::register::import";
+}

@@ -1,0 +1,59 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_DynaLoader {
+	label="DynaLoader";
+	"DynaLoader::bootstrap";
+}
+subgraph cluster_POE_Resource_Clock {
+	label="POE::Resource::Clock";
+	"POE::Resource::Clock::BEGIN@220";
+}
+subgraph cluster_Time_HiRes {
+	label="Time::HiRes";
+	"Time::HiRes::bootstrap";
+	"Time::HiRes::time";
+	"Time::HiRes::BEGIN@3";
+	"Time::HiRes::BEGIN@4";
+	"Time::HiRes::BEGIN@43";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::_data_ses_stop";
+	"POE::Kernel::_load_loop";
+	"POE::Kernel::_data_ev_dispatch_due";
+	"POE::Kernel::_data_ev_enqueue";
+	"POE::Kernel::session_alloc";
+	"POE::Kernel::_data_handle_enqueue_ready";
+	"POE::Kernel::call";
+	"POE::Kernel::loop_pause_time_watcher";
+	"POE::Kernel::loop_do_timeslice";
+	"POE::Kernel::delay";
+	"POE::Kernel::_recalc_id";
+	"POE::Kernel::_dispatch_signal_event";
+	"POE::Kernel::BEGIN@2.11";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::unimport";
+	"strict::import";
+}
+"POE::Resource::Clock::BEGIN@220" -> "Time::HiRes::BEGIN@43";
+"POE::Resource::Clock::BEGIN@220" -> "Time::HiRes::BEGIN@4";
+"POE::Kernel::loop_pause_time_watcher" -> "Time::HiRes::time";
+"POE::Kernel::call" -> "Time::HiRes::time";
+"POE::Kernel::loop_do_timeslice" -> "Time::HiRes::time";
+"POE::Kernel::_data_handle_enqueue_ready" -> "Time::HiRes::time";
+"POE::Kernel::delay" -> "Time::HiRes::time";
+"POE::Kernel::_dispatch_signal_event" -> "Time::HiRes::time";
+"POE::Kernel::BEGIN@2.11" -> "Time::HiRes::time";
+"POE::Kernel::_recalc_id" -> "Time::HiRes::time";
+"POE::Kernel::_data_ev_dispatch_due" -> "Time::HiRes::time";
+"POE::Kernel::_load_loop" -> "Time::HiRes::time";
+"POE::Kernel::session_alloc" -> "Time::HiRes::time";
+"POE::Kernel::_data_ev_enqueue" -> "Time::HiRes::time";
+"POE::Kernel::_data_ses_stop" -> "Time::HiRes::time";
+"POE::Resource::Clock::BEGIN@220" -> "Time::HiRes::BEGIN@3";
+"DynaLoader::bootstrap" -> "Time::HiRes::bootstrap";
+"Time::HiRes::BEGIN@43" -> "strict::unimport";
+"Time::HiRes::BEGIN@4" -> "strict::import";
+}

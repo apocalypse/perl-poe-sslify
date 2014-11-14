@@ -1,0 +1,49 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+	"strict::unimport";
+}
+subgraph cluster_Exporter {
+	label="Exporter";
+	"Exporter::import";
+}
+subgraph cluster_Cwd {
+	label="Cwd";
+	"Cwd::BEGIN@209";
+	"Cwd::BEGIN@842";
+	"Cwd::getcwd";
+	"Cwd::CORE:regcomp";
+	"Cwd::BEGIN@172";
+	"Cwd::BEGIN@170";
+	"Cwd::CORE:fteexec";
+	"Cwd::CORE:match";
+	"Cwd::BEGIN@171";
+}
+subgraph cluster_Test_FailWarnings {
+	label="Test::FailWarnings";
+	"Test::FailWarnings::BEGIN@10";
+}
+subgraph cluster_main {
+	label="main";
+	"main::BEGIN@7";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+"main::BEGIN@7" -> "Cwd::getcwd";
+"Cwd::BEGIN@170" -> "strict::import";
+"Test::FailWarnings::BEGIN@10" -> "Cwd::BEGIN@842";
+"Test::FailWarnings::BEGIN@10" -> "Cwd::CORE:regcomp";
+"Cwd::BEGIN@842" -> "strict::unimport";
+"Test::FailWarnings::BEGIN@10" -> "Cwd::BEGIN@172";
+"Test::FailWarnings::BEGIN@10" -> "Cwd::BEGIN@171";
+"Cwd::BEGIN@171" -> "Exporter::import";
+"Cwd::BEGIN@172" -> "vars::import";
+"Test::FailWarnings::BEGIN@10" -> "Cwd::CORE:match";
+"Test::FailWarnings::BEGIN@10" -> "Cwd::CORE:fteexec";
+"Test::FailWarnings::BEGIN@10" -> "Cwd::BEGIN@209";
+"Test::FailWarnings::BEGIN@10" -> "Cwd::BEGIN@170";
+}

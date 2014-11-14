@@ -1,0 +1,82 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_strict {
+	label="strict";
+	"strict::unimport";
+	"strict::import";
+}
+subgraph cluster_POE_Kernel {
+	label="POE::Kernel";
+	"POE::Kernel::_test_loop";
+}
+subgraph cluster_constant {
+	label="constant";
+	"constant::BEGIN@24";
+	"constant::CORE:qr";
+	"constant::BEGIN@54";
+	"constant::BEGIN@2";
+	"constant::BEGIN@28";
+	"constant::BEGIN@6";
+	"constant::BEGIN@3";
+	"constant::BEGIN@116";
+	"constant::BEGIN@4";
+	"constant::import";
+}
+subgraph cluster_Test_FailWarnings {
+	label="Test::FailWarnings";
+	"Test::FailWarnings::BEGIN@11";
+}
+subgraph cluster_File_Spec_Unix {
+	label="File::Spec::Unix";
+	"File::Spec::Unix::BEGIN@4";
+	"File::Spec::Unix::BEGIN@127";
+	"File::Spec::Unix::BEGIN@242";
+	"File::Spec::Unix::splitdir";
+	"File::Spec::Unix::BEGIN@179";
+	"File::Spec::Unix::BEGIN@145";
+	"File::Spec::Unix::catdir";
+	"File::Spec::Unix::BEGIN@136";
+	"File::Spec::Unix::BEGIN@220";
+	"File::Spec::Unix::catfile";
+	"File::Spec::Unix::canonpath";
+	"File::Spec::Unix::BEGIN@3";
+}
+subgraph cluster_POE_Resource_Clock {
+	label="POE::Resource::Clock";
+	"POE::Resource::Clock::BEGIN@220";
+}
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+"Test::FailWarnings::BEGIN@11" -> "File::Spec::Unix::BEGIN@136";
+"File::Spec::Unix::catdir" -> "File::Spec::Unix::canonpath";
+"File::Spec::Unix::catfile" -> "File::Spec::Unix::canonpath";
+"Test::FailWarnings::BEGIN@11" -> "File::Spec::Unix::BEGIN@242";
+"File::Spec::Unix::BEGIN@3" -> "strict::import";
+"File::Spec::Unix::BEGIN@127" -> "constant::CORE:qr";
+"File::Spec::Unix::BEGIN@127" -> "constant::BEGIN@54";
+"File::Spec::Unix::catfile" -> "File::Spec::Unix::catdir";
+"Test::FailWarnings::BEGIN@11" -> "File::Spec::Unix::BEGIN@220";
+"Test::FailWarnings::BEGIN@11" -> "File::Spec::Unix::BEGIN@4";
+"File::Spec::Unix::BEGIN@127" -> "constant::BEGIN@3";
+"File::Spec::Unix::BEGIN@179" -> "strict::unimport";
+"POE::Kernel::_test_loop" -> "File::Spec::Unix::splitdir";
+"File::Spec::Unix::BEGIN@4" -> "vars::import";
+"File::Spec::Unix::BEGIN@136" -> "constant::import";
+"File::Spec::Unix::BEGIN@242" -> "constant::import";
+"File::Spec::Unix::BEGIN@127" -> "constant::import";
+"File::Spec::Unix::BEGIN@145" -> "constant::import";
+"File::Spec::Unix::BEGIN@220" -> "constant::import";
+"File::Spec::Unix::BEGIN@127" -> "constant::BEGIN@28";
+"Test::FailWarnings::BEGIN@11" -> "File::Spec::Unix::BEGIN@179";
+"File::Spec::Unix::BEGIN@127" -> "constant::BEGIN@6";
+"File::Spec::Unix::BEGIN@127" -> "constant::BEGIN@116";
+"File::Spec::Unix::BEGIN@127" -> "constant::BEGIN@24";
+"File::Spec::Unix::BEGIN@127" -> "constant::BEGIN@4";
+"Test::FailWarnings::BEGIN@11" -> "File::Spec::Unix::BEGIN@3";
+"POE::Resource::Clock::BEGIN@220" -> "File::Spec::Unix::catfile";
+"Test::FailWarnings::BEGIN@11" -> "File::Spec::Unix::BEGIN@127";
+"Test::FailWarnings::BEGIN@11" -> "File::Spec::Unix::BEGIN@145";
+"File::Spec::Unix::BEGIN@127" -> "constant::BEGIN@2";
+}

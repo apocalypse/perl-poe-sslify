@@ -1,0 +1,24 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_vars {
+	label="vars";
+	"vars::import";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::import";
+}
+subgraph cluster_Test_FailWarnings {
+	label="Test::FailWarnings";
+	"Test::FailWarnings::BEGIN@11";
+}
+subgraph cluster_File_Spec {
+	label="File::Spec";
+	"File::Spec::BEGIN@4";
+	"File::Spec::BEGIN@3";
+}
+"File::Spec::BEGIN@3" -> "strict::import";
+"Test::FailWarnings::BEGIN@11" -> "File::Spec::BEGIN@4";
+"File::Spec::BEGIN@4" -> "vars::import";
+"Test::FailWarnings::BEGIN@11" -> "File::Spec::BEGIN@3";
+}

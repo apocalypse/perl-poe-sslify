@@ -1,0 +1,54 @@
+digraph {
+graph [overlap=false]
+subgraph cluster_warnings {
+	label="warnings";
+	"warnings::import";
+	"warnings::unimport";
+}
+subgraph cluster_Carp {
+	label="Carp";
+	"Carp::BEGIN@568";
+	"Carp::BEGIN@73";
+	"Carp::BEGIN@6";
+	"Carp::BEGIN@3";
+	"Carp::BEGIN@575";
+	"Carp::BEGIN@4";
+	"Carp::BEGIN@171";
+	"Carp::_fetch_sub";
+	"Carp::BEGIN@49";
+	"Carp::BEGIN@131";
+	"Carp::BEGIN@61";
+	"Carp::BEGIN@555";
+	"Carp::BEGIN@5";
+}
+subgraph cluster_strict {
+	label="strict";
+	"strict::unimport";
+	"strict::import";
+}
+subgraph cluster_Test_FailWarnings {
+	label="Test::FailWarnings";
+	"Test::FailWarnings::BEGIN@12";
+}
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@568";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@49";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@171";
+"Carp::BEGIN@73" -> "Carp::_fetch_sub";
+"Carp::BEGIN@61" -> "Carp::_fetch_sub";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@4";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@131";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@3";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@6";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@61";
+"Carp::BEGIN@555" -> "strict::unimport";
+"Carp::BEGIN@131" -> "strict::unimport";
+"Carp::BEGIN@575" -> "strict::unimport";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@555";
+"Carp::BEGIN@4" -> "strict::import";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@575";
+"Carp::BEGIN@5" -> "warnings::import";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@73";
+"Test::FailWarnings::BEGIN@12" -> "Carp::BEGIN@5";
+"Carp::BEGIN@6" -> "warnings::unimport";
+"Carp::BEGIN@568" -> "warnings::unimport";
+}
