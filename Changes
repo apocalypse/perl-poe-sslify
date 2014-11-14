@@ -2,6 +2,12 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+1.011 2014-11-14T03:06:48Z UTC
+ - Tweak the testsuite thanks to CPANTesters!
+
+ [STATISTICS]
+ - code churn: 11 files changed, 37 insertions(+), 35 deletions(-)
+
 1.010 2014-11-12T06:13:41Z UTC
  - add informational test that prints out ssleay version
  - clamp the writes to 16K internally to get around write errors reported
