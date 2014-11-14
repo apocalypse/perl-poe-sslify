@@ -142,7 +142,8 @@ sub READ {
 # Write some stuff to the socket
 sub WRITE {
 	# Get ourself + buffer + length + offset to write
-	my( $self, $buf, $len, $offset ) = @_;
+	my( $self, $len, $offset ) = ( $_[0], $_[2], $_[3] );
+	my $buf = \$_[1]; # don't copy!
 
 	# Check the status of the SSL handshake
 	if ( ! $self->{'ssl_started'} ) {
@@ -159,8 +160,9 @@ sub WRITE {
 	# seems like the same thing happened to https://www.mail-archive.com/openssl-users@openssl.org/msg28151.html
 	$len = 16_384 if $len > 16_384;
 
-	# We count the number of characters written to the socket
-	my $wrote_len = Net::SSLeay::write( $self->{'ssl'}, substr( $buf, $offset, $len ) );
+	# don't trigger substr's magic as it is SLOOOOOOOOW!
+	# see http://www.perlmonks.org/?node_id=732873
+	my $wrote_len = Net::SSLeay::write( $self->{'ssl'}, scalar substr( $$buf, $offset, $len ) );
 
 	# Did we get an error or number of bytes written?
 	# Net::SSLeay::write() returns the number of bytes written, or 0 on unsuccessful

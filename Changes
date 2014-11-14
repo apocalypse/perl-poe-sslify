@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ Reduce memory usage and speedup writing large strings by avoiding substr magic
 
 1.011 2014-11-14T03:06:48Z UTC
  - Tweak the testsuite thanks to CPANTesters!
