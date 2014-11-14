@@ -7,17 +7,17 @@ it made me feel that something was fishy.
 
 	So I brought out the big guns and ran NYTProf on the test.
 
-  apoc@box:~/eclipse_ws/perl-poe-sslify$ PERL_MM_USE_DEFAULT=1 AUTOMATED_TESTING=1 NYTPROF=blocks=1:calls=2 perl -d:NYTProf t/simple_superbig.t
+ apoc@box:~/eclipse_ws/perl-poe-sslify$ PERL_MM_USE_DEFAULT=1 AUTOMATED_TESTING=1 NYTPROF=blocks=1:calls=2 perl -d:NYTProf t/simple_superbig.t
 
 	Here's the NYTProf output:
 
-  XXXLINKNYTPROF_LINEXXX
+ http://htmlpreview.github.io/?https://github.com/apocalypse/perl-poe-sslify/blob/speedup_sslify/nytprof_LINE/index.html
 
 	Thanks to NYTProf, the slowdown was *somewhere* in POE::Filter::Line. I immediately jumped to the
 conclusion that POE::Filter::Line was not really suited for my purposes and decided to re-run the test with
 POE::Filter::Block utilizing BlockSize => length($str). The results was surprising!
 
-XXXLINKNYTPROF_BLOCKXXX
+ http://htmlpreview.github.io/?https://github.com/apocalypse/perl-poe-sslify/blob/speedup_sslify/nytprof_BLOCK/index.html
 
 	For starters, the runtime went from 183s to 3s in my crude testing! The difference was just too great
 for me to let Filter::Line lose to Filter::Block! I dug deeper into the source for Filter::Line and based
@@ -36,5 +36,9 @@ last LINE unless $self->[FRAMING_BUFFER] =~ $self->[INPUT_REGEXP];
 	The runtime went from 183s to 11.5s which is a speed-up of almost 16x! It's not reaching the 3s that
 Filter::Block was able to achieve, but I doubt I can speed it up more without calling in the regex wizards :)
 
+ http://htmlpreview.github.io/?https://github.com/apocalypse/perl-poe-sslify/blob/speedup_sslify/nytprof_LINE_FIXED/index.html
+
 	With grep.cpan.me I can see ~130 dists using POE::Filter::Line so I hope this will have a meaningful
 impact for some of them. Oh, this patch passes the testsuite ;)
+
+ http://grep.cpan.me/?q=POE%3A%3AFilter%3A%3ALine
