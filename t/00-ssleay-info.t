@@ -17,5 +17,12 @@ eval {
 	diag( "\t" . Net::SSLeay::SSLeay_version( 4 ) );
 };
 
+# Idea taken from POE t/00_info.t :)
+my $done = 0;
+my $x    = 0;
+$SIG{ALRM} = sub { diag "\tpogomips: $x"; $done = 1; };
+alarm(1);
+++$x until $done;
+
 ok(1, "fake test for info");
 done_testing;
