@@ -14,8 +14,6 @@ BEGIN {
 	}
 }
 
-local $TODO = "locks up SSLify";
-
 use POE 1.267;
 use POE::Component::Client::TCP;
 use POE::Component::Server::TCP;
@@ -26,7 +24,7 @@ use POE::Component::SSLify qw/Client_SSLify Server_SSLify SSLify_Options SSLify_
 my $port;
 
 # TODO interestingly, x3 goes over some sort of buffer size and this explodes!
-my $bigpacket = join( '-', ('a' .. 'z') x 10000, ('A' .. 'Z') x 10000 ) x 3;
+my $bigpacket = join( '-', ('a' .. 'z') x 10000, ('A' .. 'Z') x 10000 ) x 10;
 
 POE::Component::Server::TCP->new
 (
