@@ -1,7 +1,13 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
- Reduce memory usage and speedup writing large strings by avoiding substr magic
+
+1.012 2014-11-14T20:19:52Z UTC
+ - Reduce memory usage and speedup writing large strings by avoiding substr
+   magic
+
+ [STATISTICS]
+ - code churn: 2 files changed, 6 insertions(+), 3 deletions(-)
 
 1.011 2014-11-14T03:06:48Z UTC
  - Tweak the testsuite thanks to CPANTesters!
